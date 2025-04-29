@@ -8,7 +8,7 @@ Foco: Permissões, uploads e comunicação básica
   - Esforço: Alto  
   - Sequência: 1º  
 
-- [ ] **Upload de arquivos e "uphouds"**  
+- [ ] **Upload de arquivos e** 
   - Estágio: Em andamento  
   - Esforço: Médio  
   - Sequência: 1º  
