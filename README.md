@@ -1,87 +1,81 @@
 # 📌 Planejamento de Sistema Interno (1 mês e meio)
+## ✅ Funcionalidades Priorizadas - orçamento (R$ 7.000)
 
-## 🔥 Fase 1 — MVP (Até Semana 3)
-Foco: Permissões, uploads e comunicação básica
+**Stack técnica:**
+- Frontend: ReactJS + TypeScript
+- Backend: Bun.js(Node) + TypeScript
+- Banco de dados: NoSQL(MongoDB)
 
-- [ ] **Sistema de permissões e perfis de acesso por usuário**  
-  - Estágio: Planejado  
-  - Esforço: Alto  
-  - Sequência: 1º  
+---
 
-- [ ] **Upload de arquivos e** 
-  - Estágio: Em andamento  
-  - Esforço: Médio  
-  - Sequência: 1º  
+## 💵 Custo médio mensal de infraestrutura (100 usuários/dia)
 
-- [ ] **Calendário interno**  
-  - Estágio: Planejado  
-  - Esforço: Médio  
-  - Sequência: 2º  
+| Recurso                           | Estimativa mensal | Comentário                                           |
+|----------------------------------|-------------------|------------------------------------------------------|
+| Banco NoSQL (MongoDB/Firebase)   | R$ 60 a R$ 100    | Plano gratuito ou básico para 100 users/dia         |
+| Armazenamento (S3/Firebase)      | R$ 30 a R$ 70     | Dependente do volume de arquivos                    |
+| Backend (Bun.js hospedado)       | R$ 30 a R$ 80     | Via Railway, Render, VPS, etc.                      |
+| Frontend (Vercel/Netlify)        | R$ 0 a R$ 30      | Gratuito em planos básicos                          |
 
-- [ ] **Postagens e comentários**  
-  - Estágio: Planejado  
-  - Esforço: Médio  
-  - Sequência: 2º  
+**💡 Total estimado mensal: R$ 120 a R$ 250**
 
-- [ ] **Links internos e externos nas postagens**  
-  - Estágio: Planejado  
-  - Esforço: Baixo  
-  - Sequência: 2º  
+---
+## 💰 Orçamento disponível
+- Valor máximo: **R$ 7.000**
+- Pagamento em 3 parcelas:
+  - 🪙 1ª parcela (início): R$ 2.500
+  - 🪙 2ª parcela (meio do projeto): R$ 2.500
+  - 🪙 3ª parcela (entrega final): R$ 2.000
+---
 
+### 🔥 Fase 1 — MVP (Semana 1 a 3)
+1. [ ] **Deploy inicial (Beta) + Setup CI/CD + Automação básica**
+   - 💵 Incluso na margem do projeto
+   - ⏱️ Estimativa: **1 dia útil**
+   - Setup de ambiente, deploy de preview e CI básico para facilitar QA e staging
 
-## 🚧 Fase 2 — Intermediária (Semana 3 a 5)
-Foco: Organização, colaboração e visualizações
+2. [ ] **Gestão básica de usuários (CRUD)**
+   - 💵 R$ 800  
+   - ⏱️ Estimativa: **2 dias úteis**
+   - Criação, edição e desativação de usuários
 
-- [ ] **Gestão de usuários**  
-  - Estágio: Planejado  
-  - Esforço: Médio  
-  - Sequência: 3º  
+3. [ ] **Sistema de permissões e perfis de acesso**
+   - 💵 R$ 2.000  
+   - ⏱️ Estimativa: **4 a 5 dias úteis**
+   - Perfis de usuário, checagens no backend, middleware no frontend
 
-- [ ] **Modal para abertura de links com opção externa**  
-  - Estágio: Planejado  
-  - Esforço: Baixo  
-  - Sequência: 3º  
+4. [ ] **Upload de arquivos**
+   - 💵 R$ 1.200  
+   - ⏱️ Estimativa: **2 a 3 dias úteis**
+   - Suporte a PDF/imagens, preview e integração com storage
 
-- [ ] **Visualizar qual usuário viu uma notícia/post**  
-  - Estágio: Planejado  
-  - Esforço: Médio  
-  - Sequência: 3º  
+5. [ ] **Postagens e comentários**
+   - 💵 R$ 1.000  
+   - ⏱️ Estimativa: **3 dias úteis**
+   - CRUD de posts, comentários vinculados a usuários
 
-- [ ] **Modelos de comunicados (com arquivos, fotos, etc.)**  
-  - Estágio: Planejado  
-  - Esforço: Médio  
-  - Sequência: 4º  
+6. [ ] **Links internos/externos nas postagens**
+   - 💵 R$ 300  
+   - ⏱️ Estimativa: **1 dia útil**
+   - Detecção de links, opção de abertura interna ou externa
 
-- [ ] **Integração com planejamento interno**  
-  - Estágio: Planejado  
-  - Esforço: Médio  
-  - Sequência: 4º  
+7. [ ] **Calendário interno**
+   - 💵 R$ 800  
+   - ⏱️ Estimativa: **2 dias úteis**
+   - Visualização por mês, eventos e integração básica com postagens
+---
 
+### ⏳ Total estimado de desenvolvimento
+- **Total em dias úteis: 30 a 40 dias**
+- **Total em semanas: ~5 semanas**
 
-## 🚀 Fase 3 — Estruturação (Semana 5 a 6.5)
-Foco: Armazenamento avançado, edição e versionamento
+---
 
-- [ ] **Drive de arquivos com estrutura de pastas**  
-  - Estágio: Planejado  
-  - Esforço: Alto  
-  - Sequência: 5º  
+## 📆 Cronograma refinado (ordem cronológica)
 
-- [ ] **Edição colaborativa tipo Word online**  
-  - Estágio: Planejado  
-  - Esforço: Alto  
-  - Sequência: 5º  
-
-- [ ] **Base de conhecimento estilo Wiki**  
-  - Estágio: Planejado  
-  - Esforço: Médio  
-  - Sequência: 6º  
-
-- [ ] **Sistema de versionamento de arquivos e documentos**  
-  - Estágio: Planejado  
-  - Esforço: Alto  
-  - Sequência: 6º  
-
-- [ ] **Suporte a links internos/externos em documentos e wikis**  
-  - Estágio: Planejado  
-  - Esforço: Baixo  
-  - Sequência: 6º  
+| Semana | Entregas previstas                                                                 |
+|--------|--------------------------------------------------------------------------------------|
+| 1      | ✅ Setup de projeto e deploy beta<br>✅ Gestão de usuários<br>🚧 Permissões (início)   |
+| 2      | ✅ Permissões (final)<br>✅ Uploads<br>🚧 Início das postagens                         |
+| 3      | ✅ Postagens<br>✅ Links internos/externos<br>✅ Calendário                           |
+| 4–6    | 🔄 QA geral, testes com usuários, documentação, ajustes, deploy final                |
