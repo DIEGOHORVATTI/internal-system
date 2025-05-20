@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { useAuth } from '@/hooks/use-auth'
 
-export const AuthGuard = ({ children }: React.PropsWithChildren) => {
+export default function AuthGuard({ children }: React.PropsWithChildren) {
   const { isAuthenticated } = useAuth()
   const navigate = useNavigate()
 

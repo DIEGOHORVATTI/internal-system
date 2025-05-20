@@ -1,7 +1,9 @@
-import { MainContent } from '@/components'
+import { MainContent } from '@/components/main-content'
 
-export const Home = () => (
-  <MainContent>
-    <h1>teste</h1>
-  </MainContent>
-)
+export default function Home() {
+  return (
+    <MainContent>
+      <h1>teste</h1>
+    </MainContent>
+  )
+}

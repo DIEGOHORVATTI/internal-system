@@ -27,7 +27,7 @@ type Props = {
 
 export const SettingsContext = createContext({} as ISettings)
 
-export const SettingsProvider = ({ children, defaultSettings }: Props) => {
+export default function SettingsProvider({ children, defaultSettings }: Props) {
   const { state, update } = useLocalStorage<ISettingsValue>(STORAGE_KEYS.SETTINGS, defaultSettings)
 
   const onToggleMode = () =>

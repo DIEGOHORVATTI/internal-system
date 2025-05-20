@@ -15,7 +15,7 @@ export type IAuthContext = {
 
 export const AuthContext = createContext<IAuthContext | undefined>(undefined)
 
-export const AuthProvider = ({ children }: React.PropsWithChildren) => {
+export default function AuthProvider({ children }: React.PropsWithChildren) {
   const [user, setUser] = useState<IUser | null>(null)
 
   const login = useCallback((token: string) => {
