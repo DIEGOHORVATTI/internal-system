@@ -1,33 +1,30 @@
 import { useEffect } from 'react'
-
-import { usePathname } from 'next/navigation'
+import { useLocation } from 'react-router-dom'
 
 import { useTheme } from '@mui/material/styles'
+import useResponsive from '@/hooks/use-responsive'
+import useCollapseDrawer from '@/hooks/use-collapse-drawer'
 
-import { Box, Stack, Drawer } from '@mui/material'
-
-import { useResponsive, useCollapseDrawer } from '@/hooks'
-
-import cssStyles from '@/utils/cssStyles'
+import Box from '@mui/material/Box'
+import Stack from '@mui/material/Stack'
+import Drawer from '@mui/material/Drawer'
 
 import { NAVBAR } from '@/config'
 
-import Logo, { LogoSiriusTrack } from '@/components/iogo'
+import Logo from '@/components/logo'
 
 import { NavSectionVertical } from '@/components/nav-section'
 
 import { navConfig } from './NavConfig'
 
-import { Scrollbar } from '@/components'
-
 import { CollapseButton } from './CollapseButton'
 
 import { NavbarAccount } from './NavbarAccount'
 
-import useSettings from '@/hooks/useSettings'
-
+import cssStyles from '@/utils/cssStyles'
 import * as S from './styles'
-import { paper } from '../../../theme/css'
+
+import { paper } from '@/theme/css'
 
 type Props = {
   isOpenSidebar: boolean
@@ -37,9 +34,9 @@ type Props = {
 export default function NavbarVertical({ isOpenSidebar, onCloseSidebar }: Props) {
   const theme = useTheme()
 
-  const pathname = usePathname()
+  const { pathname } = useLocation()
 
-  const { onChangeOpenSideBar } = useSettings()
+  /* const { onChangeOpenSideBar } = useSettings() */
 
   const isDesktop = useResponsive('up', 'lg')
 
@@ -56,7 +53,7 @@ export default function NavbarVertical({ isOpenSidebar, onCloseSidebar }: Props)
   }, [pathname])
 
   const renderContent = (
-    <Scrollbar
+    <Box
       sx={{
         height: 1,
         '& .simplebar-content': {
@@ -78,12 +75,12 @@ export default function NavbarVertical({ isOpenSidebar, onCloseSidebar }: Props)
         }}
       >
         <Stack direction="row" alignItems="center" justifyContent="space-between">
-          {isCollapse ? <Logo /> : <LogoSiriusTrack />}
+          <Logo />
 
           {isDesktop && !isCollapse && (
             <CollapseButton
               onToggleCollapse={() => {
-                onChangeOpenSideBar()
+                //onChangeOpenSideBar()
                 onToggleCollapse()
               }}
               collapseClick={collapseClick}
@@ -97,7 +94,7 @@ export default function NavbarVertical({ isOpenSidebar, onCloseSidebar }: Props)
       <NavSectionVertical sx={{ mt: -3 }} navConfig={navConfig} isCollapse={isCollapse} />
 
       <Box sx={{ flexGrow: 1 }} />
-    </Scrollbar>
+    </Box>
   )
 
   return (

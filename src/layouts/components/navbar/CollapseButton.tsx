@@ -1,6 +1,6 @@
-import { Box } from '@mui/material'
+import Box from '@mui/material/Box'
 
-import { IconButtonAnimate } from '@/components/animate'
+import IconButtonAnimate from '@/components/icon-button-animate'
 
 type Props = {
   onToggleCollapse: VoidFunction
@@ -13,13 +13,13 @@ export const CollapseButton = ({ onToggleCollapse, collapseClick }: Props) => {
       <Box
         sx={{
           lineHeight: 0,
-          transition: theme =>
+          transition: (theme) =>
             theme.transitions.create('transform', {
-              duration: theme.transitions.duration.shorter
+              duration: theme.transitions.duration.shorter,
             }),
           ...(collapseClick && {
-            transform: 'rotate(180deg)'
-          })
+            transform: 'rotate(180deg)',
+          }),
         }}
       >
         {icon}

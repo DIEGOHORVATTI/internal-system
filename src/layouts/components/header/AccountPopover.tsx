@@ -2,27 +2,20 @@ import { Fragment } from 'react'
 
 import { MenuPopover, MyAvatar } from '@/components'
 
-import { useRouter } from 'next/navigation'
-
-import { useAuth, useIsMountedRef } from '@/hooks'
-
-import { PATH_AUTH } from '@/routes/paths'
+import useSettings from '@/hooks/use-settings'
+import useAuth from '@/hooks/use-auth'
 
 import { Box, Divider, Stack, MenuItem, Typography, Switch, Button } from '@mui/material'
-
-import useSettings from '@/hooks/useSettings'
-
-import { useSnackbar } from 'notistack'
 
 const MENU_OPTIONS = [
   {
     label: 'Início',
-    linkTo: '/'
+    linkTo: '/',
   },
   {
     label: 'Perfil',
-    linkTo: '/profile'
-  }
+    linkTo: '/profile',
+  },
 ]
 
 type Props = {
@@ -34,29 +27,10 @@ type Props = {
 const AccountPopover = ({ isPopoverOpen, setIsPopoverOpen, handleOpen }: Props) => {
   const { logout } = useAuth()
 
-  const { replace } = useRouter()
-
-  const isMountedRef = useIsMountedRef()
-
   const { onToggleMode, themeMode } = useSettings()
-
-  const { enqueueSnackbar } = useSnackbar()
 
   const handleCloseMenuPopover = () => {
     setIsPopoverOpen(false)
-  }
-
-  const handleLogout = async () => {
-    try {
-      await logout()
-      replace(PATH_AUTH.login)
-
-      if (isMountedRef.current) {
-        handleCloseMenuPopover()
-      }
-    } catch (error) {
-      enqueueSnackbar('Unable to logout!', { variant: 'error' })
-    }
   }
 
   return (
@@ -65,9 +39,9 @@ const AccountPopover = ({ isPopoverOpen, setIsPopoverOpen, handleOpen }: Props) 
         sx={{
           p: 0,
           borderRadius: '50%',
-          border: theme => `solid 3px ${theme.palette.grey[500_32]}`
+          border: (theme) => `solid 3px ${theme.palette.grey[500_32]}`,
         }}
-        onClick={value => {
+        onClick={(value) => {
           onToggleMode()
           value.stopPropagation()
         }}
@@ -86,13 +60,15 @@ const AccountPopover = ({ isPopoverOpen, setIsPopoverOpen, handleOpen }: Props) 
             ml: 0.75,
             '& .MuiMenuItem-root': {
               typography: 'body2',
-              borderRadius: 0.75
-            }
+              borderRadius: 0.75,
+            },
           }}
         >
           <MenuItem>
             <Stack direction="row" alignItems="center" justifyContent="space-between">
-              <Typography variant="subtitle2">{themeMode === 'dark' ? 'Escuro' : 'Claro'}</Typography>
+              <Typography variant="subtitle2">
+                {themeMode === 'dark' ? 'Escuro' : 'Claro'}
+              </Typography>
 
               <Switch
                 checked={themeMode === 'dark'}
@@ -114,7 +90,7 @@ const AccountPopover = ({ isPopoverOpen, setIsPopoverOpen, handleOpen }: Props) 
             </Fragment>
           ))}
 
-          <MenuItem component={Button} fullWidth onClick={handleLogout}>
+          <MenuItem component={Button} fullWidth onClick={logout}>
             Sair
           </MenuItem>
         </MenuPopover>

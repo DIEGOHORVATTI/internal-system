@@ -1,4 +1,4 @@
-import { useSettings } from '@/hooks/use-settings'
+import useSettings from '@/hooks/use-settings'
 
 import { IconButton, Stack, ButtonBase } from '@mui/material'
 import { alpha } from '@mui/material/styles'

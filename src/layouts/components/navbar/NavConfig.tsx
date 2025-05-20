@@ -1,6 +1,6 @@
 import { PATH_DASHBOARD } from '@/routes/paths'
 
-import { Iconify } from '@/components'
+import Iconify from '@/components/iconify'
 
 export const navConfig = [
   {
@@ -13,12 +13,12 @@ export const navConfig = [
           <Iconify
             icon="eva:file-text-fill"
             sx={{
-              transform: 'scale(1.3)'
+              transform: 'scale(1.3)',
             }}
           />
-        )
-      }
-    ]
+        ),
+      },
+    ],
   },
   {
     subheader: 'Configurações',
@@ -26,7 +26,7 @@ export const navConfig = [
       {
         title: PATH_DASHBOARD.general.projects.name,
         path: PATH_DASHBOARD.general.projects.path,
-        icon: <Iconify icon="fontisto:database" />
+        icon: <Iconify icon="fontisto:database" />,
       },
       {
         title: PATH_DASHBOARD.general.domains.name,
@@ -35,15 +35,15 @@ export const navConfig = [
           <Iconify
             icon="jam:world"
             sx={{
-              transform: 'scale(1.4)'
+              transform: 'scale(1.4)',
             }}
           />
-        )
+        ),
       },
       {
         title: PATH_DASHBOARD.general.Integrations.name,
         path: PATH_DASHBOARD.general.Integrations.path,
-        icon: <Iconify icon="dashicons:admin-plugins" />
+        icon: <Iconify icon="dashicons:admin-plugins" />,
       },
       {
         title: PATH_DASHBOARD.general.launches.name,
@@ -52,23 +52,11 @@ export const navConfig = [
           <Iconify
             icon="simple-line-icons:graph"
             sx={{
-              transform: 'scale(1.4)'
+              transform: 'scale(1.4)',
             }}
           />
-        )
+        ),
       },
-      /* {
-        title: PATH_DASHBOARD.general.reports.name,
-        path: PATH_DASHBOARD.general.reports.path,
-        icon: (
-          <Iconify
-            icon="mdi:file-chart-outline"
-            sx={{
-              transform: 'scale(1.4)'
-            }}
-          />
-        )
-      }, */
       {
         title: PATH_DASHBOARD.general.whatsapp.name,
         path: PATH_DASHBOARD.general.whatsapp.path,
@@ -76,11 +64,11 @@ export const navConfig = [
           <Iconify
             icon="bx:bxl-whatsapp"
             sx={{
-              transform: 'scale(1.4)'
+              transform: 'scale(1.4)',
             }}
           />
-        )
-      }
-    ]
-  }
+        ),
+      },
+    ],
+  },
 ]

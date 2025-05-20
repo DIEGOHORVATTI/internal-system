@@ -1,8 +1,8 @@
 import { useContext } from 'react'
 
-import { SettingsContext, type ISettings } from '@/contexts/settings-provider'
+import { SettingsContext } from '@/contexts/settings-provider'
 
-export const useSettings = (): ISettings => {
+export default function useSettings() {
   const context = useContext(SettingsContext)
 
   if (!context) throw new Error('useSettingsContext must be use inside SettingsProvider')

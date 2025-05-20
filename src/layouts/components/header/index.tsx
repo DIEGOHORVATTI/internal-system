@@ -2,11 +2,10 @@ import { styled } from '@mui/material/styles'
 
 import { AppBar, Toolbar } from '@mui/material'
 
+import IconButtonAnimate from '@/components/icon-button-animate'
+import Iconify from '@/components/iconify'
+
 import { useOffSetTop } from '@/hooks'
-
-import { IconButtonAnimate } from '@/components/animate'
-
-import { Iconify } from '@/components/Iconify'
 
 import cssStyles from '@/utils/cssStyles'
 

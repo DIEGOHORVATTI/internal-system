@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 
-import { useSettings } from '@/hooks/use-settings'
+import useSettings from '@/hooks/use-settings'
 
 import CssBaseline from '@mui/material/CssBaseline'
 import { createTheme, ThemeProvider as MuiThemeProvider, ThemeOptions } from '@mui/material/styles'

@@ -2,9 +2,9 @@ import { useState, MouseEvent } from 'react'
 
 import { Box, Typography, useTheme } from '@mui/material'
 
-import { IconButtonAnimate } from '@/components'
+import IconButtonAnimate from '@/components/icon-button-animate'
 
-import useAuth from '@/hooks/useAuth'
+import useAuth from '@/hooks/use-auth'
 
 import AccountPopover from '../header/AccountPopover'
 
@@ -16,6 +16,7 @@ type Props = {
 
 export const NavbarAccount = ({ isCollapse = false }: Props) => {
   const { user } = useAuth()
+
   const theme = useTheme()
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false)
@@ -32,24 +33,28 @@ export const NavbarAccount = ({ isCollapse = false }: Props) => {
       sx={{
         ...S.ContainerAvatar(theme),
         ...(isCollapse && {
-          bgcolor: 'transparent'
+          bgcolor: 'transparent',
         }),
         width: '100%',
-        justifyContent: 'left'
+        justifyContent: 'left',
       }}
     >
-      <AccountPopover handleOpen={open} isPopoverOpen={isPopoverOpen} setIsPopoverOpen={setIsPopoverOpen} />
+      <AccountPopover
+        handleOpen={open}
+        isPopoverOpen={isPopoverOpen}
+        setIsPopoverOpen={setIsPopoverOpen}
+      />
       <Box
         sx={{
           ml: 2,
-          transition: theme =>
+          transition: (theme) =>
             theme.transitions.create('width', {
-              duration: theme.transitions.duration.shorter
+              duration: theme.transitions.duration.shorter,
             }),
           ...(isCollapse && {
             ml: 0,
-            width: 0
-          })
+            width: 0,
+          }),
         }}
       >
         <Typography
@@ -59,7 +64,7 @@ export const NavbarAccount = ({ isCollapse = false }: Props) => {
             maxWidth: '18ch',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap'
+            whiteSpace: 'nowrap',
           }}
         >
           {user?.name}
