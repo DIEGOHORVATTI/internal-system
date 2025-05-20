@@ -1,5 +1,5 @@
 export type IUser = {
-  username: string
-  maxCalls: number
+  email: string
+  password: number
   token: string
 }

@@ -1,40 +1,66 @@
-import { useFormContext, Controller } from 'react-hook-form'
+import TextField, { type TextFieldProps } from '@mui/material/TextField'
 
-import { TextField, TextFieldProps } from '@mui/material'
+import { useFormContext, Controller, type FieldValues, type FieldPath } from 'react-hook-form'
 
-type Props = TextFieldProps &
-  Pick<React.ComponentProps<typeof Controller>, 'rules'> & {
-    name: string
-    label?: string
-  }
+type FormFieldValues = {
+  [key: string]: string | number
+}
 
-export const RHFTextField = ({ name, required, ...other }: Props) => {
-  const {
-    control,
-    formState: { errors },
-  } = useFormContext()
+export type RHFTextFieldProps<T extends FieldValues> = {
+  name: FieldPath<T>
+  label?: string
+  maxWidth?: number
+  maxLength?: number
+  min?: number
+  max?: number
+}
+
+export default function RHFTextField<T extends FieldValues>({
+  name,
+  required,
+  helperText,
+  min,
+  max,
+  maxWidth,
+  maxLength,
+  ...other
+}: TextFieldProps & RHFTextFieldProps<T>) {
+  const { control } = useFormContext()
 
   return (
-    <Controller
+    <Controller<FormFieldValues>
       name={name}
       control={control}
-      rules={{ required: required && 'Campo obrigatório', ...other.rules }}
-      render={({ field, fieldState: { error: { message } = { message: '' } } }) => {
-        const error = errors[name]
-        const isError = Boolean(error)
-
-        const helperText = error?.message?.toString() || message
-
+      rules={{
+        maxLength: maxLength && {
+          value: maxLength,
+          message: `Máximo: ${maxLength} caracteres`,
+        },
+        required: required && 'Campo obrigatório',
+        ...(min && { min: { value: min, message: `Mínimo ${min}` } }),
+        ...(max && { max: { value: max, message: `Máximo ${max}` } }),
+      }}
+      render={({ field, fieldState: { error } }) => {
         return (
           <TextField
             {...field}
             fullWidth
+            aria-required={required}
+            error={!!error}
+            helperText={error && (helperText || error?.message)}
             {...other}
-            error={isError}
-            helperText={helperText}
+            inputProps={{
+              maxLength,
+              ...other.inputProps,
+            }}
+            sx={{
+              maxWidth,
+              ...other?.sx,
+            }}
             onChange={(event) => {
-              const value = event.target.value || ''
-              field.onChange(value)
+              const value = event.target.value
+
+              field?.onChange(value)
             }}
           />
         )

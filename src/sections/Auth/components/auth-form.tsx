@@ -4,24 +4,27 @@ import { useAuth } from '@/hooks/use-auth'
 
 import { Box, Button, Card, Stack, Typography } from '@mui/material'
 
-import { FormProvider, RHFTextField, RHFNumberField, SettingMode } from '@/components'
+import SettingMode from '@/components/setting-mode'
+import FormProvider from '@/components/hook-form/form-provider'
+import RHFTextField from '@/components/hook-form/rhf-text-field'
+import RHFPassword from '@/components/hook-form/rhf-password'
 
 import { generateJwt } from '@/shared/generate-jwt'
 
 type FormValues = {
-  username: string
-  maxCalls: number
+  email: string
+  password: string
 }
 
 export const AuthForm = () => {
   const { login } = useAuth()
 
-  const methods = useForm<FormValues>({ defaultValues: { username: '', maxCalls: 10 } })
+  const methods = useForm<FormValues>({ defaultValues: { email: '', password: '' } })
 
   const { handleSubmit } = methods
 
-  const handle = ({ username, maxCalls }: FormValues) => {
-    const token = generateJwt({ username, maxCalls })
+  const handle = ({ email, password }: FormValues) => {
+    const token = generateJwt({ email, password })
 
     login(token)
   }
@@ -51,19 +54,12 @@ export const AuthForm = () => {
 
         <FormProvider methods={methods} onSubmit={handleSubmit(handle)}>
           <Stack spacing={3}>
-            <RHFTextField required name="username" label="Usuário" />
+            <RHFTextField required name="email" label="Email" />
 
-            <RHFNumberField
-              required
-              name="maxCalls"
-              label="Máximo de chamadas"
-              rules={{
-                min: { value: 1, message: 'Mínimo de 1 chamada' },
-              }}
-            />
+            <RHFPassword required name="password" label="Senha" />
 
             <Button size="large" type="submit" variant="contained">
-              Conectar
+              Entrar
             </Button>
           </Stack>
         </FormProvider>
