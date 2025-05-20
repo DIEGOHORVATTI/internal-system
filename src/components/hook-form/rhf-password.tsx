@@ -19,7 +19,6 @@ export default function RHFPassword<T extends FieldValues>({
     <RHFTextField<T>
       name={name}
       type={showPassword ? 'text' : 'password'}
-      maxWidth={150}
       InputProps={{
         sx: { paddingRight: 0.5 },
         endAdornment: (
