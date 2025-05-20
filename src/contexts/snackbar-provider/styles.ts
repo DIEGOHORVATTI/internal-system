@@ -24,10 +24,6 @@ export const StyledNotistack = styled(MaterialDesignContent)(({ theme }) => {
       color: isLight ? theme.palette.common.white : theme.palette.grey[800],
       backgroundColor: isLight ? theme.palette.grey[800] : theme.palette.common.white,
     },
-    // '&.notistack-MuiContent-info': {},
-    // '&.notistack-MuiContent-success': {},
-    // '&.notistack-MuiContent-warning': {},
-    // '&.notistack-MuiContent-error': {},
   }
 })
 

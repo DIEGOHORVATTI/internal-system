@@ -3,7 +3,7 @@ import { SnackbarProvider as NotistackProvider, closeSnackbar } from 'notistack'
 
 import IconButton from '@mui/material/IconButton'
 
-import { Iconify } from '@/components/iconify'
+import Iconify from '@/components/iconify'
 
 import { StyledIcon, StyledNotistack } from './styles'
 

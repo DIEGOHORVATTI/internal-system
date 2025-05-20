@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-import SnackbarProvider from '@/contexts/snackbar/snackbar-provider'
+import SnackbarProvider from '@/contexts/snackbar-provider'
 import SettingsProvider from '@/contexts/settings-provider'
 import AuthProvider from '@/contexts/auth-provider'
 
