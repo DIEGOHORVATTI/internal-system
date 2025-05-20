@@ -11,31 +11,33 @@ import Auth from '@/sections/Auth'
 
 import { ThemeProvider } from '@/theme'
 
-export const App = () => (
-  <SettingsProvider
-    defaultSettings={{
-      themeMode: 'dark',
-      themeContrast: 'default',
-      themeLayout: 'vertical',
-      themeColorPresets: 'pink',
-      themeStretch: false,
-    }}
-  >
-    <ThemeProvider>
-      <SnackbarProvider>
-        <AuthProvider>
-          <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-            <AuthGuard>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/auth" element={<Auth />} />
+export default function App() {
+  return (
+    <SettingsProvider
+      defaultSettings={{
+        themeMode: 'dark',
+        themeContrast: 'default',
+        themeLayout: 'vertical',
+        themeColorPresets: 'pink',
+        themeStretch: false,
+      }}
+    >
+      <ThemeProvider>
+        <SnackbarProvider>
+          <AuthProvider>
+            <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+              <AuthGuard>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/auth" element={<Auth />} />
 
-                <Route path="*" element={<Home />} />
-              </Routes>
-            </AuthGuard>
-          </BrowserRouter>
-        </AuthProvider>
-      </SnackbarProvider>
-    </ThemeProvider>
-  </SettingsProvider>
-)
+                  <Route path="*" element={<Home />} />
+                </Routes>
+              </AuthGuard>
+            </BrowserRouter>
+          </AuthProvider>
+        </SnackbarProvider>
+      </ThemeProvider>
+    </SettingsProvider>
+  )
+}
