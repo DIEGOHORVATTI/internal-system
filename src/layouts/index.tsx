@@ -43,7 +43,7 @@ export default function DashboardLayout({
 
         <NavbarVertical isOpenSidebar={open} onCloseSidebar={() => setOpen(false)} />
 
-        <CustomBreadcrumbs title={title} heading={heading} links={links} action={action} />
+        {/* <CustomBreadcrumbs title={title} heading={heading} links={links} action={action} /> */}
 
         {children}
       </Grid>

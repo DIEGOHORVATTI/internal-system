@@ -10,6 +10,7 @@ import Home from '@/sections/Home'
 import Auth from '@/sections/Auth'
 
 import { ThemeProvider } from '@/theme'
+import DashboardLayout from './layouts'
 
 export default function App() {
   return (
@@ -27,12 +28,21 @@ export default function App() {
           <AuthProvider>
             <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
               <AuthGuard>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/auth" element={<Auth />} />
+                <DashboardLayout
+                  links={[
+                    {
+                      name: 'teste',
+                      href: '/teste',
+                    },
+                  ]}
+                >
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/auth" element={<Auth />} />
 
-                  <Route path="*" element={<Home />} />
-                </Routes>
+                    <Route path="*" element={<Home />} />
+                  </Routes>
+                </DashboardLayout>
               </AuthGuard>
             </BrowserRouter>
           </AuthProvider>

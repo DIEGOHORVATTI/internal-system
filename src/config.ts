@@ -1,5 +1,3 @@
-// import { SettingsValueProps } from '@/components/settings/type'
-
 // LAYOUT
 export const HEADER = {
   MOBILE_HEIGHT: 50,
@@ -31,16 +29,9 @@ export const cookiesKey = {
   themeStretch: 'themeStretch',
 }
 
-/* export const defaultSettings: SettingsValueProps = {
-  themeMode: 'dark',
-  themeDirection: 'ltr',
-  themeColorPresets: 'pink',
-  themeLayout: 'horizontal',
-  themeOpenSideBar: true,
-  themeStretch: true
-} */
-
-export const ASSETS_API = process.env.NEXT_PUBLIC_ASSETS_API
+// https://pub-c5e31b5cdafb419fb247a8ac2e78df7a.r2.dev/public/assets/images/mock/avatar/avatar-1.webp
+// process.env.NEXT_PUBLIC_ASSETS_API
+export const ASSETS_API = 'https://pub-c5e31b5cdafb419fb247a8ac2e78df7a.r2.dev'
 
 export const LOCAL_STORAGE = {
   SETTINGS: '@sirius-track-settings',
