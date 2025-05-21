@@ -33,7 +33,7 @@ export function CollapseDrawerProvider({ children }: CollapseDrawerProviderProps
 
   const isMobile = useMediaQuery(theme.breakpoints.down('lg'))
 
-  const { themeLayout } = useSettings()
+  const { themeLayout, onToggleLayout } = useSettings()
 
   const [collapse, setCollapse] = useState({
     click: themeLayout,
@@ -51,6 +51,7 @@ export function CollapseDrawerProvider({ children }: CollapseDrawerProviderProps
 
   const onToggleCollapse = () => {
     setCollapse({ ...collapse, click: !collapse.click })
+    onToggleLayout()
   }
 
   const handleHoverEnter = () => {

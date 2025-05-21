@@ -1,7 +1,3 @@
-import { useEffect } from 'react'
-
-import { useLocation } from 'react-router-dom'
-
 import useCollapseDrawer from '@/hooks/use-collapse-drawer'
 
 import { Box, Stack, Drawer, useTheme, useMediaQuery } from '@mui/material'
@@ -13,11 +9,12 @@ import { NAVBAR } from '@/config'
 import { paper } from '@/theme/css'
 import cssStyles from '@/utils/cssStyles'
 
+import IconButtonAnimate from '@/components/icon-button-animate'
+import Iconify from '@/components/iconify'
+
 import * as S from './components/styles'
 
 import type { Navigation } from '@/routes/nav-config'
-import IconButtonAnimate from '../components/icon-button-animate'
-import Iconify from '../components/iconify'
 
 type Props = React.PropsWithChildren<{
   links: Array<Navigation>
@@ -25,20 +22,12 @@ type Props = React.PropsWithChildren<{
 
 export default function NavbarVertical({}: /* links, children */ Props) {
   const theme = useTheme()
-  const { pathname } = useLocation()
 
   const { isCollapse, collapseClick, collapseHover, onToggleCollapse, onHoverEnter, onHoverLeave } =
     useCollapseDrawer()
 
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'))
   const isMobile = !isDesktop
-
-  /* useEffect(() => {
-    if (isOpenSidebar) {
-      onCloseSidebar()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname]) */
 
   const renderContent = (
     <Box
@@ -52,8 +41,6 @@ export default function NavbarVertical({}: /* links, children */ Props) {
         },
       }}
     >
-      <h1>{String(collapseClick)}</h1>
-
       <Stack
         spacing={3}
         sx={{
@@ -67,7 +54,13 @@ export default function NavbarVertical({}: /* links, children */ Props) {
 
           {isDesktop && !isCollapse && (
             <IconButtonAnimate onClick={onToggleCollapse}>
-              <Iconify icon="mdi:arrow-bottom-left" />
+              <Iconify
+                icon={
+                  collapseClick
+                    ? 'solar:double-alt-arrow-right-line-duotone'
+                    : 'solar:double-alt-arrow-left-line-duotone'
+                }
+              />
             </IconButtonAnimate>
           )}
         </Stack>
@@ -76,8 +69,6 @@ export default function NavbarVertical({}: /* links, children */ Props) {
       </Stack>
 
       {/* <NavSectionVertical navConfig={NAVIGATION} isCollapse={isCollapse} /> */}
-
-      <Box sx={{ flexGrow: 1 }} />
     </Box>
   )
 
@@ -87,12 +78,12 @@ export default function NavbarVertical({}: /* links, children */ Props) {
         width: {
           lg: isCollapse ? NAVBAR.DASHBOARD_COLLAPSE_WIDTH : NAVBAR.DASHBOARD_WIDTH,
         },
-        ...(collapseClick && {
+        ...(isCollapse && {
           position: 'absolute',
         }),
       }}
     >
-      {!isMobile && (
+      {isDesktop && (
         <Drawer
           open
           variant="persistent"
