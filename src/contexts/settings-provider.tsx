@@ -10,13 +10,14 @@ type ISettingsValue = {
   themeStretch: boolean
   themeMode: 'light' | 'dark'
   themeContrast: 'default' | 'bold'
-  themeLayout: 'vertical' | 'horizontal' | 'mini'
+  themeLayout: Boolean
   themeColorPresets: keyof typeof COMMON
 }
 
 export type ISettings = ISettingsValue & {
   onUpdate: (value: ISettingsValue) => void
-  onToggleMode: () => void
+  onToggleMode: VoidFunction
+  onToggleLayout: VoidFunction
   onPresetsChange: (value: ISettingsValue['themeColorPresets']) => void
 }
 
@@ -33,6 +34,8 @@ export default function SettingsProvider({ children, defaultSettings }: Props) {
   const onToggleMode = () =>
     update({ ...state, themeMode: state.themeMode === 'light' ? 'dark' : 'light' })
 
+  const onToggleLayout = () => update({ ...state, themeLayout: !state.themeLayout })
+
   const onPresetsChange = (themeColorPresets: ISettingsValue['themeColorPresets']) =>
     update({ ...state, themeColorPresets })
 
@@ -40,6 +43,7 @@ export default function SettingsProvider({ children, defaultSettings }: Props) {
     () => ({
       ...state,
       onToggleMode,
+      onToggleLayout,
       onPresetsChange,
       onUpdate: update,
     }),

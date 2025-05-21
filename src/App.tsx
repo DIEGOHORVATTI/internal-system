@@ -10,7 +10,9 @@ import Home from '@/sections/Home'
 import Auth from '@/sections/Auth'
 
 import { ThemeProvider } from '@/theme'
-import DashboardLayout from './layouts'
+import NavbarVertical from '@/layouts'
+
+import { navConfig } from './routes/nav-config'
 
 export default function App() {
   return (
@@ -18,7 +20,7 @@ export default function App() {
       defaultSettings={{
         themeMode: 'dark',
         themeContrast: 'default',
-        themeLayout: 'vertical',
+        themeLayout: true,
         themeColorPresets: 'pink',
         themeStretch: false,
       }}
@@ -28,21 +30,14 @@ export default function App() {
           <AuthProvider>
             <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
               <AuthGuard>
-                <DashboardLayout
-                  links={[
-                    {
-                      name: 'teste',
-                      href: '/teste',
-                    },
-                  ]}
-                >
+                <NavbarVertical links={navConfig}>
                   <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/auth" element={<Auth />} />
 
                     <Route path="*" element={<Home />} />
                   </Routes>
-                </DashboardLayout>
+                </NavbarVertical>
               </AuthGuard>
             </BrowserRouter>
           </AuthProvider>

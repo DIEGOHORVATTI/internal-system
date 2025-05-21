@@ -1,52 +1,141 @@
-import { useState } from 'react'
+import { useEffect } from 'react'
 
-import { AppBar, Container, Grid } from '@mui/material'
+import { useLocation } from 'react-router-dom'
 
 import useCollapseDrawer from '@/hooks/use-collapse-drawer'
-import useResponsive from '@/hooks/use-responsive'
 
-import { HEADER } from '@/config'
+import { Box, Stack, Drawer, useTheme, useMediaQuery } from '@mui/material'
 
-import DashboardHeader from './components/header'
+import Logo from '@/components/logo'
+import { NavbarAccount } from './components/NavbarAccount'
 
-import NavbarVertical from './components/navbar/NavbarVertical'
 
-import CustomBreadcrumbs from '@/components/custom-breadcrumbs'
-import { CustomBreadcrumbsProps } from '@/components/custom-breadcrumbs/types'
+import { NAVBAR } from '@/config'
+import { paper } from '@/theme/css'
+import cssStyles from '@/utils/cssStyles'
 
-export default function DashboardLayout({
-  children,
-  title,
-  links,
-  heading,
-  action,
-}: CustomBreadcrumbsProps) {
-  const { isCollapse } = useCollapseDrawer()
+import * as S from './components/styles'
 
-  const isMobile = useResponsive('down', 'lg')
+import type { Navigation } from '@/routes/nav-config'
+import IconButtonAnimate from '../components/icon-button-animate'
+import Iconify from '../components/iconify'
 
-  const [open, setOpen] = useState(false)
+type Props = React.PropsWithChildren<{
+  links: Array<Navigation>
+}>
+
+export default function NavbarVertical({ /* links, children */ }: Props) {
+  const theme = useTheme()
+  const { pathname } = useLocation()
+
+  const { isCollapse, collapseClick, collapseHover, onToggleCollapse, onHoverEnter, onHoverLeave } =
+    useCollapseDrawer()
+
+  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'))
+  const isMobile = !isDesktop
+
+  /* useEffect(() => {
+    if (isOpenSidebar) {
+      onCloseSidebar()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]) */
+
+  const renderContent = (
+    <Box
+      sx={{
+        height: 1,
+        overflow: 'auto',
+        '& .simplebar-content': {
+          height: 1,
+          display: 'flex',
+          flexDirection: 'column',
+        },
+      }}
+    >
+      <h1>{String(collapseClick)}</h1>
+
+      <Stack
+        spacing={3}
+        sx={{
+          p: 2,
+          flexShrink: 0,
+          ...(isCollapse && { alignItems: 'center' }),
+        }}
+      >
+        <Stack direction="row" alignItems="center" justifyContent="space-between">
+          <Logo />
+
+
+          {isDesktop && !isCollapse && (
+            <IconButtonAnimate onClick={onToggleCollapse}>
+              <Iconify icon="mdi:arrow-bottom-left" />
+            </IconButtonAnimate>
+          )}
+        </Stack>
+
+        <NavbarAccount isCollapse={isCollapse} />
+      </Stack>
+
+      {/* <NavSectionVertical navConfig={NAVIGATION} isCollapse={isCollapse} /> */}
+
+      <Box sx={{ flexGrow: 1 }} />
+    </Box>
+  )
 
   return (
-    <Container maxWidth="xl">
-      <Grid display="flex" py={4}>
-        {isMobile && (
-          <AppBar
-            sx={{
-              backgroundColor: 'background.paper',
-              height: HEADER.MOBILE_HEIGHT,
-            }}
+    <S.NavbarVerticalRootStyle
+      sx={{
+        width: {
+          lg: isCollapse ? NAVBAR.DASHBOARD_COLLAPSE_WIDTH : NAVBAR.DASHBOARD_WIDTH,
+        },
+        ...(collapseClick && {
+          position: 'absolute',
+        }),
+      }}
+    >
+        {!isMobile && (
+        <Drawer
+          open
+          variant="persistent"
+          onMouseEnter={onHoverEnter}
+          onMouseLeave={onHoverLeave}
+          PaperProps={{
+            sx: {
+              width: NAVBAR.DASHBOARD_WIDTH,
+              borderRightStyle: 'dashed',
+              bgcolor: 'background.default',
+              transition: theme.transitions.create('width', {
+                duration: theme.transitions.duration.standard,
+              }),
+              ...(isCollapse && {
+                width: NAVBAR.DASHBOARD_COLLAPSE_WIDTH,
+              }),
+              ...paper({ theme, dropdown: true }),
+              ...cssStyles(theme).bgBlur(),
+              borderRadius: 0,
+              ...(collapseHover && {
+                boxShadow: theme.customShadows.z24,
+              }),
+            },
+          }}
+        >
+          {renderContent}
+        </Drawer>
+      )}
+
+      {isMobile   && (
+          <Drawer
+            open={isCollapse}
+            onClose={onToggleCollapse}
+            PaperProps={{ sx: { width: NAVBAR.DASHBOARD_WIDTH } }}
           >
-            <DashboardHeader isCollapse={isCollapse} onOpenSidebar={() => setOpen(true)} />
-          </AppBar>
-        )}
+            {renderContent}
+          </Drawer>
+        )
+      }
 
-        <NavbarVertical isOpenSidebar={open} onCloseSidebar={() => setOpen(false)} />
-
-        {/* <CustomBreadcrumbs title={title} heading={heading} links={links} action={action} /> */}
-
-        {children}
-      </Grid>
-    </Container>
+    
+    </S.NavbarVerticalRootStyle>
   )
 }

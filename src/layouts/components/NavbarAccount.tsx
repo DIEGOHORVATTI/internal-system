@@ -6,8 +6,6 @@ import IconButtonAnimate from '@/components/icon-button-animate'
 
 import useAuth from '@/hooks/use-auth'
 
-import AccountPopover from '../header/AccountPopover'
-
 import * as S from './styles'
 
 type Props = {
@@ -39,11 +37,12 @@ export const NavbarAccount = ({ isCollapse = false }: Props) => {
         justifyContent: 'left',
       }}
     >
-      <AccountPopover
+      {/*  <AccountPopover
         handleOpen={open}
         isPopoverOpen={isPopoverOpen}
         setIsPopoverOpen={setIsPopoverOpen}
-      />
+      /> */}
+
       <Box
         sx={{
           ml: 2,
@@ -67,7 +66,7 @@ export const NavbarAccount = ({ isCollapse = false }: Props) => {
             whiteSpace: 'nowrap',
           }}
         >
-          {user?.name}
+          {user?.name} {"Teste"}
         </Typography>
       </Box>
     </IconButtonAnimate>

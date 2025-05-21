@@ -50,7 +50,7 @@ function CollapseDrawerProvider({ children }: CollapseDrawerProviderProps) {
     }
   }, [isMobile])
 
-  const handleToggleCollapse = () => {
+  const onToggleCollapse = () => {
     setCollapse({ ...collapse, click: !collapse.click })
   }
 
@@ -70,7 +70,7 @@ function CollapseDrawerProvider({ children }: CollapseDrawerProviderProps) {
         isCollapse: collapse.click && !collapse.hover,
         collapseClick: collapse.click,
         collapseHover: collapse.hover,
-        onToggleCollapse: handleToggleCollapse,
+        onToggleCollapse,
         onHoverEnter: handleHoverEnter,
         onHoverLeave: handleHoverLeave,
       }}
