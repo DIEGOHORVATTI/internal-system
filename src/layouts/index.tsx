@@ -9,7 +9,6 @@ import { Box, Stack, Drawer, useTheme, useMediaQuery } from '@mui/material'
 import Logo from '@/components/logo'
 import { NavbarAccount } from './components/NavbarAccount'
 
-
 import { NAVBAR } from '@/config'
 import { paper } from '@/theme/css'
 import cssStyles from '@/utils/cssStyles'
@@ -24,7 +23,7 @@ type Props = React.PropsWithChildren<{
   links: Array<Navigation>
 }>
 
-export default function NavbarVertical({ /* links, children */ }: Props) {
+export default function NavbarVertical({}: /* links, children */ Props) {
   const theme = useTheme()
   const { pathname } = useLocation()
 
@@ -66,7 +65,6 @@ export default function NavbarVertical({ /* links, children */ }: Props) {
         <Stack direction="row" alignItems="center" justifyContent="space-between">
           <Logo />
 
-
           {isDesktop && !isCollapse && (
             <IconButtonAnimate onClick={onToggleCollapse}>
               <Iconify icon="mdi:arrow-bottom-left" />
@@ -94,7 +92,7 @@ export default function NavbarVertical({ /* links, children */ }: Props) {
         }),
       }}
     >
-        {!isMobile && (
+      {!isMobile && (
         <Drawer
           open
           variant="persistent"
@@ -124,18 +122,15 @@ export default function NavbarVertical({ /* links, children */ }: Props) {
         </Drawer>
       )}
 
-      {isMobile   && (
-          <Drawer
-            open={isCollapse}
-            onClose={onToggleCollapse}
-            PaperProps={{ sx: { width: NAVBAR.DASHBOARD_WIDTH } }}
-          >
-            {renderContent}
-          </Drawer>
-        )
-      }
-
-    
+      {isMobile && (
+        <Drawer
+          open={isCollapse}
+          onClose={onToggleCollapse}
+          PaperProps={{ sx: { width: NAVBAR.DASHBOARD_WIDTH } }}
+        >
+          {renderContent}
+        </Drawer>
+      )}
     </S.NavbarVerticalRootStyle>
   )
 }

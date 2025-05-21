@@ -13,6 +13,7 @@ import { ThemeProvider } from '@/theme'
 import NavbarVertical from '@/layouts'
 
 import { navConfig } from './routes/nav-config'
+import { CollapseDrawerProvider } from './contexts/collapse-drawer-context'
 
 export default function App() {
   return (
@@ -26,22 +27,24 @@ export default function App() {
       }}
     >
       <ThemeProvider>
-        <SnackbarProvider>
-          <AuthProvider>
-            <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-              <AuthGuard>
-                <NavbarVertical links={navConfig}>
-                  <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/auth" element={<Auth />} />
+        <CollapseDrawerProvider>
+          <SnackbarProvider>
+            <AuthProvider>
+              <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+                <AuthGuard>
+                  <NavbarVertical links={navConfig}>
+                    <Routes>
+                      <Route path="/" element={<Home />} />
+                      <Route path="/auth" element={<Auth />} />
 
-                    <Route path="*" element={<Home />} />
-                  </Routes>
-                </NavbarVertical>
-              </AuthGuard>
-            </BrowserRouter>
-          </AuthProvider>
-        </SnackbarProvider>
+                      <Route path="*" element={<Home />} />
+                    </Routes>
+                  </NavbarVertical>
+                </AuthGuard>
+              </BrowserRouter>
+            </AuthProvider>
+          </SnackbarProvider>
+        </CollapseDrawerProvider>
       </ThemeProvider>
     </SettingsProvider>
   )

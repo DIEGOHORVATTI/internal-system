@@ -1,10 +1,9 @@
 import { ReactNode, createContext, useState, useEffect } from 'react'
+import useSettings from '@/hooks/use-settings'
 
 import { useTheme } from '@mui/material'
 
 import useMediaQuery from '@mui/material/useMediaQuery'
-
-import useCollapseDrawer from '@/hooks/use-collapse-drawer'
 
 export type CollapseDrawerContextProps = {
   isCollapse?: boolean
@@ -23,21 +22,21 @@ const initialState: CollapseDrawerContextProps = {
   onHoverLeave: () => {},
 }
 
-const CollapseDrawerContext = createContext(initialState)
+export const CollapseDrawerContext = createContext(initialState)
 
 type CollapseDrawerProviderProps = {
   children: ReactNode
 }
 
-function CollapseDrawerProvider({ children }: CollapseDrawerProviderProps) {
+export function CollapseDrawerProvider({ children }: CollapseDrawerProviderProps) {
   const theme = useTheme()
 
   const isMobile = useMediaQuery(theme.breakpoints.down('lg'))
 
-  const { collapseClick } = useCollapseDrawer()
+  const { themeLayout } = useSettings()
 
   const [collapse, setCollapse] = useState({
-    click: collapseClick,
+    click: themeLayout,
     hover: false,
   })
 
@@ -79,5 +78,3 @@ function CollapseDrawerProvider({ children }: CollapseDrawerProviderProps) {
     </CollapseDrawerContext.Provider>
   )
 }
-
-export { CollapseDrawerProvider, CollapseDrawerContext }

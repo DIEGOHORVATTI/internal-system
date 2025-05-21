@@ -10,7 +10,7 @@ type ISettingsValue = {
   themeStretch: boolean
   themeMode: 'light' | 'dark'
   themeContrast: 'default' | 'bold'
-  themeLayout: Boolean
+  themeLayout: boolean
   themeColorPresets: keyof typeof COMMON
 }
 
