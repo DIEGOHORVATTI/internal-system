@@ -13,7 +13,7 @@ import { NAVBAR } from '@/config'
 
 import Logo from '@/components/logo'
 
-import { NavSectionVertical } from '@/components/nav-section'
+//import { NavSectionVertical } from '@/components/nav-section'
 
 import { navConfig } from './NavConfig'
 
@@ -91,7 +91,7 @@ export default function NavbarVertical({ isOpenSidebar, onCloseSidebar }: Props)
         <NavbarAccount isCollapse={isCollapse} />
       </Stack>
 
-      <NavSectionVertical sx={{ mt: -3 }} navConfig={navConfig} isCollapse={isCollapse} />
+      {/* <NavSectionVertical sx={{ mt: -3 }} navConfig={navConfig} isCollapse={isCollapse} /> */}
 
       <Box sx={{ flexGrow: 1 }} />
     </Box>

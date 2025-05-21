@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form'
 
-import { useAuth } from '@/hooks/use-auth'
+import useAuth from '@/hooks/use-auth'
 
 import { Box, Button, Card, Stack, Typography } from '@mui/material'
 

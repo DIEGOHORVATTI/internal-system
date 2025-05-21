@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { AppBar, Container, Grid } from '@mui/material'
 
-import { useCollapseDrawer } from '@/hooks/use-collapse-drawer'
+import useCollapseDrawer from '@/hooks/use-collapse-drawer'
 import useResponsive from '@/hooks/use-responsive'
 
 import { HEADER } from '@/config'

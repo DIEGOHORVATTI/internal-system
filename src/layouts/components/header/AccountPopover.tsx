@@ -1,7 +1,3 @@
-import { Fragment } from 'react'
-
-import { MenuPopover, MyAvatar } from '@/components'
-
 import useSettings from '@/hooks/use-settings'
 import useAuth from '@/hooks/use-auth'
 
@@ -24,7 +20,7 @@ type Props = {
   handleOpen: HTMLElement | null
 }
 
-const AccountPopover = ({ isPopoverOpen, setIsPopoverOpen, handleOpen }: Props) => {
+export default function AccountPopover({ isPopoverOpen, setIsPopoverOpen, handleOpen }: Props) {
   const { logout } = useAuth()
 
   const { onToggleMode, themeMode } = useSettings()
@@ -46,10 +42,10 @@ const AccountPopover = ({ isPopoverOpen, setIsPopoverOpen, handleOpen }: Props) 
           value.stopPropagation()
         }}
       >
-        <MyAvatar />
+        {/* <MyAvatar /> */}
       </Box>
 
-      {isPopoverOpen && (
+      {/* {isPopoverOpen && (
         <MenuPopover
           open={Boolean(handleOpen)}
           anchorEl={handleOpen}
@@ -94,9 +90,7 @@ const AccountPopover = ({ isPopoverOpen, setIsPopoverOpen, handleOpen }: Props) 
             Sair
           </MenuItem>
         </MenuPopover>
-      )}
+      )} */}
     </Box>
   )
 }
-
-export default AccountPopover
