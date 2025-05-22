@@ -1,6 +1,16 @@
 import useCollapseDrawer from '@/hooks/use-collapse-drawer'
 
-import { Box, Stack, Drawer, useTheme, useMediaQuery, Paper, Card, IconButton } from '@mui/material'
+import {
+  Box,
+  Stack,
+  Drawer,
+  useTheme,
+  useMediaQuery,
+  Paper,
+  Card,
+  IconButton,
+  Typography,
+} from '@mui/material'
 
 import Logo from '@/components/logo'
 
@@ -31,7 +41,7 @@ export default function NavbarVertical({ navConfig }: NavbarVerticalProps) {
   const renderContent = (
     <Stack
       spacing={1}
-      py={2}
+      py={3}
       alignItems="center"
       sx={{
         height: 1,
@@ -43,7 +53,15 @@ export default function NavbarVertical({ navConfig }: NavbarVerticalProps) {
         },
       }}
     >
-      <Logo />
+      <Stack direction="row" spacing={2} alignItems="center">
+        <Logo />
+
+        {!isCollapse && (
+          <Typography variant="h4" gutterBottom>
+            Azeplast
+          </Typography>
+        )}
+      </Stack>
 
       <NavSectionVertical navConfig={navConfig} isCollapse={isCollapse} />
     </Stack>

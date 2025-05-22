@@ -1,28 +1,32 @@
-import { Box, BoxProps, Link } from '@mui/material'
-
-import Image from './image'
+import { Box, BoxProps, Link, SvgIcon } from '@mui/material'
 
 interface Props extends BoxProps {
   disabledLink?: boolean
-  width?: number
-  height?: number
+  size?: number
 }
 
-export default function Logo({ disabledLink = false, width = 40, height = 40, sx }: Props) {
+export default function Logo({ disabledLink = false, size = 25, sx }: Props) {
   const logo = (
-    <Box sx={{ width, height, cursor: 'pointer', ...sx }}>
-      <Image
-        src="https://www.azeplast.com.br/wp-content/uploads/2021/04/30706215_1240795642720308_9001542129977131008_n.png"
-        sx={{ borderRadius: '10%' }}
-        width={width}
-        height={height}
-        alt="Logo Sirius Track"
-      />
+    <Box sx={{ cursor: 'pointer', ...sx }}>
+      <SvgIcon
+        viewBox="0 0 500 500"
+        style={{
+          width: size,
+          height: size,
+          transform: 'scale(2.5)',
+        }}
+        fontSize="inherit"
+        color="inherit"
+      >
+        <polygon points="100,100 200,150 100,200" fill="currentColor" />
+        <polygon points="100,300 200,350 100,400" fill="currentColor" />
+        <polygon points="300,200 400,250 300,300" fill="currentColor" />
+      </SvgIcon>
     </Box>
   )
 
   if (disabledLink) {
-    return <>{logo}</>
+    return logo
   }
 
   return <Link href="/">{logo}</Link>
