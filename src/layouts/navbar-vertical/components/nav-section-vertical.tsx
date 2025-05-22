@@ -30,53 +30,49 @@ export default function NavSectionVertical({ navConfig, isCollapse }: Props) {
 
   const renderNavItems = (items: Array<Navigation>, level = 0) => (
     <List disablePadding>
-      {items.map((item, index) => {
-        if (item.kind === 'header') {
+      {items.map(({ kind, title, segment, icon, children }, index) => {
+        if (kind === 'header') {
           return (
             <Typography
               key={index}
               variant="subtitle2"
               sx={{ pl: 2, pt: 2, pb: 0.5, opacity: 0.72 }}
             >
-              {isCollapse ? null : item.title}
+              {isCollapse ? null : title}
             </Typography>
           )
         }
 
-        if (item.kind === 'divider') {
+        if (kind === 'divider') {
           return <Divider key={index} sx={{ my: 1 }} />
         }
 
-        const hasChildren = item.children && item.children.length > 0
-        const isOpen = item.segment && openMenus[item.segment]
+        const hasChildren = children && children.length > 0
+        const isOpen = segment && openMenus[segment]
 
         const listItem = (
           <ListItemButton
-            onClick={() => (hasChildren ? handleToggle(item.segment) : null)}
+            onClick={() => (hasChildren ? handleToggle(segment) : null)}
             sx={{ pl: 2 + level * 2 }}
           >
-            {item.icon && (
+            {icon && (
               <ListItemIcon>
-                <Iconify icon={item.icon} />
+                <Iconify icon={icon} />
               </ListItemIcon>
             )}
 
-            {!isCollapse && <ListItemText primary={item.title} />}
+            {!isCollapse && <ListItemText primary={title} />}
 
-            {hasChildren &&
-              !isCollapse &&
-              (isOpen ? (
-                <Iconify icon="eva:chevron-up-fill" />
-              ) : (
-                <Iconify icon="eva:chevron-down-fill" />
-              ))}
+            {hasChildren && !isCollapse && (
+              <Iconify icon={isOpen ? 'eva:chevron-up-fill' : 'eva:chevron-down-fill'} />
+            )}
           </ListItemButton>
         )
 
         return (
           <Fragment key={index}>
-            {isCollapse && item.title ? (
-              <Tooltip title={item.title} placement="right">
+            {isCollapse && title ? (
+              <Tooltip title={title} placement="right">
                 {listItem}
               </Tooltip>
             ) : (
@@ -85,7 +81,7 @@ export default function NavSectionVertical({ navConfig, isCollapse }: Props) {
 
             {hasChildren && (
               <Collapse in={!!isOpen} timeout="auto" unmountOnExit>
-                {renderNavItems(item.children!, level + 1)}
+                {renderNavItems(children!, level + 1)}
               </Collapse>
             )}
           </Fragment>
