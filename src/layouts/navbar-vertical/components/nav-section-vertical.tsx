@@ -21,14 +21,14 @@ export default function NavSectionVertical({ navConfig, isCollapse }: Props) {
   }
 
   const renderNavItems = (items: Array<Navigation>, level = 0) => (
-    <List sx={{ color: 'text.secondary' }}>
+    <List sx={{ color: 'text.secondary', px: 2 }}>
       {items.map(({ kind, title, segment, icon, children }, index) => {
         if (kind === 'header') {
           if (isCollapse) return null
 
           return (
-            <ContainerDivider key={index}>
-              <Typography variant="overline" fontWeight={600}>
+            <ContainerDivider key={index} pt={2}>
+              <Typography variant="overline" fontWeight={600} color="text.primary">
                 {title}
               </Typography>
             </ContainerDivider>
@@ -45,7 +45,6 @@ export default function NavSectionVertical({ navConfig, isCollapse }: Props) {
         const listItem = (
           <Stack
             component={ListItemButton}
-            mx={1}
             spacing={1}
             direction={!isCollapse ? 'row' : 'column'}
             alignItems="center"

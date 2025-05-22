@@ -1,7 +1,15 @@
 import Divider from '@mui/material/Divider'
-import Box from '@mui/material/Box'
+import Box, { type BoxProps } from '@mui/material/Box'
 
 import { styled } from '@mui/material/styles'
+
+export default function ContainerDivider({ children, ...props }: BoxProps) {
+  return (
+    <Container {...props}>
+      <Divider textAlign="left">{children}</Divider>
+    </Container>
+  )
+}
 
 const Container = styled(Box)(({ theme }) => ({
   width: '100%',
@@ -11,11 +19,3 @@ const Container = styled(Box)(({ theme }) => ({
     marginTop: theme.spacing(2),
   },
 }))
-
-export default function ContainerDivider({ children }: React.PropsWithChildren) {
-  return (
-    <Container>
-      <Divider textAlign="left">{children}</Divider>
-    </Container>
-  )
-}

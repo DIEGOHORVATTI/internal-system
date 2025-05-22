@@ -59,9 +59,6 @@ export const navConfig: Array<Navigation> = [
     ],
   },
   {
-    kind: 'divider',
-  },
-  {
     kind: 'header',
     title: 'Analytics',
   },
@@ -91,9 +88,6 @@ export const navConfig: Array<Navigation> = [
     segment: 'insights',
     title: 'Insights',
     icon: 'solar:graph-up-bold',
-  },
-  {
-    kind: 'divider',
   },
   {
     kind: 'header',
