@@ -6,8 +6,6 @@ export type CollapseDrawerContextProps = {
   collapseClick: boolean
   collapseHover: boolean
   onToggleCollapse: VoidFunction
-  onHoverEnter: VoidFunction
-  onHoverLeave: VoidFunction
 }
 
 const initialState: CollapseDrawerContextProps = {
@@ -15,8 +13,6 @@ const initialState: CollapseDrawerContextProps = {
   collapseClick: false,
   collapseHover: false,
   onToggleCollapse: () => {},
-  onHoverEnter: () => {},
-  onHoverLeave: () => {},
 }
 
 export const CollapseDrawerContext = createContext(initialState)
@@ -38,16 +34,6 @@ export function CollapseDrawerProvider({ children }: CollapseDrawerProviderProps
     onToggleLayout()
   }
 
-  const handleHoverEnter = () => {
-    if (collapse.click) {
-      setCollapse({ ...collapse, hover: true })
-    }
-  }
-
-  const handleHoverLeave = () => {
-    setCollapse({ ...collapse, hover: false })
-  }
-
   return (
     <CollapseDrawerContext.Provider
       value={{
@@ -55,8 +41,6 @@ export function CollapseDrawerProvider({ children }: CollapseDrawerProviderProps
         collapseClick: collapse.click,
         collapseHover: collapse.hover,
         onToggleCollapse,
-        onHoverEnter: handleHoverEnter,
-        onHoverLeave: handleHoverLeave,
       }}
     >
       {children}

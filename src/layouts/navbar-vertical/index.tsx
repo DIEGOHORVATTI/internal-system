@@ -1,6 +1,6 @@
 import useCollapseDrawer from '@/hooks/use-collapse-drawer'
 
-import { Box, Stack, Drawer, useTheme, useMediaQuery } from '@mui/material'
+import { Box, Stack, Drawer, useTheme, useMediaQuery, Paper, Card, IconButton } from '@mui/material'
 
 import Logo from '@/components/logo'
 
@@ -23,14 +23,16 @@ export type NavbarVerticalProps = React.PropsWithChildren<{
 export default function NavbarVertical({ navConfig }: NavbarVerticalProps) {
   const theme = useTheme()
 
-  const { isCollapse, collapseClick, collapseHover, onToggleCollapse, onHoverEnter, onHoverLeave } =
-    useCollapseDrawer()
+  const { isCollapse, collapseClick, collapseHover, onToggleCollapse } = useCollapseDrawer()
 
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'))
   const isMobile = !isDesktop
 
   const renderContent = (
-    <Box
+    <Stack
+      spacing={1}
+      py={2}
+      alignItems="center"
       sx={{
         height: 1,
         overflow: 'auto',
@@ -41,33 +43,10 @@ export default function NavbarVertical({ navConfig }: NavbarVerticalProps) {
         },
       }}
     >
-      <Stack
-        spacing={3}
-        sx={{
-          p: 2,
-          flexShrink: 0,
-          ...(isCollapse && { alignItems: 'center' }),
-        }}
-      >
-        <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <Logo />
-
-          {isDesktop && !isCollapse && (
-            <IconButtonAnimate onClick={onToggleCollapse}>
-              <Iconify
-                icon={
-                  collapseClick
-                    ? 'solar:double-alt-arrow-right-line-duotone'
-                    : 'solar:double-alt-arrow-left-line-duotone'
-                }
-              />
-            </IconButtonAnimate>
-          )}
-        </Stack>
-      </Stack>
+      <Logo />
 
       <NavSectionVertical navConfig={navConfig} isCollapse={isCollapse} />
-    </Box>
+    </Stack>
   )
 
   return (
@@ -76,21 +55,41 @@ export default function NavbarVertical({ navConfig }: NavbarVerticalProps) {
         width: {
           lg: isCollapse ? NAVBAR.DASHBOARD_COLLAPSE_WIDTH : NAVBAR.DASHBOARD_WIDTH,
         },
+        position: 'relative',
         ...(isCollapse && {
           position: 'absolute',
         }),
       }}
     >
       {isDesktop && (
+        <IconButtonAnimate
+          size="small"
+          onClick={onToggleCollapse}
+          sx={{
+            zIndex: 9999,
+            position: 'absolute',
+            right: -15,
+            border: 1,
+            borderColor: 'grey.50012',
+            backgroundColor: (theme) => theme.palette.background.default,
+            '&:hover': {
+              backgroundColor: (theme) => theme.palette.background.default,
+            },
+          }}
+        >
+          <Iconify size={1.5} icon={collapseClick ? 'ep:arrow-right-bold' : 'ep:arrow-left-bold'} />
+        </IconButtonAnimate>
+      )}
+
+      {isDesktop && (
         <Drawer
           open
           variant="persistent"
-          onMouseEnter={onHoverEnter}
-          onMouseLeave={onHoverLeave}
           PaperProps={{
             sx: {
               width: NAVBAR.DASHBOARD_WIDTH,
-              borderRightStyle: 'dashed',
+              borderRightStyle: 'double',
+              borderColor: 'grey.50012',
               bgcolor: 'background.default',
               transition: theme.transitions.create('width', {
                 duration: theme.transitions.duration.standard,
@@ -98,7 +97,6 @@ export default function NavbarVertical({ navConfig }: NavbarVerticalProps) {
               ...(isCollapse && {
                 width: NAVBAR.DASHBOARD_COLLAPSE_WIDTH,
               }),
-              ...paper({ theme, dropdown: true }),
               ...cssStyles(theme).bgBlur(),
               borderRadius: 0,
               ...(collapseHover && {
@@ -110,7 +108,6 @@ export default function NavbarVertical({ navConfig }: NavbarVerticalProps) {
           {renderContent}
         </Drawer>
       )}
-
       {isMobile && (
         <Drawer
           open={isCollapse}

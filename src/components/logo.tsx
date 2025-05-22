@@ -8,12 +8,12 @@ interface Props extends BoxProps {
   height?: number
 }
 
-export default function Logo({ disabledLink = false, width = 50, height = 50, sx }: Props) {
+export default function Logo({ disabledLink = false, width = 40, height = 40, sx }: Props) {
   const logo = (
     <Box sx={{ width, height, cursor: 'pointer', ...sx }}>
       <Image
         src="https://www.azeplast.com.br/wp-content/uploads/2021/04/30706215_1240795642720308_9001542129977131008_n.png"
-        sx={{ borderRadius: '50%' }}
+        sx={{ borderRadius: '10%' }}
         width={width}
         height={height}
         alt="Logo Sirius Track"
