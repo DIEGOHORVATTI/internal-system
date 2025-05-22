@@ -43,29 +43,30 @@ export default function NavSectionVertical({ navConfig, isCollapse }: Props) {
         const isOpen = segment && openMenus[segment]
 
         const listItem = (
-          <Stack
-            component={ListItemButton}
-            spacing={1}
-            direction={!isCollapse ? 'row' : 'column'}
-            alignItems="center"
+          <ListItemButton
             onClick={() => (hasChildren ? handleToggle(segment) : null)}
             sx={{
+              width: 1,
               borderRadius: 1,
               ...(!isCollapse && {
                 pl: 2 + level * 2,
               }),
             }}
           >
-            <Iconify icon={icon} />
+            <Stack width={1} direction="row" alignItems="center" justifyContent="space-between">
+              <Stack direction={!isCollapse ? 'row' : 'column'} spacing={1} alignItems="center">
+                <Iconify icon={icon} />
 
-            <Typography variant="body2" sx={{ fontSize: !isCollapse ? 'inherit' : 10 }}>
-              {title}
-            </Typography>
+                <Typography variant="body2" sx={{ fontSize: !isCollapse ? 'inherit' : 10 }}>
+                  {title}
+                </Typography>
+              </Stack>
 
-            {hasChildren && !isCollapse && (
-              <Iconify icon={isOpen ? 'eva:chevron-up-fill' : 'eva:chevron-down-fill'} />
-            )}
-          </Stack>
+              {hasChildren && !isCollapse && (
+                <Iconify icon={isOpen ? 'eva:chevron-up-fill' : 'eva:chevron-down-fill'} />
+              )}
+            </Stack>
+          </ListItemButton>
         )
 
         return (
