@@ -3,7 +3,6 @@ import useCollapseDrawer from '@/hooks/use-collapse-drawer'
 import { Box, Stack, Drawer, useTheme, useMediaQuery } from '@mui/material'
 
 import Logo from '@/components/logo'
-import { NavbarAccount } from './components/NavbarAccount'
 
 import { NAVBAR } from '@/config'
 import { paper } from '@/theme/css'
@@ -12,7 +11,7 @@ import cssStyles from '@/utils/cssStyles'
 import IconButtonAnimate from '@/components/icon-button-animate'
 import Iconify from '@/components/iconify'
 
-import * as S from './components/styles'
+import * as S from './styles'
 
 import type { Navigation } from '@/routes/nav-config'
 
@@ -64,8 +63,6 @@ export default function NavbarVertical({}: /* links, children */ Props) {
             </IconButtonAnimate>
           )}
         </Stack>
-
-        <NavbarAccount isCollapse={isCollapse} />
       </Stack>
 
       {/* <NavSectionVertical navConfig={NAVIGATION} isCollapse={isCollapse} /> */}
