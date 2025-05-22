@@ -1,21 +1,11 @@
 import useCollapseDrawer from '@/hooks/use-collapse-drawer'
 
-import {
-  Box,
-  Stack,
-  Drawer,
-  useTheme,
-  useMediaQuery,
-  Paper,
-  Card,
-  IconButton,
-  Typography,
-} from '@mui/material'
+import { Stack, Drawer, useTheme, useMediaQuery, Typography } from '@mui/material'
 
 import Logo from '@/components/logo'
 
 import { NAVBAR } from '@/config'
-import { paper } from '@/theme/css'
+
 import cssStyles from '@/utils/cssStyles'
 
 import IconButtonAnimate from '@/components/icon-button-animate'
@@ -40,7 +30,7 @@ export default function NavbarVertical({ navConfig }: NavbarVerticalProps) {
 
   const renderContent = (
     <Stack
-      spacing={1}
+      spacing={3}
       py={3}
       alignItems="center"
       sx={{
@@ -126,6 +116,7 @@ export default function NavbarVertical({ navConfig }: NavbarVerticalProps) {
           {renderContent}
         </Drawer>
       )}
+
       {isMobile && (
         <Drawer
           open={isCollapse}
