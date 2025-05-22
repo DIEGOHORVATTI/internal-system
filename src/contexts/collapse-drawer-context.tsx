@@ -1,12 +1,8 @@
-import { ReactNode, createContext, useState, useEffect } from 'react'
+import { ReactNode, createContext, useState } from 'react'
 import useSettings from '@/hooks/use-settings'
 
-import { useTheme } from '@mui/material'
-
-import useMediaQuery from '@mui/material/useMediaQuery'
-
 export type CollapseDrawerContextProps = {
-  isCollapse?: boolean
+  isCollapse: boolean
   collapseClick: boolean
   collapseHover: boolean
   onToggleCollapse: VoidFunction
@@ -15,6 +11,7 @@ export type CollapseDrawerContextProps = {
 }
 
 const initialState: CollapseDrawerContextProps = {
+  isCollapse: false,
   collapseClick: false,
   collapseHover: false,
   onToggleCollapse: () => {},
@@ -29,25 +26,12 @@ type CollapseDrawerProviderProps = {
 }
 
 export function CollapseDrawerProvider({ children }: CollapseDrawerProviderProps) {
-  const theme = useTheme()
-
-  const isMobile = useMediaQuery(theme.breakpoints.down('lg'))
-
   const { themeLayout, onToggleLayout } = useSettings()
 
   const [collapse, setCollapse] = useState({
     click: themeLayout,
     hover: false,
   })
-
-  useEffect(() => {
-    if (isMobile) {
-      setCollapse({
-        click: false,
-        hover: false,
-      })
-    }
-  }, [isMobile])
 
   const onToggleCollapse = () => {
     setCollapse({ ...collapse, click: !collapse.click })

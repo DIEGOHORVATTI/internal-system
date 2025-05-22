@@ -10,16 +10,17 @@ import cssStyles from '@/utils/cssStyles'
 
 import IconButtonAnimate from '@/components/icon-button-animate'
 import Iconify from '@/components/iconify'
+import NavSectionVertical from './components/nav-section-vertical'
 
 import * as S from './styles'
 
 import type { Navigation } from '@/routes/nav-config'
 
-type Props = React.PropsWithChildren<{
-  links: Array<Navigation>
+export type NavbarVerticalProps = React.PropsWithChildren<{
+  navConfig: Array<Navigation>
 }>
 
-export default function NavbarVertical({}: /* links, children */ Props) {
+export default function NavbarVertical({ navConfig }: NavbarVerticalProps) {
   const theme = useTheme()
 
   const { isCollapse, collapseClick, collapseHover, onToggleCollapse, onHoverEnter, onHoverLeave } =
@@ -65,7 +66,7 @@ export default function NavbarVertical({}: /* links, children */ Props) {
         </Stack>
       </Stack>
 
-      {/* <NavSectionVertical navConfig={NAVIGATION} isCollapse={isCollapse} /> */}
+      <NavSectionVertical navConfig={navConfig} isCollapse={isCollapse} />
     </Box>
   )
 

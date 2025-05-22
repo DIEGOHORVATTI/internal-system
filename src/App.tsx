@@ -9,8 +9,9 @@ import AuthGuard from '@/guards/auth-guard'
 import Home from '@/sections/Home'
 import Auth from '@/sections/Auth'
 
+import NavbarVertical from '@/layouts/navbar-vertical'
+
 import { ThemeProvider } from '@/theme'
-import NavbarVertical from '@/layouts'
 
 import { navConfig } from './routes/nav-config'
 import { CollapseDrawerProvider } from './contexts/collapse-drawer-context'
@@ -32,7 +33,7 @@ export default function App() {
             <AuthProvider>
               <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
                 <AuthGuard>
-                  <NavbarVertical links={navConfig}>
+                  <NavbarVertical navConfig={navConfig}>
                     <Routes>
                       <Route path="/" element={<Home />} />
                       <Route path="/auth" element={<Auth />} />
