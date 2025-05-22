@@ -1,15 +1,6 @@
 import { useState, Fragment } from 'react'
-import {
-  Box,
-  List,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Collapse,
-  Divider,
-  Typography,
-  Tooltip,
-} from '@mui/material'
+
+import { Box, List, ListItemButton, Stack, Collapse, Divider, Typography } from '@mui/material'
 
 import Iconify from '@/components/iconify'
 
@@ -38,7 +29,7 @@ export default function NavSectionVertical({ navConfig, isCollapse }: Props) {
               variant="subtitle2"
               sx={{ pl: 2, pt: 2, pb: 0.5, opacity: 0.72 }}
             >
-              {isCollapse ? null : title}
+              {isCollapse ? '' : title}
             </Typography>
           )
         }
@@ -50,34 +41,32 @@ export default function NavSectionVertical({ navConfig, isCollapse }: Props) {
         const hasChildren = children && children.length > 0
         const isOpen = segment && openMenus[segment]
 
-        const listItem = (
-          <ListItemButton
-            onClick={() => (hasChildren ? handleToggle(segment) : null)}
-            sx={{ pl: 2 + level * 2 }}
-          >
-            {icon && (
-              <ListItemIcon>
-                <Iconify icon={icon} />
-              </ListItemIcon>
-            )}
+        const dynamicPadding = 2 + level * 2
 
-            {!isCollapse && <ListItemText primary={title} />}
+        const listItem = (
+          <Stack
+            component={ListItemButton}
+            spacing={1}
+            direction={!isCollapse ? 'row' : 'column'}
+            alignItems="center"
+            onClick={() => (hasChildren ? handleToggle(segment) : null)}
+            sx={{ pl: !isCollapse ? dynamicPadding : 0 }}
+          >
+            <Iconify icon={icon} />
+
+            <Typography variant="body2" sx={{ fontSize: !isCollapse ? 'inherit' : 10 }}>
+              {title}
+            </Typography>
 
             {hasChildren && !isCollapse && (
               <Iconify icon={isOpen ? 'eva:chevron-up-fill' : 'eva:chevron-down-fill'} />
             )}
-          </ListItemButton>
+          </Stack>
         )
 
         return (
           <Fragment key={index}>
-            {isCollapse && title ? (
-              <Tooltip title={title} placement="right">
-                {listItem}
-              </Tooltip>
-            ) : (
-              listItem
-            )}
+            {listItem}
 
             {hasChildren && (
               <Collapse in={!!isOpen} timeout="auto" unmountOnExit>
