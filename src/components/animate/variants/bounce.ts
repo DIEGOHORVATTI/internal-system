@@ -1,6 +1,9 @@
+// types
 import { VariantsType } from '../types'
-
+//
 import { varTranEnter, varTranExit } from './transition'
+
+// ----------------------------------------------------------------------
 
 export const varBounce = (props?: VariantsType) => {
   const durationIn = props?.durationIn
@@ -55,13 +58,15 @@ export const varBounce = (props?: VariantsType) => {
     inLeft: {
       initial: {},
       animate: {
-        opacity: 0,
-        x: 0,
+        x: [-720, 24, -12, 4, 0],
+        scaleX: [3, 1, 0.98, 0.995, 1],
+        opacity: [0, 1, 1, 1, 1],
         transition: varTranEnter({ durationIn, easeIn }),
       },
       exit: {
-        opacity: 1,
-        x: 5,
+        x: [0, 24, -720],
+        scaleX: [1, 0.9, 2],
+        opacity: [1, 1, 0],
         transition: varTranExit({ durationOut, easeOut }),
       },
     },
