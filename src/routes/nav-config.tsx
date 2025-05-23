@@ -1,123 +1,169 @@
-export type Navigation = Partial<
-  {
-    kind: 'header' | 'divider'
-    icon: string
-    title: string
-    segment: string
-  } & {
-    children: Array<Navigation>
-  }
->
+export type Navigation = {
+  kind: 'item' | 'header' | 'divider'
+  title?: string
+  segment?: string
+  icon?: string
+  children?: Navigation[]
+  path?: string
+}
 
 export const navConfig: Array<Navigation> = [
   {
     kind: 'header',
     title: 'Main',
-  },
-  {
-    segment: 'dashboard',
-    title: 'Dashboard',
-    icon: 'solar:widget-2-bold',
-  },
-  {
-    segment: 'orders',
-    title: 'Orders',
-    icon: 'solar:bag-2-bold',
+    segment: 'main-header',
     children: [
       {
-        segment: 'pending',
-        title: 'Pending',
-        icon: 'solar:clock-bold',
+        kind: 'item',
+        segment: 'dashboard',
+        title: 'Dashboard',
+        icon: 'solar:widget-2-bold',
+        path: '/dashboard',
       },
       {
-        segment: 'completed',
-        title: 'Completed',
-        icon: 'solar:check-circle-bold',
+        kind: 'item',
+        segment: 'orders',
+        title: 'Orders',
+        icon: 'solar:bag-2-bold',
+        children: [
+          {
+            kind: 'item',
+            segment: 'pending',
+            title: 'Pending',
+            icon: 'solar:clock-bold',
+            path: '/orders/pending',
+          },
+          {
+            kind: 'item',
+            segment: 'completed',
+            title: 'Completed',
+            icon: 'solar:check-circle-bold',
+            path: '/orders/completed',
+          },
+          {
+            kind: 'item',
+            segment: 'returns',
+            title: 'Returns',
+            icon: 'solar:undo-left-round-bold',
+            path: '/orders/returns',
+          },
+        ],
       },
       {
-        segment: 'returns',
-        title: 'Returns',
-        icon: 'solar:undo-left-round-bold',
+        kind: 'item',
+        segment: 'products',
+        title: 'Products',
+        icon: 'solar:box-bold',
+        children: [
+          {
+            kind: 'item',
+            segment: 'inventory',
+            title: 'Inventory',
+            icon: 'solar:archive-bold',
+            path: '/products/inventory',
+          },
+          {
+            kind: 'item',
+            segment: 'categories',
+            title: 'Categories',
+            icon: 'solar:layers-bold',
+            path: '/products/categories',
+          },
+        ],
       },
     ],
   },
   {
-    segment: 'products',
-    title: 'Products',
-    icon: 'solar:box-bold',
-    children: [
-      {
-        segment: 'inventory',
-        title: 'Inventory',
-        icon: 'solar:archive-bold',
-      },
-      {
-        segment: 'categories',
-        title: 'Categories',
-        icon: 'solar:layers-bold',
-      },
-    ],
+    kind: 'divider',
   },
   {
     kind: 'header',
     title: 'Analytics',
-  },
-  {
-    segment: 'reports',
-    title: 'Reports',
-    icon: 'solar:chart-square-bold',
+    segment: 'analytics-header',
     children: [
       {
-        segment: 'sales',
-        title: 'Sales',
-        icon: 'solar:tag-price-bold',
+        kind: 'item',
+        segment: 'reports',
+        title: 'Reports',
+        icon: 'solar:chart-square-bold',
+        children: [
+          {
+            kind: 'item',
+            segment: 'sales',
+            title: 'Sales',
+            icon: 'solar:tag-price-bold',
+            path: '/reports/sales',
+          },
+          {
+            kind: 'item',
+            segment: 'traffic',
+            title: 'Traffic',
+            icon: 'solar:traffic-bold',
+            path: '/reports/traffic',
+          },
+          {
+            kind: 'item',
+            segment: 'customers',
+            title: 'Customers',
+            icon: 'solar:users-group-rounded-bold',
+            path: '/reports/customers',
+          },
+        ],
       },
       {
-        segment: 'traffic',
-        title: 'Traffic',
-        icon: 'solar:traffic-bold',
-      },
-      {
-        segment: 'customers',
-        title: 'Customers',
-        icon: 'solar:users-group-rounded-bold',
+        kind: 'item',
+        segment: 'insights',
+        title: 'Insights',
+        icon: 'solar:graph-up-bold',
+        path: '/insights',
       },
     ],
   },
   {
-    segment: 'insights',
-    title: 'Insights',
-    icon: 'solar:graph-up-bold',
+    kind: 'divider',
+    title: '',
   },
   {
     kind: 'header',
     title: 'Management',
-  },
-  {
-    segment: 'users',
-    title: 'Users',
-    icon: 'solar:user-bold',
+    segment: 'management-header',
     children: [
       {
-        segment: 'list',
-        title: 'User List',
-        icon: 'solar:list-bold',
+        kind: 'item',
+        segment: 'users',
+        title: 'Users',
+        icon: 'solar:user-bold',
+        children: [
+          {
+            kind: 'item',
+            segment: 'list',
+            title: 'User List',
+            icon: 'solar:list-bold',
+            path: '/users/list',
+          },
+          {
+            kind: 'item',
+            segment: 'roles',
+            title: 'Roles & Permissions',
+            icon: 'solar:shield-check-bold',
+            path: '/users/roles',
+          },
+        ],
       },
       {
-        segment: 'roles',
-        title: 'Roles & Permissions',
-        icon: 'solar:shield-check-bold',
+        kind: 'item',
+        segment: 'settings',
+        title: 'Settings',
+        icon: 'solar:settings-bold',
+        path: '/settings',
+      },
+      {
+        kind: 'item',
+        segment: 'support',
+        title: 'Support Center',
+        icon: 'solar:lifebuoy-bold',
+        path: '/support',
       },
     ],
-  },
-  {
-    segment: 'settings',
-    title: 'Settings',
-    icon: 'solar:settings-bold',
-  },
-  {
-    segment: 'support',
-    title: 'Support Center',
-    icon: 'solar:lifebuoy-bold',
   },
 ]

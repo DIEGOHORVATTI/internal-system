@@ -13,29 +13,43 @@ type Props = NavbarVerticalProps & {
 }
 
 export default function NavSectionVertical({ navConfig, isCollapse }: Props) {
-  const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({})
+  const [openMenus, setOpenMenus] = useState<Record<string, boolean>>(
+    navConfig.reduce((acc, item) => {
+      if (item.kind === 'header' && item.segment) {
+        acc[item.segment] = true
+      }
 
-  const handleToggle = (segment?: string) => {
-    if (!segment) return
-    setOpenMenus((prev) => ({ ...prev, [segment]: !prev[segment] }))
+      return acc
+    }, {} as Record<string, boolean>)
+  )
+
+  const handleToggle = (segment: string) => {
+    setOpenMenus((prev) => ({ ...prev, [segment]: !prev?.[segment] }))
   }
 
   const renderNavItems = (items: Array<Navigation>, level = 0) => (
     <List sx={{ color: 'text.secondary', px: 1 }}>
       {items.map(({ kind, title, segment, icon, children }, index) => {
         const hasChildren = children && children.length > 0
-        const isOpen = Boolean(segment && openMenus[segment])
+        const isOpen = Boolean(segment && openMenus?.[segment])
 
         if (kind === 'header') {
           if (isCollapse) return null
 
           return (
-            <Header
-              key={index}
-              title={title}
-              isOpen={!!isOpen}
-              onToggle={() => handleToggle(kind)}
-            />
+            <Fragment key={index}>
+              <Header
+                title={title}
+                isOpen={isOpen}
+                onToggle={() => handleToggle(segment || `header-${index}`)}
+              />
+
+              {hasChildren && (
+                <Collapse in={isOpen} timeout="auto" unmountOnExit>
+                  {renderNavItems(children, level)}
+                </Collapse>
+              )}
+            </Fragment>
           )
         }
 
@@ -43,45 +57,33 @@ export default function NavSectionVertical({ navConfig, isCollapse }: Props) {
           return <Divider key={index} sx={{ my: 1 }} />
         }
 
-        const listItem = (
-          <ListItemButton
-            onClick={() => (hasChildren ? handleToggle(segment) : null)}
-            sx={{
-              width: 1,
-              borderRadius: 1,
-              ...(!isCollapse && {
-                pl: 2 + level * 2,
-              }),
-            }}
-          >
-            <Stack
-              width={1}
-              direction="row"
-              alignItems="center"
-              justifyContent={!isCollapse ? 'space-between' : 'center'}
-            >
-              <Stack direction={!isCollapse ? 'row' : 'column'} spacing={1} alignItems="center">
-                <Iconify icon={icon} />
-
-                <Typography variant="body2" sx={{ fontSize: !isCollapse ? 'inherit' : 10 }}>
-                  {title}
-                </Typography>
-              </Stack>
-
-              {hasChildren && !isCollapse && (
-                <Iconify icon={isOpen ? 'eva:chevron-up-fill' : 'eva:chevron-down-fill'} />
-              )}
-            </Stack>
-          </ListItemButton>
-        )
-
         return (
           <Fragment key={index}>
-            {listItem}
+            <ListItemButton
+              onClick={() => (hasChildren ? handleToggle(segment || `item-${index}`) : null)}
+              sx={{ width: 1, borderRadius: 1, ...(!isCollapse && { pl: 2 + level * 2 }) }}
+            >
+              <Stack
+                width={1}
+                direction="row"
+                alignItems="center"
+                justifyContent={!isCollapse ? 'space-between' : 'center'}
+              >
+                <Stack direction={!isCollapse ? 'row' : 'column'} spacing={1} alignItems="center">
+                  {icon && <Iconify icon={icon} />}
+
+                  {!isCollapse && <Typography variant="body2">{title}</Typography>}
+                </Stack>
+
+                {hasChildren && !isCollapse && (
+                  <Iconify icon={isOpen ? 'eva:chevron-up-fill' : 'eva:chevron-down-fill'} />
+                )}
+              </Stack>
+            </ListItemButton>
 
             {hasChildren && (
-              <Collapse in={!!isOpen} timeout="auto" unmountOnExit>
-                {renderNavItems(children!, level + 1)}
+              <Collapse in={isOpen} timeout="auto" unmountOnExit>
+                {renderNavItems(children, level + 1)}
               </Collapse>
             )}
           </Fragment>
@@ -119,7 +121,7 @@ const Header = ({ title, isOpen, onToggle }: HeaderProps) => {
           }}
         >
           <Iconify
-            icon={isOpen ? 'eva:chevron-up-fill' : 'eva:chevron-down-fill'}
+            icon={isOpen ? 'eva:chevron-down-fill' : 'eva:chevron-right-fill'}
             color="text.primary"
           />
         </m.div>
