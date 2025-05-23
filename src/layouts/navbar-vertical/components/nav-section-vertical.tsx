@@ -34,7 +34,6 @@ export default function NavSectionVertical({ navConfig, isCollapse }: Props) {
               <Header
                 title={title}
                 isOpen={!!isOpen}
-                isCollapse={isCollapse}
                 onToggle={() => segment && handleToggle(segment)}
               />
 
@@ -104,15 +103,12 @@ export default function NavSectionVertical({ navConfig, isCollapse }: Props) {
 import { m } from 'framer-motion'
 import { MotionContainer } from '@/components/animate'
 
-type HeaderProps = Pick<Navigation, 'title'> &
-  Pick<Props, 'isCollapse'> & {
-    isOpen: boolean
-    onToggle: VoidFunction
-  }
+type HeaderProps = Pick<Navigation, 'title'> & {
+  isOpen: boolean
+  onToggle: VoidFunction
+}
 
-const Header = ({ title, isOpen, isCollapse, onToggle }: HeaderProps) => {
-  if (isCollapse) return null
-
+const Header = ({ title, isOpen, onToggle }: HeaderProps) => {
   return (
     <ContainerDivider pt={2}>
       <Stack
