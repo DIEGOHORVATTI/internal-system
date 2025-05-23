@@ -124,8 +124,9 @@ const Header = ({ title, isOpen, isCollapse, onToggle }: HeaderProps) => {
       >
         <m.div
           variants={{
-            hover: { opacity: 0, x: 0 },
-            tap: { opacity: 1, x: 1 },
+            initial: { x: -5, opacity: 0 },
+            hover: { opacity: 1 },
+            tap: { opacity: 0 },
           }}
         >
           <Iconify icon={isOpen ? 'eva:chevron-up-fill' : 'eva:chevron-down-fill'} />
@@ -133,6 +134,7 @@ const Header = ({ title, isOpen, isCollapse, onToggle }: HeaderProps) => {
 
         <m.div
           variants={{
+            initial: { x: -10 },
             hover: { x: -5 },
             tap: { x: 0 },
           }}
