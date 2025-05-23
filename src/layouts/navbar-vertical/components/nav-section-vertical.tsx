@@ -1,8 +1,9 @@
 import { useState, Fragment } from 'react'
 
 import { Box, List, ListItemButton, Stack, Collapse, Divider, Typography } from '@mui/material'
-import Iconify from '@/components/iconify'
+import { Link } from 'react-router-dom'
 
+import Iconify from '@/components/iconify'
 import Header from './header'
 
 import type { NavbarVerticalProps } from '..'
@@ -60,6 +61,7 @@ export default function NavSectionVertical({ navConfig, isCollapse }: Props) {
         return (
           <Fragment key={index}>
             <ListItemButton
+              {...(segment && !hasChildren && { component: Link, to: segment })}
               onClick={() => handleToggle(segment || `item-${index}`)}
               sx={{ width: 1, borderRadius: 1, ...(!isCollapse && { pl: 2 + level * 2 }) }}
             >
