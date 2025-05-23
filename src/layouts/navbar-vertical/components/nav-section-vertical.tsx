@@ -14,6 +14,16 @@ type Props = NavbarVerticalProps & {
 }
 
 export default function NavSectionVertical({ navConfig, isCollapse }: Props) {
+  const navVertical = renderNavItems({ navConfig, isCollapse })
+
+  return (
+    <Box width={1} px={1}>
+      {navVertical}
+    </Box>
+  )
+}
+
+function renderNavItems({ navConfig, isCollapse }: Props) {
   const [openMenus, setOpenMenus] = useState<Record<string, boolean>>(
     navConfig.reduce((acc, item) => {
       if (item.kind === 'header' && item.segment) {
@@ -28,8 +38,8 @@ export default function NavSectionVertical({ navConfig, isCollapse }: Props) {
     setOpenMenus((prev) => ({ ...prev, [segment]: !prev?.[segment] }))
   }
 
-  const renderNavItems = (items: Array<Navigation>, level = 0) => (
-    <List sx={{ color: 'text.secondary', px: 1 }}>
+  const renderItems = (items: Array<Navigation>, level = 0) => (
+    <List sx={{ color: 'text.secondary' }}>
       {items.map(({ kind, title, segment, icon, children }, index) => {
         const hasChildren = children && children.length > 0
         const isOpen = Boolean(segment && openMenus?.[segment])
@@ -47,7 +57,7 @@ export default function NavSectionVertical({ navConfig, isCollapse }: Props) {
 
               {hasChildren && (
                 <Collapse in={isOpen} timeout="auto" unmountOnExit>
-                  {renderNavItems(children, level)}
+                  {renderItems(children, level)}
                 </Collapse>
               )}
             </Fragment>
@@ -74,7 +84,7 @@ export default function NavSectionVertical({ navConfig, isCollapse }: Props) {
                 <Stack direction={!isCollapse ? 'row' : 'column'} spacing={1} alignItems="center">
                   {icon && <Iconify icon={icon} />}
 
-                  <Typography variant="caption" fontSize={!isCollapse ? 8 : 14}>
+                  <Typography component="b" variant="button" fontSize={!isCollapse ? 14 : 9}>
                     {title}
                   </Typography>
                 </Stack>
@@ -87,7 +97,7 @@ export default function NavSectionVertical({ navConfig, isCollapse }: Props) {
 
             {hasChildren && (
               <Collapse in={isOpen} timeout="auto" unmountOnExit>
-                {renderNavItems(children, level + 1)}
+                {renderItems(children, level + 1)}
               </Collapse>
             )}
           </Fragment>
@@ -96,5 +106,5 @@ export default function NavSectionVertical({ navConfig, isCollapse }: Props) {
     </List>
   )
 
-  return <Box width={1}>{renderNavItems(navConfig)}</Box>
+  return renderItems(navConfig)
 }
