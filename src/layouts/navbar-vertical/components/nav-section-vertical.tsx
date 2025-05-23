@@ -23,24 +23,16 @@ export default function NavSectionVertical({ navConfig, isCollapse }: Props) {
   const renderNavItems = (items: Array<Navigation>, level = 0) => (
     <List sx={{ color: 'text.secondary', px: 1 }}>
       {items.map(({ kind, title, segment, icon, children }, index) => {
-        if (kind === 'header') {
-          if (isCollapse) return null
+        const hasChildren = children && children.length > 0
+        const isOpen = Boolean(segment && openMenus[segment])
 
-          return (
-            <ContainerDivider key={index} pt={2}>
-              <Typography variant="overline" fontWeight={600} color="text.primary">
-                {title}
-              </Typography>
-            </ContainerDivider>
-          )
+        if (kind === 'header') {
+          return <Header key={index} isOpen={isOpen} title={title} isCollapse={isCollapse} />
         }
 
         if (kind === 'divider') {
           return <Divider key={index} sx={{ my: 1 }} />
         }
-
-        const hasChildren = children && children.length > 0
-        const isOpen = segment && openMenus[segment]
 
         const listItem = (
           <ListItemButton
@@ -90,4 +82,27 @@ export default function NavSectionVertical({ navConfig, isCollapse }: Props) {
   )
 
   return <Box width={1}>{renderNavItems(navConfig)}</Box>
+}
+
+type HeaderProps = Pick<Navigation, 'title'> &
+  Pick<Props, 'isCollapse'> & {
+    isOpen: boolean
+  }
+
+const Header = ({ title, isOpen, isCollapse }: HeaderProps) => {
+  const [openHover, setOpenHover] = useState(isCollapse)
+
+  if (isCollapse) return null
+
+  return (
+    <ContainerDivider pt={2}>
+      <Stack direction="row" alignItems="center">
+        <Iconify icon={isOpen ? 'eva:chevron-up-fill' : 'eva:chevron-down-fill'} />
+
+        <Typography variant="overline" fontWeight={600} color="text.primary">
+          {title}
+        </Typography>
+      </Stack>
+    </ContainerDivider>
+  )
 }
