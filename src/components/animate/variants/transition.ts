@@ -8,8 +8,8 @@ export const varTranHover = (props?: TranHoverType) => {
 }
 
 export const varTranEnter = (props?: TranEnterType) => {
-  const duration = props?.durationIn || 0.2
-  const ease = props?.easeIn || 'easeInOut'
+  const duration = props?.durationIn || 0.64
+  const ease = props?.easeIn || [0.43, 0.13, 0.23, 0.96]
 
   return { duration, ease }
 }

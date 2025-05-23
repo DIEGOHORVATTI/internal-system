@@ -1,6 +1,6 @@
 import useCollapseDrawer from '@/hooks/use-collapse-drawer'
 
-import { Stack, Drawer, useTheme, useMediaQuery, Typography } from '@mui/material'
+import { Stack, Drawer, useTheme, useMediaQuery, Typography, IconButton } from '@mui/material'
 
 import Logo from '@/components/logo'
 
@@ -8,7 +8,6 @@ import { NAVBAR } from '@/config'
 
 import cssStyles from '@/utils/cssStyles'
 
-import IconButtonAnimate from '@/components/icon-button-animate'
 import Iconify from '@/components/iconify'
 import NavSectionVertical from './components/nav-section-vertical'
 
@@ -70,23 +69,24 @@ export default function NavbarVertical({ navConfig }: NavbarVerticalProps) {
       }}
     >
       {isDesktop && (
-        <IconButtonAnimate
+        <IconButton
           size="small"
           onClick={onToggleCollapse}
           sx={{
             zIndex: 9999,
             position: 'absolute',
             right: -15,
+            top: theme.spacing(3),
             border: 1,
             borderColor: 'grey.50012',
-            backgroundColor: (theme) => theme.palette.background.default,
+            backgroundColor: theme.palette.background.default,
             '&:hover': {
-              backgroundColor: (theme) => theme.palette.background.default,
+              backgroundColor: theme.palette.background.default,
             },
           }}
         >
           <Iconify size={1.5} icon={collapseClick ? 'ep:arrow-right-bold' : 'ep:arrow-left-bold'} />
-        </IconButtonAnimate>
+        </IconButton>
       )}
 
       {isDesktop && (
