@@ -13,14 +13,14 @@ export default function Logo({ disabledLink = false, size = 25, sx }: Props) {
         style={{
           width: size,
           height: size,
-          transform: 'scale(2.5)',
+          transform: 'scale(3)',
         }}
-        fontSize="inherit"
-        color="inherit"
       >
-        <polygon points="100,100 200,150 100,200" fill="currentColor" />
-        <polygon points="100,300 200,350 100,400" fill="currentColor" />
-        <polygon points="300,200 400,250 300,300" fill="currentColor" />
+        <Triangle x={200} y={180} />
+
+        <Triangle x={200} y={320} />
+
+        <Triangle x={330} y={250} />
       </SvgIcon>
     </Box>
   )
@@ -30,4 +30,17 @@ export default function Logo({ disabledLink = false, size = 25, sx }: Props) {
   }
 
   return <Link href="/">{logo}</Link>
+}
+
+interface TriangleProps {
+  x: number
+  y: number
+  size?: number
+  color?: string
+}
+
+function Triangle({ x, y, size = 48, color = 'currentColor' }: TriangleProps) {
+  const points = `${x - size},${y - size} ${x + size},${y} ${x - size},${y + size}`
+
+  return <polygon points={points} fill={color} />
 }
