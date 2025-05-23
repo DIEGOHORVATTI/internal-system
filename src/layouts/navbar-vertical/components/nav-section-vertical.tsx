@@ -101,6 +101,9 @@ export default function NavSectionVertical({ navConfig, isCollapse }: Props) {
   return <Box width={1}>{renderNavItems(navConfig)}</Box>
 }
 
+import { m } from 'framer-motion'
+import { MotionContainer, varBounce } from '@/components/animate'
+
 type HeaderProps = Pick<Navigation, 'title'> &
   Pick<Props, 'isCollapse'> & {
     isOpen: boolean
@@ -115,17 +118,23 @@ const Header = ({ title, isOpen, isCollapse, onToggle }: HeaderProps) => {
   return (
     <ContainerDivider pt={2}>
       <Stack
+        component={MotionContainer}
+        action={openHover}
+        height={20}
         direction="row"
-        alignItems="center"
         onMouseEnter={() => setOpenHover(true)}
         onMouseLeave={() => setOpenHover(false)}
         onClick={onToggle}
       >
-        {openHover && <Iconify icon={isOpen ? 'eva:chevron-up-fill' : 'eva:chevron-down-fill'} />}
+        <m.div variants={varBounce().in}>
+          <Iconify icon={isOpen ? 'eva:chevron-up-fill' : 'eva:chevron-down-fill'} />
+        </m.div>
 
-        <Typography variant="overline" fontWeight={600} color="text.primary">
-          {title}
-        </Typography>
+        <m.div variants={varBounce().inLeft}>
+          <Typography variant="overline" fontWeight={600} color="text.primary">
+            {title}
+          </Typography>
+        </m.div>
       </Stack>
     </ContainerDivider>
   )
