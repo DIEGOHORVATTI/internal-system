@@ -1,7 +1,7 @@
 import { Stack, Typography } from '@mui/material'
 
-import ContainerDivider from './container-divider'
 import Iconify from '@/components/iconify'
+import ContainerDivider from './container-divider'
 
 import { m } from 'framer-motion'
 import { MotionContainer } from '@/components/animate'

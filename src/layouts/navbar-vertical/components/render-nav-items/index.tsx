@@ -1,32 +1,16 @@
 import { useState, Fragment } from 'react'
 
-import { Box, List, ListItemButton, Stack, Collapse, Divider, Typography } from '@mui/material'
+import { List, ListItemButton, Stack, Collapse, Divider, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 
 import Iconify from '@/components/iconify'
+import Header from './components/header'
 
-import renderNavItems from './render-nav-items'
-
-import type { NavbarVerticalProps } from '..'
 import type { Navigation } from '@/routes/nav-config'
 
-export type NavSectionVerticalProps = NavbarVerticalProps & {
-  isCollapse: boolean
-}
+import type { NavSectionVerticalProps } from '../nav-section-vertical'
 
-export default function NavSectionVertical({ navConfig, isCollapse }: NavSectionVerticalProps) {
-  const navVertical = renderNavItems({ navConfig })
-
-  const navMini = renderNavItemsMini({ navConfig })
-
-  return (
-    <Box width={1} px={1}>
-      {isCollapse ? navMini : navVertical}
-    </Box>
-  )
-}
-
-function renderNavItemsMini({ navConfig }: Pick<NavSectionVerticalProps, 'navConfig'>) {
+export default function renderNavItems({ navConfig }: Pick<NavSectionVerticalProps, 'navConfig'>) {
   const [openMenus, setOpenMenus] = useState<Record<string, boolean>>(
     navConfig.reduce((acc, item) => {
       if (item.kind === 'header' && item.segment) {
@@ -49,11 +33,19 @@ function renderNavItemsMini({ navConfig }: Pick<NavSectionVerticalProps, 'navCon
 
         if (kind === 'header') {
           return (
-            hasChildren && (
-              <Collapse key={index} in={isOpen} timeout="auto" unmountOnExit>
-                {renderItems(children, level)}
-              </Collapse>
-            )
+            <Fragment key={index}>
+              <Header
+                title={title}
+                isOpen={isOpen}
+                onToggle={() => handleToggle(segment || `header-${index}`)}
+              />
+
+              {hasChildren && (
+                <Collapse in={isOpen} timeout="auto" unmountOnExit>
+                  {renderItems(children, level)}
+                </Collapse>
+              )}
+            </Fragment>
           )
         }
 
@@ -66,13 +58,13 @@ function renderNavItemsMini({ navConfig }: Pick<NavSectionVerticalProps, 'navCon
             <ListItemButton
               {...(segment && !hasChildren && { component: Link, to: segment })}
               onClick={() => handleToggle(segment || `item-${index}`)}
-              sx={{ width: 1, borderRadius: 1 }}
+              sx={{ width: 1, borderRadius: 1, pl: 2 + level * 2 }}
             >
-              <Stack width={1} direction="row" alignItems="center" justifyContent="center">
-                <Stack direction="column" spacing={1} alignItems="center">
+              <Stack width={1} direction="row" alignItems="center" justifyContent="space-between">
+                <Stack direction="row" spacing={1} alignItems="center">
                   {icon && <Iconify icon={icon} />}
 
-                  <Typography component="b" variant="button" fontSize={9}>
+                  <Typography component="b" variant="button">
                     {title}
                   </Typography>
                 </Stack>
@@ -93,5 +85,6 @@ function renderNavItemsMini({ navConfig }: Pick<NavSectionVerticalProps, 'navCon
       })}
     </List>
   )
+
   return renderItems(navConfig)
 }
