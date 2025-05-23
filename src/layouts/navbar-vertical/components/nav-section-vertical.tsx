@@ -27,7 +27,24 @@ export default function NavSectionVertical({ navConfig, isCollapse }: Props) {
         const isOpen = Boolean(segment && openMenus[segment])
 
         if (kind === 'header') {
-          return <Header key={index} isOpen={isOpen} title={title} isCollapse={isCollapse} />
+          if (isCollapse) return null
+
+          return (
+            <Fragment key={index}>
+              <Header
+                title={title}
+                isOpen={!!isOpen}
+                isCollapse={isCollapse}
+                onToggle={() => segment && handleToggle(segment)}
+              />
+
+              {hasChildren && (
+                <Collapse in={!!isOpen} timeout="auto" unmountOnExit>
+                  {renderNavItems(children!, level + 1)}
+                </Collapse>
+              )}
+            </Fragment>
+          )
         }
 
         if (kind === 'divider') {
@@ -87,17 +104,24 @@ export default function NavSectionVertical({ navConfig, isCollapse }: Props) {
 type HeaderProps = Pick<Navigation, 'title'> &
   Pick<Props, 'isCollapse'> & {
     isOpen: boolean
+    onToggle: VoidFunction
   }
 
-const Header = ({ title, isOpen, isCollapse }: HeaderProps) => {
-  const [openHover, setOpenHover] = useState(isCollapse)
+const Header = ({ title, isOpen, isCollapse, onToggle }: HeaderProps) => {
+  const [openHover, setOpenHover] = useState(false)
 
   if (isCollapse) return null
 
   return (
     <ContainerDivider pt={2}>
-      <Stack direction="row" alignItems="center">
-        <Iconify icon={isOpen ? 'eva:chevron-up-fill' : 'eva:chevron-down-fill'} />
+      <Stack
+        direction="row"
+        alignItems="center"
+        onMouseEnter={() => setOpenHover(true)}
+        onMouseLeave={() => setOpenHover(false)}
+        onClick={onToggle}
+      >
+        {openHover && <Iconify icon={isOpen ? 'eva:chevron-up-fill' : 'eva:chevron-down-fill'} />}
 
         <Typography variant="overline" fontWeight={600} color="text.primary">
           {title}
