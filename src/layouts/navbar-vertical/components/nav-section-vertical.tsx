@@ -111,24 +111,21 @@ type HeaderProps = Pick<Navigation, 'title'> &
   }
 
 const Header = ({ title, isOpen, isCollapse, onToggle }: HeaderProps) => {
-  const [openHover, setOpenHover] = useState(false)
-
   if (isCollapse) return null
 
   return (
     <ContainerDivider pt={2}>
       <Stack
         component={MotionContainer}
-        action={openHover}
         direction="row"
-        onMouseEnter={() => setOpenHover(true)}
-        onMouseLeave={() => setOpenHover(false)}
+        whileTap="tap"
+        whileHover="hover"
         onClick={onToggle}
       >
         <m.div
           variants={{
-            animate: { opacity: 0, x: 0 },
-            exit: { opacity: 1, x: 1 },
+            hover: { opacity: 0, x: 0 },
+            tap: { opacity: 1, x: 1 },
           }}
         >
           <Iconify icon={isOpen ? 'eva:chevron-up-fill' : 'eva:chevron-down-fill'} />
@@ -136,8 +133,8 @@ const Header = ({ title, isOpen, isCollapse, onToggle }: HeaderProps) => {
 
         <m.div
           variants={{
-            animate: { x: -5 },
-            exit: { x: 0 },
+            hover: { x: -5 },
+            tap: { x: 0 },
           }}
         >
           <Typography variant="overline" fontWeight={600} color="text.primary">
