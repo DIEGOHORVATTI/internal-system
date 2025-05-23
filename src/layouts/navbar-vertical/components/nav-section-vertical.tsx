@@ -114,25 +114,14 @@ const Header = ({ title, isOpen, onToggle }: HeaderProps) => {
         sx={{ cursor: 'pointer' }}
         onClick={onToggle}
       >
-        <m.div
-          variants={{
-            initial: { x: -5, opacity: 0 },
-            hover: { opacity: 1 },
-          }}
-        >
+        <m.div variants={{ initial: { x: -5, opacity: 0 }, hover: { opacity: 1 } }}>
           <Iconify
             icon={isOpen ? 'eva:chevron-down-fill' : 'eva:chevron-right-fill'}
             color="text.primary"
           />
         </m.div>
 
-        <m.div
-          variants={{
-            initial: { x: -10 },
-            hover: { x: -5 },
-            tap: { x: 0 },
-          }}
-        >
+        <m.div variants={{ initial: { x: -10 }, hover: { x: -5 }, tap: { x: 0 } }}>
           <Typography variant="overline" fontWeight={600} color="text.primary">
             {title}
           </Typography>
