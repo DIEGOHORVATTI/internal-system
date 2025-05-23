@@ -30,7 +30,7 @@ export default function NavbarVertical({ navConfig }: NavbarVerticalProps) {
 
   const renderContent = (
     <Stack
-      spacing={3}
+      spacing={2}
       py={3}
       alignItems="center"
       sx={{
