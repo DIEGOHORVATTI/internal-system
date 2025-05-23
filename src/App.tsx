@@ -10,6 +10,7 @@ import Home from '@/sections/Home'
 import Auth from '@/sections/Auth'
 
 import NavbarVertical from '@/layouts/navbar-vertical'
+import { MotionLazy } from '@/components/animate/motion-lazy'
 
 import { ThemeProvider } from '@/theme'
 
@@ -28,24 +29,26 @@ export default function App() {
       }}
     >
       <ThemeProvider>
-        <CollapseDrawerProvider>
-          <SnackbarProvider>
-            <AuthProvider>
-              <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-                <AuthGuard>
-                  <NavbarVertical navConfig={navConfig}>
-                    <Routes>
-                      <Route path="/" element={<Home />} />
-                      <Route path="/auth" element={<Auth />} />
+        <MotionLazy>
+          <CollapseDrawerProvider>
+            <SnackbarProvider>
+              <AuthProvider>
+                <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+                  <AuthGuard>
+                    <NavbarVertical navConfig={navConfig}>
+                      <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/auth" element={<Auth />} />
 
-                      <Route path="*" element={<Home />} />
-                    </Routes>
-                  </NavbarVertical>
-                </AuthGuard>
-              </BrowserRouter>
-            </AuthProvider>
-          </SnackbarProvider>
-        </CollapseDrawerProvider>
+                        <Route path="*" element={<Home />} />
+                      </Routes>
+                    </NavbarVertical>
+                  </AuthGuard>
+                </BrowserRouter>
+              </AuthProvider>
+            </SnackbarProvider>
+          </CollapseDrawerProvider>
+        </MotionLazy>
       </ThemeProvider>
     </SettingsProvider>
   )
