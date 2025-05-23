@@ -3,7 +3,7 @@ export type Navigation = {
   title?: string
   segment?: string
   icon?: string
-  children?: Navigation[]
+  children?: Array<Navigation>
   path?: string
 }
 
@@ -30,7 +30,7 @@ export const navConfig: Array<Navigation> = [
             kind: 'item',
             segment: 'pending',
             title: 'Pending',
-            icon: 'solar:clock-bold',
+            icon: 'solar:clock-circle-bold',
             path: '/orders/pending',
           },
           {
@@ -74,9 +74,6 @@ export const navConfig: Array<Navigation> = [
     ],
   },
   {
-    kind: 'divider',
-  },
-  {
     kind: 'header',
     title: 'Analytics',
     segment: 'analytics-header',
@@ -118,10 +115,6 @@ export const navConfig: Array<Navigation> = [
         path: '/insights',
       },
     ],
-  },
-  {
-    kind: 'divider',
-    title: '',
   },
   {
     kind: 'header',

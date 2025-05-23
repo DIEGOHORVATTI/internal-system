@@ -35,15 +35,15 @@ export default function NavSectionVertical({ navConfig, isCollapse }: Props) {
         const isOpen = Boolean(segment && openMenus?.[segment])
 
         if (kind === 'header') {
-          if (isCollapse) return null
-
           return (
             <Fragment key={index}>
-              <Header
-                title={title}
-                isOpen={isOpen}
-                onToggle={() => handleToggle(segment || `header-${index}`)}
-              />
+              {!isCollapse && (
+                <Header
+                  title={title}
+                  isOpen={isOpen}
+                  onToggle={() => handleToggle(segment || `header-${index}`)}
+                />
+              )}
 
               {hasChildren && (
                 <Collapse in={isOpen} timeout="auto" unmountOnExit>
@@ -74,7 +74,9 @@ export default function NavSectionVertical({ navConfig, isCollapse }: Props) {
                 <Stack direction={!isCollapse ? 'row' : 'column'} spacing={1} alignItems="center">
                   {icon && <Iconify icon={icon} />}
 
-                  {!isCollapse && <Typography variant="body2">{title}</Typography>}
+                  <Typography variant="caption" fontSize={!isCollapse ? 8 : 14}>
+                    {title}
+                  </Typography>
                 </Stack>
 
                 {hasChildren && !isCollapse && (
