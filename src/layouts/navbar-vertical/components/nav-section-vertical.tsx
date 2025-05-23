@@ -30,19 +30,12 @@ export default function NavSectionVertical({ navConfig, isCollapse }: Props) {
           if (isCollapse) return null
 
           return (
-            <Fragment key={index}>
-              <Header
-                title={title}
-                isOpen={!!isOpen}
-                onToggle={() => segment && handleToggle(segment)}
-              />
-
-              {hasChildren && (
-                <Collapse in={!!isOpen} timeout="auto" unmountOnExit>
-                  {renderNavItems(children!, level + 1)}
-                </Collapse>
-              )}
-            </Fragment>
+            <Header
+              key={index}
+              title={title}
+              isOpen={!!isOpen}
+              onToggle={() => handleToggle(kind)}
+            />
           )
         }
 
@@ -116,16 +109,19 @@ const Header = ({ title, isOpen, onToggle }: HeaderProps) => {
         direction="row"
         whileTap="tap"
         whileHover="hover"
+        sx={{ cursor: 'pointer' }}
         onClick={onToggle}
       >
         <m.div
           variants={{
             initial: { x: -5, opacity: 0 },
             hover: { opacity: 1 },
-            tap: { opacity: 0 },
           }}
         >
-          <Iconify icon={isOpen ? 'eva:chevron-up-fill' : 'eva:chevron-down-fill'} />
+          <Iconify
+            icon={isOpen ? 'eva:chevron-up-fill' : 'eva:chevron-down-fill'}
+            color="text.primary"
+          />
         </m.div>
 
         <m.div
