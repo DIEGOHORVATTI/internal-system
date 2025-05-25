@@ -33,7 +33,8 @@ export const IconButtonStyle = styled(IconButton)(({ theme }) => ({
   right: -15,
   top: theme.spacing(3),
   border: 1,
-  borderColor: 'red',
+  borderStyle: 'solid',
+  borderColor: theme.palette.grey[50012],
   backgroundColor: theme.palette.background.default,
   '&:hover': {
     backgroundColor: theme.palette.background.paper,
