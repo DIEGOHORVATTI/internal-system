@@ -15,7 +15,6 @@ import { MotionLazy } from '@/components/animate/motion-lazy'
 import { ThemeProvider } from '@/theme'
 
 import { navConfig } from './routes/nav-config'
-import { CollapseDrawerProvider } from './contexts/collapse-drawer-context'
 
 export default function App() {
   return (
@@ -23,31 +22,29 @@ export default function App() {
       defaultSettings={{
         themeMode: 'dark',
         themeContrast: 'default',
-        themeLayout: true,
+        modeLayout: true,
         themeColorPresets: 'warning',
         themeStretch: false,
       }}
     >
       <ThemeProvider>
         <MotionLazy>
-          <CollapseDrawerProvider>
-            <SnackbarProvider>
-              <AuthProvider>
-                <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-                  {/* <AuthGuard> */}
-                  <NavbarVertical navConfig={navConfig}>
-                    <Routes>
-                      <Route path="/" element={<Home />} />
-                      <Route path="/auth" element={<Auth />} />
+          <SnackbarProvider>
+            <AuthProvider>
+              <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+                {/* <AuthGuard> */}
+                <NavbarVertical navConfig={navConfig}>
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/auth" element={<Auth />} />
 
-                      <Route path="*" element={<Home />} />
-                    </Routes>
-                  </NavbarVertical>
-                  {/* </AuthGuard> */}
-                </BrowserRouter>
-              </AuthProvider>
-            </SnackbarProvider>
-          </CollapseDrawerProvider>
+                    <Route path="*" element={<Home />} />
+                  </Routes>
+                </NavbarVertical>
+                {/* </AuthGuard> */}
+              </BrowserRouter>
+            </AuthProvider>
+          </SnackbarProvider>
         </MotionLazy>
       </ThemeProvider>
     </SettingsProvider>

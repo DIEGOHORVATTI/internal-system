@@ -1,6 +1,12 @@
-import useCollapseDrawer from '@/hooks/use-collapse-drawer'
+import { useTheme } from '@mui/material/styles'
+import useSettings from '@/hooks/use-settings'
 
-import { Stack, Drawer, useTheme, useMediaQuery, Typography, IconButton } from '@mui/material'
+import Stack from '@mui/material/Stack'
+import Drawer from '@mui/material/Drawer'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import Typography from '@mui/material/Typography'
+import IconButton from '@mui/material/IconButton'
+import Box from '@mui/material/Box'
 
 import Logo from '@/components/logo'
 
@@ -22,7 +28,7 @@ export type NavbarVerticalProps = React.PropsWithChildren<{
 export default function NavbarVertical({ navConfig }: NavbarVerticalProps) {
   const theme = useTheme()
 
-  const { isCollapse, collapseClick, collapseHover, onToggleCollapse } = useCollapseDrawer()
+  const { modeLayout, onToggleModeLayout } = useSettings()
 
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'))
   const isMobile = !isDesktop
@@ -32,50 +38,29 @@ export default function NavbarVertical({ navConfig }: NavbarVerticalProps) {
   const navMini = renderNavItemsMini({ navConfig })
 
   const renderContent = (
-    <Stack
-      spacing={2}
-      py={3}
-      alignItems="center"
-      sx={{
-        height: 1,
-        overflow: 'auto',
-        '& .simplebar-content': {
-          height: 1,
-          display: 'flex',
-          flexDirection: 'column',
-        },
-      }}
-    >
+    <Stack spacing={2} py={3} alignItems="center">
       <Stack direction="row" spacing={2} alignItems="center">
         <Logo />
 
-        {!isCollapse && (
+        {!modeLayout && (
           <Typography variant="h4" gutterBottom>
             Azeplast
           </Typography>
         )}
       </Stack>
 
-      {isCollapse ? navMini : navVertical}
+      <Box width={1} px={1}>
+        {modeLayout ? navMini : navVertical}
+      </Box>
     </Stack>
   )
 
   return (
-    <S.NavbarVerticalRootStyle
-      sx={{
-        width: {
-          lg: isCollapse ? NAVBAR.DASHBOARD_COLLAPSE_WIDTH : NAVBAR.DASHBOARD_WIDTH,
-        },
-        position: 'relative',
-        ...(isCollapse && {
-          position: 'absolute',
-        }),
-      }}
-    >
+    <S.NavbarVerticalRootStyle modeLayout={modeLayout}>
       {isDesktop && (
         <IconButton
           size="small"
-          onClick={onToggleCollapse}
+          onClick={onToggleModeLayout}
           sx={{
             zIndex: 9999,
             position: 'absolute',
@@ -89,7 +74,7 @@ export default function NavbarVertical({ navConfig }: NavbarVerticalProps) {
             },
           }}
         >
-          <Iconify size={1.5} icon={collapseClick ? 'ep:arrow-right-bold' : 'ep:arrow-left-bold'} />
+          <Iconify size={1.5} icon={modeLayout ? 'ep:arrow-right-bold' : 'ep:arrow-left-bold'} />
         </IconButton>
       )}
 
@@ -106,14 +91,11 @@ export default function NavbarVertical({ navConfig }: NavbarVerticalProps) {
               transition: theme.transitions.create('width', {
                 duration: theme.transitions.duration.standard,
               }),
-              ...(isCollapse && {
+              ...(modeLayout && {
                 width: NAVBAR.DASHBOARD_COLLAPSE_WIDTH,
               }),
               ...cssStyles(theme).bgBlur(),
               borderRadius: 0,
-              ...(collapseHover && {
-                boxShadow: theme.customShadows.z24,
-              }),
             },
           }}
         >
@@ -123,8 +105,8 @@ export default function NavbarVertical({ navConfig }: NavbarVerticalProps) {
 
       {isMobile && (
         <Drawer
-          open={isCollapse}
-          onClose={onToggleCollapse}
+          open={modeLayout}
+          onClose={onToggleModeLayout}
           PaperProps={{ sx: { width: NAVBAR.DASHBOARD_WIDTH } }}
         >
           {renderContent}

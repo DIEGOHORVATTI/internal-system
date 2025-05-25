@@ -7,10 +7,9 @@ import Iconify from '@/components/iconify'
 import Header from './components/header'
 
 import type { Navigation } from '@/routes/nav-config'
+import type { NavbarVerticalProps } from '../..'
 
-import type { NavSectionVerticalProps } from '../nav-section-vertical'
-
-export default function renderNavItems({ navConfig }: Pick<NavSectionVerticalProps, 'navConfig'>) {
+export default function renderNavItems({ navConfig }: NavbarVerticalProps) {
   const [openMenus, setOpenMenus] = useState<Record<string, boolean>>(
     navConfig.reduce((acc, item) => {
       if (item.kind === 'header' && item.segment) {
