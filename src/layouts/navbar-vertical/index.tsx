@@ -12,8 +12,6 @@ import Logo from '@/components/logo'
 
 import { NAVBAR } from '@/config'
 
-import cssStyles from '@/utils/cssStyles'
-
 import Iconify from '@/components/iconify'
 import renderNavItems from './components/render-nav-items'
 import renderNavItemsMini from './components/render-nav-items-mini'
@@ -79,28 +77,9 @@ export default function NavbarVertical({ navConfig }: NavbarVerticalProps) {
       )}
 
       {isDesktop && (
-        <Drawer
-          open
-          variant="persistent"
-          PaperProps={{
-            sx: {
-              width: NAVBAR.DASHBOARD_WIDTH,
-              borderRightStyle: 'double',
-              borderColor: 'grey.50012',
-              bgcolor: 'background.default',
-              transition: theme.transitions.create('width', {
-                duration: theme.transitions.duration.standard,
-              }),
-              ...(modeLayout && {
-                width: NAVBAR.DASHBOARD_COLLAPSE_WIDTH,
-              }),
-              ...cssStyles(theme).bgBlur(),
-              borderRadius: 0,
-            },
-          }}
-        >
+        <S.DrawerStyle open variant="persistent" modeLayout={modeLayout}>
           {renderContent}
-        </Drawer>
+        </S.DrawerStyle>
       )}
 
       {isMobile && (
