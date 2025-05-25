@@ -24,7 +24,7 @@ export default function App() {
         themeMode: 'dark',
         themeContrast: 'default',
         themeLayout: true,
-        themeColorPresets: 'pink',
+        themeColorPresets: 'warning',
         themeStretch: false,
       }}
     >

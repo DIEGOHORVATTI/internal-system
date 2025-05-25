@@ -1,10 +1,8 @@
-export const HOST_API = 'dev.digitro.com'
+export const HOST_API = ''
 
-export const endpoints = {
-  callcontrol: '/callcontrol',
-}
+export const endpoints = {}
 
 export const STORAGE_KEYS = {
-  SETTINGS: '@digitro-settings',
-  USER_TOKEN: '@digitro-user',
+  SETTINGS: '@azeplast-settings',
+  USER_TOKEN: '@azeplast-user',
 }
