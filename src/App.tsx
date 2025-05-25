@@ -34,16 +34,16 @@ export default function App() {
             <SnackbarProvider>
               <AuthProvider>
                 <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-                  <AuthGuard>
-                    <NavbarVertical navConfig={navConfig}>
-                      <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/auth" element={<Auth />} />
+                  {/* <AuthGuard> */}
+                  <NavbarVertical navConfig={navConfig}>
+                    <Routes>
+                      <Route path="/" element={<Home />} />
+                      <Route path="/auth" element={<Auth />} />
 
-                        <Route path="*" element={<Home />} />
-                      </Routes>
-                    </NavbarVertical>
-                  </AuthGuard>
+                      <Route path="*" element={<Home />} />
+                    </Routes>
+                  </NavbarVertical>
+                  {/* </AuthGuard> */}
                 </BrowserRouter>
               </AuthProvider>
             </SnackbarProvider>

@@ -1,32 +1,14 @@
 import { useState, Fragment } from 'react'
 
-import { Box, List, ListItemButton, Stack, Collapse, Divider, Typography } from '@mui/material'
+import { List, ListItemButton, Stack, Collapse, Divider, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 
 import Iconify from '@/components/iconify'
 
-import renderNavItems from './render-nav-items'
-
-import type { NavbarVerticalProps } from '..'
 import type { Navigation } from '@/routes/nav-config'
+import type { NavbarVerticalProps } from '../..'
 
-export type NavSectionVerticalProps = NavbarVerticalProps & {
-  isCollapse: boolean
-}
-
-export default function NavSectionVertical({ navConfig, isCollapse }: NavSectionVerticalProps) {
-  const navVertical = renderNavItems({ navConfig })
-
-  const navMini = renderNavItemsMini({ navConfig })
-
-  return (
-    <Box width={1} px={1}>
-      {isCollapse ? navMini : navVertical}
-    </Box>
-  )
-}
-
-function renderNavItemsMini({ navConfig }: Pick<NavSectionVerticalProps, 'navConfig'>) {
+export default function renderNavItemsMini({ navConfig }: NavbarVerticalProps) {
   const [openMenus, setOpenMenus] = useState<Record<string, boolean>>(
     navConfig.reduce((acc, item) => {
       if (item.kind === 'header' && item.segment) {
@@ -37,9 +19,8 @@ function renderNavItemsMini({ navConfig }: Pick<NavSectionVerticalProps, 'navCon
     }, {} as Record<string, boolean>)
   )
 
-  const handleToggle = (segment: string) => {
+  const handleToggle = (segment: string) =>
     setOpenMenus((prev) => ({ ...prev, [segment]: !prev?.[segment] }))
-  }
 
   const renderItems = (items: Array<Navigation>, level = 0) => (
     <List sx={{ color: 'text.secondary' }}>

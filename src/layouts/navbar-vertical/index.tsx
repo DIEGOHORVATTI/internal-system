@@ -9,8 +9,8 @@ import { NAVBAR } from '@/config'
 import cssStyles from '@/utils/cssStyles'
 
 import Iconify from '@/components/iconify'
-import NavSectionVertical from './components/nav-section-vertical'
-
+import renderNavItems from './components/render-nav-items'
+import renderNavItemsMini from './components/render-nav-items-mini'
 import * as S from './styles'
 
 import type { Navigation } from '@/routes/nav-config'
@@ -26,6 +26,10 @@ export default function NavbarVertical({ navConfig }: NavbarVerticalProps) {
 
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'))
   const isMobile = !isDesktop
+
+  const navVertical = renderNavItems({ navConfig })
+
+  const navMini = renderNavItemsMini({ navConfig })
 
   const renderContent = (
     <Stack
@@ -52,7 +56,7 @@ export default function NavbarVertical({ navConfig }: NavbarVerticalProps) {
         )}
       </Stack>
 
-      <NavSectionVertical navConfig={navConfig} isCollapse={isCollapse} />
+      {isCollapse ? navMini : navVertical}
     </Stack>
   )
 
