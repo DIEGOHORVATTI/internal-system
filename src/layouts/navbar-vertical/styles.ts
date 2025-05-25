@@ -1,8 +1,10 @@
 import Drawer from '@mui/material/Drawer'
-import { styled } from '@mui/material/styles'
+import IconButton from '@mui/material/IconButton'
 
 import { NAVBAR } from '@/config'
+
 import cssStyles from '@/utils/cssStyles'
+import styled from '@mui/material/styles/styled'
 
 import type { ISettings } from '@/contexts/settings-provider'
 
@@ -24,6 +26,19 @@ export const DrawerStyle = styled(Drawer)<Pick<ISettings, 'modeLayout'>>(
     },
   })
 )
+
+export const IconButtonStyle = styled(IconButton)(({ theme }) => ({
+  zIndex: 9999,
+  position: 'absolute',
+  right: -15,
+  top: theme.spacing(3),
+  border: 1,
+  borderColor: 'red',
+  backgroundColor: theme.palette.background.default,
+  '&:hover': {
+    backgroundColor: theme.palette.background.paper,
+  },
+}))
 
 export const NavbarVerticalRootStyle = styled('div')<Pick<ISettings, 'modeLayout'>>(
   ({ theme, modeLayout }) => ({

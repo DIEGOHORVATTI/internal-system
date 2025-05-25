@@ -1,11 +1,10 @@
 import { useTheme } from '@mui/material/styles'
 import useSettings from '@/hooks/use-settings'
+import useMediaQuery from '@mui/material/useMediaQuery'
 
 import Stack from '@mui/material/Stack'
 import Drawer from '@mui/material/Drawer'
-import useMediaQuery from '@mui/material/useMediaQuery'
 import Typography from '@mui/material/Typography'
-import IconButton from '@mui/material/IconButton'
 import Box from '@mui/material/Box'
 
 import Logo from '@/components/logo'
@@ -56,30 +55,15 @@ export default function NavbarVertical({ navConfig }: NavbarVerticalProps) {
   return (
     <S.NavbarVerticalRootStyle modeLayout={modeLayout}>
       {isDesktop && (
-        <IconButton
-          size="small"
-          onClick={onToggleModeLayout}
-          sx={{
-            zIndex: 9999,
-            position: 'absolute',
-            right: -15,
-            top: theme.spacing(3),
-            border: 1,
-            borderColor: 'grey.50012',
-            backgroundColor: theme.palette.background.default,
-            '&:hover': {
-              backgroundColor: theme.palette.background.default,
-            },
-          }}
-        >
-          <Iconify size={1.5} icon={modeLayout ? 'ep:arrow-right-bold' : 'ep:arrow-left-bold'} />
-        </IconButton>
-      )}
+        <>
+          <S.IconButtonStyle size="small" onClick={onToggleModeLayout}>
+            <Iconify size={1.5} icon={modeLayout ? 'ep:arrow-right-bold' : 'ep:arrow-left-bold'} />
+          </S.IconButtonStyle>
 
-      {isDesktop && (
-        <S.DrawerStyle open variant="persistent" modeLayout={modeLayout}>
-          {renderContent}
-        </S.DrawerStyle>
+          <S.DrawerStyle open variant="persistent" modeLayout={modeLayout}>
+            {renderContent}
+          </S.DrawerStyle>
+        </>
       )}
 
       {isMobile && (
