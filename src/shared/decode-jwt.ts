@@ -4,6 +4,8 @@ export const decodeJwt = <T>(token: string): T | null => {
 
     return decoded as T
   } catch (error) {
+    console.error('Invalid token: ', error)
+
     new Error('Invalid token')
     return null
   }

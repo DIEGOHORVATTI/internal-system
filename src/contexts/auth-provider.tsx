@@ -39,6 +39,8 @@ export default function AuthProvider({ children }: React.PropsWithChildren) {
 
         setUser(decodedUser)
       } catch (error) {
+        console.error('Invalid token, logging out', error)
+
         logout()
       }
     }
