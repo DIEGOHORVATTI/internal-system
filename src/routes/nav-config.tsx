@@ -26,9 +26,9 @@ export const navConfig: Array<Navigation> = [
     children: [
       {
         kind: 'item',
-        title: 'Dashboard',
+        title: 'Home',
         icon: 'solar:widget-2-bold',
-        path: '/dashboard',
+        path: '/',
         component: Home,
       },
       {

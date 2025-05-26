@@ -6,7 +6,7 @@ import AuthProvider from '@/contexts/auth-provider'
 
 import NavBar from '@/layouts/navbar'
 import AuthGuard from '@/guards/auth-guard'
-import { MotionLazy } from '@/components/animate/motion-lazy'
+import MotionLazyProvider from '@/components/animate/motion-lazy-provider'
 
 import { ThemeProvider } from '@/theme'
 
@@ -25,7 +25,7 @@ export default function App() {
       }}
     >
       <ThemeProvider>
-        <MotionLazy>
+        <MotionLazyProvider>
           <SnackbarProvider>
             <AuthProvider>
               <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
@@ -41,7 +41,7 @@ export default function App() {
               </BrowserRouter>
             </AuthProvider>
           </SnackbarProvider>
-        </MotionLazy>
+        </MotionLazyProvider>
       </ThemeProvider>
     </SettingsProvider>
   )
