@@ -10,7 +10,7 @@ export const NavDropdown = styled(Popover)(({ open, theme }) => ({
   [`& .${popoverClasses.paper}`]: {
     boxShadow: 'none',
     overflow: 'unset',
-    padding: theme.spacing(0, 0.75),
+    padding: theme.spacing(0.5),
     ...bgBlur,
     ...(open && { pointerEvents: 'auto' }),
   } as CSSObject,

@@ -86,11 +86,11 @@ function RecursiveNavItem({ item, level }: { item?: Navigation; level: number })
           open={open}
           anchorEl={elementRef.current}
           anchorOrigin={{
-            vertical: 'top',
+            vertical: 'center',
             horizontal: 'right',
           }}
           transformOrigin={{
-            vertical: 'top',
+            vertical: 'center',
             horizontal: 'left',
           }}
           slotProps={{
