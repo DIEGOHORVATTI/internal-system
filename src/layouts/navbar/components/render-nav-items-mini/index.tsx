@@ -38,7 +38,7 @@ export default function RecursiveNavItems({ navConfig = [], level = 0 }: Props) 
 function RecursiveNavItem({ item, level }: { item?: Navigation; level: number }) {
   const location = useLocation()
 
-  const { open, onOpen, onClose, anchorEl } = usePopoverHover<HTMLButtonElement>()
+  const { open, onOpen, onClose, elementRef } = usePopoverHover<HTMLDivElement>()
 
   const handleOpenMenu = useCallback(() => {
     if (item?.children) {
@@ -52,6 +52,7 @@ function RecursiveNavItem({ item, level }: { item?: Navigation; level: number })
   return (
     <>
       <ListItemButton
+        ref={elementRef}
         onMouseEnter={handleOpenMenu}
         onMouseLeave={onClose}
         {...(item?.path && !hasChildren && { component: Link, to: item.path })}
@@ -83,7 +84,15 @@ function RecursiveNavItem({ item, level }: { item?: Navigation; level: number })
         <S.NavDropdown
           disableScrollLock
           open={open}
-          anchorEl={anchorEl}
+          anchorEl={elementRef.current}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'left',
+          }}
           slotProps={{
             paper: {
               onMouseEnter: handleOpenMenu,

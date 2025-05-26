@@ -1,7 +1,6 @@
 import type { ISettings } from '@/contexts/settings-provider'
 
 import { NAVBAR } from '@/config'
-import cssStyles from '@/utils/cssStyles'
 
 import Drawer from '@mui/material/Drawer'
 import styled from '@mui/material/styles/styled'
@@ -18,11 +17,11 @@ export const DrawerStyle = styled(Drawer, {
     transition: theme.transitions.create('width', {
       duration: theme.transitions.duration.standard,
     }),
+    backgroundColor: theme.palette.background.default,
     width: NAVBAR.DASHBOARD_WIDTH,
     ...(modeLayout && {
       width: NAVBAR.DASHBOARD_COLLAPSE_WIDTH,
     }),
-    ...cssStyles(theme).bgBlur(),
   },
 }))
 

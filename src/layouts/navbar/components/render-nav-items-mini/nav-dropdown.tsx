@@ -1,5 +1,7 @@
 import type { CSSObject } from '@mui/material/styles'
 
+import { bgBlur } from '@/theme/css'
+
 import { styled } from '@mui/material/styles'
 import Popover, { popoverClasses } from '@mui/material/Popover'
 
@@ -8,9 +10,8 @@ export const NavDropdown = styled(Popover)(({ open, theme }) => ({
   [`& .${popoverClasses.paper}`]: {
     boxShadow: 'none',
     overflow: 'unset',
-    backdropFilter: 'none',
-    background: 'transparent',
     padding: theme.spacing(0, 0.75),
+    ...bgBlur,
     ...(open && { pointerEvents: 'auto' }),
   } as CSSObject,
 }))
