@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react'
 
 type ReturnType = {
+  rect: DOMRect | undefined
   onClose: VoidFunction
   open: HTMLElement | null
   onOpen: (event: React.MouseEvent<HTMLElement>) => void
@@ -18,7 +19,10 @@ export default function usePopover(): ReturnType {
     setOpen(null)
   }, [])
 
+  const rect = open?.getBoundingClientRect()
+
   return {
+    rect,
     open,
     onOpen,
     onClose,

@@ -47,7 +47,7 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
         )}
       </Stack>
 
-      <Box width={1} px={1} position="relative">
+      <Box width={1} px={1}>
         {modeLayout ? navMini : navVertical}
       </Box>
     </Stack>
