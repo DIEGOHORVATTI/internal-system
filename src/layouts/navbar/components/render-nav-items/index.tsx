@@ -2,7 +2,12 @@ import { useMemo, Fragment } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import useOpenMenus from './hooks/use-open-menus'
 
-import { List, ListItemButton, Stack, Collapse, Divider, Typography } from '@mui/material'
+import List from '@mui/material/List'
+import ListItemButton from '@mui/material/ListItemButton'
+import Stack from '@mui/material/Stack'
+import Collapse from '@mui/material/Collapse'
+import Divider from '@mui/material/Divider'
+import Typography from '@mui/material/Typography'
 
 import Iconify from '@/components/iconify'
 import Header from './components/header'
@@ -22,25 +27,22 @@ export default function renderNavItems({ navConfig }: NavbarVerticalProps) {
     <List sx={{ color: 'text.secondary' }}>
       {items.map(({ kind, title, path, icon, children }, index) => {
         const hasChildren = children && children.length > 0
-        const isOpen = Boolean(path && openMenus?.[path])
-        const isActive = location.pathname === path
+
+        const key = path || `header-${index}`
+
+        const isOpen = Boolean(openMenus?.[key])
+        const isActive = location.pathname === key
 
         if (kind === 'header') {
           return (
             <Fragment key={index}>
-              <Header
-                title={title}
-                isOpen={isOpen}
-                onToggle={() => handleToggle(path || `header-${index}`)}
-              />
+              <Header title={title} isOpen={isOpen} onToggle={() => handleToggle(key)} />
 
               {hasChildren && (
                 <Collapse in={isOpen} timeout="auto" unmountOnExit>
                   {renderItems(children, level)}
                 </Collapse>
               )}
-
-              {hasChildren && renderItems(children, level)}
             </Fragment>
           )
         }
