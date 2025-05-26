@@ -8,6 +8,7 @@ import Iconify from '@/components/iconify'
 import CustomPopover, { usePopover } from '@/components/custom-popover'
 
 import type { Navigation } from '@/routes/nav-config'
+import { Divider } from '@mui/material'
 
 type Props = {
   navConfig: Navigation[]
@@ -18,7 +19,9 @@ export default function RecursiveNavItems({ navConfig = [], depth = 0 }: Props) 
   return (
     <List sx={{ p: 0 }}>
       {navConfig.map((item, index) => {
-        if (item.kind === 'hidden' || item.kind === 'divider') return null
+        if (item.kind === 'hidden') return null
+
+        if (item.kind === 'divider') return <Divider key={index} sx={{ my: 1 }} />
 
         if (item.kind === 'header' && item.children)
           return <RecursiveNavItems key={index} navConfig={item.children} depth={depth} />
