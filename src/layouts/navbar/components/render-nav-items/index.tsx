@@ -1,6 +1,6 @@
 import { useMemo, Fragment } from 'react'
 import { useLocation, Link } from 'react-router-dom'
-import useOpenMenus from './hooks/use-open-menus'
+import useOpenMenus from '../hooks/use-open-menus'
 
 import List from '@mui/material/List'
 import ListItemButton from '@mui/material/ListItemButton'
@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography'
 import Iconify from '@/components/iconify'
 import Header from './components/header'
 
-import buildPathMap from './shared/build-path-map'
+import buildPathMap from '../shared/build-path-map'
 
 import type { Navigation } from '@/routes/nav-config'
 import type { NavbarVerticalProps } from '../..'

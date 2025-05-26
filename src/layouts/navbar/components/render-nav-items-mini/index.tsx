@@ -1,41 +1,52 @@
-import { useState, Fragment } from 'react'
+import { useState, Fragment, useMemo } from 'react'
 
-import { List, ListItemButton, Stack, Collapse, Divider, Typography } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+
+import List from '@mui/material/List'
+import ListItemButton from '@mui/material/ListItemButton'
+import Stack from '@mui/material/Stack'
+import Divider from '@mui/material/Divider'
+import Typography from '@mui/material/Typography'
 
 import Iconify from '@/components/iconify'
+import buildPathMap from '../shared/build-path-map'
+import useOpenMenus from '../hooks/use-open-menus'
 
 import type { Navigation } from '@/routes/nav-config'
 import type { NavbarVerticalProps } from '../..'
 
 export default function renderNavItemsMini({ navConfig }: NavbarVerticalProps) {
-  /*  const [openMenus, setOpenMenus] = useState<Record<string, boolean>>(
-    navConfig.reduce((acc, item) => {
-      if (item.kind === 'header' && item.segment) {
-        acc[item.segment] = true
-      }
+  const location = useLocation()
 
-      return acc
-    }, {} as Record<string, boolean>)
-  )
+  const [openMenu, setOpenMenu] = useState<string | null>(null)
 
-  const handleToggle = (segment: string) =>
-    setOpenMenus((prev) => ({ ...prev, [segment]: !prev?.[segment] }))
+  const pathToParents = useMemo(() => buildPathMap(navConfig), [navConfig])
+
+  const { openMenus, handleToggle, extractKey } = useOpenMenus({
+    navConfig,
+    pathToParents,
+    currentPath: location.pathname,
+  })
+
+  const handleMouseEnter = (path?: string) => setOpenMenu(path)
+
+  const handleMouseLeave = () => setOpenMenu(null)
 
   const renderItems = (items: Array<Navigation>, level = 0) => (
     <List sx={{ color: 'text.secondary' }}>
-      {items.map(({ kind, title, segment, icon, children }, index) => {
+      {items.map(({ kind, title, path, icon, children }, index) => {
         const hasChildren = children && children.length > 0
-        const isOpen = Boolean(segment && openMenus?.[segment])
+        const { key } = extractKey(path, index)
+
+        const isOpen = Boolean(openMenus?.[key])
+        const isActive = location.pathname === key
+
+        if (kind === 'hidden') {
+          return
+        }
 
         if (kind === 'header') {
-          return (
-            hasChildren && (
-              <Collapse key={index} in={isOpen} timeout="auto" unmountOnExit>
-                {renderItems(children, level)}
-              </Collapse>
-            )
-          )
+          return hasChildren && <Fragment key={index}>{renderItems(children, level)}</Fragment>
         }
 
         if (kind === 'divider') {
@@ -45,36 +56,38 @@ export default function renderNavItemsMini({ navConfig }: NavbarVerticalProps) {
         return (
           <Fragment key={index}>
             <ListItemButton
-              {...(segment && !hasChildren && { component: Link, to: segment })}
-              onClick={() => handleToggle(segment || `item-${index}`)}
-              sx={{ width: 1, borderRadius: 1 }}
+              {...(path && !hasChildren && { component: Link, to: path })}
+              onClick={() => handleToggle(path || `item-${index}`)}
+              sx={{
+                width: 1,
+                borderRadius: 1,
+                ...(isActive && {
+                  bgcolor: 'action.selected',
+                  color: 'primary.main',
+                  fontWeight: 'bold',
+                }),
+              }}
             >
-              <Stack width={1} direction="row" alignItems="center" justifyContent="center">
-                <Stack direction="column" spacing={1} alignItems="center">
-                  {icon && <Iconify icon={icon} />}
+              <Stack direction="column" spacing={0.5} alignItems="center" width={1}>
+                {icon && <Iconify icon={icon} />}
 
-                  <Typography component="b" variant="button" fontSize={9}>
-                    {title}
-                  </Typography>
-                </Stack>
-
-                {hasChildren && (
-                  <Iconify icon={isOpen ? 'eva:chevron-up-fill' : 'eva:chevron-down-fill'} />
-                )}
+                <Typography component="b" variant="button" fontSize={9}>
+                  {title}
+                </Typography>
               </Stack>
-            </ListItemButton>
 
-            {hasChildren && (
-              <Collapse in={isOpen} timeout="auto" unmountOnExit>
-                {renderItems(children, level + 1)}
-              </Collapse>
-            )}
+              {hasChildren && (
+                <Iconify
+                  icon="eva:chevron-right-fill"
+                  sx={{ position: 'absolute', right: 0, top: 10 }}
+                />
+              )}
+            </ListItemButton>
           </Fragment>
         )
       })}
     </List>
   )
-  return renderItems(navConfig) */
 
-  return <h1>mini</h1>
+  return renderItems(navConfig)
 }

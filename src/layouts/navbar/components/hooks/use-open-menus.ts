@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import updateOpenMenus from '../shared/update-open-menus'
-import type { NavbarVerticalProps } from '../../..'
+import type { NavbarVerticalProps } from '../..'
 
 type Props = Pick<NavbarVerticalProps, 'navConfig'> & {
   pathToParents: Record<string, Array<string>>
