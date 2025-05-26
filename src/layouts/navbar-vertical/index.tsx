@@ -22,7 +22,7 @@ export type NavbarVerticalProps = React.PropsWithChildren<{
   navConfig: Array<Navigation>
 }>
 
-export default function NavbarVertical({ navConfig }: NavbarVerticalProps) {
+export default function NavbarVertical({ navConfig, children }: NavbarVerticalProps) {
   const theme = useTheme()
 
   const { modeLayout, onToggleModeLayout } = useSettings()
@@ -53,28 +53,35 @@ export default function NavbarVertical({ navConfig }: NavbarVerticalProps) {
   )
 
   return (
-    <S.NavbarVerticalRootStyle modeLayout={modeLayout}>
-      {isDesktop && (
-        <>
-          <S.IconButtonStyle size="small" onClick={onToggleModeLayout}>
-            <Iconify size={1.5} icon={modeLayout ? 'ep:arrow-right-bold' : 'ep:arrow-left-bold'} />
-          </S.IconButtonStyle>
+    <Stack direction="row">
+      <S.NavbarVerticalRootStyle modeLayout={modeLayout}>
+        {isDesktop && (
+          <>
+            <S.IconButtonStyle size="small" onClick={onToggleModeLayout}>
+              <Iconify
+                size={1.5}
+                icon={modeLayout ? 'ep:arrow-right-bold' : 'ep:arrow-left-bold'}
+              />
+            </S.IconButtonStyle>
 
-          <S.DrawerStyle open variant="persistent" modeLayout={modeLayout}>
+            <S.DrawerStyle open variant="persistent" modeLayout={modeLayout}>
+              {renderContent}
+            </S.DrawerStyle>
+          </>
+        )}
+
+        {isMobile && (
+          <Drawer
+            open={modeLayout}
+            onClose={onToggleModeLayout}
+            PaperProps={{ sx: { width: NAVBAR.DASHBOARD_WIDTH } }}
+          >
             {renderContent}
-          </S.DrawerStyle>
-        </>
-      )}
+          </Drawer>
+        )}
+      </S.NavbarVerticalRootStyle>
 
-      {isMobile && (
-        <Drawer
-          open={modeLayout}
-          onClose={onToggleModeLayout}
-          PaperProps={{ sx: { width: NAVBAR.DASHBOARD_WIDTH } }}
-        >
-          {renderContent}
-        </Drawer>
-      )}
-    </S.NavbarVerticalRootStyle>
+      {children}
+    </Stack>
   )
 }

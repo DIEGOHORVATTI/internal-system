@@ -44,11 +44,7 @@ export const IconButtonStyle = styled(IconButton)(({ theme }) => ({
 export const NavbarVerticalRootStyle = styled('div', {
   shouldForwardProp: (prop) => prop !== 'modeLayout',
 })<Pick<ISettings, 'modeLayout'>>(({ theme, modeLayout }) => ({
-  width: '100%',
   position: 'relative',
-  ...(modeLayout && {
-    position: 'absolute',
-  }),
   [theme.breakpoints.up('lg')]: {
     width: modeLayout ? NAVBAR.DASHBOARD_COLLAPSE_WIDTH : NAVBAR.DASHBOARD_WIDTH,
     flexShrink: 0,
