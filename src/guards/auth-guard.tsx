@@ -7,6 +7,7 @@ export default function AuthGuard({ children }: React.PropsWithChildren) {
   const { isAuthenticated } = useAuth()
   const navigate = useNavigate()
 
+  /* 
   useEffect(() => {
     if (!isAuthenticated) {
       navigate('/auth')
@@ -15,7 +16,8 @@ export default function AuthGuard({ children }: React.PropsWithChildren) {
     }
 
     navigate('/')
-  }, [isAuthenticated, navigate])
+  }, [isAuthenticated, navigate]) 
+  */
 
   return children
 }

@@ -1,19 +1,27 @@
-import { createElement, ReactElement } from 'react'
+import { createElement } from 'react'
 
 import type { Navigation } from '@/routes/nav-config'
+import type { PathRouteProps } from 'react-router-dom'
 
-type ExtractedRoute = {
-  path: string
-  component: ReactElement
-}
+export function extractRoutes(config: Navigation[]) {
+  const routes: Array<Pick<PathRouteProps, 'path' | 'element'>> = []
 
-export function extractRoutes(config: Navigation[]): ExtractedRoute[] {
-  const routes: ExtractedRoute[] = config
-    .filter((item) => item.kind === 'item' && item.path && item.component)
-    .map((item) => ({
-      path: item.path!,
-      component: createElement(item.component!),
-    }))
+  const traverse = (items: Navigation[]) => {
+    for (const item of items) {
+      if (item.kind === 'item' && item.path && item.component) {
+        routes.push({
+          path: item.path,
+          element: createElement(item.component),
+        })
+      }
+
+      if (item.children) {
+        traverse(item.children)
+      }
+    }
+  }
+
+  traverse(config)
 
   return routes
 }

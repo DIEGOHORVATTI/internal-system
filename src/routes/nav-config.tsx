@@ -1,5 +1,6 @@
 import { lazy } from 'react'
 
+const Page404 = lazy(() => import('@/pages/404'))
 const Home = lazy(() => import('@/pages/home'))
 
 export type Navigation = {
@@ -14,6 +15,11 @@ export type Navigation = {
 }
 
 export const navConfig: Array<Navigation> = [
+  {
+    kind: 'item',
+    path: '*',
+    component: Page404,
+  },
   {
     kind: 'header',
     title: 'Main',
