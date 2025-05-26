@@ -2,6 +2,7 @@ import { useTheme } from '@mui/material/styles'
 import useSettings from '@/hooks/use-settings'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
+import Container from '@mui/material/Container'
 import Stack from '@mui/material/Stack'
 import Drawer from '@mui/material/Drawer'
 import Typography from '@mui/material/Typography'
@@ -81,7 +82,16 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
         )}
       </S.NavbarVerticalRootStyle>
 
-      {children}
+      <Container
+        maxWidth={false}
+        sx={{
+          flexGrow: 1,
+          py: (theme) => theme.spacing(2),
+          px: (theme) => theme.spacing(4),
+        }}
+      >
+        {children}
+      </Container>
     </Stack>
   )
 }
