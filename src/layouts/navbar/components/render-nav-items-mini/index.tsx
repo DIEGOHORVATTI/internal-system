@@ -1,14 +1,17 @@
+import type { Navigation } from '@/routes/nav-config'
+
+import { useCallback } from 'react'
+import Iconify from '@/components/iconify'
 import { Link, useLocation } from 'react-router-dom'
+import usePopoverHover from '@/hooks/use-popover-hover'
 
 import List from '@mui/material/List'
-import ListItemButton from '@mui/material/ListItemButton'
-import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
-import Iconify from '@/components/iconify'
-import CustomPopover, { usePopover } from '@/components/custom-popover'
+import Divider from '@mui/material/Divider'
+import Typography from '@mui/material/Typography'
+import ListItemButton from '@mui/material/ListItemButton'
 
-import type { Navigation } from '@/routes/nav-config'
-import { Divider } from '@mui/material'
+import * as S from './nav-dropdown'
 
 type Props = {
   navConfig: Navigation[]
@@ -35,7 +38,13 @@ export default function RecursiveNavItems({ navConfig = [], level = 0 }: Props) 
 function RecursiveNavItem({ item, level }: { item?: Navigation; level: number }) {
   const location = useLocation()
 
-  const popover = usePopover()
+  const { open, onOpen, onClose, anchorEl } = usePopoverHover<HTMLButtonElement>()
+
+  const handleOpenMenu = useCallback(() => {
+    if (item?.children) {
+      onOpen()
+    }
+  }, [item?.children, onOpen])
 
   const isActive = location.pathname === item?.path
   const hasChildren = !!item?.children?.length
@@ -43,7 +52,8 @@ function RecursiveNavItem({ item, level }: { item?: Navigation; level: number })
   return (
     <>
       <ListItemButton
-        onMouseEnter={popover.onOpen}
+        onMouseEnter={handleOpenMenu}
+        onMouseLeave={onClose}
         {...(item?.path && !hasChildren && { component: Link, to: item.path })}
         sx={{
           width: 1,
@@ -70,9 +80,19 @@ function RecursiveNavItem({ item, level }: { item?: Navigation; level: number })
       </ListItemButton>
 
       {hasChildren && (
-        <CustomPopover open={popover.open} onClose={popover.onClose} arrow="left-top" hiddenArrow>
+        <S.NavDropdown
+          disableScrollLock
+          open={open}
+          anchorEl={anchorEl}
+          slotProps={{
+            paper: {
+              onMouseEnter: handleOpenMenu,
+              onMouseLeave: onClose,
+            },
+          }}
+        >
           <RecursiveNavItems navConfig={item.children!} level={level + 1} />
-        </CustomPopover>
+        </S.NavDropdown>
       )}
     </>
   )
