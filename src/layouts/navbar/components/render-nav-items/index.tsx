@@ -28,13 +28,7 @@ export default function RenderNavItems({ navConfig }: NavbarVerticalProps) {
     currentPath: location.pathname,
   })
 
-  const RenderItems = ({
-    navConfig: items,
-    level = 0,
-  }: {
-    navConfig: Navigation[]
-    level?: number
-  }) => (
+  const renderItems = (items: Array<Navigation>, level = 0) => (
     <List component={Stack} spacing={0.5} sx={{ color: 'text.secondary' }}>
       {items.map(({ kind, title, path, icon, children }, index) => {
         const hasChildren = children && children.length > 0
@@ -55,7 +49,7 @@ export default function RenderNavItems({ navConfig }: NavbarVerticalProps) {
 
               {hasChildren && (
                 <Collapse in={isOpen} timeout="auto" unmountOnExit>
-                  <RenderItems navConfig={children} level={level} />
+                  {renderItems(children, level)}
                 </Collapse>
               )}
             </Fragment>
@@ -99,7 +93,7 @@ export default function RenderNavItems({ navConfig }: NavbarVerticalProps) {
 
             {hasChildren && (
               <Collapse in={isOpen} timeout="auto" unmountOnExit>
-                <RenderItems navConfig={children} level={level + 1} />
+                {renderItems(children, level + 1)}
               </Collapse>
             )}
           </Fragment>
@@ -108,5 +102,5 @@ export default function RenderNavItems({ navConfig }: NavbarVerticalProps) {
     </List>
   )
 
-  return <RenderItems navConfig={navConfig} />
+  return renderItems(navConfig)
 }

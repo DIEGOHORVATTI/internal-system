@@ -29,6 +29,10 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'))
   const isMobile = !isDesktop
 
+  const navVertical = <RenderNavItems navConfig={navConfig} />
+
+  const navMini = <RenderNavItemsMini navConfig={navConfig} />
+
   const renderContent = (
     <Stack spacing={2} py={3} alignItems="center">
       <Stack direction="row" spacing={2} alignItems="center">
@@ -42,11 +46,7 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
       </Stack>
 
       <Box width={1} px={1}>
-        {modeLayout ? (
-          <RenderNavItemsMini navConfig={navConfig} />
-        ) : (
-          <RenderNavItems navConfig={navConfig} />
-        )}
+        {modeLayout ? navMini : navVertical}
       </Box>
     </Stack>
   )
