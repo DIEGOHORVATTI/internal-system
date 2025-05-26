@@ -22,7 +22,7 @@ export default function renderNavItems({ navConfig }: NavbarVerticalProps) {
 
   const pathToParents = useMemo(() => buildPathMap(navConfig), [navConfig])
 
-  const { openMenus, handleToggle } = useOpenMenus({
+  const { openMenus, handleToggle, extractKey } = useOpenMenus({
     navConfig,
     pathToParents,
     currentPath: location.pathname,
@@ -33,7 +33,7 @@ export default function renderNavItems({ navConfig }: NavbarVerticalProps) {
       {items.map(({ kind, title, path, icon, children }, index) => {
         const hasChildren = children && children.length > 0
 
-        const key = path || `header-${index}`
+        const { key } = extractKey(path, index)
 
         const isOpen = Boolean(openMenus?.[key])
         const isActive = location.pathname === key

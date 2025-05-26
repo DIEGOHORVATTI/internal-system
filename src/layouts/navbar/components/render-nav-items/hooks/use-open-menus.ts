@@ -10,8 +10,9 @@ type Props = Pick<NavbarVerticalProps, 'navConfig'> & {
 
 export default function useOpenMenus({ pathToParents, currentPath, navConfig }: Props) {
   const initialOpenHeaderMenus = navConfig.reduce((acc: Record<string, boolean>, item, index) => {
-    const path = item.path || `header-${index}`
-    acc[path] = true
+    const { key } = extractKey(item.path, index)
+    acc[key] = true
+
     return acc
   }, {})
 
@@ -29,5 +30,9 @@ export default function useOpenMenus({ pathToParents, currentPath, navConfig }: 
     }))
   }
 
-  return { openMenus, handleToggle }
+  return { openMenus, handleToggle, extractKey }
+}
+
+function extractKey(path: string | undefined, index: number) {
+  return { key: path || `header-${index}` }
 }
