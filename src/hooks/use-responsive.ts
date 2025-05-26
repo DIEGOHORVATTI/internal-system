@@ -34,4 +34,6 @@ export default function useResponsive(query: Query, key?: Key, start?: Start, en
   if (query === 'only') {
     return mediaOnly
   }
+
+  return false
 }

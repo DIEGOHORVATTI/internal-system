@@ -20,8 +20,6 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
       window.localStorage.setItem(key, JSON.stringify(value))
     } catch (error) {
       console.error('Erro ao atualizar o localStorage', error)
-
-      return null
     }
   }
 

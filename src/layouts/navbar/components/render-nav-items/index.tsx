@@ -45,7 +45,7 @@ export default function RenderNavItems({ navConfig }: NavbarVerticalProps) {
         const isActive = location.pathname === key
 
         if (kind === 'hidden') {
-          return
+          return null
         }
 
         if (kind === 'header') {
@@ -55,7 +55,7 @@ export default function RenderNavItems({ navConfig }: NavbarVerticalProps) {
 
               {hasChildren && (
                 <Collapse in={isOpen} timeout="auto" unmountOnExit>
-                  {renderItems(children, level)}
+                  <RenderItems navConfig={children} level={level} />
                 </Collapse>
               )}
             </Fragment>
@@ -99,7 +99,7 @@ export default function RenderNavItems({ navConfig }: NavbarVerticalProps) {
 
             {hasChildren && (
               <Collapse in={isOpen} timeout="auto" unmountOnExit>
-                {renderItems(children, level + 1)}
+                <RenderItems navConfig={children} level={level + 1} />
               </Collapse>
             )}
           </Fragment>

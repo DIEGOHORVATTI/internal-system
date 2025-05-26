@@ -15,7 +15,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 
 import * as S from './styles'
 import RenderNavItems from './components/render-nav-items'
-import renderNavItemsMini from './components/render-nav-items-mini'
+import RenderNavItemsMini from './components/render-nav-items-mini'
 
 export type NavbarVerticalProps = React.PropsWithChildren<{
   navConfig: Array<Navigation>
@@ -28,8 +28,6 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
 
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'))
   const isMobile = !isDesktop
-
-  const navMini = renderNavItemsMini({ navConfig })
 
   const renderContent = (
     <Stack spacing={2} py={3} alignItems="center">
@@ -44,7 +42,11 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
       </Stack>
 
       <Box width={1} px={1}>
-        {modeLayout ? navMini : <RenderNavItems navConfig={navConfig} />}
+        {modeLayout ? (
+          <RenderNavItemsMini navConfig={navConfig} />
+        ) : (
+          <RenderNavItems navConfig={navConfig} />
+        )}
       </Box>
     </Stack>
   )
