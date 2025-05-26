@@ -1,7 +1,7 @@
-import { useState, Fragment } from 'react'
+import { useState, useMemo, Fragment } from 'react'
+import { useLocation, Link } from 'react-router-dom'
 
 import { List, ListItemButton, Stack, Collapse, Divider, Typography } from '@mui/material'
-import { Link } from 'react-router-dom'
 
 import Iconify from '@/components/iconify'
 import Header from './components/header'
@@ -10,25 +10,56 @@ import type { Navigation } from '@/routes/nav-config'
 import type { NavbarVerticalProps } from '../..'
 
 export default function renderNavItems({ navConfig }: NavbarVerticalProps) {
-  const [openMenus, setOpenMenus] = useState<Record<string, boolean>>(
-    navConfig.reduce((acc, item) => {
-      if (item.kind === 'header' && item.segment) {
-        acc[item.segment] = true
+  const location = useLocation()
+
+  const buildPathMap = (
+    items: Array<Navigation>,
+    parents: string[] = []
+  ): Record<string, string[]> => {
+    return items.reduce((acc, item) => {
+      if (item.path) {
+        acc[item.path] = [...parents]
+      }
+
+      if (item.children) {
+        Object.assign(acc, buildPathMap(item.children, [...parents, item.path!]))
       }
 
       return acc
-    }, {} as Record<string, boolean>)
-  )
-
-  const handleToggle = (segment: string) => {
-    setOpenMenus((prev) => ({ ...prev, [segment]: !prev?.[segment] }))
+    }, {} as Record<string, string[]>)
   }
+
+  const pathToParents = useMemo(() => buildPathMap(navConfig), [navConfig])
+
+  function updateOpenMenus() {
+    const currentPath = location.pathname
+    const parents = pathToParents[currentPath] || []
+
+    const newState: Record<string, boolean> = {}
+    parents.forEach((path) => {
+      newState[path] = true
+    })
+
+    const navItems = Object.keys(newState).length > 0 ? newState : {}
+
+    return navItems
+  }
+
+  const [openMenus, setOpenMenus] = useState<Record<string, boolean>>(() => {
+    const initialState = updateOpenMenus()
+
+    return initialState
+  })
+
+  const handleToggle = (patch: string) =>
+    setOpenMenus((prev) => ({ ...prev, [patch]: !prev?.[patch] }))
 
   const renderItems = (items: Array<Navigation>, level = 0) => (
     <List sx={{ color: 'text.secondary' }}>
-      {items.map(({ kind, title, segment, icon, children }, index) => {
+      {items.map(({ kind, title, path, icon, children }, index) => {
         const hasChildren = children && children.length > 0
-        const isOpen = Boolean(segment && openMenus?.[segment])
+        const isOpen = Boolean(path && openMenus?.[path])
+        const isActive = location.pathname === path
 
         if (kind === 'header') {
           return (
@@ -36,7 +67,7 @@ export default function renderNavItems({ navConfig }: NavbarVerticalProps) {
               <Header
                 title={title}
                 isOpen={isOpen}
-                onToggle={() => handleToggle(segment || `header-${index}`)}
+                onToggle={() => handleToggle(path || `header-${index}`)}
               />
 
               {hasChildren && (
@@ -44,6 +75,8 @@ export default function renderNavItems({ navConfig }: NavbarVerticalProps) {
                   {renderItems(children, level)}
                 </Collapse>
               )}
+
+              {hasChildren && renderItems(children, level)}
             </Fragment>
           )
         }
@@ -55,14 +88,22 @@ export default function renderNavItems({ navConfig }: NavbarVerticalProps) {
         return (
           <Fragment key={index}>
             <ListItemButton
-              {...(segment && !hasChildren && { component: Link, to: segment })}
-              onClick={() => handleToggle(segment || `item-${index}`)}
-              sx={{ width: 1, borderRadius: 1, pl: 2 + level * 2 }}
+              {...(path && !hasChildren && { component: Link, to: path })}
+              onClick={() => handleToggle(path || `item-${index}`)}
+              sx={{
+                width: 1,
+                borderRadius: 1,
+                pl: 2 + level * 2,
+                ...(isActive && {
+                  bgcolor: 'action.selected',
+                  color: 'primary.main',
+                  fontWeight: 'bold',
+                }),
+              }}
             >
               <Stack width={1} direction="row" alignItems="center" justifyContent="space-between">
                 <Stack direction="row" spacing={1} alignItems="center">
                   {icon && <Iconify icon={icon} />}
-
                   <Typography component="b" variant="button">
                     {title}
                   </Typography>

@@ -9,7 +9,7 @@ import type { Navigation } from '@/routes/nav-config'
 import type { NavbarVerticalProps } from '../..'
 
 export default function renderNavItemsMini({ navConfig }: NavbarVerticalProps) {
-  const [openMenus, setOpenMenus] = useState<Record<string, boolean>>(
+  /*  const [openMenus, setOpenMenus] = useState<Record<string, boolean>>(
     navConfig.reduce((acc, item) => {
       if (item.kind === 'header' && item.segment) {
         acc[item.segment] = true
@@ -74,5 +74,7 @@ export default function renderNavItemsMini({ navConfig }: NavbarVerticalProps) {
       })}
     </List>
   )
-  return renderItems(navConfig)
+  return renderItems(navConfig) */
+
+  return <h1>mini</h1>
 }
