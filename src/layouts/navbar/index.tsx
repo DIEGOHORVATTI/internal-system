@@ -22,7 +22,7 @@ export type NavbarVerticalProps = React.PropsWithChildren<{
   navConfig: Array<Navigation>
 }>
 
-export default function NavbarVertical({ navConfig, children }: NavbarVerticalProps) {
+export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
   const theme = useTheme()
 
   const { modeLayout, onToggleModeLayout } = useSettings()

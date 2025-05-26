@@ -1,9 +1,16 @@
+import { lazy } from 'react'
+
+const Home = lazy(() => import('@/pages/home'))
+
 export type Navigation = {
   kind: 'item' | 'header' | 'divider'
+  path?: string
+  component?: React.ElementType
+
+  children?: Array<Navigation>
   title?: string
   icon?: string
-  children?: Array<Navigation>
-  path?: string
+  permissions?: Array<string>
 }
 
 export const navConfig: Array<Navigation> = [
@@ -16,37 +23,39 @@ export const navConfig: Array<Navigation> = [
         title: 'Dashboard',
         icon: 'solar:widget-2-bold',
         path: '/dashboard',
+        component: Home,
       },
       {
         kind: 'item',
         title: 'Orders',
         icon: 'solar:bag-2-bold',
         path: '/orders',
+        component: Home,
         children: [
           {
             kind: 'item',
             title: 'Pending',
             icon: 'solar:clock-circle-bold',
             path: '/orders/pending',
+            component: Home,
           },
           {
             kind: 'item',
             title: 'Completed',
             icon: 'solar:check-circle-bold',
             path: '/orders/completed',
+            component: Home,
           },
           {
             kind: 'item',
             title: 'Returns',
             icon: 'solar:undo-left-round-bold',
             path: '/orders/returns',
+            component: Home,
           },
         ],
       },
     ],
-  },
-  {
-    kind: 'divider',
   },
   {
     kind: 'header',
@@ -57,18 +66,21 @@ export const navConfig: Array<Navigation> = [
         title: 'Users',
         icon: 'solar:user-bold',
         path: '/users',
+        component: Home,
         children: [
           {
             kind: 'item',
             title: 'List',
             icon: 'solar:list-bold',
             path: '/users/list',
+            component: Home,
           },
           {
             kind: 'item',
             title: 'Create',
             icon: 'solar:add-circle-bold',
             path: '/users/create',
+            component: Home,
           },
         ],
       },
@@ -77,74 +89,23 @@ export const navConfig: Array<Navigation> = [
         title: 'Products',
         icon: 'solar:box-bold',
         path: '/products',
+        component: Home,
         children: [
           {
             kind: 'item',
             title: 'Inventory',
             icon: 'solar:archive-bold',
             path: '/products/inventory',
+            component: Home,
           },
           {
             kind: 'item',
             title: 'Categories',
             icon: 'solar:layers-bold',
             path: '/products/categories',
+            component: Home,
           },
         ],
-      },
-    ],
-  },
-  {
-    kind: 'divider',
-  },
-  {
-    kind: 'header',
-    title: 'Reports',
-    children: [
-      {
-        kind: 'item',
-        title: 'Sales',
-        icon: 'solar:graph-up-bold',
-        path: '/reports/sales',
-      },
-      {
-        kind: 'item',
-        title: 'Customers',
-        icon: 'solar:users-group-rounded-bold',
-        path: '/reports/customers',
-      },
-      {
-        kind: 'item',
-        title: 'Performance',
-        icon: 'solar:activity-bold',
-        path: '/reports/performance',
-      },
-    ],
-  },
-  {
-    kind: 'divider',
-  },
-  {
-    kind: 'header',
-    title: 'Settings',
-    children: [
-      {
-        kind: 'item',
-        title: 'General',
-        icon: 'solar:settings-bold',
-        path: '/settings/general',
-      },
-      {
-        kind: 'item',
-        title: 'Notifications',
-        icon: 'solar:bell-bold',
-        path: '/settings/notifications',
-      },
-      {
-        kind: 'item',
-        title: 'Billing',
-        icon: 'solar:credit-card-bold',
-        path: '/settings/billing',
       },
     ],
   },

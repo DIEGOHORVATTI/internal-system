@@ -1,3 +1,4 @@
+import { lazy } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import SnackbarProvider from '@/contexts/snackbar-provider'
@@ -6,17 +7,21 @@ import AuthProvider from '@/contexts/auth-provider'
 
 import AuthGuard from '@/guards/auth-guard'
 
-import Home from '@/sections/Home'
-import Auth from '@/sections/Auth'
+const Page404 = lazy(() => import('@/pages/404'))
 
-import NavbarVertical from '@/layouts/navbar-vertical'
+import NavBar from '@/layouts/navbar'
 import { MotionLazy } from '@/components/animate/motion-lazy'
 
 import { ThemeProvider } from '@/theme'
 
-import { navConfig } from './routes/nav-config'
+import { extractRoutes } from '@/shared/extract-routes'
+import { navConfig } from '@/routes/nav-config'
 
 export default function App() {
+  const newLocal = extractRoutes(navConfig)
+
+  console.log(newLocal)
+
   return (
     <SettingsProvider
       defaultSettings={{
@@ -33,14 +38,15 @@ export default function App() {
             <AuthProvider>
               <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
                 {/* <AuthGuard> */}
-                <NavbarVertical navConfig={navConfig}>
+                <NavBar navConfig={navConfig}>
                   <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/auth" element={<Auth />} />
+                    {newLocal.map(({ path, component }) => (
+                      <Route key={path} path={path} element={component} />
+                    ))}
 
-                    <Route path="*" element={<Home />} />
+                    <Route path="*" element={<Page404 />} />
                   </Routes>
-                </NavbarVertical>
+                </NavBar>
                 {/* </AuthGuard> */}
               </BrowserRouter>
             </AuthProvider>
