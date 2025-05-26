@@ -1,31 +1,23 @@
+import type { PopoverProps } from '@mui/material/Popover'
+
 import { useState, useCallback } from 'react'
 
-type ReturnType = {
-  rect: DOMRect | undefined
-  onClose: VoidFunction
-  open: HTMLElement | null
-  onOpen: (event: React.MouseEvent<HTMLElement>) => void
-  setOpen: React.Dispatch<React.SetStateAction<HTMLElement | null>>
-}
+export function usePopover() {
+  const [anchorEl, setAnchorEl] = useState<PopoverProps['anchorEl']>(null)
 
-export default function usePopover(): ReturnType {
-  const [open, setOpen] = useState<HTMLElement | null>(null)
-
-  const onOpen = useCallback((event: React.MouseEvent<HTMLElement>) => {
-    setOpen(event.currentTarget)
+  const onOpen = useCallback((event: React.MouseEvent<PopoverProps['anchorEl']>) => {
+    setAnchorEl(event.currentTarget)
   }, [])
 
   const onClose = useCallback(() => {
-    setOpen(null)
+    setAnchorEl(null)
   }, [])
 
-  const rect = open?.getBoundingClientRect()
-
   return {
-    rect,
-    open,
+    open: !!anchorEl,
+    anchorEl,
     onOpen,
     onClose,
-    setOpen,
+    setAnchorEl,
   }
 }

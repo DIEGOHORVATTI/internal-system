@@ -20,7 +20,7 @@ type Props = {
 
 export default function RecursiveNavItems({ navConfig = [], level = 0 }: Props) {
   return (
-    <List>
+    <List component={Stack} spacing={0.5} sx={{ color: 'text.secondary' }}>
       {navConfig.map((item, index) => {
         if (item.kind === 'hidden') return null
 
