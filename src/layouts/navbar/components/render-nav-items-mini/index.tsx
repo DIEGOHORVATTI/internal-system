@@ -12,27 +12,27 @@ import { Divider } from '@mui/material'
 
 type Props = {
   navConfig: Navigation[]
-  depth?: number
+  level?: number
 }
 
-export default function RecursiveNavItems({ navConfig = [], depth = 0 }: Props) {
+export default function RecursiveNavItems({ navConfig = [], level = 0 }: Props) {
   return (
-    <List sx={{ p: 0 }}>
+    <List>
       {navConfig.map((item, index) => {
         if (item.kind === 'hidden') return null
 
         if (item.kind === 'divider') return <Divider key={index} sx={{ my: 1 }} />
 
         if (item.kind === 'header' && item.children)
-          return <RecursiveNavItems key={index} navConfig={item.children} depth={depth} />
+          return <RecursiveNavItems key={index} navConfig={item.children} level={level} />
 
-        return <RecursiveNavItem key={item.path || index} item={item} depth={depth} />
+        return <RecursiveNavItem key={item.path || index} item={item} level={level} />
       })}
     </List>
   )
 }
 
-function RecursiveNavItem({ item, depth }: { item?: Navigation; depth: number }) {
+function RecursiveNavItem({ item, level }: { item?: Navigation; level: number }) {
   const location = useLocation()
 
   const popover = usePopover()
@@ -70,8 +70,8 @@ function RecursiveNavItem({ item, depth }: { item?: Navigation; depth: number })
       </ListItemButton>
 
       {hasChildren && (
-        <CustomPopover open={popover.open} onClose={popover.onClose} arrow="left-top">
-          <RecursiveNavItems navConfig={item.children!} depth={depth + 1} />
+        <CustomPopover open={popover.open} onClose={popover.onClose} arrow="left-top" hiddenArrow>
+          <RecursiveNavItems navConfig={item.children!} level={level + 1} />
         </CustomPopover>
       )}
     </>
