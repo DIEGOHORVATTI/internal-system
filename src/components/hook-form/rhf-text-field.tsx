@@ -1,6 +1,6 @@
-import TextField, { type TextFieldProps } from '@mui/material/TextField'
+import { Controller, useFormContext, type FieldPath, type FieldValues } from 'react-hook-form'
 
-import { useFormContext, Controller, type FieldValues, type FieldPath } from 'react-hook-form'
+import TextField, { type TextFieldProps } from '@mui/material/TextField'
 
 type FormFieldValues = {
   [key: string]: string | number
@@ -40,8 +40,7 @@ export default function RHFTextField<T extends FieldValues>({
         ...(min && { min: { value: min, message: `Mínimo ${min}` } }),
         ...(max && { max: { value: max, message: `Máximo ${max}` } }),
       }}
-      render={({ field, fieldState: { error } }) => {
-        return (
+      render={({ field, fieldState: { error } }) => (
           <TextField
             {...field}
             fullWidth
@@ -63,8 +62,7 @@ export default function RHFTextField<T extends FieldValues>({
               field?.onChange(value)
             }}
           />
-        )
-      }}
+        )}
     />
   )
 }

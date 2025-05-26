@@ -1,15 +1,13 @@
+import { m } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import PageNotFoundIllustration from '@/assets/illustration_404'
+import { varBounce, MotionContainer } from '@/components/animate'
 
 import Box from '@mui/material/Box'
+import MuiLink from '@mui/material/Link'
 import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
-import MuiLink from '@mui/material/Link'
-
-import { m } from 'framer-motion'
-import { MotionContainer, varBounce } from '@/components/animate'
-
-import PageNotFoundIllustration from '@/assets/illustration_404'
 
 export default function Page404() {
   return (
@@ -25,7 +23,7 @@ export default function Page404() {
     >
       <Box sx={{ margin: 'auto', textAlign: 'center' }}>
         <m.div variants={varBounce().in}>
-          <Typography variant="h3" component={'p'}>
+          <Typography variant="h3" component="p">
             Página não encontrada
           </Typography>
         </m.div>

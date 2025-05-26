@@ -1,5 +1,8 @@
-import { alpha, Theme } from '@mui/material/styles'
-import { ChipProps, chipClasses } from '@mui/material/Chip'
+import type { Theme } from '@mui/material/styles';
+import type { ChipProps} from '@mui/material/Chip';
+
+import { alpha } from '@mui/material/styles'
+import { chipClasses } from '@mui/material/Chip'
 
 const COLORS = ['primary', 'secondary', 'info', 'success', 'warning', 'error'] as const
 

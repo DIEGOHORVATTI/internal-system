@@ -1,10 +1,8 @@
-import React, { createContext, useState, useEffect, useCallback } from 'react'
-
-import { STORAGE_KEYS } from '@/constants/config'
+import type { IUser } from '@/types/IUser'
 
 import { decodeJwt } from '@/shared/decode-jwt'
-
-import type { IUser } from '@/types/IUser'
+import { STORAGE_KEYS } from '@/constants/config'
+import React, { useState, useEffect, useCallback, createContext } from 'react'
 
 export type IAuthContext = {
   user: IUser | null

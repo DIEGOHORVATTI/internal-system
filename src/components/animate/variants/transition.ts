@@ -1,4 +1,4 @@
-import { TranHoverType, TranEnterType, TranExitType } from '../types'
+import type { TranExitType, TranHoverType, TranEnterType } from '../types'
 
 export const varTranHover = (props?: TranHoverType) => {
   const duration = props?.duration || 0.32

@@ -1,7 +1,6 @@
 import Divider from '@mui/material/Divider'
-import Box, { type BoxProps } from '@mui/material/Box'
-
 import { styled } from '@mui/material/styles'
+import Box, { type BoxProps } from '@mui/material/Box'
 
 export default function ContainerDivider({ children, ...props }: BoxProps) {
   return (

@@ -1,23 +1,21 @@
-import { useTheme } from '@mui/material/styles'
-import useSettings from '@/hooks/use-settings'
-import useMediaQuery from '@mui/material/useMediaQuery'
-
-import Container from '@mui/material/Container'
-import Stack from '@mui/material/Stack'
-import Drawer from '@mui/material/Drawer'
-import Typography from '@mui/material/Typography'
-import Box from '@mui/material/Box'
-
-import Logo from '@/components/logo'
+import type { Navigation } from '@/routes/nav-config'
 
 import { NAVBAR } from '@/config'
-
+import Logo from '@/components/logo'
 import Iconify from '@/components/iconify'
-import renderNavItems from './components/render-nav-items'
-import renderNavItemsMini from './components/render-nav-items-mini'
-import * as S from './styles'
+import useSettings from '@/hooks/use-settings'
 
-import type { Navigation } from '@/routes/nav-config'
+import Box from '@mui/material/Box'
+import Stack from '@mui/material/Stack'
+import Drawer from '@mui/material/Drawer'
+import { useTheme } from '@mui/material/styles'
+import Container from '@mui/material/Container'
+import Typography from '@mui/material/Typography'
+import useMediaQuery from '@mui/material/useMediaQuery'
+
+import * as S from './styles'
+import RenderNavItems from './components/render-nav-items'
+import renderNavItemsMini from './components/render-nav-items-mini'
 
 export type NavbarVerticalProps = React.PropsWithChildren<{
   navConfig: Array<Navigation>
@@ -30,8 +28,6 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
 
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'))
   const isMobile = !isDesktop
-
-  const navVertical = renderNavItems({ navConfig })
 
   const navMini = renderNavItemsMini({ navConfig })
 
@@ -48,7 +44,7 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
       </Stack>
 
       <Box width={1} px={1}>
-        {modeLayout ? navMini : navVertical}
+        {modeLayout ? navMini : <RenderNavItems navConfig={navConfig} />}
       </Box>
     </Stack>
   )

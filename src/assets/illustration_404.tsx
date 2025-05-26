@@ -1,5 +1,5 @@
-import Box, { type BoxProps } from '@mui/material/Box'
 import { useTheme } from '@mui/material/styles'
+import Box, { type BoxProps } from '@mui/material/Box'
 
 export default function PageNotFoundIllustration({ ...other }: BoxProps) {
   const theme = useTheme()

@@ -1,6 +1,9 @@
-import { alpha, Theme } from '@mui/material/styles'
-import { AvatarProps } from '@mui/material/Avatar'
-import { avatarGroupClasses, AvatarGroupProps } from '@mui/material/AvatarGroup'
+import type { Theme } from '@mui/material/styles';
+import type { AvatarProps } from '@mui/material/Avatar'
+import type { AvatarGroupProps } from '@mui/material/AvatarGroup';
+
+import { alpha } from '@mui/material/styles'
+import { avatarGroupClasses } from '@mui/material/AvatarGroup'
 
 const COLORS = ['default', 'primary', 'secondary', 'info', 'success', 'warning', 'error'] as const
 

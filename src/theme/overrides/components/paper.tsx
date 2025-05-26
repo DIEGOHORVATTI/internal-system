@@ -1,4 +1,6 @@
-import { Theme, alpha } from '@mui/material/styles'
+import type { Theme} from '@mui/material/styles';
+
+import { alpha } from '@mui/material/styles'
 
 export function paper(theme: Theme) {
   return {

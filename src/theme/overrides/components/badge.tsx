@@ -1,5 +1,7 @@
-import { Theme } from '@mui/material/styles'
-import { BadgeProps, badgeClasses } from '@mui/material/Badge'
+import type { Theme } from '@mui/material/styles'
+import type { BadgeProps} from '@mui/material/Badge';
+
+import { badgeClasses } from '@mui/material/Badge'
 
 // NEW VARIANT
 declare module '@mui/material/Badge' {

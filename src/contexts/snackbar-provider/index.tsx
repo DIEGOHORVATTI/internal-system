@@ -1,9 +1,8 @@
 import { useRef } from 'react'
-import { SnackbarProvider as NotistackProvider, closeSnackbar } from 'notistack'
+import Iconify from '@/components/iconify'
+import { closeSnackbar, SnackbarProvider as NotistackProvider } from 'notistack'
 
 import IconButton from '@mui/material/IconButton'
-
-import Iconify from '@/components/iconify'
 
 import { StyledIcon, StyledNotistack } from './styles'
 

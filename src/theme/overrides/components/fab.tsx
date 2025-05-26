@@ -1,5 +1,8 @@
-import { alpha, Theme } from '@mui/material/styles'
-import { FabProps, fabClasses } from '@mui/material/Fab'
+import type { FabProps} from '@mui/material/Fab';
+import type { Theme } from '@mui/material/styles';
+
+import { alpha } from '@mui/material/styles'
+import { fabClasses } from '@mui/material/Fab'
 
 const COLORS = ['primary', 'secondary', 'info', 'success', 'warning', 'error'] as const
 

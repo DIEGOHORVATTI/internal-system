@@ -1,10 +1,8 @@
-import { createContext, useMemo } from 'react'
+import type { COMMON } from '@/theme/palette'
 
-import { useLocalStorage } from '@/hooks/use-local-storage'
-
+import { useMemo, createContext } from 'react'
 import { STORAGE_KEYS } from '@/constants/config'
-
-import { COMMON } from '@/theme/palette'
+import { useLocalStorage } from '@/hooks/use-local-storage'
 
 type ISettingsValue = {
   themeStretch: boolean
@@ -47,6 +45,7 @@ export default function SettingsProvider({ children, defaultSettings }: Props) {
       onPresetsChange,
       onUpdate: update,
     }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [update, state]
   )
 

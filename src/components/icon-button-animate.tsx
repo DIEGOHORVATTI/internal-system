@@ -1,8 +1,9 @@
-import { ReactNode } from 'react'
-
-import { Box, IconButton, IconButtonProps } from '@mui/material'
+import type { ReactNode } from 'react'
+import type { IconButtonProps } from '@mui/material';
 
 import { m } from 'framer-motion'
+
+import { Box, IconButton } from '@mui/material'
 
 type AnimateWrapProp = {
   children: ReactNode

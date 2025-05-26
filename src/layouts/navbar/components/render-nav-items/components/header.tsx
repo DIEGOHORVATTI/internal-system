@@ -1,12 +1,12 @@
-import { Stack, Typography } from '@mui/material'
-
-import Iconify from '@/components/iconify'
-import ContainerDivider from './container-divider'
+import type { Navigation } from '@/routes/nav-config'
 
 import { m } from 'framer-motion'
+import Iconify from '@/components/iconify'
 import { MotionContainer } from '@/components/animate'
 
-import type { Navigation } from '@/routes/nav-config'
+import { Stack, Typography } from '@mui/material'
+
+import ContainerDivider from './container-divider'
 
 type HeaderProps = Pick<Navigation, 'title'> & {
   isOpen: boolean

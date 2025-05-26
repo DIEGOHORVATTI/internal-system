@@ -1,4 +1,5 @@
-import { Theme } from '@mui/material/styles'
+import type { Theme } from '@mui/material/styles'
+
 import { sliderClasses } from '@mui/material/Slider'
 
 export function slider(theme: Theme) {

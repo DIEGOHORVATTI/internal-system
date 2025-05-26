@@ -1,5 +1,8 @@
-import { Theme, alpha } from '@mui/material/styles'
-import { AlertProps, alertClasses } from '@mui/material/Alert'
+import type { Theme} from '@mui/material/styles';
+import type { AlertProps} from '@mui/material/Alert';
+
+import { alpha } from '@mui/material/styles'
+import { alertClasses } from '@mui/material/Alert'
 
 const COLORS = ['info', 'success', 'warning', 'error'] as const
 

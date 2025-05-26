@@ -1,12 +1,11 @@
-import Drawer from '@mui/material/Drawer'
-import IconButton from '@mui/material/IconButton'
+import type { ISettings } from '@/contexts/settings-provider'
 
 import { NAVBAR } from '@/config'
-
 import cssStyles from '@/utils/cssStyles'
-import styled from '@mui/material/styles/styled'
 
-import type { ISettings } from '@/contexts/settings-provider'
+import Drawer from '@mui/material/Drawer'
+import styled from '@mui/material/styles/styled'
+import IconButton from '@mui/material/IconButton'
 
 export const DrawerStyle = styled(Drawer, {
   shouldForwardProp: (prop) => prop !== 'modeLayout',

@@ -1,5 +1,8 @@
-import { Theme, alpha } from '@mui/material/styles'
-import { ToggleButtonProps, toggleButtonClasses } from '@mui/material/ToggleButton'
+import type { Theme} from '@mui/material/styles';
+import type { ToggleButtonProps} from '@mui/material/ToggleButton';
+
+import { alpha } from '@mui/material/styles'
+import { toggleButtonClasses } from '@mui/material/ToggleButton'
 
 const COLORS = ['primary', 'secondary', 'info', 'success', 'warning', 'error'] as const
 

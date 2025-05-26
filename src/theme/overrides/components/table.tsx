@@ -1,6 +1,8 @@
-import { Theme, alpha } from '@mui/material/styles'
-import { tableCellClasses } from '@mui/material/TableCell'
+import type { Theme} from '@mui/material/styles';
+
+import { alpha } from '@mui/material/styles'
 import { tableRowClasses } from '@mui/material/TableRow'
+import { tableCellClasses } from '@mui/material/TableCell'
 
 export function table(theme: Theme) {
   return {

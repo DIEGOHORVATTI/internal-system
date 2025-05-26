@@ -1,6 +1,7 @@
-import { Theme } from '@mui/material/styles'
-import { typographyClasses } from '@mui/material/Typography'
+import type { Theme } from '@mui/material/styles'
+
 import { accordionClasses } from '@mui/material/Accordion'
+import { typographyClasses } from '@mui/material/Typography'
 import { accordionSummaryClasses } from '@mui/material/AccordionSummary'
 
 export function accordion(theme: Theme) {

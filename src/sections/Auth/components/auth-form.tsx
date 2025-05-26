@@ -1,15 +1,12 @@
-import { useForm } from 'react-hook-form'
-
 import useAuth from '@/hooks/use-auth'
-
-import { Box, Button, Card, Stack, Typography } from '@mui/material'
-
+import { useForm } from 'react-hook-form'
 import SettingMode from '@/components/setting-mode'
+import { generateJwt } from '@/shared/generate-jwt'
+import RHFPassword from '@/components/hook-form/rhf-password'
 import FormProvider from '@/components/hook-form/form-provider'
 import RHFTextField from '@/components/hook-form/rhf-text-field'
-import RHFPassword from '@/components/hook-form/rhf-password'
 
-import { generateJwt } from '@/shared/generate-jwt'
+import { Box, Card, Stack, Button, Typography } from '@mui/material'
 
 type FormValues = {
   email: string

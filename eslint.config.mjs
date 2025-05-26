@@ -37,7 +37,6 @@ const commonRules = () => ({
   'react/jsx-no-useless-fragment': [1, { allowExpressions: true }],
   'react/jsx-curly-brace-presence': [2, { props: 'never', children: 'never' }],
   // typescript
-  '@typescript-eslint/no-shadow': 2,
   '@typescript-eslint/no-explicit-any': 0,
   '@typescript-eslint/no-empty-object-type': 0,
   '@typescript-eslint/consistent-type-imports': 1,

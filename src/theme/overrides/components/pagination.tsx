@@ -1,5 +1,7 @@
-import { alpha, Theme } from '@mui/material/styles'
-import { PaginationProps } from '@mui/material/Pagination'
+import type { Theme } from '@mui/material/styles';
+import type { PaginationProps } from '@mui/material/Pagination'
+
+import { alpha } from '@mui/material/styles'
 import { paginationItemClasses } from '@mui/material/PaginationItem'
 
 const COLORS = ['primary', 'secondary', 'info', 'success', 'warning', 'error'] as const

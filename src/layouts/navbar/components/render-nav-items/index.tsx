@@ -1,23 +1,23 @@
+import type { Navigation } from '@/routes/nav-config'
+
 import { useMemo, Fragment } from 'react'
-import { useLocation, Link } from 'react-router-dom'
-import useOpenMenus from '../hooks/use-open-menus'
+import Iconify from '@/components/iconify'
+import { Link, useLocation } from 'react-router-dom'
 
 import List from '@mui/material/List'
-import ListItemButton from '@mui/material/ListItemButton'
 import Stack from '@mui/material/Stack'
-import Collapse from '@mui/material/Collapse'
 import Divider from '@mui/material/Divider'
+import Collapse from '@mui/material/Collapse'
 import Typography from '@mui/material/Typography'
+import ListItemButton from '@mui/material/ListItemButton'
 
-import Iconify from '@/components/iconify'
 import Header from './components/header'
-
+import useOpenMenus from '../hooks/use-open-menus'
 import buildPathMap from '../shared/build-path-map'
 
-import type { Navigation } from '@/routes/nav-config'
 import type { NavbarVerticalProps } from '../..'
 
-export default function renderNavItems({ navConfig }: NavbarVerticalProps) {
+export default function RenderNavItems({ navConfig }: NavbarVerticalProps) {
   const location = useLocation()
 
   const pathToParents = useMemo(() => buildPathMap(navConfig), [navConfig])
@@ -28,7 +28,13 @@ export default function renderNavItems({ navConfig }: NavbarVerticalProps) {
     currentPath: location.pathname,
   })
 
-  const renderItems = (items: Array<Navigation>, level = 0) => (
+  const RenderItems = ({
+    navConfig: items,
+    level = 0,
+  }: {
+    navConfig: Navigation[]
+    level?: number
+  }) => (
     <List component={Stack} spacing={0.5} sx={{ color: 'text.secondary' }}>
       {items.map(({ kind, title, path, icon, children }, index) => {
         const hasChildren = children && children.length > 0
@@ -102,5 +108,5 @@ export default function renderNavItems({ navConfig }: NavbarVerticalProps) {
     </List>
   )
 
-  return renderItems(navConfig)
+  return <RenderItems navConfig={navConfig} />
 }

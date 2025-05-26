@@ -1,7 +1,8 @@
+import type { EmotionCache, Options as OptionsOfCreateCache } from '@emotion/cache'
+
 import * as React from 'react'
 import createCache from '@emotion/cache'
 import { CacheProvider as DefaultCacheProvider } from '@emotion/react'
-import type { EmotionCache, Options as OptionsOfCreateCache } from '@emotion/cache'
 
 export type NextAppDirEmotionCacheProviderProps = {
   /** This is the options passed to createCache() from 'import createCache from "@emotion/cache"' */
@@ -29,15 +30,17 @@ export default function NextAppDirEmotionCacheProvider(props: NextAppDirEmotionC
   React.useEffect(() => {
     const prevInsert = cache.insert
     let inserted: { name: string; isGlobal: boolean }[] = []
-    cache.insert = (...args: [any, any]) => {
+
+    cache.insert = (...args: Parameters<EmotionCache['insert']>) => {
       const [selector, serialized] = args
+
       if (cache.inserted[serialized.name] === undefined) {
         inserted.push({
           name: serialized.name,
           isGlobal: !selector,
         })
       }
-      /* @ts-ignore */
+
       return prevInsert(...args)
     }
 

@@ -1,6 +1,7 @@
-import { VariantsType } from '../types'
 //
-import { varTranEnter, varTranExit } from './transition'
+import { varTranExit, varTranEnter } from './transition'
+
+import type { VariantsType } from '../types'
 
 export const varFade = (props?: VariantsType) => {
   const distance = props?.distance || 120

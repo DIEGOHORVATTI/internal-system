@@ -1,5 +1,8 @@
-import { Theme, alpha } from '@mui/material/styles'
-import { LinearProgressProps, linearProgressClasses } from '@mui/material/LinearProgress'
+import type { Theme} from '@mui/material/styles';
+import type { LinearProgressProps} from '@mui/material/LinearProgress';
+
+import { alpha } from '@mui/material/styles'
+import { linearProgressClasses } from '@mui/material/LinearProgress'
 
 const COLORS = ['primary', 'secondary', 'info', 'success', 'warning', 'error'] as const
 

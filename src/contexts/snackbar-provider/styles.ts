@@ -1,6 +1,6 @@
 import { MaterialDesignContent } from 'notistack'
 
-import { styled, alpha } from '@mui/material/styles'
+import { alpha, styled } from '@mui/material/styles'
 
 export const StyledNotistack = styled(MaterialDesignContent)(({ theme }) => {
   const isLight = theme.palette.mode === 'light'

@@ -1,7 +1,8 @@
 import { Link as LinkReact } from 'react-router-dom'
+
 import Link from '@mui/material/Link'
-import Box, { type BoxProps } from '@mui/material/Box'
 import SvgIcon from '@mui/material/SvgIcon'
+import Box, { type BoxProps } from '@mui/material/Box'
 
 interface Props extends BoxProps {
   disabledLink?: boolean

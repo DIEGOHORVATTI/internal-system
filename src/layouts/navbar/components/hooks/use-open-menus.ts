@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import updateOpenMenus from '../shared/update-open-menus'
+
 import type { NavbarVerticalProps } from '../..'
 
 type Props = Pick<NavbarVerticalProps, 'navConfig'> & {
@@ -16,12 +17,10 @@ export default function useOpenMenus({ pathToParents, currentPath, navConfig }: 
     return acc
   }, {})
 
-  const [openMenus, setOpenMenus] = useState<Record<string, boolean>>(() => {
-    return {
+  const [openMenus, setOpenMenus] = useState<Record<string, boolean>>(() => ({
       ...initialOpenHeaderMenus,
       ...updateOpenMenus(currentPath, pathToParents),
-    }
-  })
+    }))
 
   const handleToggle = (path: string) => {
     setOpenMenus((prev) => ({

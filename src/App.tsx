@@ -1,19 +1,16 @@
 import { Suspense } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-
+import NavBar from '@/layouts/navbar'
+import { ThemeProvider } from '@/theme'
+import AuthGuard from '@/guards/auth-guard'
+import { navConfig } from '@/routes/nav-config'
+import AuthProvider from '@/contexts/auth-provider'
+import { extractRoutes } from '@/shared/extract-routes'
 import SnackbarProvider from '@/contexts/snackbar-provider'
 import SettingsProvider from '@/contexts/settings-provider'
-import AuthProvider from '@/contexts/auth-provider'
-
-import NavBar from '@/layouts/navbar'
-import AuthGuard from '@/guards/auth-guard'
+import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import MotionLazyProvider from '@/components/animate/motion-lazy-provider'
+
 import SplashScreen from './components/splash-screen'
-
-import { ThemeProvider } from '@/theme'
-
-import { extractRoutes } from '@/shared/extract-routes'
-import { navConfig } from '@/routes/nav-config'
 
 export default function App() {
   return (

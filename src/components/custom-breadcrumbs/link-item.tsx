@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box'
 import Link from '@mui/material/Link'
 
-import { BreadcrumbsLinkProps } from './types'
+import type { BreadcrumbsLinkProps } from './types'
 
 type Props = {
   link: BreadcrumbsLinkProps
