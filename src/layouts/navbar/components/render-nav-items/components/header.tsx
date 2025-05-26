@@ -32,7 +32,12 @@ export default function Header({ title, isOpen, onToggle }: HeaderProps) {
         </m.div>
 
         <m.div variants={{ initial: { x: -10 }, hover: { x: -5 }, tap: { x: 0 } }}>
-          <Typography variant="overline" fontWeight={600} color="text.primary">
+          <Typography
+            variant="overline"
+            fontWeight={600}
+            color="text.primary"
+            sx={{ userSelect: 'none' }}
+          >
             {title}
           </Typography>
         </m.div>

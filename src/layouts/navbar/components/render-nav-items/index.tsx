@@ -29,7 +29,7 @@ export default function renderNavItems({ navConfig }: NavbarVerticalProps) {
   })
 
   const renderItems = (items: Array<Navigation>, level = 0) => (
-    <List sx={{ color: 'text.secondary' }}>
+    <List component={Stack} spacing={0.5} sx={{ color: 'text.secondary' }}>
       {items.map(({ kind, title, path, icon, children }, index) => {
         const hasChildren = children && children.length > 0
 
