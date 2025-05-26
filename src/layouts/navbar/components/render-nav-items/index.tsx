@@ -21,7 +21,12 @@ export default function renderNavItems({ navConfig }: NavbarVerticalProps) {
   const location = useLocation()
 
   const pathToParents = useMemo(() => buildPathMap(navConfig), [navConfig])
-  const { openMenus, handleToggle } = useOpenMenus(pathToParents, location.pathname)
+
+  const { openMenus, handleToggle } = useOpenMenus({
+    navConfig,
+    pathToParents,
+    currentPath: location.pathname,
+  })
 
   const renderItems = (items: Array<Navigation>, level = 0) => (
     <List sx={{ color: 'text.secondary' }}>

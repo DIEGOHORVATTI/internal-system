@@ -5,7 +5,7 @@ export default function updateOpenMenus(
   const parents = pathToParents[currentPath] || []
 
   const newState: Record<string, boolean> = {}
-  parents.forEach((path) => {
+  parents.filter(Boolean).forEach((path) => {
     newState[path] = true
   })
 

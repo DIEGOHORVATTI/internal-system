@@ -1,7 +1,7 @@
 import type { Navigation } from '@/routes/nav-config'
 
 export default function buildPathMap(items: Array<Navigation>, parents: string[] = []) {
-  return items.reduce((acc: Record<string, string[]>, item) => {
+  const pathMap = items.reduce((acc: Record<string, string[]>, item) => {
     if (item.path) {
       acc[item.path] = [...parents]
     }
@@ -12,4 +12,6 @@ export default function buildPathMap(items: Array<Navigation>, parents: string[]
 
     return acc
   }, {})
+
+  return pathMap
 }
