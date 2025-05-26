@@ -8,7 +8,7 @@ export function extractRoutes(config: Navigation[]) {
 
   const traverse = (items: Navigation[]) => {
     for (const item of items) {
-      if (item.kind === 'item' && item.path && item.component) {
+      if (item.path && item.component) {
         routes.push({
           path: item.path,
           element: createElement(item.component),

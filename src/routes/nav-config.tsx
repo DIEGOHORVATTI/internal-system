@@ -4,7 +4,7 @@ const Page404 = lazy(() => import('@/pages/404'))
 const Home = lazy(() => import('@/pages/home'))
 
 export type Navigation = {
-  kind: 'item' | 'header' | 'divider'
+  kind: 'item' | 'header' | 'divider' | 'hidden'
   path?: string
   component?: React.ElementType
 
@@ -16,7 +16,7 @@ export type Navigation = {
 
 export const navConfig: Array<Navigation> = [
   {
-    kind: 'item',
+    kind: 'hidden',
     path: '*',
     component: Page404,
   },

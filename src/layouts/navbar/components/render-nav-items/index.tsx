@@ -38,6 +38,10 @@ export default function renderNavItems({ navConfig }: NavbarVerticalProps) {
         const isOpen = Boolean(openMenus?.[key])
         const isActive = location.pathname === key
 
+        if (kind === 'hidden') {
+          return
+        }
+
         if (kind === 'header') {
           return (
             <Fragment key={index}>
