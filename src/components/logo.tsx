@@ -1,4 +1,7 @@
-import { Box, BoxProps, Link, SvgIcon } from '@mui/material'
+import { Link as LinkReact } from 'react-router-dom'
+import Link from '@mui/material/Link'
+import Box, { type BoxProps } from '@mui/material/Box'
+import SvgIcon from '@mui/material/SvgIcon'
 
 interface Props extends BoxProps {
   disabledLink?: boolean
@@ -29,7 +32,11 @@ export default function Logo({ disabledLink = false, size = 25, sx }: Props) {
     return logo
   }
 
-  return <Link href="/">{logo}</Link>
+  return (
+    <Link component={LinkReact} to="/">
+      {logo}
+    </Link>
+  )
 }
 
 interface TriangleProps {

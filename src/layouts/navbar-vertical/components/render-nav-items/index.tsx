@@ -16,9 +16,6 @@ export default function renderNavItems({ navConfig }: NavbarVerticalProps) {
   const location = useLocation()
 
   const pathToParents = useMemo(() => buildPathMap(navConfig), [navConfig])
-
-  console.log({ pathToParents })
-
   const { openMenus, handleToggle } = useOpenMenus(pathToParents, location.pathname)
 
   const renderItems = (items: Array<Navigation>, level = 0) => (
@@ -71,6 +68,7 @@ export default function renderNavItems({ navConfig }: NavbarVerticalProps) {
               <Stack width={1} direction="row" alignItems="center" justifyContent="space-between">
                 <Stack direction="row" spacing={1} alignItems="center">
                   {icon && <Iconify icon={icon} />}
+
                   <Typography component="b" variant="button">
                     {title}
                   </Typography>
