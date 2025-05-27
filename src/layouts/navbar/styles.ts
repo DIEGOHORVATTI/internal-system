@@ -6,9 +6,11 @@ import Drawer from '@mui/material/Drawer'
 import styled from '@mui/material/styles/styled'
 import IconButton from '@mui/material/IconButton'
 
+type LayoutSettings = Pick<ISettings, 'modeLayout'> & { isMobile: boolean }
+
 export const DrawerStyle = styled(Drawer, {
-  shouldForwardProp: (prop) => prop !== 'modeLayout',
-})<Pick<ISettings, 'modeLayout'>>(({ theme, modeLayout }) => ({
+  shouldForwardProp: (prop: string) => !['modeLayout', 'isMobile'].includes(prop),
+})<Partial<LayoutSettings>>(({ theme, modeLayout, isMobile }) => ({
   '& .MuiDrawer-paper': {
     borderRightStyle: 'double',
     borderColor: 'grey.50012',
@@ -21,6 +23,9 @@ export const DrawerStyle = styled(Drawer, {
     width: NAVBAR.DASHBOARD_WIDTH,
     ...(modeLayout && {
       width: NAVBAR.DASHBOARD_COLLAPSE_WIDTH,
+    }),
+    ...(isMobile && {
+      width: '100%',
     }),
   },
 }))
@@ -40,13 +45,13 @@ export const IconButtonStyle = styled(IconButton)(({ theme }) => ({
 }))
 
 export const NavbarVerticalRootStyle = styled('div', {
-  shouldForwardProp: (prop) => prop !== 'modeLayout',
-})<Pick<ISettings, 'modeLayout'>>(({ theme, modeLayout }) => ({
+  shouldForwardProp: (prop: string) => !['modeLayout', 'isMobile'].includes(prop),
+})<LayoutSettings>(({ theme, modeLayout, isMobile }) => ({
   position: 'relative',
   [theme.breakpoints.down(BREAKPOINT_MOBILE)]: {
     position: 'absolute',
   },
-  width: modeLayout ? NAVBAR.DASHBOARD_COLLAPSE_WIDTH : NAVBAR.DASHBOARD_WIDTH,
+  width: isMobile ? '100%' : modeLayout ? NAVBAR.DASHBOARD_COLLAPSE_WIDTH : NAVBAR.DASHBOARD_WIDTH,
   flexShrink: 0,
   transition: theme.transitions.create('width', {
     duration: theme.transitions.duration.shorter,

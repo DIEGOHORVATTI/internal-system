@@ -2,12 +2,11 @@ import type { Navigation } from '@/routes/nav-config'
 
 import Logo from '@/components/logo'
 import Iconify from '@/components/iconify'
+import { BREAKPOINT_MOBILE } from '@/config'
 import useSettings from '@/hooks/use-settings'
-import { NAVBAR, BREAKPOINT_MOBILE } from '@/config'
 
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
-import Drawer from '@mui/material/Drawer'
 import { useTheme } from '@mui/material/styles'
 import Container from '@mui/material/Container'
 import IconButton from '@mui/material/IconButton'
@@ -49,8 +48,8 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
   )
 
   return (
-    <Stack direction="row">
-      <S.NavbarVerticalRootStyle modeLayout={modeLayout || isMobile}>
+    <Stack direction="row" width={1}>
+      <S.NavbarVerticalRootStyle modeLayout={modeLayout} isMobile={isMobile}>
         {isDesktop && (
           <>
             <S.IconButtonStyle size="small" onClick={onToggleModeLayout}>
@@ -82,20 +81,28 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
               <Iconify icon="eva:menu-2-fill" />
             </IconButton>
 
-            <Drawer
+            <S.DrawerStyle
               open={modeLayout}
+              variant="persistent"
+              isMobile={isMobile}
               onClose={onToggleModeLayout}
-              PaperProps={{
-                sx: {
-                  width: '80%',
-                  maxWidth: NAVBAR.DASHBOARD_WIDTH,
-                  bgcolor: 'background.default',
-                  backgroundImage: 'none',
-                },
-              }}
             >
               {renderContent}
-            </Drawer>
+
+              <IconButton
+                onClick={onToggleModeLayout}
+                sx={{
+                  position: 'absolute',
+                  top: 8,
+                  right: 8,
+                  zIndex: 999,
+                  bgcolor: 'background.neutral',
+                  '&:hover': { bgcolor: 'action.hover' },
+                }}
+              >
+                <Iconify icon="eva:close-fill" />
+              </IconButton>
+            </S.DrawerStyle>
           </>
         )}
       </S.NavbarVerticalRootStyle>

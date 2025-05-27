@@ -18,4 +18,4 @@ export const LOCAL_STORAGE = {
 }
 
 // SETTING THEME
-export const BREAKPOINT_MOBILE: Breakpoint = 'lg'
+export const BREAKPOINT_MOBILE: Breakpoint = 'sm'
