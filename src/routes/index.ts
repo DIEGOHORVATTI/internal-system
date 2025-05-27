@@ -3,6 +3,7 @@ const ROOTS = {
 }
 
 export const ROUTES = {
+  home: '/',
   comingSoon: '/coming-soon',
   maintenance: '/maintenance',
   pricing: '/pricing',

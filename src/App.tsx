@@ -1,3 +1,5 @@
+import { lazy } from 'react'
+import { ROUTES } from '@/routes'
 import ThemeProvider from '@/theme'
 import NavBar from '@/layouts/navbar'
 import AuthGuard from '@/guards/auth-guard'
@@ -9,6 +11,8 @@ import SnackbarProvider from '@/contexts/snackbar-provider'
 import SettingsProvider from '@/contexts/settings-provider'
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import MotionLazyProvider from '@/components/animate/motion-lazy-provider'
+
+const PageAuthLogin = lazy(() => import('@/pages/auth/login'))
 
 export default function App() {
   return (
@@ -27,15 +31,24 @@ export default function App() {
             <AuthProvider>
               <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
                 <SuspenseProvider>
-                  <AuthGuard>
-                    <NavBar navConfig={navConfig}>
-                      <Routes>
-                        {extractRoutes(navConfig).map(({ path, element }) => (
-                          <Route key={path} path={path} element={element} />
-                        ))}
-                      </Routes>
-                    </NavBar>
-                  </AuthGuard>
+                  <Routes>
+                    <Route path={ROUTES.auth.login} element={<PageAuthLogin />} />
+
+                    <Route
+                      path="*"
+                      element={
+                        <AuthGuard>
+                          <NavBar navConfig={navConfig}>
+                            <Routes>
+                              {extractRoutes(navConfig).map(({ path, element }) => (
+                                <Route key={path} path={path} element={element} />
+                              ))}
+                            </Routes>
+                          </NavBar>
+                        </AuthGuard>
+                      }
+                    />
+                  </Routes>
                 </SuspenseProvider>
               </BrowserRouter>
             </AuthProvider>
