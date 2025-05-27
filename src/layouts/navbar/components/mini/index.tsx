@@ -18,7 +18,7 @@ type Props = {
   level?: number
 }
 
-export default function RecursiveNavItems({ navConfig = [], level = 0 }: Props) {
+export default function RecursiveMiniNavItems({ navConfig = [], level = 0 }: Props) {
   return (
     <List component={Stack} spacing={0.5} sx={{ color: 'text.secondary' }}>
       {navConfig.map((item, index) => {
@@ -27,7 +27,7 @@ export default function RecursiveNavItems({ navConfig = [], level = 0 }: Props) 
         if (item.kind === 'divider') return <Divider key={index} sx={{ my: 1 }} />
 
         if (item.kind === 'header' && item.children)
-          return <RecursiveNavItems key={index} navConfig={item.children} level={level} />
+          return <RecursiveMiniNavItems key={index} navConfig={item.children} level={level} />
 
         return <RecursiveNavItem key={item.path || index} item={item} level={level} />
       })}
@@ -100,7 +100,7 @@ function RecursiveNavItem({ item, level }: { item?: Navigation; level: number })
             },
           }}
         >
-          <RecursiveNavItems navConfig={item.children!} level={level + 1} />
+          <RecursiveMiniNavItems navConfig={item.children!} level={level + 1} />
         </S.NavDropdown>
       )}
     </>

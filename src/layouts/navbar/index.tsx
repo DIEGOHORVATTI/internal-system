@@ -14,9 +14,9 @@ import IconButton from '@mui/material/IconButton'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
 import * as S from './styles'
-import RenderNavItems from './components/render-nav-items'
-import RenderNavItemsMini from './components/render-nav-items-mini'
-import RenderNavItemsMobile from './components/render-nav-items-mobile'
+import RecursiveMiniNavItems from './components/mini'
+import RecursiveMobileNavItems from './components/mobile'
+import RecursiveDesktopNavItems from './components/desktop'
 
 export type NavbarVerticalProps = React.PropsWithChildren<{
   navConfig: Array<Navigation>
@@ -30,9 +30,9 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
   const isDesktop = useMediaQuery(theme.breakpoints.up(BREAKPOINT_MOBILE))
   const isMobile = !isDesktop
 
-  const navVertical = <RenderNavItems navConfig={navConfig} />
-  const navMini = <RenderNavItemsMini navConfig={navConfig} />
-  const navMobile = <RenderNavItemsMobile navConfig={navConfig} />
+  const navVertical = <RecursiveDesktopNavItems navConfig={navConfig} />
+  const navMini = <RecursiveMiniNavItems navConfig={navConfig} />
+  const navMobile = <RecursiveMobileNavItems navConfig={navConfig} />
 
   const renderContent = (
     <Stack spacing={2} py={3} alignItems="center">

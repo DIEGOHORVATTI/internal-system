@@ -17,7 +17,7 @@ import buildPathMap from '../shared/build-path-map'
 
 import type { NavbarVerticalProps } from '../..'
 
-export default function RenderNavItems({ navConfig }: NavbarVerticalProps) {
+export default function RecursiveDesktopNavItems({ navConfig }: NavbarVerticalProps) {
   const location = useLocation()
 
   const pathToParents = useMemo(() => buildPathMap(navConfig), [navConfig])

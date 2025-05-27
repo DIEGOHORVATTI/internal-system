@@ -18,9 +18,9 @@ export default function useOpenMenus({ pathToParents, currentPath, navConfig }: 
   }, {})
 
   const [openMenus, setOpenMenus] = useState<Record<string, boolean>>(() => ({
-      ...initialOpenHeaderMenus,
-      ...updateOpenMenus(currentPath, pathToParents),
-    }))
+    ...initialOpenHeaderMenus,
+    ...updateOpenMenus(currentPath, pathToParents),
+  }))
 
   const handleToggle = (path: string) => {
     setOpenMenus((prev) => ({

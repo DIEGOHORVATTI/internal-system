@@ -20,7 +20,7 @@ type Props = {
   level?: number
 }
 
-export default function RenderNavItemsMobile({ navConfig = [] }: Props) {
+export default function RecursiveMobileNavItems({ navConfig = [] }: Props) {
   const location = useLocation()
 
   const pathToParents = buildPathMap(navConfig)
