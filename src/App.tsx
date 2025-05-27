@@ -31,13 +31,13 @@ export default function App() {
             <AuthProvider>
               <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
                 <SuspenseProvider>
-                  <Routes>
-                    <Route path={ROUTES.auth.login} element={<PageAuthLogin />} />
+                  <AuthGuard>
+                    <Routes>
+                      <Route path={ROUTES.auth.login} element={<PageAuthLogin />} />
 
-                    <Route
-                      path="*"
-                      element={
-                        <AuthGuard>
+                      <Route
+                        path="*"
+                        element={
                           <NavBar navConfig={navConfig}>
                             <Routes>
                               {extractRoutes(navConfig).map(({ path, element }) => (
@@ -45,10 +45,10 @@ export default function App() {
                               ))}
                             </Routes>
                           </NavBar>
-                        </AuthGuard>
-                      }
-                    />
-                  </Routes>
+                        }
+                      />
+                    </Routes>
+                  </AuthGuard>
                 </SuspenseProvider>
               </BrowserRouter>
             </AuthProvider>
