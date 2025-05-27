@@ -1,5 +1,17 @@
 import type { Breakpoint } from '@mui/system'
 
+export const NAV = {
+  W_VERTICAL: 280,
+  W_MINI: 88,
+}
+
+// HEADER OF THE APPLICATION
+export const HEADER = {
+  H_MOBILE: 64,
+  H_DESKTOP: 80,
+  H_DESKTOP_OFFSET: 80 - 16,
+}
+
 // LAYOUT OF THE APPLICATION
 export const NAVBAR = {
   BASE_WIDTH: 260,

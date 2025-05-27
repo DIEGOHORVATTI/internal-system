@@ -13,6 +13,7 @@ import IconButton from '@mui/material/IconButton'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
 import * as S from './styles'
+import Header from './components/header'
 import RecursiveMiniNavItems from './components/mini'
 import RecursiveMobileNavItems from './components/mobile'
 import RecursiveDesktopNavItems from './components/desktop'
@@ -24,7 +25,7 @@ export type NavbarVerticalProps = React.PropsWithChildren<{
 export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
   const theme = useTheme()
 
-  const { modeLayout, onToggleModeLayout } = useSettings()
+  const { modeLayout, themeStretch, onToggleModeLayout } = useSettings()
 
   const isDesktop = useMediaQuery(theme.breakpoints.up(BREAKPOINT_MOBILE))
   const isMobile = !isDesktop
@@ -107,16 +108,16 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
         )}
       </S.NavbarVerticalRootStyle>
 
-      <Container
-        maxWidth={false}
-        sx={{
-          flexGrow: 1,
-          py: (theme) => theme.spacing(2),
-          px: (theme) => theme.spacing(4),
-        }}
-      >
-        {children}
-      </Container>
+      <Stack flexGrow={1}>
+        <Header />
+
+        <Container
+          maxWidth={themeStretch ? false : 'xl'}
+          sx={{ flexGrow: 1, py: (theme) => theme.spacing(2), px: (theme) => theme.spacing(4) }}
+        >
+          {children}
+        </Container>
+      </Stack>
     </Stack>
   )
 }
