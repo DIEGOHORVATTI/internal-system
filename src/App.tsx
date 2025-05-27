@@ -1,16 +1,14 @@
-import { Suspense } from 'react'
+import ThemeProvider from '@/theme'
 import NavBar from '@/layouts/navbar'
-import { ThemeProvider } from '@/theme'
 import AuthGuard from '@/guards/auth-guard'
 import { navConfig } from '@/routes/nav-config'
 import AuthProvider from '@/contexts/auth-provider'
-import { extractRoutes } from '@/shared/extract-routes'
+import extractRoutes from '@/shared/extract-routes'
+import SuspenseProvider from '@/components/suspense'
 import SnackbarProvider from '@/contexts/snackbar-provider'
 import SettingsProvider from '@/contexts/settings-provider'
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import MotionLazyProvider from '@/components/animate/motion-lazy-provider'
-
-import SplashScreen from './components/splash-screen'
 
 export default function App() {
   return (
@@ -28,7 +26,7 @@ export default function App() {
           <SnackbarProvider>
             <AuthProvider>
               <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-                <Suspense fallback={<SplashScreen />}>
+                <SuspenseProvider>
                   <AuthGuard>
                     <NavBar navConfig={navConfig}>
                       <Routes>
@@ -38,7 +36,7 @@ export default function App() {
                       </Routes>
                     </NavBar>
                   </AuthGuard>
-                </Suspense>
+                </SuspenseProvider>
               </BrowserRouter>
             </AuthProvider>
           </SnackbarProvider>

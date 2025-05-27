@@ -1,3 +1,9 @@
+import { MainContent } from '../components/main-content'
+
 export default function Home() {
-  return <span>Home</span>
+  return (
+    <MainContent>
+      <p>Welcome to the home page!</p>
+    </MainContent>
+  )
 }

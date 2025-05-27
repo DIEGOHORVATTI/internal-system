@@ -1,4 +1,4 @@
-import type { ThemeOptions } from '@mui/material/styles';
+import type { ThemeOptions } from '@mui/material/styles'
 
 import { useMemo } from 'react'
 import merge from 'lodash/merge'
@@ -19,7 +19,7 @@ import { customShadows } from './custom-shadows'
 import { componentsOverrides } from './overrides'
 import NextAppDirEmotionCacheProvider from './next-emotion-cache'
 
-export const ThemeProvider = ({ children }: React.PropsWithChildren) => {
+export default function ThemeProvider({ children }: React.PropsWithChildren) {
   const settings = useSettings()
 
   const darkModeOption = darkMode(settings.themeMode)

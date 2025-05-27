@@ -3,7 +3,7 @@ import type { PathRouteProps } from 'react-router-dom'
 
 import { createElement } from 'react'
 
-export function extractRoutes(config: Navigation[]) {
+export default function extractRoutes(config: Navigation[]) {
   const routes: Array<Pick<PathRouteProps, 'path' | 'element'>> = []
 
   const traverse = (items: Navigation[]) => {
