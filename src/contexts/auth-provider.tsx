@@ -2,8 +2,8 @@ import type { IUser } from '@/types/IUser'
 
 import { decodeJwt } from '@/shared/decode-jwt'
 import { STORAGE_KEYS } from '@/constants/config'
-import { useMemo, useCallback, createContext, useEffect } from 'react'
 import { useLocalStorage } from '@/hooks/use-local-storage'
+import { useMemo, useEffect, useCallback, createContext } from 'react'
 
 export type IAuthContext = {
   user: IUser | null
@@ -38,7 +38,7 @@ export default function AuthProvider({ children }: React.PropsWithChildren) {
   } = useLocalStorage<IUser | null>(STORAGE_KEYS.USER_TOKEN, null)
 
   useEffect(() => {
-    const token = getCookie('auth_token')
+    const token = getCookie(STORAGE_KEYS.USER_TOKEN)
     if (token && !user) {
       const decodedUser = decodeJwt<IUser>(token)
       if (decodedUser) {
@@ -48,7 +48,7 @@ export default function AuthProvider({ children }: React.PropsWithChildren) {
   }, [update, user])
 
   const login = useCallback(
-    async ({ email, password }: { email: string; password: string }) => {
+    async ({ email, password: _password }: { email: string; password: string }) => {
       // Header e payload simulados
       const header = btoa(JSON.stringify({ alg: 'HS256', typ: 'JWT' }))
       const payload = btoa(
@@ -70,14 +70,14 @@ export default function AuthProvider({ children }: React.PropsWithChildren) {
       if (!decodedUser) throw new Error('Invalid token')
 
       // Set cookie with token (7 days expiration)
-      setCookie('auth_token', mockToken, 7)
+      setCookie(STORAGE_KEYS.USER_TOKEN, mockToken, 7)
       update(decodedUser)
     },
     [update]
   )
 
   const logout = useCallback(() => {
-    removeCookie('auth_token')
+    removeCookie(STORAGE_KEYS.USER_TOKEN)
     remove()
   }, [remove])
 
