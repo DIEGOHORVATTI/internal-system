@@ -1,11 +1,20 @@
-import { MainContent } from '@/components/main-content'
+import Logo from '@/components/logo'
 
-import { AuthForm } from './components/auth-form'
+import { Stack } from '@mui/material'
 
-export default function Auth() {
+import { LoginForm } from './LoginForm'
+import { Content, Container } from './styles'
+
+export default function Login() {
   return (
-    <MainContent>
-      <AuthForm />
-    </MainContent>
+    <Container>
+      <Content>
+        <Stack alignItems="center" justifyContent="center">
+          <Logo sx={{ width: 150, height: 80 }} />
+
+          <LoginForm />
+        </Stack>
+      </Content>
+    </Container>
   )
 }

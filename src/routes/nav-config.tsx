@@ -1,6 +1,9 @@
 import { lazy } from 'react'
 
-const Page404 = lazy(() => import('@/pages/404'))
+import { ROUTES } from '.'
+
+const Login = lazy(() => import('@/pages/auth/login'))
+const Page404 = lazy(() => import('@/pages/error/404'))
 const Home = lazy(() => import('@/pages/home'))
 
 export type Navigation = {
@@ -19,6 +22,11 @@ export const navConfig: Array<Navigation> = [
     kind: 'hidden',
     path: '*',
     component: Page404,
+  },
+  {
+    kind: 'hidden',
+    path: ROUTES.auth.login,
+    component: Login,
   },
   {
     kind: 'header',
