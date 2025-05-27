@@ -23,5 +23,10 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
     }
   }
 
-  return { state, update }
+  const remove = () => {
+    localStorage.removeItem(key)
+    setStoredValue(initialValue)
+  }
+
+  return { state, update, remove }
 }

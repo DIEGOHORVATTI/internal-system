@@ -1,6 +1,8 @@
 export type IUser = {
+  id: string
   email: string
-  password: number
   name: string
-  token: string
+  role: string
+  createdAt: string
+  updatedAt: string
 }

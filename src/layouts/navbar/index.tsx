@@ -10,7 +10,6 @@ import Stack from '@mui/material/Stack'
 import Drawer from '@mui/material/Drawer'
 import { useTheme } from '@mui/material/styles'
 import Container from '@mui/material/Container'
-import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
 import * as S from './styles'
@@ -35,15 +34,7 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
 
   const renderContent = (
     <Stack spacing={2} py={3} alignItems="center">
-      <Stack direction="row" spacing={2} alignItems="center">
-        <Logo />
-
-        {!modeLayout && (
-          <Typography variant="h4" gutterBottom>
-            Azeplast
-          </Typography>
-        )}
-      </Stack>
+      <Logo showTitle={!modeLayout} />
 
       <Box width={1} px={1}>
         {modeLayout ? navMini : navVertical}

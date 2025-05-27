@@ -9,8 +9,8 @@ export default function Login() {
   return (
     <Container>
       <Content>
-        <Stack alignItems="center" justifyContent="center">
-          <Logo sx={{ width: 150, height: 80 }} />
+        <Stack spacing={3} alignItems="center" justifyContent="center" width={1}>
+          <Logo showTitle />
 
           <LoginForm />
         </Stack>

@@ -1,20 +1,15 @@
-import { useState } from 'react'
+import useAuth from '@/hooks/use-auth'
 import { useForm } from 'react-hook-form'
-import Iconify from '@/components/iconify'
+import RHFPassword from '@/components/hook-form/rhf-password'
 import FormProvider from '@/components/hook-form/form-provider'
 import RHFTextField from '@/components/hook-form/rhf-text-field'
 
-import { Stack, Button, IconButton, Typography, InputAdornment } from '@mui/material'
+import Stack from '@mui/material/Stack'
+import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
 
 export const LoginForm = () => {
-  // const { login } = useAuth()
-
-  const login = (data: { email: string; password: string }) => {
-    console.log('Login data:', data)
-    // Implement your login logic here
-  }
-
-  const [showPassword, setShowPassword] = useState(false)
+  const { login } = useAuth()
 
   const defaultValues = {
     email: '',
@@ -44,22 +39,12 @@ export const LoginForm = () => {
             InputLabelProps={{ shrink: true }}
           />
 
-          <RHFTextField
+          <RHFPassword
             name="password"
             label="Senha"
             placeholder="Digite sua senha"
             autoComplete="current-password"
             InputLabelProps={{ shrink: true }}
-            type={showPassword ? 'text' : 'password'}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton edge="end" onClick={() => setShowPassword(!showPassword)}>
-                    <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
           />
         </Stack>
 
