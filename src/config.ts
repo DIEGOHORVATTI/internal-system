@@ -1,3 +1,5 @@
+import type { Breakpoint } from '@mui/system'
+
 // LAYOUT OF THE APPLICATION
 export const NAVBAR = {
   BASE_WIDTH: 260,
@@ -14,3 +16,6 @@ export const LOCAL_STORAGE = {
   SETTINGS: '@azeplast-settings',
   KEY: '@azeplast-key',
 }
+
+// SETTING THEME
+export const BREAKPOINT_MOBILE: Breakpoint = 'lg'

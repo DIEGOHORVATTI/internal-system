@@ -1,6 +1,6 @@
 import type { ISettings } from '@/contexts/settings-provider'
 
-import { NAVBAR } from '@/config'
+import { NAVBAR, BREAKPOINT_MOBILE } from '@/config'
 
 import Drawer from '@mui/material/Drawer'
 import styled from '@mui/material/styles/styled'
@@ -43,11 +43,12 @@ export const NavbarVerticalRootStyle = styled('div', {
   shouldForwardProp: (prop) => prop !== 'modeLayout',
 })<Pick<ISettings, 'modeLayout'>>(({ theme, modeLayout }) => ({
   position: 'relative',
-  [theme.breakpoints.up('lg')]: {
-    width: modeLayout ? NAVBAR.DASHBOARD_COLLAPSE_WIDTH : NAVBAR.DASHBOARD_WIDTH,
-    flexShrink: 0,
-    transition: theme.transitions.create('width', {
-      duration: theme.transitions.duration.shorter,
-    }),
+  [theme.breakpoints.down(BREAKPOINT_MOBILE)]: {
+    position: 'absolute',
   },
+  width: modeLayout ? NAVBAR.DASHBOARD_COLLAPSE_WIDTH : NAVBAR.DASHBOARD_WIDTH,
+  flexShrink: 0,
+  transition: theme.transitions.create('width', {
+    duration: theme.transitions.duration.shorter,
+  }),
 }))

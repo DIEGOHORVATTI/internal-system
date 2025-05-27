@@ -1,9 +1,9 @@
 import type { Navigation } from '@/routes/nav-config'
 
-import { NAVBAR } from '@/config'
 import Logo from '@/components/logo'
 import Iconify from '@/components/iconify'
 import useSettings from '@/hooks/use-settings'
+import { NAVBAR, BREAKPOINT_MOBILE } from '@/config'
 
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
@@ -27,7 +27,7 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
 
   const { modeLayout, onToggleModeLayout } = useSettings()
 
-  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'))
+  const isDesktop = useMediaQuery(theme.breakpoints.up(BREAKPOINT_MOBILE))
   const isMobile = !isDesktop
 
   const navVertical = <RenderNavItems navConfig={navConfig} />
@@ -39,17 +39,21 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
       <Logo showTitle={!modeLayout} />
 
       <Box width={1} px={1}>
-        {isMobile ? navMobile : modeLayout ? navMini : navVertical}
+        {isMobile && navMobile}
+
+        {isDesktop && modeLayout && navMini}
+
+        {isDesktop && !modeLayout && navVertical}
       </Box>
     </Stack>
   )
 
   return (
     <Stack direction="row">
-      <S.NavbarVerticalRootStyle modeLayout={modeLayout}>
+      <S.NavbarVerticalRootStyle modeLayout={modeLayout || isMobile}>
         {isDesktop && (
           <>
-            <S.IconButtonStyle size="small\" onClick={onToggleModeLayout}>
+            <S.IconButtonStyle size="small" onClick={onToggleModeLayout}>
               <Iconify
                 size={1.5}
                 icon={modeLayout ? 'ep:arrow-right-bold' : 'ep:arrow-left-bold'}
@@ -64,15 +68,15 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
 
         {isMobile && (
           <>
-            <IconButton 
+            <IconButton
               onClick={onToggleModeLayout}
-              sx={{ 
+              sx={{
                 position: 'fixed',
                 top: 8,
                 left: 8,
                 zIndex: 999,
                 bgcolor: 'background.paper',
-                '&:hover': { bgcolor: 'action.hover' }
+                '&:hover': { bgcolor: 'action.hover' },
               }}
             >
               <Iconify icon="eva:menu-2-fill" />
@@ -81,13 +85,13 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
             <Drawer
               open={modeLayout}
               onClose={onToggleModeLayout}
-              PaperProps={{ 
-                sx: { 
+              PaperProps={{
+                sx: {
                   width: '80%',
                   maxWidth: NAVBAR.DASHBOARD_WIDTH,
                   bgcolor: 'background.default',
-                  backgroundImage: 'none'
-                } 
+                  backgroundImage: 'none',
+                },
               }}
             >
               {renderContent}

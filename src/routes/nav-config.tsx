@@ -31,6 +31,7 @@ export const navConfig: Array<Navigation> = [
   {
     kind: 'header',
     title: 'Main',
+    icon: 'solar:home-bold',
     children: [
       {
         kind: 'item',
@@ -74,6 +75,7 @@ export const navConfig: Array<Navigation> = [
   {
     kind: 'header',
     title: 'Management',
+    icon: 'solar:settings-bold',
     children: [
       {
         kind: 'item',

@@ -1,14 +1,13 @@
 import type { Navigation } from '@/routes/nav-config'
 
-import { useCallback } from 'react'
 import Iconify from '@/components/iconify'
 import { Link, useLocation } from 'react-router-dom'
 
+import { alpha } from '@mui/system'
 import List from '@mui/material/List'
 import Stack from '@mui/material/Stack'
 import Divider from '@mui/material/Divider'
 import Collapse from '@mui/material/Collapse'
-import Typography from '@mui/material/Typography'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import ListItemButton from '@mui/material/ListItemButton'
@@ -21,7 +20,7 @@ type Props = {
   level?: number
 }
 
-export default function RenderNavItemsMobile({ navConfig = [], level = 0 }: Props) {
+export default function RenderNavItemsMobile({ navConfig = [] }: Props) {
   const location = useLocation()
 
   const pathToParents = buildPathMap(navConfig)
@@ -65,8 +64,8 @@ export default function RenderNavItemsMobile({ navConfig = [], level = 0 }: Prop
                 }),
               }}
             >
-              <ListItemIcon 
-                sx={{ 
+              <ListItemIcon
+                sx={{
                   width: 24,
                   height: 24,
                   mr: 2,
@@ -78,10 +77,7 @@ export default function RenderNavItemsMobile({ navConfig = [], level = 0 }: Prop
                 {item.icon && <Iconify icon={item.icon} />}
               </ListItemIcon>
 
-              <ListItemText 
-                primary={item.title} 
-                primaryTypographyProps={{ noWrap: true }}
-              />
+              <ListItemText primary={item.title} primaryTypographyProps={{ noWrap: true }} />
 
               {hasChildren && (
                 <Iconify
@@ -91,7 +87,7 @@ export default function RenderNavItemsMobile({ navConfig = [], level = 0 }: Prop
               )}
             </ListItemButton>
 
-            {hasChildren && (
+            {hasChildren && item.children && (
               <Collapse in={isOpen} unmountOnExit>
                 {renderItems(item.children, level + 1)}
               </Collapse>
