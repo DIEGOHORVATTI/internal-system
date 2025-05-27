@@ -218,6 +218,27 @@ export const COMMON = {
   },
 }
 
+type ThemedPalette = typeof COMMON & {
+  text: { primary: string; secondary: string; disabled: string }
+  background: { paper: string; default: string; neutral: string }
+  action: {
+    active: string
+    hover: string
+    selected: string
+    disabled: string
+    disabledBackground: string
+    focus: string
+    hoverOpacity: number
+    disabledOpacity: number
+  }
+}
+
+type NestedKeys<T, K extends keyof T = keyof T> = K extends string
+  ? `${K}.${Extract<keyof T[K], string>}`
+  : never
+
+export type IconColorTheme = NestedKeys<ThemedPalette>
+
 export const palette = {
   light: {
     ...COMMON,
@@ -233,4 +254,4 @@ export const palette = {
     background: { paper: GREY[800], default: GREY[900], neutral: GREY[500_16] },
     action: { active: GREY[500], ...COMMON.action },
   },
-} as const
+} satisfies Record<'light' | 'dark', ThemedPalette & { mode: 'light' | 'dark' }>

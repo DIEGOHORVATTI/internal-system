@@ -1,16 +1,34 @@
-import type { BoxProps } from '@mui/material';
-import type { IconifyIcon } from '@iconify/react';
+'use client'
 
-import { Icon } from '@iconify/react'
+import type { BoxProps } from '@mui/material'
+import type { IconifyIcon } from '@iconify/react'
+import type { IconColorTheme } from '@/theme/palette'
 
-import { Box } from '@mui/material'
+import { Icon, iconExists } from '@iconify/react'
 
-interface Props extends BoxProps {
-  icon?: IconifyIcon | string
+import Box from '@mui/material/Box'
+
+type Props = BoxProps & {
+  color?: IconColorTheme
+  icon: IconifyIcon | string | undefined
   size?: number
-  name?: string
 }
 
-export default function Iconify({ icon, size = 2, sx, name, ...other }: Props) {
-  return <Box component={Icon} icon={icon} sx={{ ...sx, fontSize: size * 10 }} {...other} />
+const fallbackIcon = (icon: Props['icon']) => {
+  if (typeof icon !== 'string' || iconExists(icon)) {
+    return icon
+  }
+
+  return icon.replace('fa6-solid:', 'fa-solid:')
+}
+
+export default function Iconify({ icon, size = 2, sx, ...other }: Props) {
+  return (
+    <Box
+      component={Icon}
+      icon={fallbackIcon(icon)}
+      sx={{ fontSize: `${size * 0.625}rem`, ...sx }}
+      {...other}
+    />
+  )
 }

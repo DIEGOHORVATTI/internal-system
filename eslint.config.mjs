@@ -7,7 +7,12 @@ import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import perfectionistPlugin from 'eslint-plugin-perfectionist';
 import unusedImportsPlugin from 'eslint-plugin-unused-imports';
 
-// ----------------------------------------------------------------------
+/**
+ * @fileoverview Custom ESLint configuration for a React project with TypeScript.
+ * 0 -> Off
+ * 1 -> Warning
+ * 2 -> Error
+*/
 
 /**
  * @rules common
@@ -27,10 +32,10 @@ const commonRules = () => ({
   'lines-around-directive': [2, { before: 'always', after: 'always' }],
   'arrow-body-style': [2, 'as-needed', { requireReturnForObjectLiteral: false }],
   // react
-  'react/jsx-key': 0,
-  'react/prop-types': 0,
-  'react/display-name': 0,
-  'react/no-children-prop': 0,
+  'react/jsx-key': 1,
+  'react/prop-types': 1,
+  'react/display-name': 1,
+  'react/no-children-prop': 1,
   'react/jsx-boolean-value': 2,
   'react/self-closing-comp': 2,
   'react/react-in-jsx-scope': 0,
@@ -38,7 +43,7 @@ const commonRules = () => ({
   'react/jsx-curly-brace-presence': [2, { props: 'never', children: 'never' }],
   // typescript
   '@typescript-eslint/no-explicit-any': 0,
-  '@typescript-eslint/no-empty-object-type': 0,
+  '@typescript-eslint/no-empty-object-type': 1,
   '@typescript-eslint/consistent-type-imports': 1,
   '@typescript-eslint/no-unused-vars': [1, { args: 'none' }],
 });
@@ -148,6 +153,21 @@ const sortImportsRules = () => {
 };
 
 /**
+ * @rules no anonymous default export
+ * from 'no-anonymous-default-export'.
+*/
+const noAnonymousDefaultExport = () => ({
+  'import/no-anonymous-default-export': [
+    2,
+    {
+      allowArrowFunction: false,
+      allowAnonymousClass: false,
+      allowAnonymousFunction: false,
+    },
+  ],
+});
+
+/**
  * Custom ESLint configuration.
  */
 export const customConfig = {
@@ -168,6 +188,7 @@ export const customConfig = {
     },
   },
   rules: {
+    ...noAnonymousDefaultExport(),
     ...commonRules(),
     ...importRules(),
     ...unusedImportsRules(),
