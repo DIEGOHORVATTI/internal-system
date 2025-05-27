@@ -10,11 +10,13 @@ import Stack from '@mui/material/Stack'
 import Drawer from '@mui/material/Drawer'
 import { useTheme } from '@mui/material/styles'
 import Container from '@mui/material/Container'
+import IconButton from '@mui/material/IconButton'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
 import * as S from './styles'
 import RenderNavItems from './components/render-nav-items'
 import RenderNavItemsMini from './components/render-nav-items-mini'
+import RenderNavItemsMobile from './components/render-nav-items-mobile'
 
 export type NavbarVerticalProps = React.PropsWithChildren<{
   navConfig: Array<Navigation>
@@ -29,15 +31,15 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
   const isMobile = !isDesktop
 
   const navVertical = <RenderNavItems navConfig={navConfig} />
-
   const navMini = <RenderNavItemsMini navConfig={navConfig} />
+  const navMobile = <RenderNavItemsMobile navConfig={navConfig} />
 
   const renderContent = (
     <Stack spacing={2} py={3} alignItems="center">
       <Logo showTitle={!modeLayout} />
 
       <Box width={1} px={1}>
-        {modeLayout ? navMini : navVertical}
+        {isMobile ? navMobile : modeLayout ? navMini : navVertical}
       </Box>
     </Stack>
   )
@@ -61,13 +63,36 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
         )}
 
         {isMobile && (
-          <Drawer
-            open={modeLayout}
-            onClose={onToggleModeLayout}
-            PaperProps={{ sx: { width: NAVBAR.DASHBOARD_WIDTH } }}
-          >
-            {renderContent}
-          </Drawer>
+          <>
+            <IconButton 
+              onClick={onToggleModeLayout}
+              sx={{ 
+                position: 'fixed',
+                top: 8,
+                left: 8,
+                zIndex: 999,
+                bgcolor: 'background.paper',
+                '&:hover': { bgcolor: 'action.hover' }
+              }}
+            >
+              <Iconify icon="eva:menu-2-fill" />
+            </IconButton>
+
+            <Drawer
+              open={modeLayout}
+              onClose={onToggleModeLayout}
+              PaperProps={{ 
+                sx: { 
+                  width: '80%',
+                  maxWidth: NAVBAR.DASHBOARD_WIDTH,
+                  bgcolor: 'background.default',
+                  backgroundImage: 'none'
+                } 
+              }}
+            >
+              {renderContent}
+            </Drawer>
+          </>
         )}
       </S.NavbarVerticalRootStyle>
 
