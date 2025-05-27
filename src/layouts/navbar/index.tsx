@@ -49,7 +49,7 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
       <S.NavbarVerticalRootStyle modeLayout={modeLayout}>
         {isDesktop && (
           <>
-            <S.IconButtonStyle size="small" onClick={onToggleModeLayout}>
+            <S.IconButtonStyle size="small\" onClick={onToggleModeLayout}>
               <Iconify
                 size={1.5}
                 icon={modeLayout ? 'ep:arrow-right-bold' : 'ep:arrow-left-bold'}
