@@ -10,11 +10,12 @@ export default function AuthGuard({ children }: React.PropsWithChildren) {
   useEffect(() => {
     if (!isAuthenticated) {
       navigate(ROUTES.auth.login)
-
       return
     }
 
-    navigate(ROUTES.home)
+    if (window.location.pathname === ROUTES.auth.login) {
+      navigate(ROUTES.home)
+    }
   }, [isAuthenticated, navigate])
 
   return children
