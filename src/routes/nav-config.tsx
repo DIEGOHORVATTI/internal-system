@@ -1,6 +1,6 @@
 import { lazy } from 'react'
 
-import { ROUTES } from '.'
+import { PATHS } from './paths'
 
 const Login = lazy(() => import('@/pages/auth/login'))
 const Page404 = lazy(() => import('@/pages/error/404'))
@@ -25,7 +25,7 @@ export const navConfig: Array<Navigation> = [
   },
   {
     kind: 'hidden',
-    path: ROUTES.auth.login,
+    path: PATHS.auth.login,
     component: Login,
   },
   {

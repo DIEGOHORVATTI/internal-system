@@ -1,5 +1,7 @@
 import type { IUser } from '@/types/IUser'
 
+import { PATHS } from '@/routes/paths'
+import useRouter from '@/hooks/use-router'
 import { decodeJwt } from '@/shared/decode-jwt'
 import { STORAGE_KEYS } from '@/constants/config'
 import { useLocalStorage } from '@/hooks/use-local-storage'
@@ -31,6 +33,8 @@ const removeCookie = (name: string) => {
 }
 
 export default function AuthProvider({ children }: React.PropsWithChildren) {
+  const { replaceRoute } = useRouter()
+
   const {
     state: user,
     update,
@@ -39,6 +43,7 @@ export default function AuthProvider({ children }: React.PropsWithChildren) {
 
   useEffect(() => {
     const token = getCookie(STORAGE_KEYS.USER_TOKEN)
+
     if (token && !user) {
       const decodedUser = decodeJwt<IUser>(token)
       if (decodedUser) {
@@ -79,7 +84,9 @@ export default function AuthProvider({ children }: React.PropsWithChildren) {
   const logout = useCallback(() => {
     removeCookie(STORAGE_KEYS.USER_TOKEN)
     remove()
-  }, [remove])
+
+    replaceRoute(PATHS.auth.login)
+  }, [remove, replaceRoute])
 
   const value = useMemo<IAuthContext>(
     () => ({

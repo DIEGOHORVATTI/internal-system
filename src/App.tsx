@@ -1,7 +1,7 @@
 import { lazy } from 'react'
 import NavBar from '@/layouts'
-import { ROUTES } from '@/routes'
 import ThemeProvider from '@/theme'
+import { PATHS } from '@/routes/paths'
 import AuthGuard from '@/guards/auth-guard'
 import { navConfig } from '@/routes/nav-config'
 import SettingsDrawer from '@/components/settings'
@@ -36,7 +36,7 @@ export default function App() {
                     <SettingsDrawer />
 
                     <Routes>
-                      <Route path={ROUTES.auth.login} element={<PageAuthLogin />} />
+                      <Route path={PATHS.auth.login} element={<PageAuthLogin />} />
 
                       <Route
                         path="*"

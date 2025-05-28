@@ -2,8 +2,14 @@ const ROOTS = {
   AUTH: '/auth',
 }
 
-export const ROUTES = {
+export const PATHS = {
   home: '/',
+  users: {
+    root: '/users',
+    new: '/users/new',
+    list: '/users/list',
+    profile: (id: string) => `/users/${id}`,
+  },
   comingSoon: '/coming-soon',
   maintenance: '/maintenance',
   pricing: '/pricing',

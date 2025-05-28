@@ -18,6 +18,7 @@ import { useTheme } from '@mui/material/styles'
 import IconButton from '@mui/material/IconButton'
 
 import SettingsButton from './components/settings-button'
+import AccountPopover from './components/account-popover'
 import NotificationsPopover from './components/notifications-popover'
 
 export default function Header() {
@@ -54,11 +55,9 @@ export default function Header() {
       >
         <NotificationsPopover />
 
-        {/* <ContactsPopover /> */}
-
         <SettingsButton />
 
-        {/* <AccountPopover /> */}
+        <AccountPopover />
       </Stack>
     </>
   )

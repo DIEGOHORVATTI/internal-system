@@ -7,7 +7,7 @@ import { calculateAnchorOrigin } from './utils'
 
 import type { CustomPopoverProps } from './types'
 
-export function CustomPopover({
+export default function CustomPopover({
   open,
   onClose,
   children,
