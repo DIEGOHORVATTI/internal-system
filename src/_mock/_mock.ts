@@ -63,4 +63,13 @@ export const _mock = {
     nativeM: (index: number) => _nativeM[index],
     nativeL: (index: number) => _nativeL[index],
   },
+  // Image
+  image: {
+    cover: (index: number) => `https://placehold.co/800?text=${index + 1}&font=roboto`,
+    avatar: (index: number) => `https://placehold.co/100?text=${index + 1}&font=roboto`,
+    travel: (index: number) => `https://placehold.co/400?text=${index + 1}&font=roboto`,
+    company: (index: number) => `https://placehold.co/200?text=${index + 1}&font=roboto`,
+    product: (index: number) => `https://placehold.co/300?text=${index + 1}&font=roboto`,
+    portrait: (index: number) => `https://placehold.co/400x600?text=${index + 1}&font=roboto`,
+  },
 }

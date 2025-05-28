@@ -254,4 +254,4 @@ export const palette = {
     background: { paper: GREY[800], default: GREY[900], neutral: GREY[500_16] },
     action: { active: GREY[500], ...COMMON.action },
   },
-} satisfies Record<'light' | 'dark', ThemedPalette & { mode: 'light' | 'dark' }>
+} as const satisfies Record<'light' | 'dark', ThemedPalette & { mode: 'light' | 'dark' }>

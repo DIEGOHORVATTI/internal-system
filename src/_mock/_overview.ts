@@ -1,20 +1,20 @@
-import { _mock } from './_mock';
+import { _mock } from './_mock'
 
 // APP
 // ----------------------------------------------------------------------
 
 export const _appRelated = ['Chrome', 'Drive', 'Dropbox', 'Evernote', 'Github'].map(
   (name, index) => {
-    const system = [2, 4].includes(index) ? 'Windows' : 'Mac';
+    const system = [2, 4].includes(index) ? 'Windows' : 'Mac'
 
-    const price = [2, 4].includes(index) ? _mock.number.price(index) : 0;
+    const price = [2, 4].includes(index) ? _mock.number.price(index) : 0
 
     const shortcut =
       (name === 'Chrome' && '/assets/icons/app/ic_chrome.svg') ||
       (name === 'Drive' && '/assets/icons/app/ic_drive.svg') ||
       (name === 'Dropbox' && '/assets/icons/app/ic_dropbox.svg') ||
       (name === 'Evernote' && '/assets/icons/app/ic_evernote.svg') ||
-      '/assets/icons/app/ic_github.svg';
+      '/assets/icons/app/ic_github.svg'
 
     return {
       id: _mock.id(index),
@@ -24,9 +24,9 @@ export const _appRelated = ['Chrome', 'Drive', 'Dropbox', 'Evernote', 'Github'].
       shortcut,
       ratingNumber: _mock.number.rating(index),
       totalReviews: _mock.number.nativeL(index),
-    };
+    }
   }
-);
+)
 
 export const _appInstalled = ['Germany', 'England', 'France', 'Korean', 'USA'].map(
   (name, index) => ({
@@ -37,19 +37,19 @@ export const _appInstalled = ['Germany', 'England', 'France', 'Korean', 'USA'].m
     apple: _mock.number.nativeL(index + 2),
     flag: ['flagpack:de', 'flagpack:gb-nir', 'flagpack:fr', 'flagpack:kr', 'flagpack:us'][index],
   })
-);
+)
 
 export const _appAuthors = [...Array(3)].map((_, index) => ({
   id: _mock.id(index),
   name: _mock.fullName(index),
   avatarUrl: _mock.image.avatar(index),
   totalFavorites: _mock.number.nativeL(index),
-}));
+}))
 
 export const _appInvoices = [...Array(5)].map((_, index) => {
-  const category = ['Android', 'Mac', 'Windows', 'Android', 'Mac'][index];
+  const category = ['Android', 'Mac', 'Windows', 'Android', 'Mac'][index]
 
-  const status = ['paid', 'out of date', 'progress', 'paid', 'paid'][index];
+  const status = ['paid', 'out of date', 'progress', 'paid', 'paid'][index]
 
   return {
     id: _mock.id(index),
@@ -57,15 +57,15 @@ export const _appInvoices = [...Array(5)].map((_, index) => {
     price: _mock.number.price(index),
     category,
     status,
-  };
-});
+  }
+})
 
 export const _appFeatured = [...Array(3)].map((_, index) => ({
   id: _mock.id(index),
   title: _mock.postTitle(index),
   description: _mock.sentence(index),
   coverUrl: _mock.image.cover(index),
-}));
+}))
 
 // ANALYTIC
 // ----------------------------------------------------------------------
@@ -73,7 +73,7 @@ export const _appFeatured = [...Array(3)].map((_, index) => ({
 export const _analyticTasks = [...Array(5)].map((_, index) => ({
   id: _mock.id(index),
   name: _mock.taskNames(index),
-}));
+}))
 
 export const _analyticPosts = [...Array(5)].map((_, index) => ({
   id: _mock.id(index),
@@ -81,7 +81,7 @@ export const _analyticPosts = [...Array(5)].map((_, index) => ({
   title: _mock.postTitle(index),
   coverUrl: _mock.image.cover(index),
   description: _mock.sentence(index),
-}));
+}))
 
 export const _analyticOrderTimeline = [...Array(5)].map((_, index) => {
   const title = [
@@ -90,15 +90,15 @@ export const _analyticOrderTimeline = [...Array(5)].map((_, index) => {
     'Order #37745 from September',
     'New order placed #XF-2356',
     'New order placed #XF-2346',
-  ][index];
+  ][index]
 
   return {
     id: _mock.id(index),
     title,
     type: `order${index + 1}`,
     time: _mock.time(index),
-  };
-});
+  }
+})
 
 export const _analyticTraffic = [
   {
@@ -125,7 +125,7 @@ export const _analyticTraffic = [
     total: _mock.number.nativeL(4),
     icon: 'eva:twitter-fill',
   },
-];
+]
 
 // ECOMMERCE
 // ----------------------------------------------------------------------
@@ -136,14 +136,14 @@ export const _ecommerceSalesOverview = ['Total Profit', 'Total Income', 'Total E
     totalAmount: _mock.number.price(index) * 100,
     value: _mock.number.percent(index),
   })
-);
+)
 
 export const _ecommerceBestSalesman = [...Array(5)].map((_, index) => {
-  const category = ['CAP', 'Branded Shoes', 'Headphone', 'Cell Phone', 'Earings'][index];
+  const category = ['CAP', 'Branded Shoes', 'Headphone', 'Cell Phone', 'Earings'][index]
 
   const flag = ['flagpack:de', 'flagpack:gb-nir', 'flagpack:fr', 'flagpack:kr', 'flagpack:us'][
     index
-  ];
+  ]
 
   return {
     id: _mock.id(index),
@@ -154,14 +154,14 @@ export const _ecommerceBestSalesman = [...Array(5)].map((_, index) => {
     name: _mock.fullName(index),
     totalAmount: _mock.number.price(index),
     avatarUrl: _mock.image.avatar(index + 8),
-  };
-});
+  }
+})
 
 export const _ecommerceLatestProducts = [...Array(5)].map((_, index) => {
   const colors = (index === 0 && ['#2EC4B6', '#E71D36', '#FF9F1C', '#011627']) ||
     (index === 1 && ['#92140C', '#FFCF99']) ||
     (index === 2 && ['#0CECDD', '#FFF338', '#FF67E7', '#C400FF', '#52006A', '#046582']) ||
-    (index === 3 && ['#845EC2', '#E4007C', '#2A1A5E']) || ['#090088'];
+    (index === 3 && ['#845EC2', '#E4007C', '#2A1A5E']) || ['#090088']
 
   return {
     id: _mock.id(index),
@@ -170,14 +170,14 @@ export const _ecommerceLatestProducts = [...Array(5)].map((_, index) => {
     price: _mock.number.price(index),
     coverUrl: _mock.image.product(index),
     priceSale: [1, 3].includes(index) ? _mock.number.price(index) : 0,
-  };
-});
+  }
+})
 
 export const _ecommerceNewProducts = [...Array(5)].map((_, index) => ({
   id: _mock.id(index),
   name: _mock.productName(index),
   coverUrl: _mock.image.product(index),
-}));
+}))
 
 // BANKING
 // ----------------------------------------------------------------------
@@ -187,7 +187,7 @@ export const _bankingContacts = [...Array(12)].map((_, index) => ({
   name: _mock.fullName(index),
   email: _mock.email(index),
   avatarUrl: _mock.image.avatar(index),
-}));
+}))
 
 export const _bankingCreditCard = [
   {
@@ -214,7 +214,7 @@ export const _bankingCreditCard = [
     cardNumber: '**** **** **** 7755',
     cardValid: '11/22',
   },
-];
+]
 
 export const _bankingRecentTransitions = [
   {
@@ -272,24 +272,24 @@ export const _bankingRecentTransitions = [
     status: 'progress',
     amount: _mock.number.price(6),
   },
-];
+]
 
 // BOOKING
 // ----------------------------------------------------------------------
 
 export const _bookings = [...Array(5)].map((_, index) => {
-  const status = ['Paid', 'Paid', 'Pending', 'Cancelled', 'Paid'][index];
+  const status = ['Paid', 'Paid', 'Pending', 'Cancelled', 'Paid'][index]
 
   const customer = {
     avatarUrl: _mock.image.avatar(index),
     name: _mock.fullName(index),
     phoneNumber: _mock.phoneNumber(index),
-  };
+  }
 
   const destination = [...Array(5)].map((__, _index) => ({
     name: _mock.tourName(_index + 1),
     coverUrl: _mock.image.travel(_index + 1),
-  }))[index];
+  }))[index]
 
   return {
     id: _mock.id(index),
@@ -298,14 +298,14 @@ export const _bookings = [...Array(5)].map((_, index) => {
     customer,
     checkIn: _mock.time(index),
     checkOut: _mock.time(index),
-  };
-});
+  }
+})
 
 export const _bookingsOverview = [...Array(3)].map((_, index) => ({
   status: ['Pending', 'Canceled', 'Sold'][index],
   quantity: _mock.number.percent(index) * 1000,
   value: _mock.number.percent(index),
-}));
+}))
 
 export const _bookingReview = [...Array(5)].map((_, index) => ({
   id: _mock.id(index),
@@ -315,7 +315,7 @@ export const _bookingReview = [...Array(5)].map((_, index) => ({
   avatarUrl: _mock.image.avatar(index),
   description: _mock.description(index),
   tags: ['Great Sevice', 'Recommended', 'Best Price'],
-}));
+}))
 
 export const _bookingNew = [...Array(5)].map((_, index) => ({
   guests: '3-5',
@@ -327,4 +327,4 @@ export const _bookingNew = [...Array(5)].map((_, index) => ({
   price: _mock.number.price(index),
   avatarUrl: _mock.image.avatar(index),
   coverUrl: _mock.image.travel(index),
-}));
+}))
