@@ -29,8 +29,8 @@ export default function App() {
       <ThemeProvider>
         <MotionLazyProvider>
           <SnackbarProvider>
-            <AuthProvider>
-              <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+            <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+              <AuthProvider>
                 <SuspenseProvider>
                   <AuthGuard>
                     <SettingsDrawer />
@@ -53,8 +53,8 @@ export default function App() {
                     </Routes>
                   </AuthGuard>
                 </SuspenseProvider>
-              </BrowserRouter>
-            </AuthProvider>
+              </AuthProvider>
+            </BrowserRouter>
           </SnackbarProvider>
         </MotionLazyProvider>
       </ThemeProvider>

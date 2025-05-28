@@ -6,9 +6,9 @@ import useAuth from '@/hooks/use-auth'
 import useRouter from '@/hooks/use-router'
 // Notistack
 import { enqueueSnackbar } from 'notistack'
+import usePopover from '@/hooks/use-popover'
 // components
 import { varHover } from '@/components/animate'
-import { usePopover } from '@/hooks/use-popover'
 // hooks
 import { useMockedUser } from '@/hooks/use-mocked-user'
 import CustomPopover from '@/components/custom-popover'
@@ -45,12 +45,13 @@ export default function AccountPopover() {
 
   const { logout } = useAuth()
 
-  const popover = usePopover()
+  const { open, onClose, onOpen } = usePopover()
 
   const handleLogout = async () => {
     try {
       await logout()
-      popover.onClose()
+
+      onClose()
     } catch (error) {
       console.error(error)
       enqueueSnackbar('Unable to logout!', { variant: 'error' })
@@ -58,7 +59,7 @@ export default function AccountPopover() {
   }
 
   const handleClickItem = (path: string) => {
-    popover.onClose()
+    onClose()
 
     navigateTo(path)
   }
@@ -70,14 +71,13 @@ export default function AccountPopover() {
         whileTap="tap"
         whileHover="hover"
         variants={varHover(1.05)}
-        onClick={popover.onOpen}
+        onClick={onOpen}
         sx={{
           width: 40,
           height: 40,
           background: (theme) => alpha(theme.palette.grey[500], 0.08),
-          ...(popover.open && {
-            background: (theme) =>
-              `linear-gradient(135deg, ${theme.palette.primary.light} 0%, ${theme.palette.primary.main} 100%)`,
+          ...(open && {
+            background: 'background.neltral',
           }),
         }}
       >
@@ -92,7 +92,7 @@ export default function AccountPopover() {
         />
       </IconButton>
 
-      <CustomPopover open={popover.open} onClose={popover.onClose} sx={{ width: 200, p: 0 }}>
+      <CustomPopover open={open} onClose={onClose} sx={{ width: 200, p: 0 }}>
         <Box sx={{ p: 2, pb: 1.5 }}>
           <Typography variant="subtitle2" noWrap>
             {user?.displayName}

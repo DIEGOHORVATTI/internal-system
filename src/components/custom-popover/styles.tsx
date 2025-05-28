@@ -1,82 +1,87 @@
+// theme
 import { bgBlur } from '@/theme/css'
 
+// @mui
 import { alpha, styled } from '@mui/material/styles'
 
-import type { PopoverArrow } from './types'
+//
+import type { MenuPopoverArrowValue } from './types'
 
-export const StyledArrow = styled('span')<Pick<PopoverArrow, 'size' | 'placement'>>(
-  ({ placement, theme, size = 14 }) => {
-    const POSITION = -(size / 2) + 0.5
+// ----------------------------------------------------------------------
 
-    const topStyle = {
-      top: POSITION,
-      transform: 'rotate(135deg)',
-    }
+export const StyledArrow = styled('span')<{ arrow: MenuPopoverArrowValue }>(({ arrow, theme }) => {
+  const SIZE = 14
 
-    const bottomStyle = {
-      bottom: POSITION,
-      transform: 'rotate(-45deg)',
-    }
+  const POSITION = -(SIZE / 2) + 0.5
 
-    const leftStyle = {
-      left: POSITION,
-      transform: 'rotate(45deg)',
-    }
-
-    const rightStyle = {
-      right: POSITION,
-      transform: 'rotate(-135deg)',
-    }
-
-    return {
-      width: size,
-      height: size,
-      position: 'absolute',
-      borderBottomLeftRadius: size / 4,
-      clipPath: 'polygon(0% 0%, 100% 100%, 0% 100%)',
-      border: `solid 1px ${alpha(
-        theme.palette.mode === 'light' ? theme.palette.grey[500] : theme.palette.common.black,
-        0.12
-      )}`,
-      ...bgBlur({
-        color: theme.palette.background.paper,
-      }),
-      // Top
-      ...(placement === 'top-left' && { ...topStyle, left: 20 }),
-      ...(placement === 'top-center' && {
-        ...topStyle,
-        left: 0,
-        right: 0,
-        margin: 'auto',
-      }),
-      ...(placement === 'top-right' && { ...topStyle, right: 20 }),
-      // Bottom
-      ...(placement === 'bottom-left' && { ...bottomStyle, left: 20 }),
-      ...(placement === 'bottom-center' && {
-        ...bottomStyle,
-        left: 0,
-        right: 0,
-        margin: 'auto',
-      }),
-      ...(placement === 'bottom-right' && { ...bottomStyle, right: 20 }),
-      // Left
-      ...(placement === 'left-top' && { ...leftStyle, top: 20 }),
-      ...(placement === 'left-center' && {
-        ...leftStyle,
-        top: 0,
-        bottom: 0,
-        margin: 'auto',
-      }),
-      ...(placement === 'left-bottom' && { ...leftStyle, bottom: 20 }),
-      // Right
-      ...(placement === 'right-top' && { ...rightStyle, top: 20 }),
-      ...(placement === 'right-center' && {
-        ...rightStyle,
-        top: 0,
-        bottom: 0,
-        margin: 'auto',
-      }),
-      ...(placement === 'right-bottom' && { ...rightStyle, bottom: 20 }),
-    }
+  const topStyle = {
+    top: POSITION,
+    transform: 'rotate(135deg)',
   }
-)
+
+  const bottomStyle = {
+    bottom: POSITION,
+    transform: 'rotate(-45deg)',
+  }
+
+  const leftStyle = {
+    left: POSITION,
+    transform: 'rotate(45deg)',
+  }
+
+  const rightStyle = {
+    right: POSITION,
+    transform: 'rotate(-135deg)',
+  }
+
+  return {
+    width: SIZE,
+    height: SIZE,
+    position: 'absolute',
+    borderBottomLeftRadius: SIZE / 4,
+    clipPath: 'polygon(0% 0%, 100% 100%, 0% 100%)',
+    border: `solid 1px ${alpha(
+      theme.palette.mode === 'light' ? theme.palette.grey[500] : theme.palette.common.black,
+      0.12
+    )}`,
+    ...bgBlur({
+      color: theme.palette.background.paper,
+    }),
+    // Top
+    ...(arrow === 'top-left' && { ...topStyle, left: 20 }),
+    ...(arrow === 'top-center' && {
+      ...topStyle,
+      left: 0,
+      right: 0,
+      margin: 'auto',
+    }),
+    ...(arrow === 'top-right' && { ...topStyle, right: 20 }),
+    // Bottom
+    ...(arrow === 'bottom-left' && { ...bottomStyle, left: 20 }),
+    ...(arrow === 'bottom-center' && {
+      ...bottomStyle,
+      left: 0,
+      right: 0,
+      margin: 'auto',
+    }),
+    ...(arrow === 'bottom-right' && { ...bottomStyle, right: 20 }),
+    // Left
+    ...(arrow === 'left-top' && { ...leftStyle, top: 20 }),
+    ...(arrow === 'left-center' && {
+      ...leftStyle,
+      top: 0,
+      bottom: 0,
+      margin: 'auto',
+    }),
+    ...(arrow === 'left-bottom' && { ...leftStyle, bottom: 20 }),
+    // Right
+    ...(arrow === 'right-top' && { ...rightStyle, top: 20 }),
+    ...(arrow === 'right-center' && {
+      ...rightStyle,
+      top: 0,
+      bottom: 0,
+      margin: 'auto',
+    }),
+    ...(arrow === 'right-bottom' && { ...rightStyle, bottom: 20 }),
+  }
+})

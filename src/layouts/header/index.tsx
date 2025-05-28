@@ -34,12 +34,15 @@ export default function Header() {
 
   const offsetTop = offset && !isNavHorizontal
 
+  const modeLayout = settings.themeLayout === 'mini'
+  const themeLayoutToggle = () => settings.onToggleLayot(modeLayout ? 'vertical' : 'mini')
+
   const renderContent = (
     <>
       {lgUp && isNavHorizontal && <Logo sx={{ mr: 2.5 }} />}
 
       {!lgUp && (
-        <IconButton /* onClick={onOpenNav} */>
+        <IconButton onClick={themeLayoutToggle}>
           <SvgColor src="/assets/icons/navbar/ic_menu_item.svg" />
         </IconButton>
       )}

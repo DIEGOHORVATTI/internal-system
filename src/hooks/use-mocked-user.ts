@@ -1,12 +1,10 @@
-import { _mock } from '@/_mock'
-
 export function useMockedUser() {
   const user = {
     id: '8864c717-587d-472a-929a-8e5f298024da-0',
     displayName: 'Jaydon Frankie',
     email: 'demo@minimals.cc',
     password: 'demo1234',
-    photoURL: _mock.image.avatar(24),
+    photoURL: 'https://avatars.githubusercontent.com/u/72998710?v=4',
     phoneNumber: '+40 777666555',
     country: 'United States',
     address: '90210 Broadway Blvd',
