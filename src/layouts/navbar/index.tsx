@@ -25,7 +25,7 @@ export type NavbarVerticalProps = React.PropsWithChildren<{
 export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
   const theme = useTheme()
 
-  const { modeLayout, themeStretch, onToggleModeLayout } = useSettings()
+  const { themeLayout, themeStretch, onToggleLayot } = useSettings()
 
   const isDesktop = useMediaQuery(theme.breakpoints.up(BREAKPOINT_MOBILE))
   const isMobile = !isDesktop
@@ -33,6 +33,9 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
   const navVertical = <RecursiveDesktopNavItems navConfig={navConfig} />
   const navMini = <RecursiveMiniNavItems navConfig={navConfig} />
   const navMobile = <RecursiveMobileNavItems navConfig={navConfig} />
+
+  const modeLayout = themeLayout === 'vertical'
+  const themeLayoutToggle = () => onToggleLayot(modeLayout ? 'mini' : 'vertical')
 
   const renderContent = (
     <Stack spacing={2} py={3} alignItems="center">
@@ -53,7 +56,7 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
       <S.NavbarVerticalRootStyle modeLayout={modeLayout} isMobile={isMobile}>
         {isDesktop && (
           <>
-            <S.IconButtonStyle size="small" onClick={onToggleModeLayout}>
+            <S.IconButtonStyle size="small" onClick={themeLayoutToggle}>
               <Iconify
                 size={1.5}
                 icon={modeLayout ? 'ep:arrow-right-bold' : 'ep:arrow-left-bold'}
@@ -69,7 +72,7 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
         {isMobile && (
           <>
             <IconButton
-              onClick={onToggleModeLayout}
+              onClick={themeLayoutToggle}
               sx={{
                 position: 'fixed',
                 top: 8,
@@ -86,12 +89,12 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
               open={modeLayout}
               variant="persistent"
               isMobile={isMobile}
-              onClose={onToggleModeLayout}
+              onClose={themeLayoutToggle}
             >
               {renderContent}
 
               <IconButton
-                onClick={onToggleModeLayout}
+                onClick={themeLayoutToggle}
                 sx={{
                   position: 'absolute',
                   top: 8,

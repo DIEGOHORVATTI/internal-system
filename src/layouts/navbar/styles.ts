@@ -1,12 +1,13 @@
-import type { ISettings } from '@/contexts/settings-provider'
-
 import { NAVBAR, BREAKPOINT_MOBILE } from '@/config'
 
 import Drawer from '@mui/material/Drawer'
 import styled from '@mui/material/styles/styled'
 import IconButton from '@mui/material/IconButton'
 
-type LayoutSettings = Pick<ISettings, 'modeLayout'> & { isMobile: boolean }
+type LayoutSettings = {
+  isMobile: boolean
+  modeLayout: boolean
+}
 
 export const DrawerStyle = styled(Drawer, {
   shouldForwardProp: (prop: string) => !['modeLayout', 'isMobile'].includes(prop),

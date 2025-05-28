@@ -8,29 +8,24 @@ import SvgColor from '@/components/svg-color'
 // hooks
 import useOffSetTop from '@/hooks/use-off-set-top'
 import useResponsive from '@/hooks/use-responsive'
-import { useSettingsContext } from '@/components/settings'
+import { useSettingsContext } from '@/hooks/settings-context'
 
-import Stack from '@mui/material/Stack'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 // @mui
 import { useTheme } from '@mui/material/styles'
 import IconButton from '@mui/material/IconButton'
 
-import {
+import SettingsButton from './components/settings-button'
+
+/* import {
   Searchbar,
   AccountPopover,
   SettingsButton,
   LanguagePopover,
   ContactsPopover,
   NotificationsPopover,
-} from '../_common'
-
-// ----------------------------------------------------------------------
-
-type Props = {
-  onOpenNav?: VoidFunction
-}
+} from '../_common' */
 
 export default function Header() {
   const theme = useTheme()
@@ -52,12 +47,14 @@ export default function Header() {
       {lgUp && isNavHorizontal && <Logo sx={{ mr: 2.5 }} />}
 
       {!lgUp && (
-        <IconButton onClick={onOpenNav}>
+        <IconButton /* onClick={onOpenNav} */>
           <SvgColor src="/assets/icons/navbar/ic_menu_item.svg" />
         </IconButton>
       )}
 
-      <Searchbar />
+      <SettingsButton />
+
+      {/* <Searchbar />
 
       <Stack
         flexGrow={1}
@@ -75,7 +72,7 @@ export default function Header() {
         <SettingsButton />
 
         <AccountPopover />
-      </Stack>
+      </Stack> */}
     </>
   )
 

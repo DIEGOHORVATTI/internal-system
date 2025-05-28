@@ -2,8 +2,10 @@ import Iconify from '@/components/iconify'
 import useSettings from '@/hooks/use-settings'
 import { primaryPresets } from '@/theme/options/presets'
 
+import Stack from '@mui/material/Stack'
 import { alpha } from '@mui/material/styles'
-import { Stack, IconButton, ButtonBase } from '@mui/material'
+import IconButton from '@mui/material/IconButton'
+import ButtonBase from '@mui/material/ButtonBase'
 
 export default function SettingMode() {
   const { onToggleMode, themeMode } = useSettings()

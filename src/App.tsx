@@ -20,7 +20,7 @@ export default function App() {
       defaultSettings={{
         themeMode: 'dark',
         themeContrast: 'default',
-        modeLayout: true,
+        themeLayout: 'vertical',
         themeColorPresets: 'warning',
         themeStretch: false,
       }}

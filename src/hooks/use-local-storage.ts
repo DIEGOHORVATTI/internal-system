@@ -28,5 +28,14 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
     setStoredValue(initialValue)
   }
 
-  return { state, update, remove }
+  const reset = () => {
+    try {
+      window.localStorage.removeItem(key)
+      setStoredValue(initialValue)
+    } catch (error) {
+      console.error('Erro ao resetar o localStorage', error)
+    }
+  }
+
+  return { state, update, reset, remove }
 }

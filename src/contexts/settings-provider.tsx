@@ -1,52 +1,90 @@
-import type { COMMON } from '@/theme/palette'
+import type { ISettings, SettingsValueProps } from '@/components/settings/types'
 
-import { useMemo, createContext } from 'react'
-import { STORAGE_KEYS } from '@/constants/config'
+import isEqual from 'lodash/isEqual'
 import { useLocalStorage } from '@/hooks/use-local-storage'
+import { useMemo, useState, useCallback, createContext } from 'react'
 
-type ISettingsValue = {
-  themeStretch: boolean
-  themeMode: 'light' | 'dark'
-  themeContrast: 'default' | 'bold'
-  modeLayout: boolean
-  themeColorPresets: keyof typeof COMMON
-}
+import { LOCAL_STORAGE } from '../config'
 
-export type ISettings = ISettingsValue & {
-  onUpdate: (value: ISettingsValue) => void
-  onToggleMode: VoidFunction
-  onToggleModeLayout: VoidFunction
-  onPresetsChange: (value: ISettingsValue['themeColorPresets']) => void
-}
-
-type Props = {
+type SettingsProviderProps = {
   children: React.ReactNode
-  defaultSettings: ISettingsValue
+  defaultSettings: SettingsValueProps
 }
 
 export const SettingsContext = createContext({} as ISettings)
 
-export default function SettingsProvider({ children, defaultSettings }: Props) {
-  const { state, update } = useLocalStorage<ISettingsValue>(STORAGE_KEYS.SETTINGS, defaultSettings)
+export default function SettingsProvider({ children, defaultSettings }: SettingsProviderProps) {
+  const { state, update, reset } = useLocalStorage(LOCAL_STORAGE.SETTINGS, defaultSettings)
 
-  const onToggleMode = () =>
-    update({ ...state, themeMode: state.themeMode === 'light' ? 'dark' : 'light' })
+  console.log(state.themeLayout)
 
-  const onToggleModeLayout = () => update({ ...state, modeLayout: !state.modeLayout })
+  const [openDrawer, setOpenDrawer] = useState(false)
 
-  const onPresetsChange = (themeColorPresets: ISettingsValue['themeColorPresets']) =>
-    update({ ...state, themeColorPresets })
+  // Drawer
+  const onToggleDrawer = useCallback(() => {
+    setOpenDrawer((prev) => !prev)
+  }, [])
 
-  const memoizedValue = useMemo<ISettings>(
+  const onCloseDrawer = useCallback(() => {
+    setOpenDrawer(false)
+  }, [])
+
+  const onToggleLayot = useCallback(
+    (themeLayout: SettingsValueProps['themeLayout']) => update({ ...state, themeLayout }),
+    [state, update]
+  )
+
+  const onToggleMode = useCallback(
+    () => update({ ...state, themeMode: state.themeMode === 'light' ? 'dark' : 'light' }),
+    [state, update]
+  )
+
+  const onPresetsChange = useCallback(
+    (themeColorPresets: SettingsValueProps['themeColorPresets']) =>
+      update({ ...state, themeColorPresets }),
+    [state, update]
+  )
+
+  const onUpdate = useCallback(
+    (name: string, value: string | boolean) => {
+      update({
+        ...state,
+        [name]: value,
+      })
+    },
+    [update, state]
+  )
+
+  const canReset = !isEqual(state, defaultSettings)
+
+  const memoizedValue = useMemo(
     () => ({
       ...state,
-      onToggleMode,
-      onToggleModeLayout,
+      onUpdate,
+      // Settings Theme
       onPresetsChange,
-      onUpdate: update,
+      onToggleMode,
+      onToggleLayot,
+      // Reset
+      canReset,
+      onReset: reset,
+      // Drawer
+      open: openDrawer,
+      onToggle: onToggleDrawer,
+      onClose: onCloseDrawer,
     }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [update, state]
+    [
+      state,
+      onUpdate,
+      canReset,
+      reset,
+      openDrawer,
+      onToggleLayot,
+      onPresetsChange,
+      onToggleDrawer,
+      onCloseDrawer,
+      onToggleMode,
+    ]
   )
 
   return <SettingsContext.Provider value={memoizedValue}>{children}</SettingsContext.Provider>
