@@ -31,15 +31,21 @@ export const DrawerStyle = styled(Drawer, {
   },
 }))
 
-export const IconButtonStyle = styled(IconButton)(({ theme }) => ({
+export const IconButtonStyle = styled(IconButton, {
+  shouldForwardProp: (prop: string) => !['modeLayout', 'isMobile'].includes(prop),
+})<Pick<LayoutSettings, 'modeLayout'>>(({ theme, modeLayout }) => ({
   zIndex: 9999,
-  position: 'absolute',
-  right: -15,
+  position: 'fixed',
+  left: (modeLayout ? NAVBAR.DASHBOARD_COLLAPSE_WIDTH : NAVBAR.DASHBOARD_WIDTH) - 15,
   top: theme.spacing(3),
   border: 1,
   borderStyle: 'solid',
   borderColor: theme.palette.grey[50012],
   backgroundColor: theme.palette.background.default,
+  transition: theme.transitions.create('left', {
+    duration: theme.transitions.duration.shorter,
+  }),
+  flexShrink: 0,
   '&:hover': {
     backgroundColor: theme.palette.background.paper,
   },

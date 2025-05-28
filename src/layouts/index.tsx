@@ -55,18 +55,16 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
     <Stack direction="row" width={1}>
       <S.NavbarVerticalRootStyle modeLayout={modeLayout} isMobile={isMobile}>
         {isDesktop && (
-          <>
-            <S.IconButtonStyle size="small" onClick={themeLayoutToggle}>
+          <S.DrawerStyle open variant="persistent" modeLayout={modeLayout}>
+            <S.IconButtonStyle size="small" modeLayout={modeLayout} onClick={themeLayoutToggle}>
               <Iconify
                 size={1.5}
                 icon={modeLayout ? 'ep:arrow-right-bold' : 'ep:arrow-left-bold'}
               />
             </S.IconButtonStyle>
 
-            <S.DrawerStyle open variant="persistent" modeLayout={modeLayout}>
-              {renderContent}
-            </S.DrawerStyle>
-          </>
+            {renderContent}
+          </S.DrawerStyle>
         )}
 
         {isMobile && (
