@@ -16,8 +16,6 @@ export const SettingsContext = createContext({} as ISettings)
 export default function SettingsProvider({ children, defaultSettings }: SettingsProviderProps) {
   const { state, update, reset } = useLocalStorage(LOCAL_STORAGE.SETTINGS, defaultSettings)
 
-  console.log(state.themeLayout)
-
   const [openDrawer, setOpenDrawer] = useState(false)
 
   // Drawer

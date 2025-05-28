@@ -2,8 +2,8 @@ import type { Theme, SxProps } from '@mui/material/styles'
 
 import { m } from 'framer-motion'
 import Iconify from '@/components/iconify'
+import useSettings from '@/hooks/use-settings'
 import { varHover } from '@/components/animate'
-import { useSettingsContext } from '@/hooks/settings-context'
 
 import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
@@ -14,7 +14,7 @@ type Props = {
 }
 
 export default function SettingsButton({ sx }: Props) {
-  const { open, canReset, onToggle } = useSettingsContext()
+  const { open, canReset, onToggle } = useSettings()
 
   return (
     <Badge

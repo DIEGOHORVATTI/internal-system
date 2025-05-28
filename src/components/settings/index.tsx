@@ -2,7 +2,7 @@
 import { paper } from '@/theme/css'
 //
 import Iconify from '@/components/iconify'
-import { useSettingsContext } from '@/hooks/settings-context'
+import useSettings from '@/hooks/use-settings'
 
 import Stack from '@mui/material/Stack'
 import Badge from '@mui/material/Badge'
@@ -25,7 +25,7 @@ export type * from './types'
 export default function SettingsDrawer() {
   const theme = useTheme()
 
-  const settings = useSettingsContext()
+  const settings = useSettings()
 
   const labelStyles = {
     mb: 1.5,

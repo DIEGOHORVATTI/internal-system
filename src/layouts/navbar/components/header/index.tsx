@@ -5,10 +5,10 @@ import Logo from '@/components/logo'
 //
 import { NAV, HEADER } from '@/config'
 import SvgColor from '@/components/svg-color'
+import useSettings from '@/hooks/use-settings'
 // hooks
 import useOffSetTop from '@/hooks/use-off-set-top'
 import useResponsive from '@/hooks/use-responsive'
-import { useSettingsContext } from '@/hooks/settings-context'
 
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
@@ -30,7 +30,7 @@ import SettingsButton from './components/settings-button'
 export default function Header() {
   const theme = useTheme()
 
-  const settings = useSettingsContext()
+  const settings = useSettings()
 
   const isNavHorizontal = settings.themeLayout === 'horizontal'
 
