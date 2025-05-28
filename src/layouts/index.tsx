@@ -12,11 +12,11 @@ import Container from '@mui/material/Container'
 import IconButton from '@mui/material/IconButton'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
+import Header from './header'
 import * as S from './styles'
-import Header from './components/header'
-import RecursiveMiniNavItems from './components/mini'
-import RecursiveMobileNavItems from './components/mobile'
-import RecursiveDesktopNavItems from './components/desktop'
+import RecursiveMiniNavItems from './mini'
+import RecursiveMobileNavItems from './mobile'
+import RecursiveDesktopNavItems from './desktop'
 
 export type NavbarVerticalProps = React.PropsWithChildren<{
   navConfig: Array<Navigation>

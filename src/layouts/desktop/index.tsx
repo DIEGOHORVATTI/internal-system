@@ -15,7 +15,7 @@ import Header from './components/header'
 import useOpenMenus from '../hooks/use-open-menus'
 import buildPathMap from '../shared/build-path-map'
 
-import type { NavbarVerticalProps } from '../..'
+import type { NavbarVerticalProps } from '..'
 
 export default function RecursiveDesktopNavItems({ navConfig }: NavbarVerticalProps) {
   const location = useLocation()
