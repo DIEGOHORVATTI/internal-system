@@ -72,12 +72,12 @@ export default function SettingsDrawer() {
         options={[
           {
             label: 'Claro',
-            value: 'dark',
+            value: 'light',
             icon: 'solar:sun-bold',
           },
           {
             label: 'Escuro',
-            value: 'light',
+            value: 'dark',
             icon: 'solar:moon-bold',
           },
         ]}

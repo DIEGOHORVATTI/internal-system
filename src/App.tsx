@@ -23,7 +23,7 @@ export default function App() {
         themeContrast: 'default',
         themeLayout: 'vertical',
         themeColorPresets: 'warning',
-        themeStretch: false,
+        themeStretch: true,
       }}
     >
       <ThemeProvider>

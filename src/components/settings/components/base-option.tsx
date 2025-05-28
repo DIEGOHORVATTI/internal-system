@@ -24,7 +24,7 @@ export default function BaseOptions<T>({ options, value, onChange }: Props<T>) {
         return (
           <Tooltip key={index} title={label} placement="top" arrow>
             <ButtonBase
-              onClick={() => onChange(value)}
+              onClick={() => onChange(valueCurrent)}
               sx={{
                 width: 1,
                 height: 80,

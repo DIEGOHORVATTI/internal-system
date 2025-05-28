@@ -115,7 +115,7 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
         <Header />
 
         <Container
-          maxWidth={themeStretch ? false : 'xl'}
+          maxWidth={themeStretch ? false : 'lg'}
           sx={{ flexGrow: 1, py: (theme) => theme.spacing(2), px: (theme) => theme.spacing(4) }}
         >
           {children}
