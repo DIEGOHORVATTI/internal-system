@@ -1,16 +1,14 @@
+import { primaryPresets } from '@/theme/options/presets'
+
 import Box from '@mui/material/Box'
-// @mui
 import { alpha } from '@mui/material/styles'
 import ButtonBase from '@mui/material/ButtonBase'
 
-// theme
-import { primaryPresets } from '@/theme/options/presets'
-
-// ----------------------------------------------------------------------
+import type { SettingsValueProps } from '../types'
 
 type PresetsOptionsProps = {
-  value: string
-  onChange: (newValue: string) => void
+  value: SettingsValueProps['themeColorPresets']
+  onChange: (newValue: SettingsValueProps['themeColorPresets']) => void
 }
 
 export default function PresetsOptions({ value, onChange }: PresetsOptionsProps) {

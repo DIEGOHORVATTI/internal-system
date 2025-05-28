@@ -4,8 +4,8 @@ import { paper } from '@/theme/css'
 import Iconify from '@/components/iconify'
 import useSettings from '@/hooks/use-settings'
 
+import { Badge } from '@mui/material'
 import Stack from '@mui/material/Stack'
-import Badge from '@mui/material/Badge'
 import Divider from '@mui/material/Divider'
 import Tooltip from '@mui/material/Tooltip'
 // @mui
@@ -19,6 +19,8 @@ import LayoutOptions from './components/layout-options'
 import PresetsOptions from './components/presets-options'
 import StretchOptions from './components/stretch-options'
 import FullScreenOption from './components/fullscreen-option'
+
+import type { SettingsValueProps } from './types'
 
 export type * from './types'
 
@@ -41,7 +43,7 @@ export default function SettingsDrawer() {
       sx={{ py: 2, pr: 1, pl: 2.5 }}
     >
       <Typography variant="h6" sx={{ flexGrow: 1 }}>
-        Settings
+        Configurações
       </Typography>
 
       <Tooltip title="Reset">
@@ -61,14 +63,24 @@ export default function SettingsDrawer() {
   const renderMode = (
     <div>
       <Typography variant="caption" component="div" sx={{ ...labelStyles }}>
-        Mode
+        Thema
       </Typography>
 
-      <BaseOptions
+      <BaseOptions<SettingsValueProps['themeMode']>
         value={settings.themeMode}
-        onChange={(newValue: string) => settings.onUpdate('themeMode', newValue)}
-        options={['light', 'dark']}
-        icons={['sun', 'moon']}
+        onChange={(newValue) => settings.onUpdate('themeMode', newValue)}
+        options={[
+          {
+            label: 'Claro',
+            value: 'dark',
+            icon: 'solar:sun-bold',
+          },
+          {
+            label: 'Escuro',
+            value: 'light',
+            icon: 'solar:moon-bold',
+          },
+        ]}
       />
     </div>
   )
@@ -76,14 +88,24 @@ export default function SettingsDrawer() {
   const renderContrast = (
     <div>
       <Typography variant="caption" component="div" sx={{ ...labelStyles }}>
-        Contrast
+        Contraste
       </Typography>
 
-      <BaseOptions
+      <BaseOptions<SettingsValueProps['themeContrast']>
         value={settings.themeContrast}
-        onChange={(newValue: string) => settings.onUpdate('themeContrast', newValue)}
-        options={['default', 'bold']}
-        icons={['contrast', 'contrast_bold']}
+        onChange={(newValue) => settings.onUpdate('themeContrast', newValue)}
+        options={[
+          {
+            label: 'Default',
+            value: 'default',
+            icon: 'solar:palette-bold',
+          },
+          {
+            label: 'Bold',
+            value: 'bold',
+            icon: 'solar:palette-bold-duotone',
+          },
+        ]}
       />
     </div>
   )
@@ -96,8 +118,17 @@ export default function SettingsDrawer() {
 
       <LayoutOptions
         value={settings.themeLayout}
-        onChange={(newValue: string) => settings.onUpdate('themeLayout', newValue)}
-        options={['vertical', 'horizontal', 'mini']}
+        onChange={(newValue) => settings.onUpdate('themeLayout', newValue)}
+        options={[
+          {
+            label: 'Mini',
+            value: 'mini',
+          },
+          {
+            label: 'Vertical',
+            value: 'vertical',
+          },
+        ]}
       />
     </div>
   )
@@ -113,9 +144,11 @@ export default function SettingsDrawer() {
           alignItems: 'center',
         }}
       >
-        Stretch
-        <Tooltip title="Only available at large resolutions > 1600px (xl)">
-          <Iconify icon="eva:info-outline" width={16} sx={{ ml: 0.5 }} />
+        Esticar
+        <Tooltip title="Estenda o tema para a largura total">
+          <IconButton size="small">
+            <Iconify icon="eva:info-outline" />
+          </IconButton>
         </Tooltip>
       </Typography>
 
@@ -129,12 +162,12 @@ export default function SettingsDrawer() {
   const renderPresets = (
     <div>
       <Typography variant="caption" component="div" sx={{ ...labelStyles }}>
-        Presets
+        Predefinições
       </Typography>
 
       <PresetsOptions
         value={settings.themeColorPresets}
-        onChange={(newValue: string) => settings.onUpdate('themeColorPresets', newValue)}
+        onChange={(newValue) => settings.onUpdate('themeColorPresets', newValue)}
       />
     </div>
   )

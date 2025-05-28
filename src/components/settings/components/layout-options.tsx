@@ -1,21 +1,25 @@
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
+import { Tooltip } from '@mui/material'
 import ButtonBase from '@mui/material/ButtonBase'
-// @mui
 import { alpha, useTheme } from '@mui/material/styles'
 
-// ----------------------------------------------------------------------
+import type { SettingsValueProps } from '../types'
 
-type Props = {
-  options: string[]
-  value: string
-  onChange: (newValue: string) => void
+type SettingOption = {
+  label: string
+  value: SettingsValueProps['themeLayout']
+}
+
+type Props = Pick<SettingOption, 'value'> & {
+  options: Array<SettingOption>
+  onChange: (newValue: SettingOption['value']) => void
 }
 
 export default function LayoutOptions({ options, value, onChange }: Props) {
   const theme = useTheme()
 
-  const renderNav = (option: string, selected: boolean) => {
+  const renderNav = (option: SettingOption['value'], selected: boolean) => {
     const background = `linear-gradient(135deg, ${theme.palette.primary.light} 0%, ${theme.palette.primary.main} 100%)`
 
     const baseStyles = {
@@ -115,36 +119,38 @@ export default function LayoutOptions({ options, value, onChange }: Props) {
 
   return (
     <Stack direction="row" spacing={2}>
-      {options.map((option) => {
-        const selected = value === option
+      {options.map(({ label, value: valueCurrent }, index) => {
+        const selected = value === valueCurrent
 
         return (
-          <ButtonBase
-            key={option}
-            onClick={() => onChange(option)}
-            sx={{
-              p: 0,
-              width: 1,
-              height: 56,
-              borderRadius: 1,
-              border: `solid 1px ${alpha(theme.palette.grey[500], 0.08)}`,
-              ...(selected && {
-                bgcolor: 'background.paper',
-                boxShadow: `-24px 8px 24px -4px ${alpha(
-                  theme.palette.mode === 'light'
-                    ? theme.palette.grey[500]
-                    : theme.palette.common.black,
-                  0.08
-                )}`,
-              }),
-              ...(option === 'horizontal' && {
-                flexDirection: 'column',
-              }),
-            }}
-          >
-            {renderNav(option, selected)}
-            {renderContent(selected)}
-          </ButtonBase>
+          <Tooltip key={index} title={label} placement="top">
+            <ButtonBase
+              onClick={() => onChange(valueCurrent)}
+              sx={{
+                p: 0,
+                width: 1,
+                height: 56,
+                borderRadius: 1,
+                border: `solid 1px ${alpha(theme.palette.grey[500], 0.08)}`,
+                ...(selected && {
+                  bgcolor: 'background.paper',
+                  boxShadow: `-24px 8px 24px -4px ${alpha(
+                    theme.palette.mode === 'light'
+                      ? theme.palette.grey[500]
+                      : theme.palette.common.black,
+                    0.08
+                  )}`,
+                }),
+                ...(valueCurrent === 'horizontal' && {
+                  flexDirection: 'column',
+                }),
+              }}
+            >
+              {renderNav(valueCurrent, selected)}
+
+              {renderContent(selected)}
+            </ButtonBase>
+          </Tooltip>
         )
       })}
     </Stack>

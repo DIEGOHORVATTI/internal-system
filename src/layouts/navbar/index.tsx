@@ -34,8 +34,8 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
   const navMini = <RecursiveMiniNavItems navConfig={navConfig} />
   const navMobile = <RecursiveMobileNavItems navConfig={navConfig} />
 
-  const modeLayout = themeLayout === 'vertical'
-  const themeLayoutToggle = () => onToggleLayot(modeLayout ? 'mini' : 'vertical')
+  const modeLayout = themeLayout === 'mini'
+  const themeLayoutToggle = () => onToggleLayot(modeLayout ? 'vertical' : 'mini')
 
   const renderContent = (
     <Stack spacing={2} py={3} alignItems="center">

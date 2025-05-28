@@ -9,14 +9,15 @@ export type SettingsValueProps = {
 }
 
 export type ISettings = SettingsValueProps & {
-  onUpdate: (name: string, value: string | boolean) => void
+  onUpdate: (
+    name: keyof SettingsValueProps,
+    value: SettingsValueProps[keyof SettingsValueProps]
+  ) => void
 
   canReset: boolean
   onReset: VoidFunction
 
   onToggleLayot: (themeLayout: SettingsValueProps['themeLayout']) => void
-  onPresetsChange: (themeColorPresets: SettingsValueProps['themeColorPresets']) => void
-  onToggleMode: VoidFunction
 
   open: boolean
   onToggle: VoidFunction

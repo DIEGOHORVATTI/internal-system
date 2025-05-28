@@ -32,19 +32,8 @@ export default function SettingsProvider({ children, defaultSettings }: Settings
     [state, update]
   )
 
-  const onToggleMode = useCallback(
-    () => update({ ...state, themeMode: state.themeMode === 'light' ? 'dark' : 'light' }),
-    [state, update]
-  )
-
-  const onPresetsChange = useCallback(
-    (themeColorPresets: SettingsValueProps['themeColorPresets']) =>
-      update({ ...state, themeColorPresets }),
-    [state, update]
-  )
-
   const onUpdate = useCallback(
-    (name: string, value: string | boolean) => {
+    (name: keyof SettingsValueProps, value: SettingsValueProps[keyof SettingsValueProps]) => {
       update({
         ...state,
         [name]: value,
@@ -59,9 +48,7 @@ export default function SettingsProvider({ children, defaultSettings }: Settings
     () => ({
       ...state,
       onUpdate,
-      // Settings Theme
-      onPresetsChange,
-      onToggleMode,
+
       onToggleLayot,
       // Reset
       canReset,
@@ -71,18 +58,7 @@ export default function SettingsProvider({ children, defaultSettings }: Settings
       onToggle: onToggleDrawer,
       onClose: onCloseDrawer,
     }),
-    [
-      state,
-      onUpdate,
-      canReset,
-      reset,
-      openDrawer,
-      onToggleLayot,
-      onPresetsChange,
-      onToggleDrawer,
-      onCloseDrawer,
-      onToggleMode,
-    ]
+    [state, onUpdate, canReset, reset, openDrawer, onToggleLayot, onToggleDrawer, onCloseDrawer]
   )
 
   return <SettingsContext.Provider value={memoizedValue}>{children}</SettingsContext.Provider>

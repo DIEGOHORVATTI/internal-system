@@ -4,6 +4,7 @@ import ThemeProvider from '@/theme'
 import NavBar from '@/layouts/navbar'
 import AuthGuard from '@/guards/auth-guard'
 import { navConfig } from '@/routes/nav-config'
+import SettingsDrawer from '@/components/settings'
 import AuthProvider from '@/contexts/auth-provider'
 import extractRoutes from '@/shared/extract-routes'
 import SuspenseProvider from '@/components/suspense'
@@ -32,6 +33,8 @@ export default function App() {
               <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
                 <SuspenseProvider>
                   <AuthGuard>
+                    <SettingsDrawer />
+
                     <Routes>
                       <Route path={ROUTES.auth.login} element={<PageAuthLogin />} />
 
