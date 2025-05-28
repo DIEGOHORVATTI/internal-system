@@ -1,7 +1,7 @@
 import { lazy } from 'react'
+import NavBar from '@/layouts'
 import { ROUTES } from '@/routes'
 import ThemeProvider from '@/theme'
-import NavBar from '@/layouts'
 import AuthGuard from '@/guards/auth-guard'
 import { navConfig } from '@/routes/nav-config'
 import SettingsDrawer from '@/components/settings'

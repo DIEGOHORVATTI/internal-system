@@ -13,6 +13,7 @@
     "@mui/system": "^5.17.1",
     "@mui/x-date-pickers": "^6.20.2",
     "@tanstack/react-virtual": "^3.13.9",
+    "date-fns": "^4.1.0",
     "dayjs": "^1.11.13",
     "framer-motion": "^10.18.0",
     "lodash": "^4.17.21",

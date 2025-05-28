@@ -10,6 +10,7 @@ import useSettings from '@/hooks/use-settings'
 import useOffSetTop from '@/hooks/use-off-set-top'
 import useResponsive from '@/hooks/use-responsive'
 
+import Stack from '@mui/material/Stack'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 // @mui
@@ -17,15 +18,7 @@ import { useTheme } from '@mui/material/styles'
 import IconButton from '@mui/material/IconButton'
 
 import SettingsButton from './components/settings-button'
-
-/* import {
-  Searchbar,
-  AccountPopover,
-  SettingsButton,
-  LanguagePopover,
-  ContactsPopover,
-  NotificationsPopover,
-} from '../_common' */
+import NotificationsPopover from './components/notifications-popover'
 
 export default function Header() {
   const theme = useTheme()
@@ -33,8 +26,6 @@ export default function Header() {
   const settings = useSettings()
 
   const isNavHorizontal = settings.themeLayout === 'horizontal'
-
-  const isNavMini = settings.themeLayout === 'mini'
 
   const lgUp = useResponsive('up', 'lg')
 
@@ -52,9 +43,7 @@ export default function Header() {
         </IconButton>
       )}
 
-      <SettingsButton />
-
-      {/* <Searchbar />
+      {/* <Searchbar /> */}
 
       <Stack
         flexGrow={1}
@@ -63,16 +52,14 @@ export default function Header() {
         justifyContent="flex-end"
         spacing={{ xs: 0.5, sm: 1 }}
       >
-        <LanguagePopover />
-
         <NotificationsPopover />
 
-        <ContactsPopover />
+        {/* <ContactsPopover /> */}
 
         <SettingsButton />
 
-        <AccountPopover />
-      </Stack> */}
+        {/* <AccountPopover /> */}
+      </Stack>
     </>
   )
 
