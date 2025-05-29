@@ -3,6 +3,7 @@ import type { IUser } from '@/types/IUser'
 import { PATHS } from '@/routes/paths'
 import useRouter from '@/hooks/use-router'
 import { decodeJwt } from '@/shared/decode-jwt'
+import { useBoolean } from '@/hooks/use-boolean'
 import { STORAGE_KEYS } from '@/constants/config'
 import { useLocalStorage } from '@/hooks/use-local-storage'
 import { useMemo, useEffect, useCallback, createContext } from 'react'
@@ -12,6 +13,7 @@ export type IAuthContext = {
   login: (credentials: { email: string; password: string }) => Promise<void>
   logout: () => void
   isAuthenticated: boolean
+  isInitialized: boolean
 }
 
 export const AuthContext = createContext({} as IAuthContext)
@@ -35,6 +37,8 @@ const removeCookie = (name: string) => {
 export default function AuthProvider({ children }: React.PropsWithChildren) {
   const { replaceRoute } = useRouter()
 
+  const initialize = useBoolean(true)
+
   const {
     state: user,
     update,
@@ -42,6 +46,8 @@ export default function AuthProvider({ children }: React.PropsWithChildren) {
   } = useLocalStorage<IUser | null>(STORAGE_KEYS.USER_TOKEN, null)
 
   useEffect(() => {
+    initialize.onTrue()
+
     const token = getCookie(STORAGE_KEYS.USER_TOKEN)
 
     if (token && !user) {
@@ -50,7 +56,9 @@ export default function AuthProvider({ children }: React.PropsWithChildren) {
         update(decodedUser)
       }
     }
-  }, [update, user])
+
+    initialize.onFalse()
+  }, [initialize, update, user])
 
   const login = useCallback(
     async ({ email, password }: { email: string; password: string }) => {
@@ -93,9 +101,10 @@ export default function AuthProvider({ children }: React.PropsWithChildren) {
       user,
       login,
       logout,
+      isInitialized: !initialize.value,
       isAuthenticated: !!user,
     }),
-    [user, login, logout]
+    [user, login, logout, initialize.value]
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
