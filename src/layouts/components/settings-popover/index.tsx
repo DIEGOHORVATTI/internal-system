@@ -13,8 +13,6 @@ export default function SettingsPopover({ open }: Props) {
 
   return (
     <>
-      <SettingsDrawer />
-
       <ButtonCollapse
         open={open}
         active={settings.open}
@@ -27,6 +25,8 @@ export default function SettingsPopover({ open }: Props) {
       >
         <Iconify icon="solar:settings-bold-duotone" />
       </ButtonCollapse>
+
+      <SettingsDrawer />
     </>
   )
 }
