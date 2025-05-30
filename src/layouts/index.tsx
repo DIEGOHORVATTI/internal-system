@@ -2,7 +2,7 @@ import type { Navigation } from '@/routes/nav-config'
 
 import Logo from '@/components/logo'
 import Iconify from '@/components/iconify'
-import { BREAKPOINT_MOBILE } from '@/config'
+import { BREAKPOINT_MOBILE } from '@/constants/config'
 import useSettings from '@/hooks/use-settings'
 
 import Stack from '@mui/material/Stack'

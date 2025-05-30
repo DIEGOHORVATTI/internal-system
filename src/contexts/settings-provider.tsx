@@ -4,7 +4,7 @@ import isEqual from 'lodash/isEqual'
 import { useLocalStorage } from '@/hooks/use-local-storage'
 import { useMemo, useState, useCallback, createContext } from 'react'
 
-import { LOCAL_STORAGE } from '../config'
+import { LOCAL_STORAGE } from '../constants/config'
 
 type SettingsProviderProps = {
   children: React.ReactNode

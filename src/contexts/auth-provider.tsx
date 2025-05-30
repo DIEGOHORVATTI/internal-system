@@ -4,7 +4,7 @@ import { PATHS } from '@/routes/paths'
 import useRouter from '@/hooks/use-router'
 import { decodeJwt } from '@/shared/decode-jwt'
 import { useBoolean } from '@/hooks/use-boolean'
-import { STORAGE_KEYS } from '@/constants/config'
+import { LOCAL_STORAGE } from '@/constants/config'
 import { useLocalStorage } from '@/hooks/use-local-storage'
 import { useMemo, useEffect, useCallback, createContext } from 'react'
 
@@ -43,12 +43,12 @@ export default function AuthProvider({ children }: React.PropsWithChildren) {
     state: user,
     update,
     remove,
-  } = useLocalStorage<IUser | null>(STORAGE_KEYS.USER_TOKEN, null)
+  } = useLocalStorage<IUser | null>(LOCAL_STORAGE.USER_TOKEN, null)
 
   useEffect(() => {
     initialize.onTrue()
 
-    const token = getCookie(STORAGE_KEYS.USER_TOKEN)
+    const token = getCookie(LOCAL_STORAGE.USER_TOKEN)
 
     if (token && !user) {
       const decodedUser = decodeJwt<IUser>(token)
@@ -83,14 +83,14 @@ export default function AuthProvider({ children }: React.PropsWithChildren) {
       if (!decodedUser) throw new Error('Invalid token')
 
       // Set cookie with token (7 days expiration)
-      setCookie(STORAGE_KEYS.USER_TOKEN, mockToken, 7)
+      setCookie(LOCAL_STORAGE.USER_TOKEN, mockToken, 7)
       update(decodedUser)
     },
     [update]
   )
 
   const logout = useCallback(() => {
-    removeCookie(STORAGE_KEYS.USER_TOKEN)
+    removeCookie(LOCAL_STORAGE.USER_TOKEN)
     remove()
 
     replaceRoute(PATHS.auth.login)

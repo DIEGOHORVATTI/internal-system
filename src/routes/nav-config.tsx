@@ -2,9 +2,9 @@ import { lazy } from 'react'
 
 import { PATHS } from './paths'
 
-const Login = lazy(() => import('@/pages/auth/login'))
-const Page404 = lazy(() => import('@/pages/error/404'))
-const Home = lazy(() => import('@/pages/home'))
+const Login = lazy(() => import('@/features/auth/pages/login'))
+const Page404 = lazy(() => import('@/features/error/pages/404'))
+const Home = lazy(() => import('@/features/home/pages/home'))
 
 export type Navigation = {
   kind: 'item' | 'header' | 'divider' | 'hidden'

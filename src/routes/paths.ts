@@ -27,3 +27,5 @@ export const PATHS = {
     register: `${ROOTS.AUTH}/register`,
   },
 }
+
+export const paths = PATHS
