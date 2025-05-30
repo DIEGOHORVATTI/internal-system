@@ -58,7 +58,7 @@ export function ProfileCover({
               mx: 'auto',
               width: { xs: 64, md: 128 },
               height: { xs: 64, md: 128 },
-              border: `solid 2px ${theme.vars.palette.common.white}`,
+              border: `solid 2px ${theme.palette.common.white}`,
             }),
           ]}
         >

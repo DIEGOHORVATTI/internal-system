@@ -45,7 +45,12 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
 
       <AccountPopover open={modeLayout} />
 
-      <Stack spacing={1} direction="row" alignItems="center" justifyContent="center">
+      <Stack
+        spacing={1}
+        direction={modeLayout ? 'column' : 'row'}
+        alignItems="center"
+        justifyContent="center"
+      >
         <NotificationsPopover open={modeLayout} />
 
         <SettingsPopover open={modeLayout} />

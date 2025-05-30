@@ -77,7 +77,7 @@ export default function RecursiveMobileNavItems({ navConfig = [] }: Props) {
                 {item.icon && <Iconify icon={item.icon} />}
               </ListItemIcon>
 
-              <ListItemText primary={item.title} primaryTypographyProps={{ noWrap: true }} />
+              <ListItemText primary={item.title} slotProps={{ primary: { noWrap: true } }} />
 
               {hasChildren && (
                 <Iconify
