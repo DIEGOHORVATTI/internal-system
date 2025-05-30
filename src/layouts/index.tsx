@@ -66,7 +66,7 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
       <Box
         sx={{
           width: 1,
-          height: 'calc(100vh - 200px)',
+          height: `calc(100vh - ${isDesktopModeMini ? 300 : 200}px)`,
           overflow: 'auto',
         }}
       >
