@@ -1,10 +1,10 @@
 import type { ListItemProps } from '@mui/material/ListItem'
 import type { ListItemTextProps } from '@mui/material/ListItemText'
 
-import ListItem from '@mui/material/ListItem'
-import { ListItemButton } from '@mui/material'
+import Stack from '@mui/material/Stack'
 import ListItemText from '@mui/material/ListItemText'
 import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemButton from '@mui/material/ListItemButton'
 
 type Props = ListItemProps & {
   open: boolean
@@ -16,12 +16,14 @@ type Props = ListItemProps & {
 
 export default function ButtonCollapse({ open, active, slotProps, children, ...props }: Props) {
   return (
-    <ListItem
-      component={ListItemButton}
-      disablePadding
+    <ListItemButton
+      component={Stack}
+      direction="row"
+      spacing={2}
       {...props}
       sx={{
         ...props.sx,
+        width: 1,
         borderRadius: 1,
         bgcolor: 'background.paper',
         ...(open && {
@@ -35,9 +37,9 @@ export default function ButtonCollapse({ open, active, slotProps, children, ...p
         }),
       }}
     >
-      <ListItemIcon>{children}</ListItemIcon>
+      <ListItemIcon sx={{ m: 0 }}>{children}</ListItemIcon>
 
       {!open && <ListItemText {...slotProps?.listItemText} />}
-    </ListItem>
+    </ListItemButton>
   )
 }

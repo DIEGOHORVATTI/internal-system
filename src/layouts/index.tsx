@@ -5,8 +5,8 @@ import Iconify from '@/components/iconify'
 import useSettings from '@/hooks/use-settings'
 import { BREAKPOINT_MOBILE } from '@/constants/config'
 
-import { Box } from '@mui/material'
 import Stack from '@mui/material/Stack'
+import { Box, Divider } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import Container from '@mui/material/Container'
 import IconButton from '@mui/material/IconButton'
@@ -39,6 +39,9 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
   const modeLayout = themeLayout === 'mini'
   const themeLayoutToggle = () => onToggleLayot(modeLayout ? 'vertical' : 'mini')
 
+  const isDesktopModeMini = isDesktop && modeLayout
+  const isDesktopMode = isDesktop && !modeLayout
+
   const renderContent = (
     <Stack justifyContent="center" spacing={1} alignItems="center" px={1} py={2}>
       <Logo showTitle={!modeLayout} />
@@ -56,6 +59,10 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
         <SettingsPopover open={modeLayout} />
       </Stack>
 
+      {isDesktopModeMini && (
+        <Divider orientation="horizontal" flexItem sx={{ borderStyle: 'dashed' }} />
+      )}
+
       <Box
         sx={{
           width: 1,
@@ -65,9 +72,9 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
       >
         {isMobile && navMobile}
 
-        {isDesktop && modeLayout && navMini}
+        {isDesktopModeMini && navMini}
 
-        {isDesktop && !modeLayout && navVertical}
+        {isDesktopMode && navVertical}
       </Box>
     </Stack>
   )
