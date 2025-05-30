@@ -1,4 +1,4 @@
-import type { ISettings, SettingsValueProps } from '@/components/settings/types'
+import type { ISettings, SettingsValueProps } from '@/layouts/components/settings-popover/types'
 
 import isEqual from 'lodash/isEqual'
 import { useLocalStorage } from '@/hooks/use-local-storage'

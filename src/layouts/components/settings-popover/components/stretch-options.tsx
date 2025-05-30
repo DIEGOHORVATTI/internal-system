@@ -5,7 +5,7 @@ import { alpha } from '@mui/material/styles'
 import ButtonBase from '@mui/material/ButtonBase'
 
 //
-import Iconify from '../../iconify'
+import Iconify from '../../../../components/iconify'
 
 // ----------------------------------------------------------------------
 

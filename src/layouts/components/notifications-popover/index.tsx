@@ -139,24 +139,28 @@ export default function NotificationsPopover({ open }: Props) {
         onClick={drawer.onTrue}
         slotProps={{
           listItemText: {
-            primary: 'Notifications',
+            secondary: 'Notifications',
           },
         }}
       >
         <Badge badgeContent={totalUnRead} color="error">
-          <Iconify icon="solar:bell-bing-bold-duotone" size={2.5} />
+          <Iconify icon="solar:bell-bing-bold-duotone" />
         </Badge>
       </ButtonCollapse>
 
       <Drawer
         open={drawer.value}
         onClose={drawer.onFalse}
+        variant="temporary"
         anchor="right"
         slotProps={{
           backdrop: { invisible: true },
-        }}
-        PaperProps={{
-          sx: { width: 1, maxWidth: 420 },
+          paper: {
+            sx: {
+              width: smUp ? 420 : '100%',
+              maxWidth: 420,
+            },
+          },
         }}
       >
         {renderHead}

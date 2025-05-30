@@ -1,11 +1,12 @@
-import type { BoxProps, ListItemTextProps } from '@mui/material'
+import type { ListItemProps } from '@mui/material/ListItem'
+import type { ListItemTextProps } from '@mui/material/ListItemText'
 
-import Stack from '@mui/material/Stack'
+import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemButton from '@mui/material/ListItemButton'
 
-import { ContainerButton } from './styles'
-
-type Props = BoxProps & {
+type Props = ListItemProps & {
   open: boolean
   active: boolean
   slotProps?: {
@@ -15,14 +16,13 @@ type Props = BoxProps & {
 
 export default function ButtonCollapse({ open, active, slotProps, children, ...props }: Props) {
   return (
-    <Stack
-      component={ContainerButton}
-      direction="row"
-      spacing={2}
-      size={open ? 'medium' : 'small'}
+    <ListItem
+      disablePadding
       {...props}
       sx={{
-        minHeight: 50,
+        ...props.sx,
+        borderRadius: 1,
+        bgcolor: 'background.paper',
         ...(open && {
           alignItems: 'center',
           bgcolor: 'transparent',
@@ -30,23 +30,15 @@ export default function ButtonCollapse({ open, active, slotProps, children, ...p
         }),
         ...(active && {
           color: 'primary.main',
+          bgcolor: 'action.selected',
         }),
       }}
     >
-      {children}
+      <ListItemButton>
+        <ListItemIcon>{children}</ListItemIcon>
 
-      {!open && (
-        <ListItemText
-          {...slotProps?.listItemText}
-          slotProps={{
-            ...slotProps?.listItemText?.slotProps,
-            primary: {
-              noWrap: true,
-            },
-          }}
-          sx={{ width: 1, textAlign: 'center' }}
-        />
-      )}
-    </Stack>
+        <ListItemText {...slotProps?.listItemText} />
+      </ListItemButton>
+    </ListItem>
   )
 }

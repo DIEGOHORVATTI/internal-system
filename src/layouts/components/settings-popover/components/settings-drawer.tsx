@@ -14,15 +14,15 @@ import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import Drawer, { drawerClasses } from '@mui/material/Drawer'
 
-import BaseOptions from './components/base-option'
-import LayoutOptions from './components/layout-options'
-import PresetsOptions from './components/presets-options'
-import StretchOptions from './components/stretch-options'
-import FullScreenOption from './components/fullscreen-option'
+import BaseOptions from './base-option'
+import LayoutOptions from './layout-options'
+import PresetsOptions from './presets-options'
+import StretchOptions from './stretch-options'
+import FullScreenOption from './fullscreen-option'
 
-import type { SettingsValueProps } from './types'
+import type { SettingsValueProps } from '../types'
 
-export type * from './types'
+export type * from '../types'
 
 export default function SettingsDrawer() {
   const theme = useTheme()

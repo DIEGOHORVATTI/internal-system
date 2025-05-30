@@ -61,7 +61,7 @@ export default function AuthProvider({ children }: React.PropsWithChildren) {
   }, [initialize, update, user])
 
   const login = useCallback(
-    async ({ email, password }: { email: string; password: string }) => {
+    async ({ email, password: _password }: { email: string; password: string }) => {
       // Header e payload simulados
       const header = btoa(JSON.stringify({ alg: 'HS256', typ: 'JWT' }))
       const payload = btoa(

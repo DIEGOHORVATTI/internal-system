@@ -17,7 +17,7 @@ import RecursiveMiniNavItems from './mini'
 import RecursiveMobileNavItems from './mobile'
 import RecursiveDesktopNavItems from './desktop'
 import AccountPopover from './components/account-popover'
-import SettingsButton from './components/settings-button'
+import SettingsPopover from './components/settings-popover'
 import NotificationsPopover from './components/notifications-popover'
 
 export type NavbarVerticalProps = React.PropsWithChildren<{
@@ -40,32 +40,24 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
   const themeLayoutToggle = () => onToggleLayot(modeLayout ? 'vertical' : 'mini')
 
   const renderContent = (
-    <Stack justifyContent="space-between" height={1} width={1} px={1} py={2}>
-      <Stack spacing={2} justifyContent="center" alignItems="center">
-        <Logo showTitle={!modeLayout} />
+    <Stack justifyContent="center" spacing={1} alignItems="center" px={1} py={2}>
+      <Logo showTitle={!modeLayout} />
 
-        <AccountPopover open={modeLayout} />
+      <AccountPopover open={modeLayout} />
 
-        <Box
-          sx={{
-            width: 1,
-            height: 'calc(100vh - 300px)',
-            overflow: 'auto',
-          }}
-        >
-          {isMobile && navMobile}
-
-          {isDesktop && modeLayout && navMini}
-
-          {isDesktop && !modeLayout && navVertical}
-        </Box>
-      </Stack>
-
-      <Stack spacing={1}>
+      <Stack spacing={1} direction="row" alignItems="center" justifyContent="center">
         <NotificationsPopover open={modeLayout} />
 
-        <SettingsButton open={modeLayout} />
+        <SettingsPopover open={modeLayout} />
       </Stack>
+
+      <Box width={1}>
+        {isMobile && navMobile}
+
+        {isDesktop && modeLayout && navMini}
+
+        {isDesktop && !modeLayout && navVertical}
+      </Box>
     </Stack>
   )
 

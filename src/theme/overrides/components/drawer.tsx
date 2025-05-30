@@ -1,10 +1,10 @@
-import type { Theme } from '@mui/material/styles';
-import type { DrawerProps} from '@mui/material/Drawer';
+import type { Theme } from '@mui/material/styles'
+import type { DrawerProps } from '@mui/material/Drawer'
+
+import { paper } from '@/theme/css'
 
 import { alpha } from '@mui/material/styles'
 import { drawerClasses } from '@mui/material/Drawer'
-
-import { paper } from '../../css'
 
 export function drawer(theme: Theme) {
   const lightMode = theme.palette.mode === 'light'
