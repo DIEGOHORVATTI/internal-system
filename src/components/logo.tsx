@@ -49,13 +49,15 @@ export default function Logo({ disabledLink = false, size = 25, showTitle, sx }:
   }
 
   return (
-    <Link
-      component={LinkReact}
-      to="/"
-      sx={{ textDecoration: 'none', '&:hover': { textDecoration: 'none' } }}
-    >
-      {logoContainer}
-    </Link>
+    <Stack alignItems="center">
+      <Link
+        component={LinkReact}
+        to="/"
+        sx={{ textDecoration: 'none', '&:hover': { textDecoration: 'none' } }}
+      >
+        {logoContainer}
+      </Link>
+    </Stack>
   )
 }
 

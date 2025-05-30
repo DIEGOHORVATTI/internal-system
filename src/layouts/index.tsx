@@ -5,7 +5,6 @@ import Iconify from '@/components/iconify'
 import { BREAKPOINT_MOBILE } from '@/config'
 import useSettings from '@/hooks/use-settings'
 
-import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import { useTheme } from '@mui/material/styles'
 import Container from '@mui/material/Container'
@@ -16,8 +15,8 @@ import * as S from './styles'
 import RecursiveMiniNavItems from './mini'
 import RecursiveMobileNavItems from './mobile'
 import RecursiveDesktopNavItems from './desktop'
-import SettingsButton from './header/components/settings-button'
 import AccountPopover from './header/components/account-popover'
+import SettingsButton from './header/components/settings-button'
 import NotificationsPopover from './header/components/notifications-popover'
 
 export type NavbarVerticalProps = React.PropsWithChildren<{
@@ -40,25 +39,23 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
   const themeLayoutToggle = () => onToggleLayot(modeLayout ? 'vertical' : 'mini')
 
   const renderContent = (
-    <Stack spacing={2} pt={2} alignItems="center" height={1}>
-      <Logo showTitle={!modeLayout} />
+    <Stack justifyContent="space-between" height={1} width={1} px={1} py={2}>
+      <Stack spacing={2} justifyContent="center">
+        <Logo showTitle={!modeLayout} />
 
-      <Stack alignItems="center" justifyContent="space-between" width={1} height={1}>
-        <Box width={1} alignItems="center" px={1}>
-          <AccountPopover open={modeLayout} />
+        <AccountPopover open={modeLayout} />
 
-          {isMobile && navMobile}
+        {isMobile && navMobile}
 
-          {isDesktop && modeLayout && navMini}
+        {isDesktop && modeLayout && navMini}
 
-          {isDesktop && !modeLayout && navVertical}
-        </Box>
+        {isDesktop && !modeLayout && navVertical}
+      </Stack>
 
-        <Stack spacing={1} alignItems="center" width={1}>
-          <NotificationsPopover />
+      <Stack spacing={1} width={1}>
+        <NotificationsPopover open={modeLayout} />
 
-          <SettingsButton />
-        </Stack>
+        <SettingsButton open={modeLayout} />
       </Stack>
     </Stack>
   )

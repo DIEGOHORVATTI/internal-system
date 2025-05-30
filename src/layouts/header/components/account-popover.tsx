@@ -17,9 +17,9 @@ import Divider from '@mui/material/Divider'
 // @mui
 import MenuItem from '@mui/material/MenuItem'
 import Typography from '@mui/material/Typography'
-import { Avatar, IconButton, ListItemText } from '@mui/material'
+import { Avatar, IconButton } from '@mui/material'
 
-import { ContainerAvatar } from './styles'
+import ButtonCollapse from './button-collapse'
 
 const OPTIONS = [
   {
@@ -68,29 +68,21 @@ export default function AccountPopover({ open }: Props) {
 
   return (
     <>
-      <ContainerAvatar
+      <ButtonCollapse
+        open={open}
+        active={!!popover.open}
         onClick={popover.onOpen}
-        size={open ? 'medium' : 'small'}
-        sx={{
-          ...(open && {
-            alignItems: 'center',
-            bgcolor: 'transparent',
-            '&:hover': { bgcolor: 'transparent' },
-          }),
+        slotProps={{
+          listItemText: {
+            primary: user?.displayName,
+            secondary: user?.email,
+          },
         }}
       >
         <IconButton onClick={popover.onOpen} color="inherit">
           <Avatar src={user?.photoURL} alt={user?.displayName} />
         </IconButton>
-
-        <ListItemText
-          primary={user?.displayName}
-          secondary={user?.email}
-          primaryTypographyProps={{ variant: 'subtitle2', noWrap: true }}
-          secondaryTypographyProps={{ variant: 'body2', noWrap: true, color: 'text.secondary' }}
-          sx={{ width: 1, textAlign: 'center' }}
-        />
-      </ContainerAvatar>
+      </ButtonCollapse>
 
       <CustomPopover
         hiddenArrow

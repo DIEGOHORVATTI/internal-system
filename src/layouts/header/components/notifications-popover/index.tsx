@@ -10,7 +10,6 @@ import { useState, useCallback } from 'react'
 import { useBoolean } from '@/hooks/use-boolean'
 import useResponsive from '@/hooks/use-responsive'
 
-// @mui
 import Tab from '@mui/material/Tab'
 import Box from '@mui/material/Box'
 import Tabs from '@mui/material/Tabs'
@@ -24,11 +23,8 @@ import Tooltip from '@mui/material/Tooltip'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 
-//
+import ButtonCollapse from '../button-collapse'
 import NotificationItem from './notification-item'
-import IconButtonAnimate from '../../../../components/icon-button-animate'
-
-// ----------------------------------------------------------------------
 
 const TABS = [
   {
@@ -48,7 +44,10 @@ const TABS = [
   },
 ]
 
-export default function NotificationsPopover() {
+type Props = {
+  open: boolean
+}
+export default function NotificationsPopover({ open }: Props) {
   const drawer = useBoolean()
 
   const smUp = useResponsive('up', 'sm')
@@ -134,11 +133,22 @@ export default function NotificationsPopover() {
 
   return (
     <>
-      <IconButtonAnimate color={drawer.value ? 'primary' : 'default'} onClick={drawer.onTrue}>
-        <Badge badgeContent={totalUnRead} color="error">
-          <Iconify icon="solar:bell-bing-bold-duotone" width={24} />
-        </Badge>
-      </IconButtonAnimate>
+      <ButtonCollapse
+        open={open}
+        active={drawer.value}
+        onClick={drawer.onTrue}
+        slotProps={{
+          listItemText: {
+            primary: 'Notifications',
+          },
+        }}
+      >
+        <IconButton onClick={drawer.onTrue} color={drawer.value ? 'primary' : 'inherit'}>
+          <Badge badgeContent={totalUnRead} color="error">
+            <Iconify icon="solar:bell-bing-bold-duotone" width={24} />
+          </Badge>
+        </IconButton>
+      </ButtonCollapse>
 
       <Drawer
         open={drawer.value}
