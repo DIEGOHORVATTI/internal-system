@@ -12,12 +12,12 @@ import { useMockedUser } from '@/hooks/use-mocked-user'
 import CustomPopover from '@/components/custom-popover'
 
 import Box from '@mui/material/Box'
+import { Avatar } from '@mui/material'
 import Stack from '@mui/material/Stack'
 import Divider from '@mui/material/Divider'
 // @mui
 import MenuItem from '@mui/material/MenuItem'
 import Typography from '@mui/material/Typography'
-import { Avatar, IconButton } from '@mui/material'
 
 import ButtonCollapse from './button-collapse'
 
@@ -79,9 +79,7 @@ export default function AccountPopover({ open }: Props) {
           },
         }}
       >
-        <IconButton onClick={popover.onOpen} color="inherit">
-          <Avatar src={user?.photoURL} alt={user?.displayName} />
-        </IconButton>
+        <Avatar src={user?.photoURL} alt={user?.displayName} />
       </ButtonCollapse>
 
       <CustomPopover

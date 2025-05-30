@@ -1,17 +1,12 @@
-import type { IconButtonProps } from '@mui/material'
-
-import IconButtonAnimate from '@/components/icon-button-animate'
-
 import { styled } from '@mui/material/styles'
+import { IconButton, type IconButtonProps } from '@mui/material'
 
-export const ContainerButton = styled(IconButtonAnimate)<IconButtonProps>(({ theme }) => ({
+export const ContainerButton = styled(IconButton)<IconButtonProps>(({ theme }) => ({
   borderRadius: theme.spacing(1),
   backgroundColor: theme.palette.grey[50012],
   alignItems: 'center',
-  width: '100%',
-  justifyContent: 'left',
-  textAlign: 'left',
   position: 'relative',
+  width: '100%',
   transition: theme.transitions.create('opacity', {
     duration: theme.transitions.duration.shorter,
   }),

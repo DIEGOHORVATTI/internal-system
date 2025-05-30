@@ -1,8 +1,6 @@
 import Iconify from '@/components/iconify'
 import useSettings from '@/hooks/use-settings'
 
-import IconButton from '@mui/material/IconButton'
-
 import ButtonCollapse from './button-collapse'
 
 type Props = {
@@ -23,9 +21,7 @@ export default function SettingsButton({ open }: Props) {
         },
       }}
     >
-      <IconButton onClick={settings.onToggle} color={settings.open ? 'primary' : 'inherit'}>
-        <Iconify icon="solar:settings-bold-duotone" />
-      </IconButton>
+      <Iconify icon="solar:settings-bold-duotone" />
     </ButtonCollapse>
   )
 }

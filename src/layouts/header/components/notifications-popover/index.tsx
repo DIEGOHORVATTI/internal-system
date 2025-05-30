@@ -143,11 +143,9 @@ export default function NotificationsPopover({ open }: Props) {
           },
         }}
       >
-        <IconButton onClick={drawer.onTrue} color={drawer.value ? 'primary' : 'inherit'}>
-          <Badge badgeContent={totalUnRead} color="error">
-            <Iconify icon="solar:bell-bing-bold-duotone" width={24} />
-          </Badge>
-        </IconButton>
+        <Badge badgeContent={totalUnRead} color="error">
+          <Iconify icon="solar:bell-bing-bold-duotone" width={24} />
+        </Badge>
       </ButtonCollapse>
 
       <Drawer

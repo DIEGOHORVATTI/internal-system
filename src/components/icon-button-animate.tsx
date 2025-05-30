@@ -40,7 +40,7 @@ const varLarge: Variants = {
   tap: { scale: 0.99 },
 }
 
-export function AnimateWrap({ size = 'medium', children }: AnimateWrapProp) {
+function AnimateWrap({ size = 'medium', children }: AnimateWrapProp) {
   const variant: Variants = {
     small: varSmall,
     medium: varMedium,

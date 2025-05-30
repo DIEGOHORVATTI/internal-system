@@ -40,7 +40,7 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
 
   const renderContent = (
     <Stack justifyContent="space-between" height={1} width={1} px={1} py={2}>
-      <Stack spacing={2} justifyContent="center">
+      <Stack spacing={2} justifyContent="center" alignItems="center">
         <Logo showTitle={!modeLayout} />
 
         <AccountPopover open={modeLayout} />
@@ -52,7 +52,7 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
         {isDesktop && !modeLayout && navVertical}
       </Stack>
 
-      <Stack spacing={1} width={1}>
+      <Stack spacing={1}>
         <NotificationsPopover open={modeLayout} />
 
         <SettingsButton open={modeLayout} />
