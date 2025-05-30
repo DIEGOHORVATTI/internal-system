@@ -13,7 +13,7 @@ type Props = BoxProps & {
   }
 }
 
-export default function ButtonCollapse({ open, active, children, ...props }: Props) {
+export default function ButtonCollapse({ open, active, slotProps, children, ...props }: Props) {
   return (
     <Stack
       component={ContainerButton}
@@ -36,8 +36,13 @@ export default function ButtonCollapse({ open, active, children, ...props }: Pro
 
       {!open && (
         <ListItemText
-          {...props.slotProps?.listItemText}
-          primaryTypographyProps={{ variant: 'subtitle2', noWrap: true }}
+          {...slotProps?.listItemText}
+          slotProps={{
+            ...slotProps?.listItemText?.slotProps,
+            primary: {
+              noWrap: true,
+            },
+          }}
           sx={{ width: 1, textAlign: 'center' }}
         />
       )}

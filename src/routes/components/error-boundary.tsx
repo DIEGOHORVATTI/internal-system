@@ -4,9 +4,7 @@ import { useRouteError, isRouteErrorResponse } from 'react-router'
 
 import GlobalStyles from '@mui/material/GlobalStyles'
 
-// ----------------------------------------------------------------------
-
-export function ErrorBoundary() {
+export default function ErrorBoundary() {
   const error = useRouteError()
 
   return (
@@ -19,8 +17,6 @@ export function ErrorBoundary() {
     </>
   )
 }
-
-// ----------------------------------------------------------------------
 
 function parseStackTrace(stack?: string) {
   if (!stack) return { filePath: null, functionName: null }
@@ -67,8 +63,6 @@ function renderErrorMessage(error: any) {
 
   return <h1 className={errorBoundaryClasses.title}>Unknown Error</h1>
 }
-
-// ----------------------------------------------------------------------
 
 const errorBoundaryClasses = {
   root: 'error-boundary-root',
