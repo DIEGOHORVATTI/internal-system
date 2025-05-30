@@ -26,7 +26,7 @@ export default function IconButtonAnimate({
 }
 
 const varSmall: Variants = {
-  hover: { scale: 1.1 },
+  hover: { scale: 1.04 },
   tap: { scale: 0.95 },
 }
 
@@ -40,17 +40,15 @@ const varLarge: Variants = {
   tap: { scale: 0.99 },
 }
 
-export function AnimateWrap({ size, children }: AnimateWrapProp) {
-  const isSmall = size === 'small'
-  const isLarge = size === 'large'
+export function AnimateWrap({ size = 'medium', children }: AnimateWrapProp) {
+  const variant: Variants = {
+    small: varSmall,
+    medium: varMedium,
+    large: varLarge,
+  }[size]
 
   return (
-    <Box
-      component={m.div}
-      whileTap="tap"
-      whileHover="hover"
-      variants={(isSmall && varSmall) || (isLarge && varLarge) || varMedium}
-    >
+    <Box component={m.div} whileTap="tap" whileHover="hover" variants={variant}>
       {children}
     </Box>
   )

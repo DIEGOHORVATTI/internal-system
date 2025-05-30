@@ -13,12 +13,13 @@ import CustomPopover from '@/components/custom-popover'
 
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
-import Avatar from '@mui/material/Avatar'
 import Divider from '@mui/material/Divider'
 // @mui
 import MenuItem from '@mui/material/MenuItem'
 import Typography from '@mui/material/Typography'
-import IconButton from '@mui/material/IconButton'
+import { Avatar, IconButton, ListItemText } from '@mui/material'
+
+import { ContainerAvatar } from './styles'
 
 const OPTIONS = [
   {
@@ -35,20 +36,24 @@ const OPTIONS = [
   },
 ]
 
-export default function AccountPopover() {
+type Props = {
+  open: boolean
+}
+
+export default function AccountPopover({ open }: Props) {
   const { navigateTo } = useRouter()
 
   const { user } = useMockedUser()
 
   const { logout } = useAuth()
 
-  const { open, onClose, onOpen } = usePopover()
+  const popover = usePopover()
 
   const handleLogout = async () => {
     try {
       await logout()
 
-      onClose()
+      popover.onClose()
     } catch (error) {
       console.error(error)
       enqueueSnackbar('Unable to logout!', { variant: 'error' })
@@ -56,18 +61,43 @@ export default function AccountPopover() {
   }
 
   const handleClickItem = (path: string) => {
-    onClose()
+    popover.onClose()
 
     navigateTo(path)
   }
 
   return (
     <>
-      <IconButton onClick={onOpen}>
-        <Avatar src={user?.photoURL} alt={user?.displayName} />
-      </IconButton>
+      <ContainerAvatar
+        onClick={popover.onOpen}
+        size={open ? 'medium' : 'small'}
+        sx={{
+          ...(open && {
+            alignItems: 'center',
+            bgcolor: 'transparent',
+            '&:hover': { bgcolor: 'transparent' },
+          }),
+        }}
+      >
+        <IconButton onClick={popover.onOpen} color="inherit">
+          <Avatar src={user?.photoURL} alt={user?.displayName} />
+        </IconButton>
 
-      <CustomPopover hiddenArrow open={open} onClose={onClose} sx={{ width: 200, p: 0 }}>
+        <ListItemText
+          primary={user?.displayName}
+          secondary={user?.email}
+          primaryTypographyProps={{ variant: 'subtitle2', noWrap: true }}
+          secondaryTypographyProps={{ variant: 'body2', noWrap: true, color: 'text.secondary' }}
+          sx={{ width: 1, textAlign: 'center' }}
+        />
+      </ContainerAvatar>
+
+      <CustomPopover
+        hiddenArrow
+        open={popover.open}
+        onClose={popover.onClose}
+        sx={{ width: 200, p: 0 }}
+      >
         <Box sx={{ p: 2, pb: 1.5 }}>
           <Typography variant="subtitle2" noWrap>
             {user?.displayName}

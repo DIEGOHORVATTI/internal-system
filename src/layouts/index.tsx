@@ -40,12 +40,12 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
   const themeLayoutToggle = () => onToggleLayot(modeLayout ? 'vertical' : 'mini')
 
   const renderContent = (
-    <Stack spacing={2} alignItems="center" height={1}>
+    <Stack spacing={2} pt={2} alignItems="center" height={1}>
       <Logo showTitle={!modeLayout} />
 
       <Stack alignItems="center" justifyContent="space-between" width={1} height={1}>
         <Box width={1} alignItems="center" px={1}>
-          <AccountPopover />
+          <AccountPopover open={modeLayout} />
 
           {isMobile && navMobile}
 
