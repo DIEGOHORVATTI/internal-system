@@ -2,8 +2,8 @@ import Logo from '@/components/logo'
 
 import { Stack } from '@mui/material'
 
-import { LoginForm } from './LoginForm'
-import { Content, Container } from './styles'
+import { LoginForm } from './components/login-form'
+import { Content, Container } from './components/styles'
 
 export default function Login() {
   return (
