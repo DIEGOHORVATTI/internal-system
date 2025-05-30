@@ -144,7 +144,7 @@ export default function NotificationsPopover({ open }: Props) {
         }}
       >
         <Badge badgeContent={totalUnRead} color="error">
-          <Iconify icon="solar:bell-bing-bold-duotone" width={24} />
+          <Iconify icon="solar:bell-bing-bold-duotone" size={2.5} />
         </Badge>
       </ButtonCollapse>
 

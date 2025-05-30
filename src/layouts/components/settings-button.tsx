@@ -21,7 +21,7 @@ export default function SettingsButton({ open }: Props) {
         },
       }}
     >
-      <Iconify icon="solar:settings-bold-duotone" />
+      <Iconify icon="solar:settings-bold-duotone" size={2.5} />
     </ButtonCollapse>
   )
 }

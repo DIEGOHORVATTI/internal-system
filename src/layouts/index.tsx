@@ -2,9 +2,10 @@ import type { Navigation } from '@/routes/nav-config'
 
 import Logo from '@/components/logo'
 import Iconify from '@/components/iconify'
-import { BREAKPOINT_MOBILE } from '@/constants/config'
 import useSettings from '@/hooks/use-settings'
+import { BREAKPOINT_MOBILE } from '@/constants/config'
 
+import { Box } from '@mui/material'
 import Stack from '@mui/material/Stack'
 import { useTheme } from '@mui/material/styles'
 import Container from '@mui/material/Container'
@@ -15,9 +16,9 @@ import * as S from './styles'
 import RecursiveMiniNavItems from './mini'
 import RecursiveMobileNavItems from './mobile'
 import RecursiveDesktopNavItems from './desktop'
-import AccountPopover from './header/components/account-popover'
-import SettingsButton from './header/components/settings-button'
-import NotificationsPopover from './header/components/notifications-popover'
+import AccountPopover from './components/account-popover'
+import SettingsButton from './components/settings-button'
+import NotificationsPopover from './components/notifications-popover'
 
 export type NavbarVerticalProps = React.PropsWithChildren<{
   navConfig: Array<Navigation>
@@ -45,11 +46,19 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
 
         <AccountPopover open={modeLayout} />
 
-        {isMobile && navMobile}
+        <Box
+          sx={{
+            width: 1,
+            height: 'calc(100vh - 250px)',
+            overflow: 'auto',
+          }}
+        >
+          {isMobile && navMobile}
 
-        {isDesktop && modeLayout && navMini}
+          {isDesktop && modeLayout && navMini}
 
-        {isDesktop && !modeLayout && navVertical}
+          {isDesktop && !modeLayout && navVertical}
+        </Box>
       </Stack>
 
       <Stack spacing={1}>
