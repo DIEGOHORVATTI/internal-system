@@ -1,4 +1,3 @@
-import { m } from 'framer-motion'
 // routes
 import { PATHS } from '@/routes/paths'
 // auth
@@ -8,7 +7,6 @@ import useRouter from '@/hooks/use-router'
 import { enqueueSnackbar } from 'notistack'
 import usePopover from '@/hooks/use-popover'
 // components
-import { varHover } from '@/components/animate'
 // hooks
 import { useMockedUser } from '@/hooks/use-mocked-user'
 import CustomPopover from '@/components/custom-popover'
@@ -18,10 +16,9 @@ import Stack from '@mui/material/Stack'
 import Avatar from '@mui/material/Avatar'
 import Divider from '@mui/material/Divider'
 // @mui
-import { alpha } from '@mui/material/styles'
 import MenuItem from '@mui/material/MenuItem'
-import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
+import IconButton from '@mui/material/IconButton'
 
 const OPTIONS = [
   {
@@ -66,33 +63,11 @@ export default function AccountPopover() {
 
   return (
     <>
-      <IconButton
-        component={m.button}
-        whileTap="tap"
-        whileHover="hover"
-        variants={varHover(1.05)}
-        onClick={onOpen}
-        sx={{
-          width: 40,
-          height: 40,
-          background: (theme) => alpha(theme.palette.grey[500], 0.08),
-          ...(open && {
-            background: 'background.neltral',
-          }),
-        }}
-      >
-        <Avatar
-          src={user?.photoURL}
-          alt={user?.displayName}
-          sx={{
-            width: 36,
-            height: 36,
-            border: (theme) => `solid 2px ${theme.palette.background.default}`,
-          }}
-        />
+      <IconButton onClick={onOpen}>
+        <Avatar src={user?.photoURL} alt={user?.displayName} />
       </IconButton>
 
-      <CustomPopover open={open} onClose={onClose} sx={{ width: 200, p: 0 }}>
+      <CustomPopover hiddenArrow open={open} onClose={onClose} sx={{ width: 200, p: 0 }}>
         <Box sx={{ p: 2, pb: 1.5 }}>
           <Typography variant="subtitle2" noWrap>
             {user?.displayName}

@@ -1,13 +1,11 @@
 'use client'
 
-import { m } from 'framer-motion'
 // components
 import Label from '@/components/label'
 // _mock
 import { _notifications } from '@/_mock'
 import Iconify from '@/components/iconify'
 import { useState, useCallback } from 'react'
-import { varHover } from '@/components/animate'
 // hooks
 import { useBoolean } from '@/hooks/use-boolean'
 import useResponsive from '@/hooks/use-responsive'
@@ -28,6 +26,7 @@ import Typography from '@mui/material/Typography'
 
 //
 import NotificationItem from './notification-item'
+import IconButtonAnimate from '../../../../components/icon-button-animate'
 
 // ----------------------------------------------------------------------
 
@@ -48,8 +47,6 @@ const TABS = [
     count: 10,
   },
 ]
-
-// ----------------------------------------------------------------------
 
 export default function NotificationsPopover() {
   const drawer = useBoolean()
@@ -137,18 +134,11 @@ export default function NotificationsPopover() {
 
   return (
     <>
-      <IconButton
-        component={m.button}
-        whileTap="tap"
-        whileHover="hover"
-        variants={varHover(1.05)}
-        color={drawer.value ? 'primary' : 'default'}
-        onClick={drawer.onTrue}
-      >
+      <IconButtonAnimate color={drawer.value ? 'primary' : 'default'} onClick={drawer.onTrue}>
         <Badge badgeContent={totalUnRead} color="error">
           <Iconify icon="solar:bell-bing-bold-duotone" width={24} />
         </Badge>
-      </IconButton>
+      </IconButtonAnimate>
 
       <Drawer
         open={drawer.value}

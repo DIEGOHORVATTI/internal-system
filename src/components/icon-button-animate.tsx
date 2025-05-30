@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
-import type { IconButtonProps } from '@mui/material';
+import type { Variants } from 'framer-motion'
+import type { IconButtonProps } from '@mui/material'
 
 import { m } from 'framer-motion'
 
@@ -24,17 +25,17 @@ export default function IconButtonAnimate({
   )
 }
 
-const varSmall = {
+const varSmall: Variants = {
   hover: { scale: 1.1 },
   tap: { scale: 0.95 },
 }
 
-const varMedium = {
+const varMedium: Variants = {
   hover: { scale: 1.09 },
   tap: { scale: 0.97 },
 }
 
-const varLarge = {
+const varLarge: Variants = {
   hover: { scale: 1.08 },
   tap: { scale: 0.99 },
 }
@@ -49,9 +50,6 @@ export function AnimateWrap({ size, children }: AnimateWrapProp) {
       whileTap="tap"
       whileHover="hover"
       variants={(isSmall && varSmall) || (isLarge && varLarge) || varMedium}
-      sx={{
-        display: 'inline-flex',
-      }}
     >
       {children}
     </Box>

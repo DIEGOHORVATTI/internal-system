@@ -10,8 +10,6 @@ import { StyledArrow } from './styles'
 
 import type { MenuPopoverProps } from './types'
 
-// ----------------------------------------------------------------------
-
 export default function CustomPopover({
   open,
   children,

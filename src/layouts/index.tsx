@@ -12,11 +12,13 @@ import Container from '@mui/material/Container'
 import IconButton from '@mui/material/IconButton'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
-import Header from './header'
 import * as S from './styles'
 import RecursiveMiniNavItems from './mini'
 import RecursiveMobileNavItems from './mobile'
 import RecursiveDesktopNavItems from './desktop'
+import SettingsButton from './header/components/settings-button'
+import AccountPopover from './header/components/account-popover'
+import NotificationsPopover from './header/components/notifications-popover'
 
 export type NavbarVerticalProps = React.PropsWithChildren<{
   navConfig: Array<Navigation>
@@ -38,16 +40,26 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
   const themeLayoutToggle = () => onToggleLayot(modeLayout ? 'vertical' : 'mini')
 
   const renderContent = (
-    <Stack spacing={2} py={3} alignItems="center">
+    <Stack spacing={2} alignItems="center" height={1}>
       <Logo showTitle={!modeLayout} />
 
-      <Box width={1} px={1}>
-        {isMobile && navMobile}
+      <Stack alignItems="center" justifyContent="space-between" width={1} height={1}>
+        <Box width={1} alignItems="center" px={1}>
+          <AccountPopover />
 
-        {isDesktop && modeLayout && navMini}
+          {isMobile && navMobile}
 
-        {isDesktop && !modeLayout && navVertical}
-      </Box>
+          {isDesktop && modeLayout && navMini}
+
+          {isDesktop && !modeLayout && navVertical}
+        </Box>
+
+        <Stack spacing={1} alignItems="center" width={1}>
+          <NotificationsPopover />
+
+          <SettingsButton />
+        </Stack>
+      </Stack>
     </Stack>
   )
 
@@ -109,16 +121,12 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
         )}
       </S.NavbarVerticalRootStyle>
 
-      <Stack flexGrow={1}>
-        <Header />
-
-        <Container
-          maxWidth={themeStretch ? false : 'lg'}
-          sx={{ flexGrow: 1, py: (theme) => theme.spacing(2), px: (theme) => theme.spacing(4) }}
-        >
-          {children}
-        </Container>
-      </Stack>
+      <Container
+        maxWidth={themeStretch ? false : 'lg'}
+        sx={{ flexGrow: 1, py: (theme) => theme.spacing(2), px: (theme) => theme.spacing(4) }}
+      >
+        {children}
+      </Container>
     </Stack>
   )
 }
