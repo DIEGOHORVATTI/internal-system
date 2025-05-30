@@ -1,12 +1,12 @@
 import type { INotification } from '@/types/INotification'
+// hooks
+import type { UseBooleanProps } from '@/hooks/use-boolean'
 
 // components
 import Label from '@/components/label'
 // _mock
 import Iconify from '@/components/iconify'
 import { useState, useCallback } from 'react'
-// hooks
-import { useBoolean } from '@/hooks/use-boolean'
 import useResponsive from '@/hooks/use-responsive'
 
 import Tab from '@mui/material/Tab'
@@ -14,8 +14,8 @@ import Box from '@mui/material/Box'
 import Tabs from '@mui/material/Tabs'
 import List from '@mui/material/List'
 import Stack from '@mui/material/Stack'
-import Drawer from '@mui/material/Drawer'
 import Button from '@mui/material/Button'
+import Drawer from '@mui/material/Drawer'
 import Divider from '@mui/material/Divider'
 import Tooltip from '@mui/material/Tooltip'
 import IconButton from '@mui/material/IconButton'
@@ -42,18 +42,18 @@ const TABS = [
 ]
 
 type Props = {
+  drawer: UseBooleanProps
   notifications: INotification
   handleMarkAllAsRead: VoidFunction
   totalUnRead: number
 }
 
 export default function NotificationsDrawer({
+  drawer,
   notifications,
   totalUnRead,
   handleMarkAllAsRead,
 }: Props) {
-  const drawer = useBoolean()
-
   const smUp = useResponsive('up', 'sm')
 
   const [currentTab, setCurrentTab] = useState('all')
@@ -124,16 +124,15 @@ export default function NotificationsDrawer({
 
   return (
     <Drawer
+      anchor="right"
       open={drawer.value}
       onClose={drawer.onFalse}
-      variant="temporary"
-      anchor="right"
       slotProps={{
         backdrop: { invisible: true },
         paper: {
           sx: {
-            width: smUp ? 420 : '100%',
-            maxWidth: 420,
+            width: smUp ? 400 : '100%',
+            maxWidth: 400,
           },
         },
       }}

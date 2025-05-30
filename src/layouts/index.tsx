@@ -51,7 +51,13 @@ export default function Navbar({ navConfig, children }: NavbarVerticalProps) {
         <SettingsPopover open={modeLayout} />
       </Stack>
 
-      <Box width={1}>
+      <Box
+        sx={{
+          width: 1,
+          height: 'calc(100vh - 200px)',
+          overflow: 'auto',
+        }}
+      >
         {isMobile && navMobile}
 
         {isDesktop && modeLayout && navMini}

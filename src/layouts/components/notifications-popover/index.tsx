@@ -45,6 +45,7 @@ export default function NotificationsPopover({ open }: Props) {
       </ButtonCollapse>
 
       <NotificationsDrawer
+        drawer={drawer}
         notifications={notifications}
         totalUnRead={totalUnRead}
         handleMarkAllAsRead={handleMarkAllAsRead}

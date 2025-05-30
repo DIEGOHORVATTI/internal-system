@@ -2,9 +2,9 @@ import type { ListItemProps } from '@mui/material/ListItem'
 import type { ListItemTextProps } from '@mui/material/ListItemText'
 
 import ListItem from '@mui/material/ListItem'
+import { ListItemButton } from '@mui/material'
 import ListItemText from '@mui/material/ListItemText'
 import ListItemIcon from '@mui/material/ListItemIcon'
-import ListItemButton from '@mui/material/ListItemButton'
 
 type Props = ListItemProps & {
   open: boolean
@@ -17,6 +17,7 @@ type Props = ListItemProps & {
 export default function ButtonCollapse({ open, active, slotProps, children, ...props }: Props) {
   return (
     <ListItem
+      component={ListItemButton}
       disablePadding
       {...props}
       sx={{
@@ -34,11 +35,9 @@ export default function ButtonCollapse({ open, active, slotProps, children, ...p
         }),
       }}
     >
-      <ListItemButton>
-        <ListItemIcon>{children}</ListItemIcon>
+      <ListItemIcon>{children}</ListItemIcon>
 
-        <ListItemText {...slotProps?.listItemText} />
-      </ListItemButton>
+      {!open && <ListItemText {...slotProps?.listItemText} />}
     </ListItem>
   )
 }
