@@ -1,7 +1,7 @@
 import { NAVBAR, BREAKPOINT_MOBILE } from '@/constants/config'
 
+import { styled } from '@mui/material'
 import Drawer from '@mui/material/Drawer'
-import styled from '@mui/material/styles/styled'
 import IconButton from '@mui/material/IconButton'
 
 type LayoutSettings = {

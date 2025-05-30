@@ -22,6 +22,7 @@ export default function ButtonCollapse({ open, active, slotProps, children, ...p
       size={open ? 'medium' : 'small'}
       {...props}
       sx={{
+        minHeight: 50,
         ...(open && {
           alignItems: 'center',
           bgcolor: 'transparent',
