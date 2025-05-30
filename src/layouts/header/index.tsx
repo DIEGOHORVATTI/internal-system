@@ -1,5 +1,5 @@
 //
-import { HEADER } from '@/config'
+import { HEADER } from '@/constants/config'
 // theme
 import { bgBlur } from '@/theme/css'
 // components

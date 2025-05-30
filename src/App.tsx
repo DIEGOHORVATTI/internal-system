@@ -13,7 +13,7 @@ import SettingsProvider from '@/contexts/settings-provider'
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import MotionLazyProvider from '@/components/animate/motion-lazy-provider'
 
-const PageAuthLogin = lazy(() => import('@/pages/auth/login'))
+const PageAuthLogin = lazy(() => import('@/features/auth/pages/login'))
 
 export default function App() {
   return (

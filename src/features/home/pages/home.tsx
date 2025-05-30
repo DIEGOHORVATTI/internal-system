@@ -1,7 +1,7 @@
-import { Skeleton } from '@mui/material'
-import Grid2 from '@mui/material/Unstable_Grid2'
+import MainContent from '@/components/main-content'
 
-import MainContent from '../components/main-content'
+import Skeleton from '@mui/material/Skeleton'
+import Grid2 from '@mui/material/Unstable_Grid2'
 
 export default function Home() {
   return (
