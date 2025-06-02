@@ -14,6 +14,7 @@ export const PATHS = {
     root: '/blog',
     new: '/blog/new',
     list: '/blog/list',
+    edit: (id: string) => `/blog/edit/${id}`,
     details: (id: string) => `/blog/${id}`,
   },
   comingSoon: '/coming-soon',

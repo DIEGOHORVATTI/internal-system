@@ -10,17 +10,14 @@ import { useState, useCallback } from 'react'
 import MainContent from '@/layouts/main-content'
 import { useSetState } from 'minimal-shared/hooks'
 import RouterLink from '@/routes/components/router-link'
-import CustomBreadcrumbs from '@/components/custom-breadcrumbs'
 
-import Box from '@mui/material/Box'
 import Tab from '@mui/material/Tab'
 import Tabs from '@mui/material/Tabs'
+import { Stack } from '@mui/material'
 import Button from '@mui/material/Button'
 
 import { PostSort } from '../post-sort'
 import { PostListHorizontal } from '../post-list-horizontal'
-
-// ----------------------------------------------------------------------
 
 export default function PostListView() {
   const { posts, postsLoading } = useGetPosts()
@@ -32,79 +29,69 @@ export default function PostListView() {
   const dataFiltered = applyFilter({ inputData: posts, filters: state, sortBy })
 
   const handleFilterPublish = useCallback(
-    (event: React.SyntheticEvent, newValue: string) => {
+    (_event: React.SyntheticEvent, newValue: string) => {
       setState({ publish: newValue })
     },
     [setState]
   )
 
   return (
-    <MainContent>
-      <CustomBreadcrumbs
-        heading="List"
-        links={[
-          { name: 'Dashboard', href: paths.home },
-          { name: 'Blog', href: paths.post.root },
-          { name: 'List' },
-        ]}
-        action={
-          <Button
-            component={RouterLink}
-            href={paths.post.new}
-            variant="contained"
-            startIcon={<Iconify icon="mingcute:add-line" />}
-          >
-            New post
-          </Button>
-        }
-        sx={{ mb: { xs: 3, md: 5 } }}
-      />
+    <MainContent
+      slotProps={{
+        breadcrumbs: {
+          links: [
+            { name: 'Dashboard', href: paths.home },
+            { name: 'Blog', href: paths.post.root },
+            { name: 'List' },
+          ],
+          action: (
+            <Button
+              component={RouterLink}
+              href={paths.post.new}
+              variant="contained"
+              startIcon={<Iconify icon="mingcute:add-line" />}
+            >
+              New post
+            </Button>
+          ),
+        },
+      }}
+    >
+      <Stack direction="row" alignItems="center" justifyContent="space-between">
+        <Tabs value={state.publish} onChange={handleFilterPublish} sx={{ mb: { xs: 3, md: 5 } }}>
+          {['all', 'published', 'draft'].map((tab) => (
+            <Tab
+              key={tab}
+              iconPosition="end"
+              value={tab}
+              label={tab}
+              icon={
+                <Label
+                  variant={((tab === 'all' || tab === state.publish) && 'filled') || 'soft'}
+                  color={(tab === 'published' && 'info') || 'default'}
+                >
+                  {tab === 'all' && posts.length}
+                  {tab === 'published' &&
+                    posts.filter((post) => post.publish === 'published').length}
+                  {tab === 'draft' && posts.filter((post) => post.publish === 'draft').length}
+                </Label>
+              }
+              sx={{ textTransform: 'capitalize' }}
+            />
+          ))}
+        </Tabs>
 
-      <Box
-        sx={{
-          gap: 3,
-          display: 'flex',
-          mb: { xs: 3, md: 5 },
-          justifyContent: 'space-between',
-          flexDirection: { xs: 'column', sm: 'row' },
-          alignItems: { xs: 'flex-end', sm: 'center' },
-        }}
-      >
         <PostSort
           sort={sortBy}
           onSort={(newValue: string) => setSortBy(newValue)}
           sortOptions={POST_SORT_OPTIONS}
         />
-      </Box>
-
-      <Tabs value={state.publish} onChange={handleFilterPublish} sx={{ mb: { xs: 3, md: 5 } }}>
-        {['all', 'published', 'draft'].map((tab) => (
-          <Tab
-            key={tab}
-            iconPosition="end"
-            value={tab}
-            label={tab}
-            icon={
-              <Label
-                variant={((tab === 'all' || tab === state.publish) && 'filled') || 'soft'}
-                color={(tab === 'published' && 'info') || 'default'}
-              >
-                {tab === 'all' && posts.length}
-                {tab === 'published' && posts.filter((post) => post.publish === 'published').length}
-                {tab === 'draft' && posts.filter((post) => post.publish === 'draft').length}
-              </Label>
-            }
-            sx={{ textTransform: 'capitalize' }}
-          />
-        ))}
-      </Tabs>
+      </Stack>
 
       <PostListHorizontal posts={dataFiltered} loading={postsLoading} />
     </MainContent>
   )
 }
-
-// ----------------------------------------------------------------------
 
 type ApplyFilterProps = {
   inputData: IPostItem[]

@@ -5,6 +5,7 @@ import { sub } from 'date-fns'
 import {
   _id,
   _ages,
+  _tags,
   _roles,
   _prices,
   _emails,
@@ -36,6 +37,7 @@ export const _mock = {
   time: (index: number) => sub(new Date(), { days: index, hours: index }),
   boolean: (index: number) => _booleans[index],
   role: (index: number) => _roles[index],
+  tags: (index: number, count: number) => _tags[index].slice(0, count),
   // Text
   taskNames: (index: number) => _taskNames[index],
   postTitle: (index: number) => _postTitles[index],

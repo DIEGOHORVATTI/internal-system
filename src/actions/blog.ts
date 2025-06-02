@@ -5,15 +5,14 @@ import useSWR from 'swr'
 import { useMemo } from 'react'
 import { fetcher, endpoints } from '@/lib/axios'
 
-// ----------------------------------------------------------------------
+import { _blogPosts } from '../_mock'
 
 const swrOptions: SWRConfiguration = {
   revalidateIfStale: false,
+  revalidateOnMount: false,
   revalidateOnFocus: false,
   revalidateOnReconnect: false,
 }
-
-// ----------------------------------------------------------------------
 
 type PostsData = {
   posts: IPostItem[]
@@ -26,7 +25,7 @@ export function useGetPosts() {
 
   const memoizedValue = useMemo(
     () => ({
-      posts: data?.posts || [],
+      posts: [...(data?.posts ?? []), ..._blogPosts],
       postsLoading: isLoading,
       postsError: error,
       postsValidating: isValidating,
@@ -37,8 +36,6 @@ export function useGetPosts() {
 
   return memoizedValue
 }
-
-// ----------------------------------------------------------------------
 
 type PostData = {
   post: IPostItem
@@ -62,8 +59,6 @@ export function useGetPost(title: string) {
   return memoizedValue
 }
 
-// ----------------------------------------------------------------------
-
 type LatestPostsData = {
   latestPosts: IPostItem[]
 }
@@ -86,8 +81,6 @@ export function useGetLatestPosts(title: string) {
 
   return memoizedValue
 }
-
-// ----------------------------------------------------------------------
 
 type SearchResultsData = {
   results: IPostItem[]

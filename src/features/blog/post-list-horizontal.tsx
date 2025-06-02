@@ -8,8 +8,6 @@ import Pagination, { paginationClasses } from '@mui/material/Pagination'
 import { PostItemSkeleton } from './post-skeleton'
 import { PostItemHorizontal } from './post-item-horizontal'
 
-// ----------------------------------------------------------------------
-
 type Props = {
   posts: IPostItem[]
   loading?: boolean
@@ -23,8 +21,8 @@ export function PostListHorizontal({ posts, loading }: Props) {
       <PostItemHorizontal
         key={post.id}
         post={post}
-        detailsHref={paths.dashboard.post.details(post.title)}
-        editHref={paths.dashboard.post.edit(post.title)}
+        detailsHref={paths.post.details(post.title)}
+        editHref={paths.post.edit(post.title)}
       />
     ))
 

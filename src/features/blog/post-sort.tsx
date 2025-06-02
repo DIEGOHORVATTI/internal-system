@@ -7,8 +7,6 @@ import Button from '@mui/material/Button'
 import MenuList from '@mui/material/MenuList'
 import MenuItem from '@mui/material/MenuItem'
 
-// ----------------------------------------------------------------------
-
 type Props = {
   sort: string
   onSort: (newValue: string) => void
@@ -54,7 +52,7 @@ export function PostSort({ sort, sortOptions, onSort }: Props) {
         }
         sx={{ fontWeight: 'fontWeightSemiBold', textTransform: 'capitalize' }}
       >
-        Sort by:
+        Ordenar por:
         <Box component="span" sx={{ ml: 0.5, fontWeight: 'fontWeightBold' }}>
           {sort}
         </Box>

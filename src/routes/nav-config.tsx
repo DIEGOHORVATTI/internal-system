@@ -31,8 +31,10 @@ export const navConfig: Array<Navigation> = [
   },
   {
     kind: 'item',
+    title: 'Home',
+    icon: 'solar:home-bold',
     path: PATHS.home,
-    component: Home,
+    component: PostListView,
   },
   {
     kind: 'header',

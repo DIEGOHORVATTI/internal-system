@@ -54,5 +54,5 @@ export default function BreadcrumbsLink({
     )
   }
 
-  return <Box sx={styles}> {renderContent} </Box>
+  return <Box sx={styles}>{renderContent}</Box>
 }

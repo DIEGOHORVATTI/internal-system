@@ -6,10 +6,11 @@ export type BreadcrumbsLinkProps = {
   icon?: React.ReactElement
 }
 
-export interface CustomBreadcrumbsProps extends BreadcrumbsProps {
-  heading?: string
-  moreLink?: string[]
-  activeLast?: boolean
-  action?: React.ReactNode
-  links: BreadcrumbsLinkProps[]
-}
+export type CustomBreadcrumbsProps = BreadcrumbsProps &
+  Partial<{
+    heading: string
+    moreLink: string[]
+    activeLast: boolean
+    action: React.ReactNode
+    links: Array<BreadcrumbsLinkProps>
+  }>
