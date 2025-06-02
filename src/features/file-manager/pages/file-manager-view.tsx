@@ -1,14 +1,14 @@
 import type { IFile, IFileFilters } from '@/types/file'
 
+import dayjs from 'dayjs'
 import Iconify from '@/components/iconify'
+import { enqueueSnackbar } from 'notistack'
 import { useState, useCallback } from 'react'
-import { toast } from '@/components/snackbar'
-import { DashboardContent } from '@/layouts/dashboard'
+import EmptyContent from '@/components/empty-content'
 import { _allFiles, FILE_TYPE_OPTIONS } from '@/_mock'
+import ConfirmDialog from '@/components/custom-dialog'
 import { fileFormat } from '@/components/file-thumbnail'
-import { EmptyContent } from '@/components/empty-content'
 import { fIsAfter, fIsBetween } from '@/utils/format-time'
-import { ConfirmDialog } from '@/components/custom-dialog'
 import { useBoolean, useSetState } from 'minimal-shared/hooks'
 import { useTable, rowInPage, getComparator } from '@/components/table'
 
@@ -19,13 +19,14 @@ import Typography from '@mui/material/Typography'
 import ToggleButton from '@mui/material/ToggleButton'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 
+import MainContent from '../../../layouts/main-content'
 import { FileManagerTable } from '../file-manager-table'
 import { FileManagerFilters } from '../file-manager-filters'
 import { FileManagerGridView } from '../file-manager-grid-view'
 import { FileManagerFiltersResult } from '../file-manager-filters-result'
 import { FileManagerNewFolderDialog } from '../file-manager-new-folder-dialog'
 
-export function FileManagerView() {
+export default function FileManagerView() {
   const table = useTable({ defaultRowsPerPage: 10 })
 
   const dateRange = useBoolean()
@@ -75,7 +76,9 @@ export function FileManagerView() {
     (id: string) => {
       const deleteRow = tableData.filter((row) => row.id !== id)
 
-      toast.success('Delete success!')
+      enqueueSnackbar('Delete success!', {
+        variant: 'success',
+      })
 
       setTableData(deleteRow)
 
@@ -87,7 +90,9 @@ export function FileManagerView() {
   const handleDeleteItems = useCallback(() => {
     const deleteRows = tableData.filter((row) => !table.selected.includes(row.id))
 
-    toast.success('Delete success!')
+    enqueueSnackbar('Delete success!', {
+      variant: 'success',
+    })
 
     setTableData(deleteRows)
 
@@ -182,7 +187,7 @@ export function FileManagerView() {
 
   return (
     <>
-      <DashboardContent>
+      <MainContent>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <Typography variant="h4">File manager</Typography>
           <Button
@@ -200,7 +205,7 @@ export function FileManagerView() {
         </Stack>
 
         {notFound ? <EmptyContent filled sx={{ py: 10 }} /> : renderList()}
-      </DashboardContent>
+      </MainContent>
 
       {renderNewFilesDialog()}
       {renderConfirmDialog()}
@@ -238,7 +243,9 @@ function applyFilter({ inputData, comparator, filters, dateError }: ApplyFilterP
 
   if (!dateError) {
     if (startDate && endDate) {
-      inputData = inputData.filter((file) => fIsBetween(file.createdAt, startDate, endDate))
+      inputData = inputData.filter((file) =>
+        fIsBetween(file.createdAt, dayjs(startDate).toDate(), dayjs(endDate).toDate())
+      )
     }
   }
 

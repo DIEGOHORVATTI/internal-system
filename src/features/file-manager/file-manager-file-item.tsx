@@ -2,13 +2,13 @@ import type { IFileManager } from '@/types/file'
 import type { CardProps } from '@mui/material/Card'
 
 import Iconify from '@/components/iconify'
+import { enqueueSnackbar } from 'notistack'
 import { useState, useCallback } from 'react'
 import { fData } from '@/utils/format-number'
-import { toast } from '@/components/snackbar'
 import { fDateTime } from '@/utils/format-time'
+import ConfirmDialog from '@/components/custom-dialog'
 import CustomPopover from '@/components/custom-popover'
-import { ConfirmDialog } from '@/components/custom-dialog'
-import { FileThumbnail } from '@/components/file-thumbnail'
+import FileThumbnail from '@/components/file-thumbnail'
 import { useBoolean, usePopover, useCopyToClipboard } from 'minimal-shared/hooks'
 
 import Box from '@mui/material/Box'
@@ -51,7 +51,9 @@ export function FileManagerFileItem({ file, selected, onSelect, onDelete, sx, ..
   }, [])
 
   const handleCopy = useCallback(() => {
-    toast.success('Copied!')
+    enqueueSnackbar('Link copied to clipboard', {
+      variant: 'success',
+    })
     copy(file.url)
   }, [copy, file.url])
 
@@ -110,7 +112,6 @@ export function FileManagerFileItem({ file, selected, onSelect, onDelete, sx, ..
         variant="subtitle2"
         onClick={detailsDrawer.onTrue}
         sx={(theme) => ({
-          ...theme.mixins.maxLine({ line: 2, persistent: theme.typography.subtitle2 }),
           mt: 2,
           mb: 0.5,
           width: 1,
@@ -201,7 +202,7 @@ export function FileManagerFileItem({ file, selected, onSelect, onDelete, sx, ..
       open={menuActions.open}
       anchorEl={menuActions.anchorEl}
       onClose={menuActions.onClose}
-      slotProps={{ arrow: { placement: 'right-top' } }}
+      arrow="right-top"
     >
       <MenuList>
         <MenuItem

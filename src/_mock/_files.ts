@@ -1,6 +1,8 @@
 import { _mock } from './_mock'
 import { _tags } from './assets'
 
+import type { IFile } from '../types/file'
+
 const GB = 1000000000 * 24
 
 const FOLDERS = ['Docs', 'Projects', 'Work', 'Training', 'Sport', 'Foods']
@@ -92,7 +94,7 @@ const shared = (index: number) =>
 export const _folders = FOLDERS.map((name, index) => ({
   id: `${_mock.id(index)}_folder`,
   name,
-  type: 'folder',
+  type: ['folder'],
   url: URLS[index],
   shared: shared(index),
   tags: _tags.slice(0, 5),
@@ -101,6 +103,8 @@ export const _folders = FOLDERS.map((name, index) => ({
   createdAt: _mock.time(index),
   modifiedAt: _mock.time(index),
   isFavorited: _mock.boolean(index + 1),
+  startDate: _mock.time(index), // Ensure this returns a Dayjs instance
+  endDate: _mock.time(index), // Ensure this returns a Dayjs instance
 }))
 
 export const _files = FILES.map((name, index) => ({
@@ -110,10 +114,10 @@ export const _files = FILES.map((name, index) => ({
   shared: shared(index),
   tags: _tags.slice(0, 5),
   size: GB / ((index + 1) * 500),
-  createdAt: _mock.time(index),
-  modifiedAt: _mock.time(index),
+  createdAt: _mock.time(index).valueOf(), // Ensure this matches IDateValue (e.g., number or string)
+  modifiedAt: _mock.time(index).valueOf(), // Ensure this matches IDateValue (e.g., number or string)
   type: `${name.split('.').pop()}`,
   isFavorited: _mock.boolean(index + 1),
 }))
 
-export const _allFiles = [..._folders, ..._files]
+export const _allFiles = [..._folders, ..._files] as Array<IFile>

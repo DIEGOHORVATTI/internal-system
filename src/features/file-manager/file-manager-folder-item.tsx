@@ -1,13 +1,12 @@
 import type { IFolderManager } from '@/types/file'
 import type { CardProps } from '@mui/material/Card'
 
-import { CONFIG } from '@/global-config'
 import Iconify from '@/components/iconify'
+import { enqueueSnackbar } from 'notistack'
 import { useState, useCallback } from 'react'
 import { fData } from '@/utils/format-number'
-import { toast } from '@/components/snackbar'
+import ConfirmDialog from '@/components/custom-dialog'
 import CustomPopover from '@/components/custom-popover'
-import { ConfirmDialog } from '@/components/custom-dialog'
 import { useBoolean, usePopover, useCopyToClipboard } from 'minimal-shared/hooks'
 
 import Box from '@mui/material/Box'
@@ -65,7 +64,8 @@ export function FileManagerFolderItem({
   }, [])
 
   const handleCopy = useCallback(() => {
-    toast.success('Copied!')
+    enqueueSnackbar('Link copied to clipboard')
+
     copy(folder.url)
   }, [copy, folder.url])
 
@@ -112,11 +112,7 @@ export function FileManagerFolderItem({
           sx={{ width: 1, height: 1 }}
         />
       ) : (
-        <Box
-          component="img"
-          src={`${CONFIG.assetsDir}/assets/icons/files/ic-folder.svg`}
-          sx={{ width: 1, height: 1 }}
-        />
+        <Box component="img" src="assets/icons/files/ic-folder.svg" sx={{ width: 1, height: 1 }} />
       )}
     </Box>
   )
@@ -177,7 +173,7 @@ export function FileManagerFolderItem({
       open={menuActions.open}
       anchorEl={menuActions.anchorEl}
       onClose={menuActions.onClose}
-      slotProps={{ arrow: { placement: 'right-top' } }}
+      arrow="right-top"
     >
       <MenuList>
         <MenuItem

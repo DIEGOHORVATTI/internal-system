@@ -1,7 +1,7 @@
 import type { DialogProps } from '@mui/material/Dialog'
 
+import Upload from '@/components/upload'
 import Iconify from '@/components/iconify'
-import { Upload } from '@/components/upload'
 import { useState, useEffect, useCallback } from 'react'
 
 import Box from '@mui/material/Box'

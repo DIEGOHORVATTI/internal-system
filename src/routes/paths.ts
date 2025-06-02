@@ -17,6 +17,13 @@ export const PATHS = {
     edit: (id: string) => `/blog/edit/${id}`,
     details: (id: string) => `/blog/${id}`,
   },
+  fileManager: {
+    root: '/file-manager',
+    new: '/file-manager/new',
+    list: '/file-manager/list',
+    edit: (id: string) => `/file-manager/edit/${id}`,
+    details: (id: string) => `/file-manager/${id}`,
+  },
   comingSoon: '/coming-soon',
   maintenance: '/maintenance',
   pricing: '/pricing',

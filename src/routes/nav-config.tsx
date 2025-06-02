@@ -5,6 +5,7 @@ import { PATHS } from './paths'
 const Login = lazy(() => import('@/features/auth/pages/login'))
 const Page404 = lazy(() => import('@/features/error/pages/404'))
 const Home = lazy(() => import('@/features/home/pages/home'))
+const FileManagerView = lazy(() => import('@/features/file-manager/pages/file-manager-view'))
 const PostListView = lazy(() => import('@/features/blog/pages/post-list-view'))
 
 export type Navigation = {
@@ -35,6 +36,13 @@ export const navConfig: Array<Navigation> = [
     icon: 'solar:home-bold',
     path: PATHS.home,
     component: PostListView,
+  },
+  {
+    kind: 'header',
+    icon: 'solar:file-bold',
+    title: 'Gerenciador de Arquivos',
+    path: PATHS.fileManager.root,
+    component: FileManagerView,
   },
   {
     kind: 'header',

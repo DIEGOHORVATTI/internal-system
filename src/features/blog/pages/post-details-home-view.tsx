@@ -2,10 +2,10 @@ import type { IPostItem } from '@/types/blog'
 
 import { paths } from '@/routes/paths'
 import Iconify from '@/components/iconify'
-import RouterLink from '@/routes/components/router-link'
 import { Markdown } from '@/components/markdown'
+import EmptyContent from '@/components/empty-content'
 import { fShortenNumber } from '@/utils/format-number'
-import { EmptyContent } from '@/components/empty-content'
+import RouterLink from '@/routes/components/router-link'
 import CustomBreadcrumbs from '@/components/custom-breadcrumbs'
 
 import Box from '@mui/material/Box'
