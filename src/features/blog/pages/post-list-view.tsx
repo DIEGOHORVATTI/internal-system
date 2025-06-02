@@ -39,11 +39,7 @@ export default function PostListView() {
     <MainContent
       slotProps={{
         breadcrumbs: {
-          links: [
-            { name: 'Dashboard', href: paths.home },
-            { name: 'Blog', href: paths.post.root },
-            { name: 'List' },
-          ],
+          links: [{ name: 'Home' }],
           action: (
             <Button
               component={RouterLink}
