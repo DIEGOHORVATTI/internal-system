@@ -5,7 +5,7 @@ import type { UseBooleanProps } from '@/hooks/use-boolean'
 // components
 import Label from '@/components/label'
 // _mock
-import Iconify from '@/components/iconify'
+import Iconify from '@/components/Iconify'
 import { useState, useCallback } from 'react'
 import useResponsive from '@/hooks/use-responsive'
 

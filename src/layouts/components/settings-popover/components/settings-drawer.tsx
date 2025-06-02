@@ -1,7 +1,7 @@
 // theme
 import { paper } from '@/theme/css'
 //
-import Iconify from '@/components/iconify'
+import Iconify from '@/components/Iconify'
 import useSettings from '@/hooks/use-settings'
 
 import { Badge } from '@mui/material'

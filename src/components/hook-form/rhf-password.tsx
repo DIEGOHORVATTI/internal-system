@@ -2,7 +2,7 @@ import type { FieldValues } from 'react-hook-form'
 import type { TextFieldProps } from '@mui/material/TextField'
 
 import { useState } from 'react'
-import Iconify from '@/components/iconify'
+import Iconify from '@/components/Iconify'
 
 import IconButton from '@mui/material/IconButton'
 import InputAdornment from '@mui/material/InputAdornment'

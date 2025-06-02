@@ -1,7 +1,7 @@
 import type { Navigation } from '@/routes/nav-config'
 
 import { m } from 'framer-motion'
-import Iconify from '@/components/iconify'
+import Iconify from '@/components/Iconify'
 import { MotionContainer } from '@/components/animate'
 
 import { Stack, Typography } from '@mui/material'

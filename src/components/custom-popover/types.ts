@@ -17,8 +17,7 @@ export type MenuPopoverArrowValue =
   | 'right-center'
   | 'right-bottom'
 
-export interface MenuPopoverProps extends Omit<PopoverProps, 'open'> {
-  open: HTMLElement | null
+export interface MenuPopoverProps extends PopoverProps {
   arrow?: MenuPopoverArrowValue
   hiddenArrow?: boolean
 }

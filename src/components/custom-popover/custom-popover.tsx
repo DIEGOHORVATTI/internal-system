@@ -12,6 +12,7 @@ import type { MenuPopoverProps } from './types'
 
 export default function CustomPopover({
   open,
+  anchorEl,
   children,
   arrow = 'top-right',
   hiddenArrow,
@@ -22,8 +23,8 @@ export default function CustomPopover({
 
   return (
     <Popover
-      open={Boolean(open)}
-      anchorEl={open}
+      open={open}
+      anchorEl={anchorEl}
       anchorOrigin={anchorOrigin as PopoverOrigin}
       transformOrigin={transformOrigin as PopoverOrigin}
       slotProps={{

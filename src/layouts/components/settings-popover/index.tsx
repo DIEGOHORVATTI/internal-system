@@ -1,4 +1,4 @@
-import Iconify from '@/components/iconify'
+import Iconify from '@/components/Iconify'
 import useSettings from '@/hooks/use-settings'
 
 import ButtonCollapse from '../button-collapse'

@@ -1,7 +1,7 @@
 import type { Navigation } from '@/routes/nav-config'
 
 import { useMemo, Fragment } from 'react'
-import Iconify from '@/components/iconify'
+import Iconify from '@/components/Iconify'
 import { Link, useLocation } from 'react-router-dom'
 
 import List from '@mui/material/List'

@@ -1,7 +1,7 @@
 import type { Navigation } from '@/routes/nav-config'
 
 import Logo from '@/components/logo'
-import Iconify from '@/components/iconify'
+import Iconify from '@/components/Iconify'
 import useSettings from '@/hooks/use-settings'
 import { BREAKPOINT_MOBILE } from '@/constants/config'
 
