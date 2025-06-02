@@ -1,7 +1,11 @@
 import type { IPostHero } from '@/types/blog'
 import type { BoxProps } from '@mui/material/Box'
 
+import { _socials } from '@/_mock'
+import Iconify from '@/components/iconify'
+import { fDate } from '@/utils/format-time'
 import { varAlpha } from 'minimal-shared/utils'
+import { TwitterIcon, FacebookIcon, LinkedinIcon, InstagramIcon } from '@/assets/icons'
 
 import Box from '@mui/material/Box'
 import Avatar from '@mui/material/Avatar'
@@ -12,13 +16,6 @@ import Typography from '@mui/material/Typography'
 import ListItemText from '@mui/material/ListItemText'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import SpeedDialAction from '@mui/material/SpeedDialAction'
-
-import { fDate } from '@/utils/format-time'
-
-import { _socials } from '@/_mock'
-import { TwitterIcon, FacebookIcon, LinkedinIcon, InstagramIcon } from '@/assets/icons'
-
-import Iconify from '@/components/iconify'
 
 // ----------------------------------------------------------------------
 

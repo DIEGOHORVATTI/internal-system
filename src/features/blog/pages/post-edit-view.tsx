@@ -1,9 +1,7 @@
 import type { IPostItem } from '@/types/blog'
 
 import { paths } from '@/routes/paths'
-
 import { DashboardContent } from '@/layouts/dashboard'
-
 import CustomBreadcrumbs from '@/components/custom-breadcrumbs'
 
 import { PostNewEditForm } from '../post-new-edit-form'

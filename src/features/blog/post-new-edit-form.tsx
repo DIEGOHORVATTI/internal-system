@@ -1,10 +1,15 @@
 import type { IPostItem } from '@/types/blog'
 
 import { z as zod } from 'zod'
+import { _tags } from '@/_mock'
 import { useCallback } from 'react'
+import { paths } from '@/routes/paths'
 import { useForm } from 'react-hook-form'
+import { useRouter } from '@/routes/hooks'
+import { toast } from '@/components/snackbar'
 import { useBoolean } from 'minimal-shared/hooks'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { Form, Field, schemaHelper } from '@/components/hook-form'
 
 import Box from '@mui/material/Box'
 import Chip from '@mui/material/Chip'
@@ -17,14 +22,6 @@ import CardHeader from '@mui/material/CardHeader'
 import Typography from '@mui/material/Typography'
 import LoadingButton from '@mui/lab/LoadingButton'
 import FormControlLabel from '@mui/material/FormControlLabel'
-
-import { paths } from '@/routes/paths'
-import { useRouter } from '@/routes/hooks'
-
-import { _tags } from '@/_mock'
-
-import { toast } from '@/components/snackbar'
-import { Form, Field, schemaHelper } from '@/components/hook-form'
 
 import { PostDetailsPreview } from './post-details-preview'
 

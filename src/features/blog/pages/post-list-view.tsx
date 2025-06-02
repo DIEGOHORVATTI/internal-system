@@ -7,8 +7,8 @@ import Iconify from '@/components/iconify'
 import { POST_SORT_OPTIONS } from '@/_mock'
 import { useGetPosts } from '@/actions/blog'
 import { useState, useCallback } from 'react'
+import MainContent from '@/layouts/main-content'
 import { useSetState } from 'minimal-shared/hooks'
-import { DashboardContent } from '@/layouts/dashboard'
 import RouterLink from '@/routes/components/router-link'
 import CustomBreadcrumbs from '@/components/custom-breadcrumbs'
 
@@ -23,7 +23,7 @@ import { PostListHorizontal } from '../post-list-horizontal'
 
 // ----------------------------------------------------------------------
 
-export function PostListView() {
+export default function PostListView() {
   const { posts, postsLoading } = useGetPosts()
 
   const [sortBy, setSortBy] = useState('latest')
@@ -40,18 +40,18 @@ export function PostListView() {
   )
 
   return (
-    <DashboardContent>
+    <MainContent>
       <CustomBreadcrumbs
         heading="List"
         links={[
-          { name: 'Dashboard', href: paths.dashboard.root },
-          { name: 'Blog', href: paths.dashboard.post.root },
+          { name: 'Dashboard', href: paths.home },
+          { name: 'Blog', href: paths.post.root },
           { name: 'List' },
         ]}
         action={
           <Button
             component={RouterLink}
-            href={paths.dashboard.post.new}
+            href={paths.post.new}
             variant="contained"
             startIcon={<Iconify icon="mingcute:add-line" />}
           >
@@ -71,7 +71,7 @@ export function PostListView() {
           alignItems: { xs: 'flex-end', sm: 'center' },
         }}
       >
-        <PostSearch redirectPath={(title: string) => paths.dashboard.post.details(title)} />
+        <PostSearch redirectPath={(title: string) => paths.post.details(title)} />
 
         <PostSort
           sort={sortBy}
@@ -103,7 +103,7 @@ export function PostListView() {
       </Tabs>
 
       <PostListHorizontal posts={dataFiltered} loading={postsLoading} />
-    </DashboardContent>
+    </MainContent>
   )
 }
 

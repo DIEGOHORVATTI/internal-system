@@ -1,5 +1,13 @@
 import type { IPostItem } from '@/types/blog'
 
+import { paths } from '@/routes/paths'
+import Iconify from '@/components/iconify'
+import { RouterLink } from '@/routes/components'
+import { Markdown } from '@/components/markdown'
+import { fShortenNumber } from '@/utils/format-number'
+import { EmptyContent } from '@/components/empty-content'
+import CustomBreadcrumbs from '@/components/custom-breadcrumbs'
+
 import Box from '@mui/material/Box'
 import Chip from '@mui/material/Chip'
 import Grid from '@mui/material/Grid2'
@@ -12,16 +20,6 @@ import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import AvatarGroup from '@mui/material/AvatarGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
-
-import { paths } from '@/routes/paths'
-import { RouterLink } from '@/routes/components'
-
-import { fShortenNumber } from '@/utils/format-number'
-
-import Iconify from '@/components/iconify'
-import { Markdown } from '@/components/markdown'
-import { EmptyContent } from '@/components/empty-content'
-import CustomBreadcrumbs from '@/components/custom-breadcrumbs'
 
 import { PostItem } from '../post-item'
 import { PostDetailsSkeleton } from '../post-skeleton'

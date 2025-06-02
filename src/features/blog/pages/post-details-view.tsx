@@ -1,6 +1,14 @@
 import type { IPostItem } from '@/types/blog'
 
+import { paths } from '@/routes/paths'
+import Iconify from '@/components/iconify'
+import { POST_PUBLISH_OPTIONS } from '@/_mock'
+import { RouterLink } from '@/routes/components'
+import { Markdown } from '@/components/markdown'
+import { fShortenNumber } from '@/utils/format-number'
+import { DashboardContent } from '@/layouts/dashboard'
 import { useState, useEffect, useCallback } from 'react'
+import { EmptyContent } from '@/components/empty-content'
 
 import Box from '@mui/material/Box'
 import Chip from '@mui/material/Chip'
@@ -13,18 +21,6 @@ import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import AvatarGroup, { avatarGroupClasses } from '@mui/material/AvatarGroup'
-
-import { paths } from '@/routes/paths'
-import { RouterLink } from '@/routes/components'
-
-import { fShortenNumber } from '@/utils/format-number'
-
-import { POST_PUBLISH_OPTIONS } from '@/_mock'
-import { DashboardContent } from '@/layouts/dashboard'
-
-import Iconify from '@/components/iconify'
-import { Markdown } from '@/components/markdown'
-import { EmptyContent } from '@/components/empty-content'
 
 import { PostDetailsSkeleton } from '../post-skeleton'
 import { PostDetailsHero } from '../post-details-hero'

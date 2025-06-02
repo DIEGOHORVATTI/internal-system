@@ -1,10 +1,15 @@
 import type { IPostItem } from '@/types/blog'
 import type { Theme, SxProps } from '@mui/material/styles'
 
+import { useRouter } from '@/routes/hooks'
+import Iconify from '@/components/iconify'
 import { useState, useCallback } from 'react'
 import parse from 'autosuggest-highlight/parse'
 import match from 'autosuggest-highlight/match'
+import { useSearchPosts } from '@/actions/blog'
+import { RouterLink } from '@/routes/components'
 import { useDebounce } from 'minimal-shared/hooks'
+import { SearchNotFound } from '@/components/search-not-found'
 
 import Avatar from '@mui/material/Avatar'
 import TextField from '@mui/material/TextField'
@@ -12,14 +17,6 @@ import Typography from '@mui/material/Typography'
 import Link, { linkClasses } from '@mui/material/Link'
 import InputAdornment from '@mui/material/InputAdornment'
 import Autocomplete, { autocompleteClasses } from '@mui/material/Autocomplete'
-
-import { useRouter } from '@/routes/hooks'
-import { RouterLink } from '@/routes/components'
-
-import { useSearchPosts } from '@/actions/blog'
-
-import Iconify from '@/components/iconify'
-import { SearchNotFound } from '@/components/search-not-found'
 
 // ----------------------------------------------------------------------
 

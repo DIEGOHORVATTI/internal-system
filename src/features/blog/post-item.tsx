@@ -2,7 +2,13 @@ import type { IPostItem } from '@/types/blog'
 import type { BoxProps } from '@mui/material/Box'
 import type { CardProps } from '@mui/material/Card'
 
+import Image from '@/components/image'
+import Iconify from '@/components/iconify'
+import { fDate } from '@/utils/format-time'
 import { varAlpha } from 'minimal-shared/utils'
+import { RouterLink } from '@/routes/components'
+import { AvatarShape } from '@/assets/illustrations'
+import { fShortenNumber } from '@/utils/format-number'
 
 import Box from '@mui/material/Box'
 import Link from '@mui/material/Link'
@@ -10,16 +16,6 @@ import Card from '@mui/material/Card'
 import Avatar from '@mui/material/Avatar'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
-
-import { RouterLink } from '@/routes/components'
-
-import { fDate } from '@/utils/format-time'
-import { fShortenNumber } from '@/utils/format-number'
-
-import { AvatarShape } from '@/assets/illustrations'
-
-import { Image } from '@/components/image'
-import Iconify from '@/components/iconify'
 
 // ----------------------------------------------------------------------
 

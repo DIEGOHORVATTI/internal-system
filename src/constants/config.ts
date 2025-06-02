@@ -14,4 +14,6 @@ export const LOCAL_STORAGE = {
 
 export const VERSION = version
 
+export const API_SERVER_URL = process.env.API_SERVER_URL || 'http://localhost:3000'
+
 export const BREAKPOINT_MOBILE: Breakpoint = 'sm'

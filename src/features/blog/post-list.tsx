@@ -1,13 +1,12 @@
 import type { IPostItem } from '@/types/blog'
 
+import { paths } from '@/routes/paths'
+import Iconify from '@/components/iconify'
+
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid2'
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
-
-import { paths } from '@/routes/paths'
-
-import Iconify from '@/components/iconify'
 
 import { PostItemSkeleton } from './post-skeleton'
 import { PostItem, PostItemLatest } from './post-item'

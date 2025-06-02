@@ -2,14 +2,12 @@ import type { IPostItem } from '@/types/blog'
 
 import { useState } from 'react'
 import { orderBy } from 'es-toolkit'
+import { paths } from '@/routes/paths'
+import { POST_SORT_OPTIONS } from '@/_mock'
 
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
-
-import { paths } from '@/routes/paths'
-
-import { POST_SORT_OPTIONS } from '@/_mock'
 
 import { PostList } from '../post-list'
 import { PostSort } from '../post-sort'

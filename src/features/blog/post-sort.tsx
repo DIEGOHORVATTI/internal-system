@@ -1,12 +1,11 @@
+import Iconify from '@/components/iconify'
 import { usePopover } from 'minimal-shared/hooks'
+import CustomPopover from '@/components/custom-popover'
 
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import MenuList from '@mui/material/MenuList'
 import MenuItem from '@mui/material/MenuItem'
-
-import Iconify from '@/components/iconify'
-import { CustomPopover } from '@/components/custom-popover'
 
 // ----------------------------------------------------------------------
 

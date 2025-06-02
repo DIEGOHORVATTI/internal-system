@@ -10,6 +10,12 @@ export const PATHS = {
     list: '/users/list',
     profile: (id: string) => `/users/${id}`,
   },
+  post: {
+    root: '/blog',
+    new: '/blog/new',
+    list: '/blog/list',
+    details: (id: string) => `/blog/${id}`,
+  },
   comingSoon: '/coming-soon',
   maintenance: '/maintenance',
   pricing: '/pricing',

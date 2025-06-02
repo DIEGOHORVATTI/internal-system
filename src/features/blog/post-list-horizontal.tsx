@@ -1,9 +1,9 @@
 import type { IPostItem } from '@/types/blog'
 
+import { paths } from '@/routes/paths'
+
 import Box from '@mui/material/Box'
 import Pagination, { paginationClasses } from '@mui/material/Pagination'
-
-import { paths } from '@/routes/paths'
 
 import { PostItemSkeleton } from './post-skeleton'
 import { PostItemHorizontal } from './post-item-horizontal'
