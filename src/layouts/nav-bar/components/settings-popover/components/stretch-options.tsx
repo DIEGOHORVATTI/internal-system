@@ -7,8 +7,6 @@ import ButtonBase from '@mui/material/ButtonBase'
 //
 import Iconify from '../../../../../components/iconify'
 
-// ----------------------------------------------------------------------
-
 type Props = {
   value: boolean
   onChange: VoidFunction

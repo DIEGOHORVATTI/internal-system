@@ -1,8 +1,6 @@
 import { _mock } from './_mock'
 import { _tags } from './assets'
 
-// ----------------------------------------------------------------------
-
 const GB = 1000000000 * 24
 
 const FOLDERS = ['Docs', 'Projects', 'Work', 'Training', 'Sport', 'Foods']
@@ -83,8 +81,6 @@ export const FILE_TYPE_OPTIONS = [
   'photoshop',
   'illustrator',
 ]
-
-// ----------------------------------------------------------------------
 
 const shared = (index: number) =>
   (index === 0 && SHARED_PERSONS.slice(0, 5)) ||

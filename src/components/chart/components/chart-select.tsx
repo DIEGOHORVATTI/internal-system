@@ -10,8 +10,6 @@ import MenuList from '@mui/material/MenuList'
 import MenuItem from '@mui/material/MenuItem'
 import ButtonBase from '@mui/material/ButtonBase'
 
-// ----------------------------------------------------------------------
-
 type ChartSelectProps = Omit<ButtonBaseProps, 'onChange'> & {
   options: string[]
   value: string

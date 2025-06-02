@@ -9,8 +9,6 @@ import { StyledLabel } from './styles'
 
 import type { LabelProps } from './types'
 
-// ----------------------------------------------------------------------
-
 const Label = forwardRef<HTMLSpanElement, LabelProps>(
   ({ children, color = 'default', variant = 'soft', startIcon, endIcon, sx, ...other }, ref) => {
     const theme = useTheme()

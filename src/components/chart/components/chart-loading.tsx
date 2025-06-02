@@ -5,8 +5,6 @@ import Skeleton from '@mui/material/Skeleton'
 
 import type { ChartProps } from '../types'
 
-// ----------------------------------------------------------------------
-
 export type ChartLoadingProps = BoxProps & Pick<ChartProps, 'type'>
 
 export function ChartLoading({ sx, className, type, ...other }: ChartLoadingProps) {

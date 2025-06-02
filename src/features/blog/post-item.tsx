@@ -17,8 +17,6 @@ import Avatar from '@mui/material/Avatar'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
 
-// ----------------------------------------------------------------------
-
 type PostItemProps = CardProps & {
   post: IPostItem
   detailsHref: string
@@ -79,8 +77,6 @@ export function PostItem({ post, detailsHref, sx, ...other }: PostItemProps) {
     </Card>
   )
 }
-
-// ----------------------------------------------------------------------
 
 type PostItemLatestProps = {
   post: IPostItem
@@ -156,8 +152,6 @@ export function PostItemLatest({ post, index, detailsHref }: PostItemLatestProps
     </Card>
   )
 }
-
-// ----------------------------------------------------------------------
 
 type InfoBlockProps = BoxProps & Pick<IPostItem, 'totalViews' | 'totalShares' | 'totalComments'>
 

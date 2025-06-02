@@ -11,8 +11,6 @@ import Button from '@mui/material/Button'
 import { PostItemSkeleton } from './post-skeleton'
 import { PostItem, PostItemLatest } from './post-item'
 
-// ----------------------------------------------------------------------
-
 type Props = {
   posts: IPostItem[]
   loading?: boolean

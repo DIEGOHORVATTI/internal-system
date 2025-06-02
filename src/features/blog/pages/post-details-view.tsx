@@ -28,8 +28,6 @@ import { PostCommentList } from '../post-comment-list'
 import { PostCommentForm } from '../post-comment-form'
 import { PostDetailsToolbar } from '../post-details-toolbar'
 
-// ----------------------------------------------------------------------
-
 type Props = {
   post?: IPostItem
   loading?: boolean

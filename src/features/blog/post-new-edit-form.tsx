@@ -25,8 +25,6 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 
 import { PostDetailsPreview } from './post-details-preview'
 
-// ----------------------------------------------------------------------
-
 export type NewPostSchemaType = zod.infer<typeof NewPostSchema>
 
 export const NewPostSchema = zod.object({
@@ -43,8 +41,6 @@ export const NewPostSchema = zod.object({
   metaTitle: zod.string(),
   metaDescription: zod.string(),
 })
-
-// ----------------------------------------------------------------------
 
 type Props = {
   currentPost?: IPostItem

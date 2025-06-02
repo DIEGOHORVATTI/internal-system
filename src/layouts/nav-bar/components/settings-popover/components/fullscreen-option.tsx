@@ -8,8 +8,6 @@ import ButtonBase from '@mui/material/ButtonBase'
 //
 import SvgColor from '../../../../../components/svg-color'
 
-// ----------------------------------------------------------------------
-
 export default function FullScreenOption() {
   const [fullscreen, setFullscreen] = useState(false)
 

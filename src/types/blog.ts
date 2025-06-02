@@ -1,7 +1,5 @@
 import type { IDateValue } from './common'
 
-// ----------------------------------------------------------------------
-
 export type IPostFilters = {
   publish: string
 }

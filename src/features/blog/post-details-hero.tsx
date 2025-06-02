@@ -17,8 +17,6 @@ import ListItemText from '@mui/material/ListItemText'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import SpeedDialAction from '@mui/material/SpeedDialAction'
 
-// ----------------------------------------------------------------------
-
 export function PostDetailsHero({
   sx,
   title,

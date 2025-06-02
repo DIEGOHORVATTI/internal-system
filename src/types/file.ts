@@ -1,7 +1,5 @@
 import type { IDateValue, IDatePickerControl } from './common'
 
-// ----------------------------------------------------------------------
-
 export type IFileFilters = {
   name: string
   type: string[]

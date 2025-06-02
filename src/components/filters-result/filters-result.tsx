@@ -6,8 +6,6 @@ import Iconify from '@/components/iconify'
 import Button from '@mui/material/Button'
 import { styled } from '@mui/material/styles'
 
-// ----------------------------------------------------------------------
-
 export const chipProps: ChipProps = { size: 'small', variant: 'soft' }
 
 export type FiltersResultProps = React.ComponentProps<'div'> & {
@@ -44,8 +42,6 @@ export function FiltersResult({
     </ResultRoot>
   )
 }
-
-// ----------------------------------------------------------------------
 
 const ResultRoot = styled('div')``
 

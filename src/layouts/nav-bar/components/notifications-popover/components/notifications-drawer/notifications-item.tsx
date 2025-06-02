@@ -14,8 +14,6 @@ import ListItemText from '@mui/material/ListItemText'
 import ListItemAvatar from '@mui/material/ListItemAvatar'
 import ListItemButton from '@mui/material/ListItemButton'
 
-// ----------------------------------------------------------------------
-
 type NotificationItemProps = {
   notification: {
     id: string
@@ -233,8 +231,6 @@ export default function NotificationItem({ notification }: NotificationItemProps
     </ListItemButton>
   )
 }
-
-// ----------------------------------------------------------------------
 
 function reader(data: string) {
   return (

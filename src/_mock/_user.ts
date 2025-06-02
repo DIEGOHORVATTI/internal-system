@@ -4,8 +4,6 @@ import { countries } from '@/assets/data'
 //
 import { _mock } from './_mock'
 
-// ----------------------------------------------------------------------
-
 export const USER_STATUS_OPTIONS = [
   { value: 'active', label: 'Active' },
   { value: 'pending', label: 'Pending' },

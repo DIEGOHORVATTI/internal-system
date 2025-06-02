@@ -9,8 +9,6 @@ import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import LinearProgress from '@mui/material/LinearProgress'
 
-// ----------------------------------------------------------------------
-
 type Props = CardProps & {
   title: string
   value: number

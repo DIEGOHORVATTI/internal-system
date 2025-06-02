@@ -13,8 +13,6 @@ import MenuItem from '@mui/material/MenuItem'
 import IconButton from '@mui/material/IconButton'
 import LoadingButton from '@mui/lab/LoadingButton'
 
-// ----------------------------------------------------------------------
-
 type Props = BoxProps & {
   backHref: string
   editHref: string

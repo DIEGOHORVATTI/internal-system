@@ -4,8 +4,6 @@ import { countries } from '@/assets/data'
 //
 import { _mock } from './_mock'
 
-// ----------------------------------------------------------------------
-
 export const JOB_DETAILS_TABS = [
   { value: 'content', label: 'Job Content' },
   { value: 'candidates', label: 'Candidates' },

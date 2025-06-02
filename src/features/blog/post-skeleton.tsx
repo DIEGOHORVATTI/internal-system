@@ -3,8 +3,6 @@ import type { BoxProps } from '@mui/material/Box'
 import Box from '@mui/material/Box'
 import Skeleton from '@mui/material/Skeleton'
 
-// ----------------------------------------------------------------------
-
 type PostItemSkeletonProps = BoxProps & {
   itemCount?: number
   variant?: 'vertical' | 'horizontal'
@@ -101,8 +99,6 @@ export function PostItemSkeleton({
     </Box>
   ))
 }
-
-// ----------------------------------------------------------------------
 
 export function PostDetailsSkeleton({ sx, ...other }: BoxProps) {
   return (

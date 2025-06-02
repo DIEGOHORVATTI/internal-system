@@ -24,8 +24,6 @@ import AvatarGroup, { avatarGroupClasses } from '@mui/material/AvatarGroup'
 import { FileManagerShareDialog } from './file-manager-share-dialog'
 import { FileManagerFileDetails } from './file-manager-file-details'
 
-// ----------------------------------------------------------------------
-
 type Props = PaperProps & {
   file: IFileManager
   onDelete: () => void

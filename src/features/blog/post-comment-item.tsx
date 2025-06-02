@@ -11,8 +11,6 @@ import Avatar from '@mui/material/Avatar'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 
-// ----------------------------------------------------------------------
-
 type Props = {
   name: string
   message: string

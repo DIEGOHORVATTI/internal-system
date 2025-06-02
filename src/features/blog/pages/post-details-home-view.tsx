@@ -27,8 +27,6 @@ import { PostCommentList } from '../post-comment-list'
 import { PostCommentForm } from '../post-comment-form'
 import { PostDetailsHero } from '../post-details-hero'
 
-// ----------------------------------------------------------------------
-
 type Props = {
   post?: IPostItem
   latestPosts?: IPostItem[]

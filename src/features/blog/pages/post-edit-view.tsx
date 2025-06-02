@@ -6,8 +6,6 @@ import CustomBreadcrumbs from '@/components/custom-breadcrumbs'
 
 import { PostNewEditForm } from '../post-new-edit-form'
 
-// ----------------------------------------------------------------------
-
 type Props = {
   post?: IPostItem
 }

@@ -8,8 +8,6 @@ import IconButton from '@mui/material/IconButton'
 //
 import Iconify from '../iconify'
 
-// ----------------------------------------------------------------------
-
 type Props = {
   onDownload?: VoidFunction
 }

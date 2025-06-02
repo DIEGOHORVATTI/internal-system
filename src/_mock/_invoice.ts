@@ -4,8 +4,6 @@ import { add, subDays } from 'date-fns'
 import { _mock } from './_mock'
 import { _addressBooks } from './_others'
 
-// ----------------------------------------------------------------------
-
 export const INVOICE_STATUS_OPTIONS = [
   { value: 'paid', label: 'Paid' },
   { value: 'pending', label: 'Pending' },

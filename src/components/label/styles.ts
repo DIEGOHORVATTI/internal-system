@@ -7,8 +7,6 @@ import { alpha, styled } from '@mui/material/styles'
 //
 import type { LabelColor, LabelVariant } from './types'
 
-// ----------------------------------------------------------------------
-
 export const StyledLabel = styled(Box)(
   ({
     theme,

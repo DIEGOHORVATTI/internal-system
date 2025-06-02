@@ -5,8 +5,6 @@ import Pagination from '@mui/material/Pagination'
 
 import { PostCommentItem } from './post-comment-item'
 
-// ----------------------------------------------------------------------
-
 type Props = {
   comments?: IPostComment[]
 }

@@ -8,8 +8,6 @@ import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 
-// ----------------------------------------------------------------------
-
 export function FileUpgrade({ sx, ...other }: CardProps) {
   return (
     <Card

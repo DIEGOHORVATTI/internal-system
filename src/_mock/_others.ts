@@ -1,7 +1,5 @@
 import { _mock } from './_mock'
 
-// ----------------------------------------------------------------------
-
 export const _carouselsMembers = [...Array(6)].map((_, index) => ({
   id: _mock.id(index),
   name: _mock.fullName(index),
@@ -9,16 +7,12 @@ export const _carouselsMembers = [...Array(6)].map((_, index) => ({
   avatarUrl: _mock.image.portrait(index),
 }))
 
-// ----------------------------------------------------------------------
-
 export const _faqs = [...Array(8)].map((_, index) => ({
   id: _mock.id(index),
   value: `panel${index + 1}`,
   heading: `Questions ${index + 1}`,
   detail: _mock.description(index),
 }))
-
-// ----------------------------------------------------------------------
 
 export const _addressBooks = [...Array(24)].map((_, index) => ({
   id: _mock.id(index),
@@ -30,8 +24,6 @@ export const _addressBooks = [...Array(24)].map((_, index) => ({
   company: _mock.companyName(index + 1),
   addressType: index === 0 ? 'Home' : 'Office',
 }))
-
-// ----------------------------------------------------------------------
 
 export const _contacts = [...Array(20)].map((_, index) => {
   const status =
@@ -49,8 +41,6 @@ export const _contacts = [...Array(20)].map((_, index) => {
     address: _mock.fullAddress(index),
   }
 })
-
-// ----------------------------------------------------------------------
 
 export const _notifications = [...Array(9)].map((_, index) => ({
   id: _mock.id(index),
@@ -99,8 +89,6 @@ export const _notifications = [...Array(9)].map((_, index) => ({
     '',
 }))
 
-// ----------------------------------------------------------------------
-
 export const _mapContact = [
   {
     latlng: [33, 65],
@@ -113,8 +101,6 @@ export const _mapContact = [
     phoneNumber: _mock.phoneNumber(2),
   },
 ]
-
-// ----------------------------------------------------------------------
 
 export const _socials = [
   {
@@ -147,8 +133,6 @@ export const _socials = [
   },
 ]
 
-// ----------------------------------------------------------------------
-
 export const _homePlans = [...Array(3)].map((_, index) => ({
   license: ['Standard', 'Standard Plus', 'Extended'][index],
   commons: ['One end products', '12 months updates', '6 months of support'],
@@ -164,8 +148,6 @@ export const _homePlans = [...Array(3)].map((_, index) => ({
     '/assets/icons/platforms/ic_ts.svg',
   ],
 }))
-
-// ----------------------------------------------------------------------
 
 export const _pricingPlans = [
   {
@@ -204,8 +186,6 @@ export const _pricingPlans = [
     labelAction: 'Choose Premium',
   },
 ]
-
-// ----------------------------------------------------------------------
 
 export const _testimonials = [
   {

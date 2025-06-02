@@ -20,8 +20,6 @@ import MenuItem from '@mui/material/MenuItem'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 
-// ----------------------------------------------------------------------
-
 type Props = CardProps & {
   post: IPostItem
   editHref: string

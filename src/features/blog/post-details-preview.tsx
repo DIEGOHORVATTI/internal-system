@@ -15,8 +15,6 @@ import DialogActions from '@mui/material/DialogActions'
 
 import { PostDetailsHero } from './post-details-hero'
 
-// ----------------------------------------------------------------------
-
 type Props = {
   title: string
   open: boolean

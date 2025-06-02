@@ -13,8 +13,6 @@ import { PostList } from '../post-list'
 import { PostSort } from '../post-sort'
 import { PostSearch } from '../post-search'
 
-// ----------------------------------------------------------------------
-
 type Props = {
   posts: IPostItem[]
   loading?: boolean
@@ -56,8 +54,6 @@ export function PostListHomeView({ posts, loading }: Props) {
     </Container>
   )
 }
-
-// ----------------------------------------------------------------------
 
 type ApplyFilterProps = {
   inputData: IPostItem[]

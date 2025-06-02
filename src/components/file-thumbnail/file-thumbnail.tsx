@@ -8,8 +8,6 @@ import DownloadButton from './download-button'
 //
 import { fileData, fileThumb, fileFormat } from './utils'
 
-// ----------------------------------------------------------------------
-
 type FileIconProps = {
   file: File | string
   tooltip?: boolean

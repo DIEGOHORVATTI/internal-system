@@ -1,7 +1,6 @@
 import { _mock } from './_mock'
 
 // APP
-// ----------------------------------------------------------------------
 
 export const _appRelated = ['Chrome', 'Drive', 'Dropbox', 'Evernote', 'Github'].map(
   (name, index) => {
@@ -68,7 +67,6 @@ export const _appFeatured = [...Array(3)].map((_, index) => ({
 }))
 
 // ANALYTIC
-// ----------------------------------------------------------------------
 
 export const _analyticTasks = [...Array(5)].map((_, index) => ({
   id: _mock.id(index),
@@ -128,7 +126,6 @@ export const _analyticTraffic = [
 ]
 
 // ECOMMERCE
-// ----------------------------------------------------------------------
 
 export const _ecommerceSalesOverview = ['Total Profit', 'Total Income', 'Total Expenses'].map(
   (label, index) => ({
@@ -180,7 +177,6 @@ export const _ecommerceNewProducts = [...Array(5)].map((_, index) => ({
 }))
 
 // BANKING
-// ----------------------------------------------------------------------
 
 export const _bankingContacts = [...Array(12)].map((_, index) => ({
   id: _mock.id(index),
@@ -275,7 +271,6 @@ export const _bankingRecentTransitions = [
 ]
 
 // BOOKING
-// ----------------------------------------------------------------------
 
 export const _bookings = [...Array(5)].map((_, index) => {
   const status = ['Paid', 'Paid', 'Pending', 'Cancelled', 'Paid'][index]

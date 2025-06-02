@@ -25,8 +25,6 @@ import { FileManagerGridView } from '../file-manager-grid-view'
 import { FileManagerFiltersResult } from '../file-manager-filters-result'
 import { FileManagerNewFolderDialog } from '../file-manager-new-folder-dialog'
 
-// ----------------------------------------------------------------------
-
 export function FileManagerView() {
   const table = useTable({ defaultRowsPerPage: 10 })
 
@@ -209,8 +207,6 @@ export function FileManagerView() {
     </>
   )
 }
-
-// ----------------------------------------------------------------------
 
 type ApplyFilterProps = {
   dateError: boolean

@@ -1,7 +1,5 @@
 import { useState, useCallback } from 'react'
 
-// ----------------------------------------------------------------------
-
 export type UseTableReturn = {
   dense: boolean
   page: number

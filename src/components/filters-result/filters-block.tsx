@@ -2,8 +2,6 @@ import type { Theme, SxProps } from '@mui/material/styles'
 
 import { styled } from '@mui/material/styles'
 
-// ----------------------------------------------------------------------
-
 export type FilterBlockProps = React.ComponentProps<'div'> & {
   label: string
   isShow: boolean
@@ -23,8 +21,6 @@ export function FiltersBlock({ label, children, isShow, sx, ...other }: FilterBl
     </BlockRoot>
   )
 }
-
-// ----------------------------------------------------------------------
 
 const BlockRoot = styled('div')(({ theme }) => ({
   display: 'flex',

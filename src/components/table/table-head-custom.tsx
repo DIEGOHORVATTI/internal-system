@@ -7,8 +7,6 @@ import TableHead from '@mui/material/TableHead'
 import TableCell from '@mui/material/TableCell'
 import TableSortLabel from '@mui/material/TableSortLabel'
 
-// ----------------------------------------------------------------------
-
 const visuallyHidden: CSSObject = {
   border: 0,
   padding: 0,
@@ -20,8 +18,6 @@ const visuallyHidden: CSSObject = {
   whiteSpace: 'nowrap',
   clip: 'rect(0 0 0 0)',
 }
-
-// ----------------------------------------------------------------------
 
 export type TableHeadCellProps = {
   id: string

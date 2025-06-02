@@ -3,8 +3,6 @@ import type { TableRowProps } from '@mui/material/TableRow'
 import TableRow from '@mui/material/TableRow'
 import TableCell from '@mui/material/TableCell'
 
-// ----------------------------------------------------------------------
-
 export type TableEmptyRowsProps = TableRowProps & {
   height?: number
   emptyRows: number

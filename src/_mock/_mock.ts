@@ -30,8 +30,6 @@ import {
   _phoneNumbers,
 } from './assets'
 
-// ----------------------------------------------------------------------
-
 export const _mock = {
   id: (index: number) => _id[index],
   time: (index: number) => sub(new Date(), { days: index, hours: index }),

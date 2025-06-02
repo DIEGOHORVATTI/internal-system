@@ -4,8 +4,6 @@ import Skeleton from '@mui/material/Skeleton'
 import TableRow from '@mui/material/TableRow'
 import TableCell from '@mui/material/TableCell'
 
-// ----------------------------------------------------------------------
-
 type TableSkeletonProps = TableRowProps & {
   rowCount?: number
   cellCount?: number

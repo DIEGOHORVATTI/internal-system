@@ -4,8 +4,6 @@ import Box from '@mui/material/Box'
 import Checkbox from '@mui/material/Checkbox'
 import Typography from '@mui/material/Typography'
 
-// ----------------------------------------------------------------------
-
 export type TableSelectedActionProps = BoxProps & {
   dense?: boolean
   rowCount: number

@@ -1,7 +1,5 @@
 import type { IDateValue, ISocialLink } from './common'
 
-// ----------------------------------------------------------------------
-
 export type IUserTableFilters = {
   name: string
   role: string[]
