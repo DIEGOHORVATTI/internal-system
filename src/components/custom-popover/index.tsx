@@ -8,7 +8,7 @@ import { menuItemClasses } from '@mui/material/MenuItem'
 import { getPosition } from './utils'
 import { StyledArrow } from './styles'
 
-import type { MenuPopoverProps } from './types'
+import type { CustomPopoverProps } from './types'
 
 export default function CustomPopover({
   open,
@@ -18,7 +18,7 @@ export default function CustomPopover({
   hiddenArrow,
   sx,
   ...other
-}: MenuPopoverProps) {
+}: CustomPopoverProps) {
   const { style, anchorOrigin, transformOrigin } = getPosition(arrow)
 
   return (

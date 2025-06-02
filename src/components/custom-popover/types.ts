@@ -17,7 +17,7 @@ export type MenuPopoverArrowValue =
   | 'right-center'
   | 'right-bottom'
 
-export interface MenuPopoverProps extends PopoverProps {
+export interface CustomPopoverProps extends PopoverProps {
   arrow?: MenuPopoverArrowValue
   hiddenArrow?: boolean
 }
