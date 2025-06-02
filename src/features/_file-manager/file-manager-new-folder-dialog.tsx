@@ -1,6 +1,5 @@
 import type { DialogProps } from '@mui/material/Dialog'
 
-import Upload from '@/components/upload'
 import Iconify from '@/components/iconify'
 import { useState, useEffect, useCallback } from 'react'
 
@@ -11,6 +10,8 @@ import TextField from '@mui/material/TextField'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
+
+import Upload from '../../components/upload/upload'
 
 type Props = DialogProps & {
   open: boolean
@@ -76,7 +77,17 @@ export function FileManagerNewFolderDialog({
           />
         )}
 
-        <Upload multiple value={files} onDrop={handleDrop} onRemove={handleRemoveFile} />
+        <Upload
+          multiple
+          onDrop={handleDrop}
+          onRemove={handleRemoveFile}
+          onChange={function (...event: any[]): void {
+            throw new Error('Function not implemented.')
+          }}
+          onUpdateFiles={function (file: (File & { preview?: string })[]): Promise<void> {
+            throw new Error('Function not implemented.')
+          }}
+        />
       </DialogContent>
 
       <DialogActions>

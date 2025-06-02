@@ -7,7 +7,7 @@ import { fData } from '@/utils/format-number'
 import Scrollbar from '@/components/scrollbar'
 import { fDateTime } from '@/utils/format-time'
 import { useBoolean } from 'minimal-shared/hooks'
-import { fileFormat, FileThumbnail } from '@/components/file-thumbnail'
+import FileThumbnail, { fileFormat } from '@/components/file-thumbnail'
 
 import Box from '@mui/material/Box'
 import Chip from '@mui/material/Chip'
@@ -246,10 +246,11 @@ export function FileManagerFileDetails({
               imageView
               file={file?.type === 'folder' ? file?.type : file?.url}
               sx={{ width: 'auto', height: 'auto', alignSelf: 'flex-start' }}
-              slotProps={{
+              imgSx={{ width: 320, height: 'auto', aspectRatio: '4/3', objectFit: 'cover' }}
+              /* slotProps={{
                 img: { sx: { width: 320, height: 'auto', aspectRatio: '4/3', objectFit: 'cover' } },
                 icon: { sx: { width: 64, height: 64 } },
-              }}
+              }} */
             />
 
             <Typography variant="subtitle1" sx={{ wordBreak: 'break-all' }}>
