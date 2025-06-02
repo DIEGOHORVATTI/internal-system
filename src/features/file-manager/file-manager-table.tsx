@@ -3,15 +3,10 @@ import type { BoxProps } from '@mui/material/Box'
 import type { UseTableReturn, TableHeadCellProps } from '@/components/table'
 
 import Iconify from '@/components/iconify'
-import {
-  TableNoData,
-  TableHeadCustom,
-  TableSelectedAction,
-  TablePaginationCustom,
-} from '@/components/table'
+import * as Table from '@/components/table'
 
 import Box from '@mui/material/Box'
-import Table from '@mui/material/Table'
+import TableMui from '@mui/material/Table'
 import Tooltip from '@mui/material/Tooltip'
 import TableBody from '@mui/material/TableBody'
 import IconButton from '@mui/material/IconButton'
@@ -21,8 +16,6 @@ import { tablePaginationClasses } from '@mui/material/TablePagination'
 
 import { FileManagerTableRow } from './file-manager-table-row'
 
-// ----------------------------------------------------------------------
-
 const TABLE_HEAD: TableHeadCellProps[] = [
   { id: 'name', label: 'Name' },
   { id: 'size', label: 'Size', width: 120 },
@@ -31,8 +24,6 @@ const TABLE_HEAD: TableHeadCellProps[] = [
   { id: 'shared', label: 'Shared', align: 'right', width: 140 },
   { id: '', width: 88 },
 ]
-
-// ----------------------------------------------------------------------
 
 type Props = BoxProps & {
   table: UseTableReturn
@@ -77,7 +68,7 @@ export function FileManagerTable({
         ]}
         {...other}
       >
-        <TableSelectedAction
+        <Table.TableSelectedAction
           dense={dense}
           numSelected={selected.length}
           rowCount={dataFiltered.length}
@@ -114,11 +105,11 @@ export function FileManagerTable({
         />
 
         <TableContainer sx={{ px: { md: 3 } }}>
-          <Table
+          <TableMui
             size={dense ? 'small' : 'medium'}
             sx={{ minWidth: 960, borderCollapse: 'separate', borderSpacing: '0 16px' }}
           >
-            <TableHeadCustom
+            <Table.TableHeadCustom
               order={order}
               orderBy={orderBy}
               headCells={TABLE_HEAD}
@@ -152,7 +143,7 @@ export function FileManagerTable({
                   />
                 ))}
 
-              <TableNoData
+              <Table.TableNoData
                 notFound={notFound}
                 sx={[
                   (theme) => ({
@@ -163,11 +154,11 @@ export function FileManagerTable({
                 ]}
               />
             </TableBody>
-          </Table>
+          </TableMui>
         </TableContainer>
       </Box>
 
-      <TablePaginationCustom
+      <Table.TablePaginationCustom
         page={page}
         dense={dense}
         rowsPerPage={rowsPerPage}
