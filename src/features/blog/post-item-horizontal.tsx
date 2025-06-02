@@ -5,10 +5,10 @@ import Label from '@/components/label'
 import Image from '@/components/image'
 import Iconify from '@/components/iconify'
 import { fDate } from '@/utils/format-time'
-import { RouterLink } from '@/routes/components'
 import { usePopover } from 'minimal-shared/hooks'
 import { fShortenNumber } from '@/utils/format-number'
 import CustomPopover from '@/components/custom-popover'
+import RouterLink from '@/routes/components/router-link'
 
 import Box from '@mui/material/Box'
 import Link from '@mui/material/Link'
@@ -36,7 +36,7 @@ export function PostItemHorizontal({ sx, post, editHref, detailsHref, ...other }
       open={menuActions.open}
       anchorEl={menuActions.anchorEl}
       onClose={menuActions.onClose}
-      slotProps={{ arrow: { placement: 'bottom-center' } }}
+      arrow="bottom-center"
     >
       <MenuList>
         <li>
@@ -91,29 +91,11 @@ export function PostItemHorizontal({ sx, post, editHref, detailsHref, ...other }
           </Box>
 
           <Stack spacing={1} sx={{ flexGrow: 1 }}>
-            <Link
-              component={RouterLink}
-              href={detailsHref}
-              color="inherit"
-              variant="subtitle2"
-              sx={[
-                (theme) => ({
-                  ...theme.mixins.maxLine({ line: 2 }),
-                }),
-              ]}
-            >
+            <Link component={RouterLink} href={detailsHref} color="inherit" variant="subtitle2">
               {post.title}
             </Link>
 
-            <Typography
-              variant="body2"
-              sx={[
-                (theme) => ({
-                  ...theme.mixins.maxLine({ line: 2 }),
-                  color: 'text.secondary',
-                }),
-              ]}
-            >
+            <Typography variant="body2" color="text.secondary">
               {post.description}
             </Typography>
           </Stack>

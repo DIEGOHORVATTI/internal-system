@@ -1,14 +1,14 @@
-import type { BoxProps } from '@mui/material/Box';
+import type { BoxProps } from '@mui/material/Box'
 
-import Box from '@mui/material/Box';
-import Skeleton from '@mui/material/Skeleton';
+import Box from '@mui/material/Box'
+import Skeleton from '@mui/material/Skeleton'
 
 // ----------------------------------------------------------------------
 
 type PostItemSkeletonProps = BoxProps & {
-  itemCount?: number;
-  variant?: 'vertical' | 'horizontal';
-};
+  itemCount?: number
+  variant?: 'vertical' | 'horizontal'
+}
 
 export function PostItemSkeleton({
   sx,
@@ -25,7 +25,7 @@ export function PostItemSkeleton({
             display: 'flex',
             borderRadius: 2,
             bgcolor: 'background.paper',
-            border: `solid 1px ${theme.vars.palette.divider}`,
+            border: `solid 1px ${theme.palette.divider}`,
           }),
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
@@ -54,7 +54,7 @@ export function PostItemSkeleton({
           <Skeleton sx={{ width: 170, height: 240, flexShrink: 0 }} />
         </Box>
       </Box>
-    ));
+    ))
   }
 
   return Array.from({ length: itemCount }, (_, index) => (
@@ -66,7 +66,7 @@ export function PostItemSkeleton({
           borderRadius: 2,
           flexDirection: 'column',
           bgcolor: 'background.paper',
-          border: `solid 1px ${theme.vars.palette.divider}`,
+          border: `solid 1px ${theme.palette.divider}`,
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
@@ -99,7 +99,7 @@ export function PostItemSkeleton({
         </Box>
       </Box>
     </Box>
-  ));
+  ))
 }
 
 // ----------------------------------------------------------------------
@@ -125,5 +125,5 @@ export function PostDetailsSkeleton({ sx, ...other }: BoxProps) {
         <Skeleton sx={{ height: 720, mb: 8 }} />
       </Box>
     </Box>
-  );
+  )
 }

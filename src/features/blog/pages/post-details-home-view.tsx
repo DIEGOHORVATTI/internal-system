@@ -74,9 +74,7 @@ export function PostDetailsHomeView({ post, latestPosts, loading, error }: Props
 
       <Container
         maxWidth={false}
-        sx={[
-          (theme) => ({ py: 3, mb: 5, borderBottom: `solid 1px ${theme.vars.palette.divider}` }),
-        ]}
+        sx={[(theme) => ({ py: 3, mb: 5, borderBottom: `solid 1px ${theme.palette.divider}` })]}
       >
         <CustomBreadcrumbs
           links={[
@@ -99,8 +97,8 @@ export function PostDetailsHomeView({ post, latestPosts, loading, error }: Props
             sx={[
               (theme) => ({
                 py: 3,
-                borderTop: `dashed 1px ${theme.vars.palette.divider}`,
-                borderBottom: `dashed 1px ${theme.vars.palette.divider}`,
+                borderTop: `dashed 1px ${theme.palette.divider}`,
+                borderBottom: `dashed 1px ${theme.palette.divider}`,
               }),
             ]}
           >

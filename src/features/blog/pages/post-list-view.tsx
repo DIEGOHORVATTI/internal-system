@@ -18,7 +18,6 @@ import Tabs from '@mui/material/Tabs'
 import Button from '@mui/material/Button'
 
 import { PostSort } from '../post-sort'
-import { PostSearch } from '../post-search'
 import { PostListHorizontal } from '../post-list-horizontal'
 
 // ----------------------------------------------------------------------
@@ -71,8 +70,6 @@ export default function PostListView() {
           alignItems: { xs: 'flex-end', sm: 'center' },
         }}
       >
-        <PostSearch redirectPath={(title: string) => paths.post.details(title)} />
-
         <PostSort
           sort={sortBy}
           onSort={(newValue: string) => setSortBy(newValue)}

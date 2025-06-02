@@ -112,8 +112,8 @@ export function PostDetailsView({ post, loading, error }: Props) {
           sx={[
             (theme) => ({
               py: 3,
-              borderTop: `dashed 1px ${theme.vars.palette.divider}`,
-              borderBottom: `dashed 1px ${theme.vars.palette.divider}`,
+              borderTop: `dashed 1px ${theme.palette.divider}`,
+              borderBottom: `dashed 1px ${theme.palette.divider}`,
             }),
           ]}
         >

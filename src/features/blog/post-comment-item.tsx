@@ -38,7 +38,7 @@ export function PostCommentItem({ name, avatarUrl, message, tagUser, postedAt, h
 
       <Stack
         flexGrow={1}
-        sx={[(theme) => ({ pb: 3, borderBottom: `solid 1px ${theme.vars.palette.divider}` })]}
+        sx={[(theme) => ({ pb: 3, borderBottom: `solid 1px ${theme.palette.divider}` })]}
       >
         <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
           {name}

@@ -112,7 +112,7 @@ export function PostItemLatest({ post, index, detailsHref }: PostItemLatestProps
         slotProps={{
           overlay: {
             sx: (theme) => ({
-              bgcolor: varAlpha(theme.vars.palette.grey['900Channel'], 0.64),
+              bgcolor: varAlpha(theme.palette.grey['900Channel'], 0.64),
             }),
           },
         }}

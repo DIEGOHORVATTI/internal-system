@@ -37,9 +37,9 @@ export function PostDetailsHero({
           ...theme.mixins.bgGradient({
             images: [
               `linear-gradient(0deg, ${varAlpha(
-                theme.vars.palette.grey['900Channel'],
+                theme.palette.grey['900Channel'],
                 0.64
-              )}, ${varAlpha(theme.vars.palette.grey['900Channel'], 0.64)})`,
+              )}, ${varAlpha(theme.palette.grey['900Channel'], 0.64)})`,
               `url(${coverUrl})`,
             ],
           }),
