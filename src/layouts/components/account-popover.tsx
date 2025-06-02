@@ -6,6 +6,7 @@ import useRouter from '@/hooks/use-router'
 // Notistack
 import { enqueueSnackbar } from 'notistack'
 import usePopover from '@/hooks/use-popover'
+import { VERSION } from '@/constants/config'
 // components
 // hooks
 import { useMockedUser } from '@/hooks/use-mocked-user'
@@ -95,6 +96,19 @@ export default function AccountPopover({ open }: Props) {
 
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
             {user?.email}
+          </Typography>
+
+          <Typography
+            variant="body2"
+            component="i"
+            sx={{
+              color: 'text.secondary',
+              mt: 0.5,
+              display: 'flex',
+              alingItems: 'right',
+            }}
+          >
+            {VERSION}
           </Typography>
         </Box>
 
