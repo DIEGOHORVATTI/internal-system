@@ -1,5 +1,5 @@
 import { lazy } from 'react'
-import NavBar from '@/layouts'
+import NavBar from '@/layouts/nav-bar'
 import ThemeProvider from '@/theme'
 import { PATHS } from '@/routes/paths'
 import AuthGuard from '@/guards/auth-guard'

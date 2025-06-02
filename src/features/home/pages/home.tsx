@@ -1,4 +1,4 @@
-import MainContent from '@/components/main-content'
+import MainContent from '@/layouts/main-content'
 
 import Grid from '@mui/material/Grid'
 import Skeleton from '@mui/material/Skeleton'

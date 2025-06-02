@@ -6,7 +6,7 @@ import { alpha } from '@mui/material/styles'
 import ButtonBase from '@mui/material/ButtonBase'
 
 //
-import SvgColor from '../../../../components/svg-color'
+import SvgColor from '../../../../../components/svg-color'
 
 // ----------------------------------------------------------------------
 

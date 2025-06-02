@@ -1,4 +1,4 @@
-import MainContent from '@/components/main-content'
+import MainContent from '@/layouts/main-content'
 
 export default function Home() {
   return (
