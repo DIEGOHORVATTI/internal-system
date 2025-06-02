@@ -1,8 +1,13 @@
 import type { IFile } from '@/types/file'
 import type { DrawerProps } from '@mui/material/Drawer'
 
+import Iconify from '@/components/iconify'
 import { useState, useCallback } from 'react'
+import { fData } from '@/utils/format-number'
+import Scrollbar from '@/components/scrollbar'
+import { fDateTime } from '@/utils/format-time'
 import { useBoolean } from 'minimal-shared/hooks'
+import { fileFormat, FileThumbnail } from '@/components/file-thumbnail'
 
 import Box from '@mui/material/Box'
 import Chip from '@mui/material/Chip'
@@ -16,17 +21,8 @@ import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import Autocomplete from '@mui/material/Autocomplete'
 
-import { fData } from '@/utils/format-number'
-import { fDateTime } from '@/utils/format-time'
-
-import Iconify from '@/components/iconify'
-import { Scrollbar } from '@/components/scrollbar'
-import { fileFormat, FileThumbnail } from '@/components/file-thumbnail'
-
 import { FileManagerShareDialog } from './file-manager-share-dialog'
 import { FileManagerInvitedItem } from './file-manager-invited-item'
-
-// ----------------------------------------------------------------------
 
 type Props = DrawerProps & {
   file: IFile

@@ -3,14 +3,10 @@ import type { UseSetStateReturn } from 'minimal-shared/hooks'
 import type { FiltersResultProps } from '@/components/filters-result'
 
 import { useCallback } from 'react'
-
-import Chip from '@mui/material/Chip'
-
 import { fDateRangeShortLabel } from '@/utils/format-time'
-
 import { chipProps, FiltersBlock, FiltersResult } from '@/components/filters-result'
 
-// ----------------------------------------------------------------------
+import Chip from '@mui/material/Chip'
 
 type Props = FiltersResultProps & {
   onResetPage: () => void

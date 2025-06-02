@@ -2,7 +2,7 @@ import type { IFileShared } from '@/types/file'
 import type { DialogProps } from '@mui/material/Dialog'
 
 import Iconify from '@/components/iconify'
-import { Scrollbar } from '@/components/scrollbar'
+import Scrollbar from '@/components/scrollbar'
 
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -13,8 +13,6 @@ import DialogActions from '@mui/material/DialogActions'
 import InputAdornment from '@mui/material/InputAdornment'
 
 import { FileManagerInvitedItem } from './file-manager-invited-item'
-
-// ----------------------------------------------------------------------
 
 type Props = DialogProps & {
   open: boolean

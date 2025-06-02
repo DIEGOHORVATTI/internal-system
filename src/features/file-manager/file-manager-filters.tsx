@@ -7,9 +7,9 @@ import { Label } from '@/components/label'
 import Iconify from '@/components/iconify'
 import { varAlpha } from 'minimal-shared/utils'
 import { usePopover } from 'minimal-shared/hooks'
+import CustomPopover from '@/components/custom-popover'
 import { fDateRangeShortLabel } from '@/utils/format-time'
 import { FileThumbnail } from '@/components/file-thumbnail'
-import CustomPopover from '@/components/custom-popover'
 import { CustomDateRangePicker } from '@/components/custom-date-range-picker'
 
 import Box from '@mui/material/Box'
@@ -18,8 +18,6 @@ import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import CardActionArea from '@mui/material/CardActionArea'
 import InputAdornment from '@mui/material/InputAdornment'
-
-// ----------------------------------------------------------------------
 
 type Props = {
   dateError: boolean

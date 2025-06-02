@@ -1,17 +1,15 @@
 import type { CardProps } from '@mui/material/Card'
-import type { ChartOptions } from '@/components/chart'
+import type { ChartOptions } from '@/components/chart/types'
 
+import Chart from '@/components/chart'
 import { useState, useCallback } from 'react'
+import { fData } from '@/utils/format-number'
+import { useChart } from '@/components/chart/use-chart'
+import { ChartSelect } from '@/components/chart/components'
 
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
 import { useTheme, alpha as hexAlpha } from '@mui/material/styles'
-
-import { fData } from '@/utils/format-number'
-
-import { Chart, useChart, ChartSelect } from '@/components/chart'
-
-// ----------------------------------------------------------------------
 
 type Props = CardProps & {
   title?: string

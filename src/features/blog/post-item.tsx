@@ -6,7 +6,7 @@ import Image from '@/components/image'
 import Iconify from '@/components/iconify'
 import { fDate } from '@/utils/format-time'
 import { varAlpha } from 'minimal-shared/utils'
-import { RouterLink } from '@/routes/components'
+import RouterLink from '@/routes/components/router-link'
 import { AvatarShape } from '@/assets/illustrations'
 import { fShortenNumber } from '@/utils/format-number'
 

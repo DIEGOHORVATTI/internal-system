@@ -1,7 +1,13 @@
-import type { CardProps } from '@mui/material/Card'
 import type { IFolderManager } from '@/types/file'
+import type { CardProps } from '@mui/material/Card'
 
+import { CONFIG } from '@/global-config'
+import Iconify from '@/components/iconify'
 import { useState, useCallback } from 'react'
+import { fData } from '@/utils/format-number'
+import { toast } from '@/components/snackbar'
+import CustomPopover from '@/components/custom-popover'
+import { ConfirmDialog } from '@/components/custom-dialog'
 import { useBoolean, usePopover, useCopyToClipboard } from 'minimal-shared/hooks'
 
 import Box from '@mui/material/Box'
@@ -16,20 +22,9 @@ import IconButton from '@mui/material/IconButton'
 import ListItemText from '@mui/material/ListItemText'
 import AvatarGroup, { avatarGroupClasses } from '@mui/material/AvatarGroup'
 
-import { fData } from '@/utils/format-number'
-
-import { CONFIG } from '@/global-config'
-
-import { toast } from '@/components/snackbar'
-import Iconify from '@/components/iconify'
-import { ConfirmDialog } from '@/components/custom-dialog'
-import CustomPopover from '@/components/custom-popover'
-
 import { FileManagerShareDialog } from './file-manager-share-dialog'
 import { FileManagerFileDetails } from './file-manager-file-details'
 import { FileManagerNewFolderDialog } from './file-manager-new-folder-dialog'
-
-// ----------------------------------------------------------------------
 
 type Props = CardProps & {
   selected?: boolean

@@ -1,5 +1,7 @@
 import type { DialogProps } from '@mui/material/Dialog'
 
+import Iconify from '@/components/iconify'
+import { Upload } from '@/components/upload'
 import { useState, useEffect, useCallback } from 'react'
 
 import Box from '@mui/material/Box'
@@ -9,11 +11,6 @@ import TextField from '@mui/material/TextField'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
-
-import { Upload } from '@/components/upload'
-import Iconify from '@/components/iconify'
-
-// ----------------------------------------------------------------------
 
 type Props = DialogProps & {
   open: boolean

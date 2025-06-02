@@ -1,7 +1,7 @@
 import type { BoxProps } from '@mui/material/Box'
 
 import Iconify from '@/components/iconify'
-import { RouterLink } from '@/routes/components'
+import RouterLink from '@/routes/components/router-link'
 import { usePopover } from 'minimal-shared/hooks'
 import CustomPopover from '@/components/custom-popover'
 

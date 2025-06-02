@@ -7,9 +7,9 @@ import { fData } from '@/utils/format-number'
 import { toast } from '@/components/snackbar'
 import { varAlpha } from 'minimal-shared/utils'
 import { fDate, fTime } from '@/utils/format-time'
+import CustomPopover from '@/components/custom-popover'
 import { ConfirmDialog } from '@/components/custom-dialog'
 import { FileThumbnail } from '@/components/file-thumbnail'
-import CustomPopover from '@/components/custom-popover'
 import { useBoolean, usePopover, useDoubleClick, useCopyToClipboard } from 'minimal-shared/hooks'
 
 import Box from '@mui/material/Box'
@@ -29,8 +29,6 @@ import AvatarGroup, { avatarGroupClasses } from '@mui/material/AvatarGroup'
 
 import { FileManagerShareDialog } from './file-manager-share-dialog'
 import { FileManagerFileDetails } from './file-manager-file-details'
-
-// ----------------------------------------------------------------------
 
 type Props = {
   row: IFileManager

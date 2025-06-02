@@ -1,7 +1,7 @@
 import type { FileUploadType } from '@/components/upload'
 
 import { Markdown } from '@/components/markdown'
-import { Scrollbar } from '@/components/scrollbar'
+import Scrollbar from '@/components/scrollbar'
 import { EmptyContent } from '@/components/empty-content'
 
 import Box from '@mui/material/Box'
