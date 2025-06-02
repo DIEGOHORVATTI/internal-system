@@ -51,7 +51,7 @@ export default function PostListView() {
               variant="contained"
               startIcon={<Iconify icon="mingcute:add-line" />}
             >
-              New post
+              Nova Postagem
             </Button>
           ),
         },
