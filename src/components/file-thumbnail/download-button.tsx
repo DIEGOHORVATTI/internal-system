@@ -6,7 +6,7 @@ import { useTheme } from '@mui/material/styles'
 import IconButton from '@mui/material/IconButton'
 
 //
-import Iconify from '../Iconify'
+import Iconify from '../iconify'
 
 // ----------------------------------------------------------------------
 

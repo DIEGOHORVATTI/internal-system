@@ -1,4 +1,4 @@
-import Iconify from '@/components/Iconify'
+import Iconify from '@/components/iconify'
 
 import Stack from '@mui/material/Stack'
 import { Tooltip } from '@mui/material'

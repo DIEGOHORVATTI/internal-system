@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { _notifications } from '@/_mock'
-import Iconify from '@/components/Iconify'
+import Iconify from '@/components/iconify'
 import { useBoolean } from '@/hooks/use-boolean'
 
 import Badge from '@mui/material/Badge'

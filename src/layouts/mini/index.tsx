@@ -1,7 +1,7 @@
 import type { Navigation } from '@/routes/nav-config'
 
 import { useCallback } from 'react'
-import Iconify from '@/components/Iconify'
+import Iconify from '@/components/iconify'
 import { Link, useLocation } from 'react-router-dom'
 import usePopoverHover from '@/hooks/use-popover-hover'
 

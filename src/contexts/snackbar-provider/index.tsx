@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import Iconify from '@/components/Iconify'
+import Iconify from '@/components/iconify'
 import { closeSnackbar, SnackbarProvider as NotistackProvider } from 'notistack'
 
 import IconButton from '@mui/material/IconButton'

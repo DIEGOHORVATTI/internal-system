@@ -1,6 +1,6 @@
 import type { Navigation } from '@/routes/nav-config'
 
-import Iconify from '@/components/Iconify'
+import Iconify from '@/components/iconify'
 import { Link, useLocation } from 'react-router-dom'
 
 import { alpha } from '@mui/system'

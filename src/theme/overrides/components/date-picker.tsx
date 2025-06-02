@@ -1,6 +1,6 @@
 import type { Theme } from '@mui/material/styles'
 
-import Iconify from '@/components/Iconify'
+import Iconify from '@/components/iconify'
 
 import { buttonClasses } from '@mui/material/Button'
 
