@@ -1,8 +1,15 @@
 import type { IFileManager } from '@/types/file'
 import type { Theme, SxProps } from '@mui/material/styles'
 
+import Iconify from '@/components/iconify'
 import { useState, useCallback } from 'react'
+import { fData } from '@/utils/format-number'
+import { toast } from '@/components/snackbar'
 import { varAlpha } from 'minimal-shared/utils'
+import { fDate, fTime } from '@/utils/format-time'
+import { ConfirmDialog } from '@/components/custom-dialog'
+import { FileThumbnail } from '@/components/file-thumbnail'
+import CustomPopover from '@/components/custom-popover'
 import { useBoolean, usePopover, useDoubleClick, useCopyToClipboard } from 'minimal-shared/hooks'
 
 import Box from '@mui/material/Box'
@@ -19,15 +26,6 @@ import ListItemText from '@mui/material/ListItemText'
 import TableRow, { tableRowClasses } from '@mui/material/TableRow'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import AvatarGroup, { avatarGroupClasses } from '@mui/material/AvatarGroup'
-
-import { fData } from '@/utils/format-number'
-import { fDate, fTime } from '@/utils/format-time'
-
-import { toast } from '@/components/snackbar'
-import Iconify from '@/components/iconify'
-import { ConfirmDialog } from '@/components/custom-dialog'
-import { FileThumbnail } from '@/components/file-thumbnail'
-import { CustomPopover } from '@/components/custom-popover'
 
 import { FileManagerShareDialog } from './file-manager-share-dialog'
 import { FileManagerFileDetails } from './file-manager-file-details'

@@ -2,6 +2,14 @@ import type { IFile } from '@/types/file'
 import type { BoxProps } from '@mui/material/Box'
 import type { UseTableReturn, TableHeadCellProps } from '@/components/table'
 
+import Iconify from '@/components/iconify'
+import {
+  TableNoData,
+  TableHeadCustom,
+  TableSelectedAction,
+  TablePaginationCustom,
+} from '@/components/table'
+
 import Box from '@mui/material/Box'
 import Table from '@mui/material/Table'
 import Tooltip from '@mui/material/Tooltip'
@@ -10,14 +18,6 @@ import IconButton from '@mui/material/IconButton'
 import TableContainer from '@mui/material/TableContainer'
 import { tableCellClasses } from '@mui/material/TableCell'
 import { tablePaginationClasses } from '@mui/material/TablePagination'
-
-import Iconify from '@/components/iconify'
-import {
-  TableNoData,
-  TableHeadCustom,
-  TableSelectedAction,
-  TablePaginationCustom,
-} from '@/components/table'
 
 import { FileManagerTableRow } from './file-manager-table-row'
 

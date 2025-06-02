@@ -9,7 +9,7 @@ import { varAlpha } from 'minimal-shared/utils'
 import { usePopover } from 'minimal-shared/hooks'
 import { fDateRangeShortLabel } from '@/utils/format-time'
 import { FileThumbnail } from '@/components/file-thumbnail'
-import { CustomPopover } from '@/components/custom-popover'
+import CustomPopover from '@/components/custom-popover'
 import { CustomDateRangePicker } from '@/components/custom-date-range-picker'
 
 import Box from '@mui/material/Box'

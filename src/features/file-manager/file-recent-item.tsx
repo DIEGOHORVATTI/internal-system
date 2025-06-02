@@ -1,7 +1,13 @@
 import type { IFileManager } from '@/types/file'
 import type { PaperProps } from '@mui/material/Paper'
 
+import Iconify from '@/components/iconify'
+import { enqueueSnackbar } from 'notistack'
 import { useState, useCallback } from 'react'
+import { fData } from '@/utils/format-number'
+import { fDateTime } from '@/utils/format-time'
+import CustomPopover from '@/components/custom-popover'
+import FileThumbnail from '@/components/file-thumbnail'
 import { useBoolean, usePopover, useCopyToClipboard } from 'minimal-shared/hooks'
 
 import Box from '@mui/material/Box'
@@ -14,14 +20,6 @@ import Checkbox from '@mui/material/Checkbox'
 import IconButton from '@mui/material/IconButton'
 import ListItemText from '@mui/material/ListItemText'
 import AvatarGroup, { avatarGroupClasses } from '@mui/material/AvatarGroup'
-
-import { fData } from '@/utils/format-number'
-import { fDateTime } from '@/utils/format-time'
-
-import { toast } from '@/components/snackbar'
-import Iconify from '@/components/iconify'
-import { FileThumbnail } from '@/components/file-thumbnail'
-import { CustomPopover } from '@/components/custom-popover'
 
 import { FileManagerShareDialog } from './file-manager-share-dialog'
 import { FileManagerFileDetails } from './file-manager-file-details'
@@ -49,7 +47,7 @@ export function FileRecentItem({ file, onDelete, sx, ...other }: Props) {
   }, [])
 
   const handleCopy = useCallback(() => {
-    toast.success('Copied!')
+    enqueueSnackbar('Copied!', { variant: 'success' })
     copy(file.url)
   }, [copy, file.url])
 
@@ -68,9 +66,11 @@ export function FileRecentItem({ file, onDelete, sx, ...other }: Props) {
         checkedIcon={<Iconify icon="eva:star-fill" />}
         checked={favorite.value}
         onChange={favorite.onToggle}
-        inputProps={{
-          id: `favorite-${file.id}-checkbox`,
-          'aria-label': `Favorite ${file.id} checkbox`,
+        slotProps={{
+          input: {
+            'aria-label': `Favorite ${file.name} checkbox`,
+            id: `favorite-${file.id}-checkbox`,
+          },
         }}
       />
 
@@ -136,7 +136,7 @@ export function FileRecentItem({ file, onDelete, sx, ...other }: Props) {
       open={menuActions.open}
       anchorEl={menuActions.anchorEl}
       onClose={menuActions.onClose}
-      slotProps={{ arrow: { placement: 'right-top' } }}
+      arrow="right-top"
     >
       <MenuList>
         <MenuItem

@@ -13,7 +13,7 @@ import MenuItem from '@mui/material/MenuItem'
 import ListItemText from '@mui/material/ListItemText'
 
 import Iconify from '@/components/iconify'
-import { CustomPopover } from '@/components/custom-popover'
+import CustomPopover from '@/components/custom-popover'
 
 // ----------------------------------------------------------------------
 

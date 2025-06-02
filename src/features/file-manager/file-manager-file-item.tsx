@@ -23,7 +23,7 @@ import { toast } from '@/components/snackbar'
 import Iconify from '@/components/iconify'
 import { ConfirmDialog } from '@/components/custom-dialog'
 import { FileThumbnail } from '@/components/file-thumbnail'
-import { CustomPopover } from '@/components/custom-popover'
+import CustomPopover from '@/components/custom-popover'
 
 import { FileManagerShareDialog } from './file-manager-share-dialog'
 import { FileManagerFileDetails } from './file-manager-file-details'
