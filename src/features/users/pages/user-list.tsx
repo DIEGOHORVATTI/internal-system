@@ -1,6 +1,6 @@
 import MainContent from '@/layouts/main-content'
 
-import Filters from '..'
+import Filters from '../components/filters'
 
 export default function UserList() {
   return (

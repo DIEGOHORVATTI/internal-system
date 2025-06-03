@@ -6,6 +6,7 @@ import CustomPopover from '@/components/custom-popover'
 
 import {
   Box,
+  Chip,
   List,
   Stack,
   Button,
@@ -80,6 +81,7 @@ export default function Filters() {
             primary={
               <>
                 {label}
+
                 {!!filters[key] && <Iconify icon="mdi:check" />}
               </>
             }
@@ -108,8 +110,29 @@ export default function Filters() {
     </Stack>
   )
 
+  const filterChips = Object.entries(filters)
+    .filter(([, value]) => !!value)
+    .map(([key, value]) => (
+      <Chip
+        key={key}
+        label={typeof value === 'string' ? value : value?.format?.('DD/MM/YYYY') || ''}
+        onDelete={() => {
+          setFilters((prev) => ({ ...prev, [key]: key === 'dataHorario' ? null : '' }))
+        }}
+        sx={{ mr: 1, mb: 1 }}
+        color="secondary"
+        variant="outlined"
+      />
+    ))
+
   return (
     <>
+      {!!filterChips && (
+        <Stack direction="row" flexWrap="wrap" mb={2}>
+          {filterChips}
+        </Stack>
+      )}
+
       <Button variant="contained" color="secondary" onClick={popover.onOpen} sx={{ width: 100 }}>
         Filtrar
       </Button>
