@@ -5,7 +5,6 @@ import type { UseSetStateReturn } from 'minimal-shared/hooks'
 import { useCallback } from 'react'
 import Label from '@/components/label'
 import Iconify from '@/components/iconify'
-import { varAlpha } from 'minimal-shared/utils'
 import { usePopover } from 'minimal-shared/hooks'
 import CustomPopover from '@/components/custom-popover'
 import FileThumbnail from '@/components/file-thumbnail'
@@ -13,6 +12,7 @@ import { fDateRangeShortLabel } from '@/utils/format-time'
 import CustomDateRangePicker from '@/components/custom-date-range-picker'
 
 import Box from '@mui/material/Box'
+import { alpha } from '@mui/system'
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
@@ -151,7 +151,7 @@ export function FileManagerFilters({
                       p: 1,
                       borderRadius: 1,
                       cursor: 'pointer',
-                      border: `solid 1px ${varAlpha(theme.palette.grey[500], 0.08)}`,
+                      border: `solid 1px ${alpha(theme.palette.grey[500], 0.08)}`,
                       ...(selected && { bgcolor: 'action.selected' }),
                     }),
                   ]}

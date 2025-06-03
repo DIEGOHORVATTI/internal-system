@@ -4,7 +4,6 @@ import dayjs from 'dayjs'
 import Iconify from '@/components/iconify'
 import { enqueueSnackbar } from 'notistack'
 import { useState, useCallback } from 'react'
-import EmptyContent from '@/components/empty-content'
 import { _allFiles, FILE_TYPE_OPTIONS } from '@/_mock'
 import ConfirmDialog from '@/components/custom-dialog'
 import { fileFormat } from '@/components/file-thumbnail'
@@ -15,13 +14,13 @@ import { useTable, rowInPage, getComparator } from '@/components/table'
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
 import ToggleButton from '@mui/material/ToggleButton'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 
 import MainContent from '../../../layouts/main-content'
 import { FileManagerTable } from '../file-manager-table'
 import { FileManagerFilters } from '../file-manager-filters'
+import EmptyContent from '../../../components/empty-content'
 import { FileManagerGridView } from '../file-manager-grid-view'
 import { FileManagerFiltersResult } from '../file-manager-filters-result'
 import { FileManagerNewFolderDialog } from '../file-manager-new-folder-dialog'
@@ -64,7 +63,7 @@ export default function FileManagerView() {
   const notFound = (!dataFiltered.length && canReset) || !dataFiltered.length
 
   const handleChangeView = useCallback(
-    (event: React.MouseEvent<HTMLElement>, newView: string | null) => {
+    (_event: React.MouseEvent<HTMLElement>, newView: string | null) => {
       if (newView !== null) {
         setDisplayMode(newView)
       }
@@ -130,7 +129,7 @@ export default function FileManagerView() {
     </Box>
   )
 
-  const renderResults = () => (
+  const renderResults = (
     <FileManagerFiltersResult
       filters={filters}
       totalResults={dataFiltered.length}
@@ -167,7 +166,7 @@ export default function FileManagerView() {
     />
   )
 
-  const renderList = () =>
+  const renderList =
     displayMode === 'list' ? (
       <FileManagerTable
         table={table}
@@ -187,24 +186,23 @@ export default function FileManagerView() {
 
   return (
     <>
-      <MainContent>
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <Typography variant="h4">File manager</Typography>
-          <Button
-            variant="contained"
-            startIcon={<Iconify icon="eva:cloud-upload-fill" />}
-            onClick={newFilesDialog.onTrue}
-          >
-            Upload
-          </Button>
-        </Box>
-
+      <MainContent
+        slotProps={{
+          breadcrumbs: {
+            action: (
+              <Button variant="contained" startIcon={<Iconify icon="eva:cloud-upload-fill" />}>
+                Enviar
+              </Button>
+            ),
+          },
+        }}
+      >
         <Stack spacing={2.5} sx={{ my: { xs: 3, md: 5 } }}>
           {renderFilters()}
-          {canReset && renderResults()}
+          {canReset && renderResults}
         </Stack>
 
-        {notFound ? <EmptyContent filled sx={{ py: 10 }} /> : renderList()}
+        {notFound ? <EmptyContent filled sx={{ py: 10 }} /> : renderList}
       </MainContent>
 
       {renderNewFilesDialog()}

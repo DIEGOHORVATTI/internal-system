@@ -2,11 +2,9 @@ import type { BoxProps } from '@mui/material/Box'
 import type { Theme, SxProps } from '@mui/material/styles'
 import type { TypographyProps } from '@mui/material/Typography'
 
-import { varAlpha } from 'minimal-shared/utils'
-
 import Box from '@mui/material/Box'
-import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
+import { alpha, styled } from '@mui/material/styles'
 
 export type EmptyContentProps = React.ComponentProps<'div'> & {
   title?: string
@@ -84,7 +82,7 @@ const ContentRoot = styled('div', {
   padding: theme.spacing(0, 3),
   ...(filled && {
     borderRadius: theme.shape.borderRadius * 2,
-    backgroundColor: varAlpha(theme.palette.grey['500'], 0.04),
-    border: `dashed 1px ${varAlpha(theme.palette.grey['500'], 0.08)}`,
+    backgroundColor: alpha(theme.palette.grey[500], 0.04),
+    border: `dashed 1px ${alpha(theme.palette.grey[500], 0.08)}`,
   }),
 }))

@@ -4,8 +4,6 @@ import type { BoxProps } from '@mui/material/Box'
 import { _socials } from '@/_mock'
 import Iconify from '@/components/iconify'
 import { fDate } from '@/utils/format-time'
-import { varAlpha } from 'minimal-shared/utils'
-import { TwitterIcon, FacebookIcon, LinkedinIcon, InstagramIcon } from '@/assets/icons'
 
 import Box from '@mui/material/Box'
 import Avatar from '@mui/material/Avatar'
@@ -30,7 +28,7 @@ export function PostDetailsHero({
 
   return (
     <Box
-      sx={[
+      /* sx={[
         {
           ...theme.mixins.bgGradient({
             images: [
@@ -45,7 +43,7 @@ export function PostDetailsHero({
           overflow: 'hidden',
         },
         ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+      ]} */
       {...other}
     >
       <Container sx={{ height: 1, position: 'relative' }}>
@@ -110,10 +108,10 @@ export function PostDetailsHero({
                 key={social.label}
                 icon={
                   <>
-                    {social.value === 'facebook' && <FacebookIcon />}
-                    {social.value === 'instagram' && <InstagramIcon />}
-                    {social.value === 'linkedin' && <LinkedinIcon />}
-                    {social.value === 'twitter' && <TwitterIcon />}
+                    {social.value === 'facebook' && <Iconify icon="solar:facebook-bold" />}
+                    {social.value === 'instagram' && <Iconify icon="solar:instagram-bold" />}
+                    {social.value === 'linkedin' && <Iconify icon="solar:linkedin-bold" />}
+                    {social.value === 'twitter' && <Iconify icon="solar:twitter-bold" />}
                   </>
                 }
                 tooltipPlacement="top"

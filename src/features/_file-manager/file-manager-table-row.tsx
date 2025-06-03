@@ -5,7 +5,6 @@ import Iconify from '@/components/iconify'
 import { enqueueSnackbar } from 'notistack'
 import { useState, useCallback } from 'react'
 import { fData } from '@/utils/format-number'
-import { varAlpha } from 'minimal-shared/utils'
 import { fDate, fTime } from '@/utils/format-time'
 import ConfirmDialog from '@/components/custom-dialog'
 import CustomPopover from '@/components/custom-popover'
@@ -19,10 +18,10 @@ import Divider from '@mui/material/Divider'
 import MenuList from '@mui/material/MenuList'
 import MenuItem from '@mui/material/MenuItem'
 import Checkbox from '@mui/material/Checkbox'
-import { useTheme } from '@mui/material/styles'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import ListItemText from '@mui/material/ListItemText'
+import { alpha, useTheme } from '@mui/material/styles'
 import TableRow, { tableRowClasses } from '@mui/material/TableRow'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import AvatarGroup, { avatarGroupClasses } from '@mui/material/AvatarGroup'
@@ -68,17 +67,17 @@ export function FileManagerTableRow({ row, selected, onSelectRow, onDeleteRow }:
   }, [copy, row.url])
 
   const defaultStyles: SxProps<Theme> = {
-    borderTop: `solid 1px ${varAlpha(theme.palette.grey[500], 0.16)}`,
-    borderBottom: `solid 1px ${varAlpha(theme.palette.grey[500], 0.16)}`,
+    borderTop: `solid 1px ${alpha(theme.palette.grey[500], 0.16)}`,
+    borderBottom: `solid 1px ${alpha(theme.palette.grey[500], 0.16)}`,
     '&:first-of-type': {
       borderTopLeftRadius: 16,
       borderBottomLeftRadius: 16,
-      borderLeft: `solid 1px ${varAlpha(theme.palette.grey[500], 0.16)}`,
+      borderLeft: `solid 1px ${alpha(theme.palette.grey[500], 0.16)}`,
     },
     '&:last-of-type': {
       borderTopRightRadius: 16,
       borderBottomRightRadius: 16,
-      borderRight: `solid 1px ${varAlpha(theme.palette.grey[500], 0.16)}`,
+      borderRight: `solid 1px ${alpha(theme.palette.grey[500], 0.16)}`,
     },
   }
 

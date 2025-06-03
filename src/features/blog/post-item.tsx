@@ -5,8 +5,6 @@ import type { CardProps } from '@mui/material/Card'
 import Image from '@/components/image'
 import Iconify from '@/components/iconify'
 import { fDate } from '@/utils/format-time'
-import { varAlpha } from 'minimal-shared/utils'
-import { AvatarShape } from '@/assets/illustrations'
 import { fShortenNumber } from '@/utils/format-number'
 import RouterLink from '@/routes/components/router-link'
 
@@ -16,6 +14,8 @@ import Card from '@mui/material/Card'
 import Avatar from '@mui/material/Avatar'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
+
+import AvatarShape from '../../assets/avatar-shape'
 
 type PostItemProps = CardProps & {
   post: IPostItem
@@ -48,7 +48,7 @@ export function PostItem({ post, detailsHref, sx, ...other }: PostItemProps) {
           }}
         />
 
-        <Image alt={post.title} src={post.coverUrl} ratio="4/3" />
+        <Image alt={post.title} src={post.coverUrl} />
       </Box>
 
       <CardContent sx={{ pt: 6 }}>
@@ -61,9 +61,9 @@ export function PostItem({ post, detailsHref, sx, ...other }: PostItemProps) {
           href={detailsHref}
           color="inherit"
           variant="subtitle2"
-          sx={(theme) => ({
+          /* sx={(theme) => ({
             ...theme.mixins.maxLine({ line: 2, persistent: theme.typography.subtitle2 }),
-          })}
+          })} */
         >
           {post.title}
         </Link>
@@ -103,15 +103,14 @@ export function PostItemLatest({ post, index, detailsHref }: PostItemLatestProps
       <Image
         alt={post.title}
         src={post.coverUrl}
-        ratio="4/3"
         sx={{ height: 360 }}
-        slotProps={{
+        /* slotProps={{
           overlay: {
             sx: (theme) => ({
               bgcolor: varAlpha(theme.palette.grey['900Channel'], 0.64),
             }),
           },
-        }}
+        }} */
       />
 
       <CardContent
@@ -132,12 +131,12 @@ export function PostItemLatest({ post, index, detailsHref }: PostItemLatestProps
           href={detailsHref}
           color="inherit"
           variant={postSmall ? 'subtitle2' : 'h5'}
-          sx={(theme) => ({
+          /* sx={(theme) => ({
             ...theme.mixins.maxLine({
               line: 2,
               persistent: postSmall ? theme.typography.subtitle2 : theme.typography.h5,
             }),
-          })}
+          })} */
         >
           {post.title}
         </Link>
