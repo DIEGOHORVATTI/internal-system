@@ -2,7 +2,7 @@ import MainContent from '@/layouts/main-content'
 
 import Filters from '..'
 
-export default function ListUserPage() {
+export default function UserList() {
   return (
     <MainContent>
       <Filters />
