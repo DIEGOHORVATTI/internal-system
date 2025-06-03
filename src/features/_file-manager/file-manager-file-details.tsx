@@ -5,7 +5,6 @@ import Iconify from '@/components/iconify'
 import { useState, useCallback } from 'react'
 import { fData } from '@/utils/format-number'
 import Scrollbar from '@/components/scrollbar'
-import { fDateTime } from '@/utils/format-time'
 import { useBoolean } from 'minimal-shared/hooks'
 import FileThumbnail, { fileFormat } from '@/components/file-thumbnail'
 
@@ -21,6 +20,7 @@ import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import Autocomplete from '@mui/material/Autocomplete'
 
+import { fDateTime } from '../../utils/format-time'
 import { FileManagerShareDialog } from './file-manager-share-dialog'
 import { FileManagerInvitedItem } from './file-manager-invited-item'
 
@@ -129,7 +129,7 @@ export function FileManagerFileDetails({
               Type
             </Box>
 
-            {fileFormat(file?.type)}
+            {fileFormat(file.type)}
           </Box>
         </>
       )}
@@ -260,6 +260,7 @@ export function FileManagerFileDetails({
             <Divider sx={{ borderStyle: 'dashed' }} />
 
             {renderTags()}
+
             {renderProperties()}
           </Stack>
 
