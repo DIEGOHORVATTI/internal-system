@@ -4,7 +4,6 @@ import type { ExtendFile } from './types'
 // Define more types here
 const FORMAT_PDF = ['pdf']
 const FORMAT_TEXT = ['txt']
-const FORMAT_FOLDER = ['folder', 'dir', 'directory']
 const FORMAT_PHOTOSHOP = ['psd']
 const FORMAT_WORD = ['doc', 'docx']
 const FORMAT_EXCEL = ['xls', 'xlsx']

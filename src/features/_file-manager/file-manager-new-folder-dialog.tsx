@@ -81,11 +81,11 @@ export function FileManagerNewFolderDialog({
           multiple
           onDrop={handleDrop}
           onRemove={handleRemoveFile}
-          onChange={function (...event: any[]): void {
-            throw new Error('Function not implemented.')
+          onChange={() => {
+            throw new Error('not implemented: onChange.')
           }}
-          onUpdateFiles={function (file: (File & { preview?: string })[]): Promise<void> {
-            throw new Error('Function not implemented.')
+          onUpdateFiles={() => {
+            throw new Error('not implemented: onUpdateFiles.')
           }}
         />
       </DialogContent>
