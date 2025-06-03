@@ -2,7 +2,6 @@ import type { IPostItem } from '@/types/blog'
 
 import { useState } from 'react'
 import { orderBy } from 'es-toolkit'
-import { paths } from '@/routes/paths'
 import { POST_SORT_OPTIONS } from '@/_mock'
 
 import Box from '@mui/material/Box'
@@ -11,7 +10,6 @@ import Typography from '@mui/material/Typography'
 
 import { PostList } from '../post-list'
 import { PostSort } from '../post-sort'
-import { PostSearch } from '../post-search'
 
 type Props = {
   posts: IPostItem[]
@@ -41,8 +39,6 @@ export function PostListHomeView({ posts, loading }: Props) {
           }),
         ]}
       >
-        <PostSearch redirectPath={(title: string) => paths.post.details(title)} />
-
         <PostSort
           sort={sortBy}
           onSort={(newValue: string) => setSortBy(newValue)}
