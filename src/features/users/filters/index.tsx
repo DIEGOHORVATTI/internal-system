@@ -36,7 +36,7 @@ export default function Filters() {
     causaSIP: '',
   }
 
-  const [selectedMenu, setSelectedMenu] = useState<string | null>(null)
+  const [activeMenuKey, setActiveMenuKey] = useState<string | null>(null)
   const [filters, setFilters] = useState<InteractionRecord>(defaultValues)
   const { control, handleSubmit } = useForm<InteractionRecord>({
     defaultValues,
@@ -51,7 +51,8 @@ export default function Filters() {
   const menuItems = getMenuItems(control)
 
   const renderInput = () => {
-    const current = menuItems.find((m) => m.label === selectedMenu)
+    const current = menuItems.find(({ key }) => key === activeMenuKey)
+
     return current?.render() ?? <Typography>Selecione uma opção para buscar</Typography>
   }
 
@@ -59,9 +60,9 @@ export default function Filters() {
     <List sx={{ flex: 1, maxHeight: 400, overflowY: 'auto' }}>
       {menuItems.map(({ label, key }) => (
         <Stack
-          key={label}
+          key={key}
           component={ListItemButton}
-          selected={selectedMenu === label}
+          selected={activeMenuKey === key}
           direction="row"
           justifyContent="space-between"
           m={1}
@@ -73,7 +74,7 @@ export default function Filters() {
               borderLeft: (theme) => `3px solid ${theme.palette.primary.main}`,
             },
           }}
-          onClick={() => setSelectedMenu(label)}
+          onClick={() => setActiveMenuKey(key)}
         >
           <ListItemText
             primary={
@@ -94,10 +95,12 @@ export default function Filters() {
       <Button color="error" variant="soft" onClick={popover.onClose}>
         Limpar
       </Button>
+
       <Stack direction="row" spacing={2}>
         <Button color="error" variant="outlined" onClick={popover.onClose}>
           Fechar
         </Button>
+
         <Button variant="contained" color="secondary" onClick={handleSubmit(onSubmit)}>
           Aplicar
         </Button>
@@ -110,6 +113,7 @@ export default function Filters() {
       <Button variant="contained" color="secondary" onClick={popover.onOpen} sx={{ width: 100 }}>
         Filtrar
       </Button>
+
       <CustomPopover
         open={popover.open}
         anchorEl={popover.anchorEl}
@@ -120,10 +124,12 @@ export default function Filters() {
         <Stack width={1} divider={<Divider orientation="horizontal" />}>
           <Stack direction="row" divider={<Divider flexItem orientation="vertical" />}>
             {menuItemList}
+
             <Box component="form" onSubmit={handleSubmit(onSubmit)} p={2} flex={2}>
               {renderInput()}
             </Box>
           </Stack>
+
           {controlsPainel}
         </Stack>
       </CustomPopover>
