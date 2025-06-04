@@ -1,4 +1,4 @@
-import type { Path, DefaultValues } from 'react-hook-form'
+import type { Path, FieldValues, DefaultValues } from 'react-hook-form'
 
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -9,27 +9,27 @@ import FormProvider from '@/components/hook-form/form-provider'
 
 import { Chip, List, Stack, Button, Divider, ListItemText, ListItemButton } from '@mui/material'
 
-export type GenericFilterItem<T> = {
+type FilterOption<T> = {
   label: string
   key: keyof T
   render: () => React.ReactNode
 }
 
-export type FiltersProps<T extends Record<string, any>> = {
-  filterItems: Array<GenericFilterItem<T>>
+type Props<T extends FieldValues> = {
+  filterItems: Array<FilterOption<T>>
   defaultValues: DefaultValues<T>
   onApply: (filters: T) => void
 }
 
-export default function Filters<T extends Record<string, any>>({
+export default function Filters<T extends FieldValues>({
   filterItems,
   defaultValues,
   onApply,
-}: FiltersProps<T>) {
+}: Props<T>) {
   const popover = usePopover()
   const methods = useForm<T>({ defaultValues })
 
-  const [activeMenuKey, setActiveMenuKey] = useState<keyof T>(filterItems[0].key)
+  const [activeMenuKey, setActiveMenuKey] = useState<keyof T | undefined>(filterItems[0]?.key)
 
   const { handleSubmit, watch, setValue, reset } = methods
 
@@ -47,7 +47,7 @@ export default function Filters<T extends Record<string, any>>({
     popover.onClose()
   }
 
-  const render = filterItems.find(({ key }) => key === activeMenuKey)?.render
+  const render = filterItems.find(({ key }) => key === activeMenuKey)?.render()
 
   const menuItemList = (
     <List sx={{ flex: 1, maxHeight: 400, overflowY: 'auto' }}>
@@ -103,11 +103,7 @@ export default function Filters<T extends Record<string, any>>({
           Fechar
         </Button>
 
-        <Button
-          variant="contained"
-          color="secondary"
-          onClick={handleSubmit((data) => onSubmit(data))}
-        >
+        <Button variant="contained" color="secondary" onClick={handleSubmit(onSubmit)}>
           Aplicar
         </Button>
       </Stack>
@@ -155,10 +151,11 @@ export default function Filters<T extends Record<string, any>>({
       </Button>
 
       <CustomPopover
+        hiddenArrow
+        arrow="top-left"
         open={popover.open}
         anchorEl={popover.anchorEl}
         onClose={popover.onClose}
-        arrow="top-left"
         slotProps={{ paper: { sx: { p: 0, width: 600 } } }}
       >
         <Stack width={1} divider={<Divider orientation="horizontal" />}>
@@ -166,7 +163,7 @@ export default function Filters<T extends Record<string, any>>({
             {menuItemList}
 
             <FormProvider onSubmit={handleSubmit(onSubmit)} methods={methods} p={2} flex={2}>
-              {render?.()}
+              {render}
             </FormProvider>
           </Stack>
 
