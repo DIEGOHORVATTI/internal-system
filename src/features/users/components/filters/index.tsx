@@ -1,67 +1,59 @@
+import type { Path, DefaultValues } from 'react-hook-form'
+
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Iconify from '@/components/iconify'
 import { usePopover } from 'minimal-shared/hooks'
 import CustomPopover from '@/components/custom-popover'
+import FormProvider from '@/components/hook-form/form-provider'
 
-import {
-  Box,
-  Chip,
-  List,
-  Stack,
-  Button,
-  Divider,
-  Typography,
-  ListItemText,
-  ListItemButton,
-} from '@mui/material'
+import { Chip, List, Stack, Button, Divider, ListItemText, ListItemButton } from '@mui/material'
 
-import { getMenuItems } from './filterMenuItems'
+export type GenericFilterItem<T> = {
+  label: string
+  key: keyof T
+  render: () => React.ReactNode
+}
 
-import type { InteractionRecord } from './types'
+export type FiltersProps<T extends Record<string, any>> = {
+  filterItems: Array<GenericFilterItem<T>>
+  defaultValues: DefaultValues<T>
+  onApply: (filters: T) => void
+}
 
-export default function Filters() {
+export default function Filters<T extends Record<string, any>>({
+  filterItems,
+  defaultValues,
+  onApply,
+}: FiltersProps<T>) {
   const popover = usePopover()
+  const methods = useForm<T>({ defaultValues })
 
-  const defaultValues: InteractionRecord = {
-    dataHorario: null,
-    midiaChamada: '',
-    agentes: '',
-    servicos: '',
-    dadosAssociados: '',
-    condicaoTermino: '',
-    intervaloDuracao: '',
-    interlocutor: '',
-    gravacao: '',
-    protocolo: '',
-    causaSIP: '',
+  const [activeMenuKey, setActiveMenuKey] = useState<keyof T>(filterItems[0].key)
+
+  const { handleSubmit, watch, setValue, reset } = methods
+
+  const filters = watch()
+
+  const handleChipDelete = (key: Path<T>) => {
+    setValue(key, defaultValues[key])
+
+    onApply({ ...filters, [key]: defaultValues[key] })
   }
 
-  const [activeMenuKey, setActiveMenuKey] = useState<keyof InteractionRecord>('agentes')
-  const [filters, setFilters] = useState<InteractionRecord>(defaultValues)
-  const { control, handleSubmit } = useForm<InteractionRecord>({
-    defaultValues,
-  })
+  const onSubmit = (data: T) => {
+    onApply(data)
 
-  const onSubmit = (data: InteractionRecord) => {
-    console.log('Filtros aplicados:', data)
-    setFilters(data)
     popover.onClose()
   }
 
-  const menuItems = getMenuItems(control)
-
-  const renderInput = () => {
-    const current = menuItems.find(({ key }) => key === activeMenuKey)
-
-    return current?.render() ?? <Typography>Selecione uma opção para buscar</Typography>
-  }
+  const render = filterItems.find(({ key }) => key === activeMenuKey)?.render
 
   const menuItemList = (
     <List sx={{ flex: 1, maxHeight: 400, overflowY: 'auto' }}>
-      {menuItems.map(({ label, key }) => (
+      {filterItems.map(({ label, key }) => (
         <Stack
-          key={key}
+          key={String(key)}
           component={ListItemButton}
           selected={activeMenuKey === key}
           direction="row"
@@ -81,7 +73,6 @@ export default function Filters() {
             primary={
               <>
                 {label}
-
                 {!!filters[key] && <Iconify icon="mdi:check" />}
               </>
             }
@@ -94,7 +85,16 @@ export default function Filters() {
 
   const controlsPainel = (
     <Stack direction="row" justifyContent="space-between" alignItems="center" p={1}>
-      <Button color="error" variant="soft" onClick={popover.onClose}>
+      <Button
+        color="error"
+        variant="soft"
+        onClick={() => {
+          reset(defaultValues)
+          onApply(defaultValues as T)
+
+          popover.onClose()
+        }}
+      >
         Limpar
       </Button>
 
@@ -103,39 +103,52 @@ export default function Filters() {
           Fechar
         </Button>
 
-        <Button variant="contained" color="secondary" onClick={handleSubmit(onSubmit)}>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={handleSubmit((data) => onSubmit(data))}
+        >
           Aplicar
         </Button>
       </Stack>
     </Stack>
   )
 
-  const filterChips = Object.entries(filters)
-    .filter(([, value]) => !!value)
-    .map(([key, value]) => (
-      <Chip
-        key={key}
-        label={typeof value === 'string' ? value : value?.format?.('DD/MM/YYYY') || ''}
-        onDelete={() => {
-          setFilters((prev) => ({ ...prev, [key]: key === 'dataHorario' ? null : '' }))
-        }}
-        sx={{ mr: 1, mb: 1 }}
-        color="secondary"
-        variant="outlined"
-      />
-    ))
+  type FilterHandler<T extends Record<string, any>> = {
+    filters: T
+    onDelete: (key: Path<T>) => void
+  }
 
-  const activeFilters = Object.entries(filters).filter(
-    ([key, value]) => activeMenuKey === key && !!value
-  )
+  function FilterChips<T extends Record<string, any>>({ filters, onDelete }: FilterHandler<T>) {
+    const chipLabel = (key: keyof T) => {
+      const item = filterItems.find((item) => item.key === key)
+
+      return item ? item.label : String(key)
+    }
+
+    return (
+      <>
+        {Object.entries(filters)
+          .filter(([, value]) => !!value)
+          .map(([key, value]) => (
+            <Chip
+              key={key}
+              label={chipLabel(value)}
+              onDelete={() => onDelete(key as Path<T>)}
+              sx={{ mr: 1, mb: 1 }}
+              color="secondary"
+              variant="outlined"
+            />
+          ))}
+      </>
+    )
+  }
 
   return (
     <>
-      {!!filterChips && (
-        <Stack direction="row" flexWrap="wrap" mb={2}>
-          {filterChips}
-        </Stack>
-      )}
+      <Stack direction="row" flexWrap="wrap" mb={2}>
+        <FilterChips filters={filters} onDelete={handleChipDelete} />
+      </Stack>
 
       <Button variant="contained" color="secondary" onClick={popover.onOpen} sx={{ width: 100 }}>
         Filtrar
@@ -152,27 +165,10 @@ export default function Filters() {
           <Stack direction="row" divider={<Divider flexItem orientation="vertical" />}>
             {menuItemList}
 
-            <Box component="form" onSubmit={handleSubmit(onSubmit)} p={2} flex={2}>
-              {renderInput()}
-            </Box>
+            <FormProvider onSubmit={handleSubmit(onSubmit)} methods={methods} p={2} flex={2}>
+              {render?.()}
+            </FormProvider>
           </Stack>
-
-          {!!activeFilters && (
-            <Stack direction="row" spacing={2}>
-              {activeFilters.map(([key, value]) => (
-                <Chip
-                  key={key}
-                  label={typeof value === 'string' ? value : value?.format?.('DD/MM/YYYY') || ''}
-                  onDelete={() => {
-                    setFilters((prev) => ({ ...prev, [key]: key === 'dataHorario' ? null : '' }))
-                  }}
-                  sx={{ mr: 1, mb: 1 }}
-                  color="secondary"
-                  variant="outlined"
-                />
-              ))}
-            </Stack>
-          )}
 
           {controlsPainel}
         </Stack>
