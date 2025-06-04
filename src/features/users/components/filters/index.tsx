@@ -162,7 +162,7 @@ export default function Filters<T extends FieldValues>({
           <Stack direction="row" divider={<Divider flexItem orientation="vertical" />}>
             {menuItemList}
 
-            <FormProvider onSubmit={handleSubmit(onSubmit)} methods={methods} p={2} flex={2}>
+            <FormProvider<T> onSubmit={handleSubmit(onSubmit)} methods={methods} flex={1} p={1}>
               {render}
             </FormProvider>
           </Stack>

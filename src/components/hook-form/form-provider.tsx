@@ -3,21 +3,24 @@ import type { FieldValues, UseFormReturn } from 'react-hook-form'
 
 import { FormProvider as Form } from 'react-hook-form'
 
-type Props<T extends FieldValues> = BoxProps & {
-  methods: UseFormReturn<T, any, T>
+import Box from '@mui/material/Box'
+
+type FormProviderProps<T extends FieldValues> = BoxProps & {
+  children: React.ReactNode
+  methods: UseFormReturn<T, unknown, T>
   onSubmit?: VoidFunction
 }
 
 export default function FormProvider<T extends FieldValues>({
   children,
-  onSubmit,
   methods,
-}: Props<T>) {
+  ...props
+}: FormProviderProps<T>) {
   return (
     <Form {...methods}>
-      <form style={{ width: '100%' }} onSubmit={onSubmit}>
+      <Box component="form" encType="multipart/form-data" height={1} width={1} {...props}>
         {children}
-      </form>
+      </Box>
     </Form>
   )
 }
