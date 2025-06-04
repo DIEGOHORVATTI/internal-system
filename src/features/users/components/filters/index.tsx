@@ -37,7 +37,7 @@ export default function Filters() {
     causaSIP: '',
   }
 
-  const [activeMenuKey, setActiveMenuKey] = useState<string | null>(null)
+  const [activeMenuKey, setActiveMenuKey] = useState<keyof InteractionRecord>('agentes')
   const [filters, setFilters] = useState<InteractionRecord>(defaultValues)
   const { control, handleSubmit } = useForm<InteractionRecord>({
     defaultValues,
@@ -125,6 +125,10 @@ export default function Filters() {
       />
     ))
 
+  const activeFilters = Object.entries(filters).filter(
+    ([key, value]) => activeMenuKey === key && !!value
+  )
+
   return (
     <>
       {!!filterChips && (
@@ -152,6 +156,23 @@ export default function Filters() {
               {renderInput()}
             </Box>
           </Stack>
+
+          {!!activeFilters && (
+            <Stack direction="row" spacing={2}>
+              {activeFilters.map(([key, value]) => (
+                <Chip
+                  key={key}
+                  label={typeof value === 'string' ? value : value?.format?.('DD/MM/YYYY') || ''}
+                  onDelete={() => {
+                    setFilters((prev) => ({ ...prev, [key]: key === 'dataHorario' ? null : '' }))
+                  }}
+                  sx={{ mr: 1, mb: 1 }}
+                  color="secondary"
+                  variant="outlined"
+                />
+              ))}
+            </Stack>
+          )}
 
           {controlsPainel}
         </Stack>
