@@ -2,7 +2,7 @@ import type { Path, FieldValues } from 'react-hook-form'
 
 import { Chip } from '@mui/material'
 
-import { useFilters } from './context'
+import useFilters from '../hooks/use-filters'
 
 export type FilterOption<T> = {
   label: string
