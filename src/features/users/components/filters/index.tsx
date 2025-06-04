@@ -1,13 +1,13 @@
 import type { Path, FieldValues, DefaultValues } from 'react-hook-form'
 
-import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Iconify from '@/components/iconify'
+import { useState, createContext } from 'react'
 import { usePopover } from 'minimal-shared/hooks'
 import CustomPopover from '@/components/custom-popover'
 import FormProvider from '@/components/hook-form/form-provider'
 
-import { Chip, List, Stack, Button, Divider, ListItemText, ListItemButton } from '@mui/material'
+import { List, Stack, Button, Divider, ListItemText, ListItemButton } from '@mui/material'
 
 type FilterOption<T> = {
   label: string
@@ -21,19 +21,29 @@ type Props<T extends FieldValues> = {
   onApply: (filters: T) => void
 }
 
+export type FiltersContextType<T extends FieldValues> = {
+  filters: T
+  resetFilters: () => void
+  handleChipDelete: (key: Path<T>) => void
+}
+
+export const FiltersContext = createContext<FiltersContextType<any> | undefined>(undefined)
+
 export default function Filters<T extends FieldValues>({
   filterItems,
   defaultValues,
   onApply,
 }: Props<T>) {
   const popover = usePopover()
-  const methods = useForm<T>({ defaultValues })
 
   const [activeMenuKey, setActiveMenuKey] = useState<keyof T | undefined>(filterItems[0]?.key)
 
+  const methods = useForm<T>({ defaultValues })
   const { handleSubmit, watch, setValue, reset } = methods
 
   const filters = watch()
+
+  const resetFilters = () => reset(defaultValues)
 
   const handleChipDelete = (key: Path<T>) => {
     setValue(key, defaultValues[key])
@@ -110,42 +120,9 @@ export default function Filters<T extends FieldValues>({
     </Stack>
   )
 
-  type FilterHandler<T extends Record<string, any>> = {
-    filters: T
-    onDelete: (key: Path<T>) => void
-  }
-
-  function FilterChips<T extends Record<string, any>>({ filters, onDelete }: FilterHandler<T>) {
-    const chipLabel = (key: keyof T) => {
-      const item = filterItems.find((item) => item.key === key)
-
-      return item ? item.label : String(key)
-    }
-
-    return (
-      <>
-        {Object.entries(filters)
-          .filter(([, value]) => !!value)
-          .map(([key, value]) => (
-            <Chip
-              key={key}
-              label={chipLabel(value)}
-              onDelete={() => onDelete(key as Path<T>)}
-              sx={{ mr: 1, mb: 1 }}
-              color="secondary"
-              variant="outlined"
-            />
-          ))}
-      </>
-    )
-  }
-
+  const Context = FiltersContext as React.Context<FiltersContextType<T> | undefined>
   return (
-    <>
-      <Stack direction="row" flexWrap="wrap" mb={2}>
-        <FilterChips filters={filters} onDelete={handleChipDelete} />
-      </Stack>
-
+    <Context.Provider value={{ filters, resetFilters, handleChipDelete }}>
       <Button variant="contained" color="secondary" onClick={popover.onOpen} sx={{ width: 100 }}>
         Filtrar
       </Button>
@@ -170,6 +147,6 @@ export default function Filters<T extends FieldValues>({
           {controlsPainel}
         </Stack>
       </CustomPopover>
-    </>
+    </Context.Provider>
   )
 }
