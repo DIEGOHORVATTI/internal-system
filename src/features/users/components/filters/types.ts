@@ -7,18 +7,17 @@ export type FiltersContextType<T extends FieldValues> = {
   setActiveMenuKey: (key: keyof T) => void
   methods: UseFormReturn<T>
   filters: T
+  data: Array<{
+    label: string
+    key: keyof T
+    render: () => React.ReactNode
+  }>
   resetFilters: () => void
   handleChipDelete: (key: Path<T>) => void
   onSubmit: (data: T) => void
 }
 
-type FilterOption<T> = {
-  label: string
-  key: keyof T
-  render: () => React.ReactNode
-}
-export type FiltersProps<T extends FieldValues> = {
-  data: Array<FilterOption<T>>
+export type FiltersProps<T extends FieldValues> = Pick<FiltersContextType<T>, 'data'> & {
   defaultValues: DefaultValues<T>
   onApply: (filters: T) => void
 }

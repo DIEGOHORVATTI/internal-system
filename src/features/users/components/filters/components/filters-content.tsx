@@ -1,58 +1,19 @@
 import type { FieldValues } from 'react-hook-form'
 
-import Iconify from '@/components/iconify'
 import CustomPopover from '@/components/custom-popover'
 import FormProvider from '@/components/hook-form/form-provider'
 
-import { List, Stack, Button, Divider, ListItemText, ListItemButton } from '@mui/material'
+import { Stack, Button, Divider } from '@mui/material'
 
+import MenuItemList from './menu-item-list'
 import useFilters from '../hooks/use-filters'
 
-import type { FiltersProps } from '../types'
-
-type Props<T extends FieldValues> = Pick<FiltersProps<T>, 'data'>
-
-export default function FiltersContent<T extends FieldValues>({ data }: Props<T>) {
-  const { popover, activeMenuKey, setActiveMenuKey, methods, filters, resetFilters, onSubmit } =
-    useFilters<T>()
+export default function FiltersContent<T extends FieldValues>() {
+  const { data, popover, activeMenuKey, methods, resetFilters, onSubmit } = useFilters<T>()
 
   const { handleSubmit } = methods
 
   const render = data.find(({ key }) => key === activeMenuKey)?.render()
-
-  const menuItemList = (
-    <List sx={{ flex: 1, maxHeight: 400, overflowY: 'auto' }}>
-      {data.map(({ label, key }) => (
-        <Stack
-          key={String(key)}
-          component={ListItemButton}
-          selected={activeMenuKey === key}
-          direction="row"
-          justifyContent="space-between"
-          m={1}
-          p={1}
-          borderRadius={1}
-          sx={{
-            '&.Mui-selected, &.Mui-selected:hover': {
-              backgroundColor: (theme) => theme.palette.action.selected,
-              borderLeft: (theme) => `3px solid ${theme.palette.primary.main}`,
-            },
-          }}
-          onClick={() => setActiveMenuKey(key)}
-        >
-          <ListItemText
-            primary={
-              <>
-                {label}
-                {!!filters[key] && <Iconify icon="mdi:check" />}
-              </>
-            }
-          />
-          <Iconify icon="eva:arrow-ios-forward-fill" />
-        </Stack>
-      ))}
-    </List>
-  )
 
   const controlsPainel = (
     <Stack direction="row" justifyContent="space-between" alignItems="center" p={1}>
@@ -95,7 +56,7 @@ export default function FiltersContent<T extends FieldValues>({ data }: Props<T>
       >
         <Stack width={1} divider={<Divider orientation="horizontal" />}>
           <Stack direction="row" divider={<Divider flexItem orientation="vertical" />}>
-            {menuItemList}
+            <MenuItemList data={data} />
 
             <FormProvider<T> onSubmit={handleSubmit(onSubmit)} methods={methods} flex={1} p={1}>
               {render}

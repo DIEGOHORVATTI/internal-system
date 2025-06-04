@@ -12,7 +12,7 @@ export default function Filters<T extends FieldValues>({
 }: FiltersProps<T>) {
   return (
     <FiltersProvider<T> data={data} defaultValues={defaultValues} onApply={onApply}>
-      <FiltersContent data={data} />
+      <FiltersContent />
     </FiltersProvider>
   )
 }

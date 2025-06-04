@@ -1,4 +1,4 @@
-import type { Path, FieldValues, DefaultValues } from 'react-hook-form'
+import type { Path, FieldValues } from 'react-hook-form'
 
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -6,19 +6,16 @@ import { usePopover } from 'minimal-shared/hooks'
 
 import { FiltersContext } from '../context/filters-context'
 
-import type { FiltersContextType } from '../types'
+import type { FiltersProps, FiltersContextType } from '../types'
+
+type Props<T extends FieldValues> = React.PropsWithChildren<FiltersProps<T>>
 
 export default function FiltersProvider<T extends FieldValues>({
   children,
   data,
   defaultValues,
   onApply,
-}: {
-  children: React.ReactNode
-  data: Array<{ key: keyof T }>
-  defaultValues: DefaultValues<T>
-  onApply: (filters: T) => void
-}) {
+}: Props<T>) {
   const popover = usePopover()
 
   const [activeMenuKey, setActiveMenuKey] = useState<keyof T | undefined>(data[0]?.key)
@@ -48,6 +45,7 @@ export default function FiltersProvider<T extends FieldValues>({
         activeMenuKey,
         setActiveMenuKey,
         methods,
+        data,
         filters,
         resetFilters,
         handleChipDelete,
