@@ -10,18 +10,18 @@ import type { FiltersContextType } from '../types'
 
 export default function FiltersProvider<T extends FieldValues>({
   children,
-  filterItems,
+  data,
   defaultValues,
   onApply,
 }: {
   children: React.ReactNode
-  filterItems: Array<{ key: keyof T }>
+  data: Array<{ key: keyof T }>
   defaultValues: DefaultValues<T>
   onApply: (filters: T) => void
 }) {
   const popover = usePopover()
 
-  const [activeMenuKey, setActiveMenuKey] = useState<keyof T | undefined>(filterItems[0]?.key)
+  const [activeMenuKey, setActiveMenuKey] = useState<keyof T | undefined>(data[0]?.key)
 
   const methods = useForm<T>({ defaultValues })
   const { watch, setValue, reset } = methods

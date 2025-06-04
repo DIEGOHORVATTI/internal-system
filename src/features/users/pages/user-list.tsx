@@ -37,70 +37,68 @@ export default function UserList() {
     console.log('Filtros aplicados:', filters)
   }
 
-  const filterItems = [
-    {
-      key: 'dataHorario' as keyof InteractionRecord,
-      label: 'Data e Horário',
-      render: () => <input type="text" placeholder="Data e Horário" />,
-    },
-    {
-      key: 'midiaChamada' as keyof InteractionRecord,
-      label: 'Mídia da Chamada',
-      render: () => <input type="text" placeholder="Mídia da Chamada" />,
-    },
-    {
-      key: 'agentes' as keyof InteractionRecord,
-      label: 'Agentes',
-      render: () => <input type="text" placeholder="Agentes" />,
-    },
-    {
-      key: 'servicos' as keyof InteractionRecord,
-      label: 'Serviços',
-      render: () => <input type="text" placeholder="Serviços" />,
-    },
-    {
-      key: 'dadosAssociados' as keyof InteractionRecord,
-      label: 'Dados Associados',
-      render: () => <input type="text" placeholder="Dados Associados" />,
-    },
-    {
-      key: 'condicaoTermino' as keyof InteractionRecord,
-      label: 'Condição de Término',
-      render: () => <input type="text" placeholder="Condição de Término" />,
-    },
-    {
-      key: 'intervaloDuracao' as keyof InteractionRecord,
-      label: 'Intervalo de Duração',
-      render: () => <input type="text" placeholder="Intervalo de Duração" />,
-    },
-    {
-      key: 'interlocutor' as keyof InteractionRecord,
-      label: 'Interlocutor',
-      render: () => <input type="text" placeholder="Interlocutor" />,
-    },
-    {
-      key: 'gravacao' as keyof InteractionRecord,
-      label: 'Gravação',
-      render: () => <input type="text" placeholder="Gravação" />,
-    },
-    {
-      key: 'protocolo' as keyof InteractionRecord,
-      label: 'Protocolo',
-      render: () => <input type="text" placeholder="Protocolo" />,
-    },
-    {
-      key: 'causaSIP' as keyof InteractionRecord,
-      label: 'Causa SIP',
-      render: () => <input type="text" placeholder="Causa SIP" />,
-    },
-  ]
-
   return (
     <MainContent>
       <Filters<InteractionRecord>
         defaultValues={defaultValues}
-        filterItems={filterItems}
         onApply={handleApply}
+        data={[
+          {
+            key: 'dataHorario' as keyof InteractionRecord,
+            label: 'Data e Horário',
+            render: () => <input type="text" placeholder="Data e Horário" />,
+          },
+          {
+            key: 'midiaChamada' as keyof InteractionRecord,
+            label: 'Mídia da Chamada',
+            render: () => <input type="text" placeholder="Mídia da Chamada" />,
+          },
+          {
+            key: 'agentes' as keyof InteractionRecord,
+            label: 'Agentes',
+            render: () => <input type="text" placeholder="Agentes" />,
+          },
+          {
+            key: 'servicos' as keyof InteractionRecord,
+            label: 'Serviços',
+            render: () => <input type="text" placeholder="Serviços" />,
+          },
+          {
+            key: 'dadosAssociados' as keyof InteractionRecord,
+            label: 'Dados Associados',
+            render: () => <input type="text" placeholder="Dados Associados" />,
+          },
+          {
+            key: 'condicaoTermino' as keyof InteractionRecord,
+            label: 'Condição de Término',
+            render: () => <input type="text" placeholder="Condição de Término" />,
+          },
+          {
+            key: 'intervaloDuracao' as keyof InteractionRecord,
+            label: 'Intervalo de Duração',
+            render: () => <input type="text" placeholder="Intervalo de Duração" />,
+          },
+          {
+            key: 'interlocutor' as keyof InteractionRecord,
+            label: 'Interlocutor',
+            render: () => <input type="text" placeholder="Interlocutor" />,
+          },
+          {
+            key: 'gravacao' as keyof InteractionRecord,
+            label: 'Gravação',
+            render: () => <input type="text" placeholder="Gravação" />,
+          },
+          {
+            key: 'protocolo' as keyof InteractionRecord,
+            label: 'Protocolo',
+            render: () => <input type="text" placeholder="Protocolo" />,
+          },
+          {
+            key: 'causaSIP' as keyof InteractionRecord,
+            label: 'Causa SIP',
+            render: () => <input type="text" placeholder="Causa SIP" />,
+          },
+        ]}
       />
     </MainContent>
   )

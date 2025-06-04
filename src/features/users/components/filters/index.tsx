@@ -6,13 +6,13 @@ import FiltersContent from './components/filters-content'
 import type { FiltersProps } from './types'
 
 export default function Filters<T extends FieldValues>({
-  filterItems,
+  data,
   defaultValues,
   onApply,
 }: FiltersProps<T>) {
   return (
-    <FiltersProvider<T> filterItems={filterItems} defaultValues={defaultValues} onApply={onApply}>
-      <FiltersContent filterItems={filterItems} />
+    <FiltersProvider<T> data={data} defaultValues={defaultValues} onApply={onApply}>
+      <FiltersContent data={data} />
     </FiltersProvider>
   )
 }

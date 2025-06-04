@@ -10,14 +10,14 @@ export type FilterOption<T> = {
 }
 
 type Props<T extends FieldValues> = {
-  filterItems: Array<FilterOption<T>>
+  data: Array<FilterOption<T>>
 }
 
-export function FilterChips<T extends FieldValues>({ filterItems }: Props<T>) {
+export function FilterChips<T extends FieldValues>({ data }: Props<T>) {
   const { filters, handleChipDelete } = useFilters<T>()
 
   const chipLabel = (key: keyof T) => {
-    const item = filterItems.find((item) => item.key === key)
+    const item = data.find((item) => item.key === key)
     return item ? item.label : String(key)
   }
 

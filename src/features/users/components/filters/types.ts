@@ -18,7 +18,7 @@ type FilterOption<T> = {
   render: () => React.ReactNode
 }
 export type FiltersProps<T extends FieldValues> = {
-  filterItems: Array<FilterOption<T>>
+  data: Array<FilterOption<T>>
   defaultValues: DefaultValues<T>
   onApply: (filters: T) => void
 }

@@ -10,19 +10,19 @@ import useFilters from '../hooks/use-filters'
 
 import type { FiltersProps } from '../types'
 
-type Props<T extends FieldValues> = Pick<FiltersProps<T>, 'filterItems'>
+type Props<T extends FieldValues> = Pick<FiltersProps<T>, 'data'>
 
-export default function FiltersContent<T extends FieldValues>({ filterItems }: Props<T>) {
+export default function FiltersContent<T extends FieldValues>({ data }: Props<T>) {
   const { popover, activeMenuKey, setActiveMenuKey, methods, filters, resetFilters, onSubmit } =
     useFilters<T>()
 
   const { handleSubmit } = methods
 
-  const render = filterItems.find(({ key }) => key === activeMenuKey)?.render()
+  const render = data.find(({ key }) => key === activeMenuKey)?.render()
 
   const menuItemList = (
     <List sx={{ flex: 1, maxHeight: 400, overflowY: 'auto' }}>
-      {filterItems.map(({ label, key }) => (
+      {data.map(({ label, key }) => (
         <Stack
           key={String(key)}
           component={ListItemButton}
