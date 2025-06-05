@@ -41,6 +41,8 @@ export default function FiltersContentPopover<T extends FieldValues>() {
           </FormProvider>
         </Stack>
 
+        {/* filtros qui */}
+
         <ControlsPanel<T> />
       </Stack>
     </CustomPopover>

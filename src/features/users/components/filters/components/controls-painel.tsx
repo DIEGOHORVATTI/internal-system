@@ -5,12 +5,7 @@ import { Stack, Button } from '@mui/material'
 import useFilters from '../hooks/use-filters'
 
 export default function ControlsPanel<T extends FieldValues>() {
-  const {
-    popover,
-    resetFilters,
-    onSubmit,
-    methods: { handleSubmit },
-  } = useFilters<T>()
+  const { popover, resetFilters, onSubmit } = useFilters<T>()
 
   return (
     <Stack direction="row" justifyContent="space-between" alignItems="center" p={1}>
