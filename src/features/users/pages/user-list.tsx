@@ -50,6 +50,7 @@ export default function UserList() {
         {
           name: 'dataHorario',
           label: 'Data e Horário',
+          fields: ['dataHorario', 'name', 'age'],
           render: (props) => (
             <Stack spacing={2}>
               <RHFTextField<InteractionRecord> fullWidth {...props} />
