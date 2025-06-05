@@ -12,9 +12,8 @@ import useFilters from '../hooks/use-filters'
 import ControlsPanel from './controls-painel'
 
 export default function FiltersContentPopover<T extends FieldValues>() {
-  const { data, filters, popover, activeMenuKey, methods } = useFilters<T>()
+  const { activeMenu, isHasActiveFilter, popover, activeMenuKey, methods } = useFilters<T>()
 
-  const activeMenu = data.find(({ name }) => name === activeMenuKey)
   const Render = useMemo(
     () => () =>
       activeMenu?.render({
@@ -42,7 +41,7 @@ export default function FiltersContentPopover<T extends FieldValues>() {
           </FormProvider>
         </Stack>
 
-        {!!filters[activeMenuKey] && (
+        {isHasActiveFilter && (
           <Stack direction="row" justifyContent="flex-end" p={1}>
             <Chips<T> />
           </Stack>

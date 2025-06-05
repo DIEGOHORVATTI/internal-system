@@ -24,6 +24,15 @@ export function FiltersProvider<T extends FieldValues>({
 
   const filters = watch()
 
+  const activeMenu = data.find(({ name }) => name === activeMenuKey)
+
+  const isHasActiveFilter =
+    activeMenu?.fields?.some((field) => {
+      const value = !!filters[field]
+
+      return value
+    }) || !!filters[activeMenuKey]
+
   const resetFilters = () => reset(defaultValues)
 
   const handleChipDelete = (key: Path<T>) => {
@@ -40,12 +49,25 @@ export function FiltersProvider<T extends FieldValues>({
   return (
     <Context.Provider
       value={{
+        // Controle do popover
         popover,
+
+        // Controle do menu ativo
+        activeMenu,
         activeMenuKey,
         setActiveMenuKey,
+
+        // Verificação de filtros ativos
+        isHasActiveFilter,
+
+        // React Hook Form
         methods,
+
+        // Definições dos filtros
         data,
         filters,
+
+        // Ações sobre os filtros
         resetFilters,
         handleChipDelete,
         onSubmit,
