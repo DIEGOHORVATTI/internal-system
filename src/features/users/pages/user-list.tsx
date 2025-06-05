@@ -1,6 +1,7 @@
 import MainContent from '@/layouts/main-content'
 import RHFTextField from '@/components/hook-form/rhf-text-field'
 
+import { Stack } from '@mui/material'
 import Button from '@mui/material/Button'
 
 import * as Filters from '../components/filters'
@@ -8,6 +9,8 @@ import useFilters from '../components/filters/hooks/use-filters'
 
 type InteractionRecord = {
   dataHorario: string | null
+  name: string
+  age: number
   midiaChamada: string
   agentes: string
   servicos: string
@@ -21,6 +24,8 @@ type InteractionRecord = {
 }
 
 const defaultValues: InteractionRecord = {
+  name: '',
+  age: 0,
   dataHorario: '',
   midiaChamada: '',
   agentes: '',
@@ -45,7 +50,15 @@ export default function UserList() {
         {
           name: 'dataHorario',
           label: 'Data e Horário',
-          render: (props) => <RHFTextField<InteractionRecord> fullWidth {...props} />,
+          render: (props) => (
+            <Stack spacing={2}>
+              <RHFTextField<InteractionRecord> fullWidth {...props} />
+
+              <RHFTextField<InteractionRecord> fullWidth label="Data e Nome" name="name" />
+
+              <RHFTextField<InteractionRecord> fullWidth label="Idade" name="age" />
+            </Stack>
+          ),
         },
         {
           name: 'midiaChamada',

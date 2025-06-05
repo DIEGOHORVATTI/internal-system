@@ -10,7 +10,7 @@ export default function MenuItemList<T extends FieldValues>() {
   const { data, filters, activeMenuKey, setActiveMenuKey } = useFilters<T>()
 
   return (
-    <List sx={{ flex: 1, maxHeight: 400, overflowY: 'auto' }}>
+    <List sx={{ flex: 0.7, maxHeight: 400, overflowY: 'auto' }}>
       {data.map(({ label, name: key }) => (
         <Stack
           key={String(key)}

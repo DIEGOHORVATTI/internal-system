@@ -6,12 +6,13 @@ import FormProvider from '@/components/hook-form/form-provider'
 
 import { Stack, Divider } from '@mui/material'
 
+import { Chips } from './chips'
 import MenuItemList from './menu-item-list'
 import useFilters from '../hooks/use-filters'
 import ControlsPanel from './controls-painel'
 
 export default function FiltersContentPopover<T extends FieldValues>() {
-  const { data, popover, activeMenuKey, methods } = useFilters<T>()
+  const { data, filters, popover, activeMenuKey, methods } = useFilters<T>()
 
   const activeMenu = data.find(({ name }) => name === activeMenuKey)
   const Render = useMemo(
@@ -30,7 +31,7 @@ export default function FiltersContentPopover<T extends FieldValues>() {
       open={popover.open}
       anchorEl={popover.anchorEl}
       onClose={popover.onClose}
-      slotProps={{ paper: { sx: { p: 0, width: 600 } } }}
+      slotProps={{ paper: { sx: { p: 0, width: 700 } } }}
     >
       <Stack width={1} divider={<Divider orientation="horizontal" />}>
         <Stack direction="row" divider={<Divider flexItem orientation="vertical" />}>
@@ -41,7 +42,11 @@ export default function FiltersContentPopover<T extends FieldValues>() {
           </FormProvider>
         </Stack>
 
-        {/* filtros qui */}
+        {!!filters[activeMenuKey] && (
+          <Stack direction="row" justifyContent="flex-end" p={1}>
+            <Chips<T> />
+          </Stack>
+        )}
 
         <ControlsPanel<T> />
       </Stack>
