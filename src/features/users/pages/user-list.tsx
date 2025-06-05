@@ -44,57 +44,57 @@ export default function UserList() {
         onApply={handleApply}
         data={[
           {
-            key: 'dataHorario' as keyof InteractionRecord,
+            key: 'dataHorario',
             label: 'Data e Horário',
             render: () => <input type="text" placeholder="Data e Horário" />,
           },
           {
-            key: 'midiaChamada' as keyof InteractionRecord,
+            key: 'midiaChamada',
             label: 'Mídia da Chamada',
             render: () => <input type="text" placeholder="Mídia da Chamada" />,
           },
           {
-            key: 'agentes' as keyof InteractionRecord,
+            key: 'agentes',
             label: 'Agentes',
             render: () => <input type="text" placeholder="Agentes" />,
           },
           {
-            key: 'servicos' as keyof InteractionRecord,
+            key: 'servicos',
             label: 'Serviços',
             render: () => <input type="text" placeholder="Serviços" />,
           },
           {
-            key: 'dadosAssociados' as keyof InteractionRecord,
+            key: 'dadosAssociados',
             label: 'Dados Associados',
             render: () => <input type="text" placeholder="Dados Associados" />,
           },
           {
-            key: 'condicaoTermino' as keyof InteractionRecord,
+            key: 'condicaoTermino',
             label: 'Condição de Término',
             render: () => <input type="text" placeholder="Condição de Término" />,
           },
           {
-            key: 'intervaloDuracao' as keyof InteractionRecord,
+            key: 'intervaloDuracao',
             label: 'Intervalo de Duração',
             render: () => <input type="text" placeholder="Intervalo de Duração" />,
           },
           {
-            key: 'interlocutor' as keyof InteractionRecord,
+            key: 'interlocutor',
             label: 'Interlocutor',
             render: () => <input type="text" placeholder="Interlocutor" />,
           },
           {
-            key: 'gravacao' as keyof InteractionRecord,
+            key: 'gravacao',
             label: 'Gravação',
             render: () => <input type="text" placeholder="Gravação" />,
           },
           {
-            key: 'protocolo' as keyof InteractionRecord,
+            key: 'protocolo',
             label: 'Protocolo',
             render: () => <input type="text" placeholder="Protocolo" />,
           },
           {
-            key: 'causaSIP' as keyof InteractionRecord,
+            key: 'causaSIP',
             label: 'Causa SIP',
             render: () => <input type="text" placeholder="Causa SIP" />,
           },
