@@ -18,7 +18,7 @@ export default function FiltersProvider<T extends FieldValues>({
 }: Props<T>) {
   const popover = usePopover()
 
-  const [activeMenuKey, setActiveMenuKey] = useState<keyof T | undefined>(data[0]?.key)
+  const [activeMenuKey, setActiveMenuKey] = useState<keyof T>(data[0]?.name)
 
   const methods = useForm<T>({ defaultValues })
   const { watch, setValue, reset } = methods

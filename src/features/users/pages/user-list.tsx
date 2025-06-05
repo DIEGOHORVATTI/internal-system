@@ -1,6 +1,7 @@
 import type { Dayjs } from 'dayjs'
 
 import MainContent from '@/layouts/main-content'
+import RHFTextField from '@/components/hook-form/rhf-text-field'
 
 import Filters from '../components/filters'
 
@@ -44,59 +45,59 @@ export default function UserList() {
         onApply={handleApply}
         data={[
           {
-            key: 'dataHorario',
+            name: 'dataHorario',
             label: 'Data e Horário',
-            render: () => <input type="text" placeholder="Data e Horário" />,
+            render: (props) => <RHFTextField<InteractionRecord> fullWidth {...props} />,
           },
           {
-            key: 'midiaChamada',
+            name: 'midiaChamada',
             label: 'Mídia da Chamada',
-            render: () => <input type="text" placeholder="Mídia da Chamada" />,
+            render: (props) => <RHFTextField<InteractionRecord> fullWidth {...props} />,
           },
           {
-            key: 'agentes',
+            name: 'agentes',
             label: 'Agentes',
-            render: () => <input type="text" placeholder="Agentes" />,
+            render: (props) => <RHFTextField<InteractionRecord> fullWidth {...props} />,
           },
           {
-            key: 'servicos',
+            name: 'servicos',
             label: 'Serviços',
-            render: () => <input type="text" placeholder="Serviços" />,
+            render: (props) => <RHFTextField<InteractionRecord> fullWidth {...props} />,
           },
           {
-            key: 'dadosAssociados',
+            name: 'dadosAssociados',
             label: 'Dados Associados',
-            render: () => <input type="text" placeholder="Dados Associados" />,
+            render: (props) => <RHFTextField<InteractionRecord> fullWidth {...props} />,
           },
           {
-            key: 'condicaoTermino',
+            name: 'condicaoTermino',
             label: 'Condição de Término',
-            render: () => <input type="text" placeholder="Condição de Término" />,
+            render: (props) => <RHFTextField<InteractionRecord> fullWidth {...props} />,
           },
           {
-            key: 'intervaloDuracao',
+            name: 'intervaloDuracao',
             label: 'Intervalo de Duração',
-            render: () => <input type="text" placeholder="Intervalo de Duração" />,
+            render: (props) => <RHFTextField<InteractionRecord> fullWidth {...props} />,
           },
           {
-            key: 'interlocutor',
+            name: 'interlocutor',
             label: 'Interlocutor',
-            render: () => <input type="text" placeholder="Interlocutor" />,
+            render: (props) => <RHFTextField<InteractionRecord> fullWidth {...props} />,
           },
           {
-            key: 'gravacao',
+            name: 'gravacao',
             label: 'Gravação',
-            render: () => <input type="text" placeholder="Gravação" />,
+            render: (props) => <RHFTextField<InteractionRecord> fullWidth {...props} />,
           },
           {
-            key: 'protocolo',
+            name: 'protocolo',
             label: 'Protocolo',
-            render: () => <input type="text" placeholder="Protocolo" />,
+            render: (props) => <RHFTextField<InteractionRecord> fullWidth {...props} />,
           },
           {
-            key: 'causaSIP',
+            name: 'causaSIP',
             label: 'Causa SIP',
-            render: () => <input type="text" placeholder="Causa SIP" />,
+            render: (props) => <RHFTextField<InteractionRecord> fullWidth {...props} />,
           },
         ]}
       />

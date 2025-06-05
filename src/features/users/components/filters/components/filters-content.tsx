@@ -14,7 +14,11 @@ export default function FiltersContent<T extends FieldValues>() {
 
   const { handleSubmit } = methods
 
-  const render = data.find(({ key }) => key === activeMenuKey)?.render()
+  const activeMenu = data.find(({ name }) => name === activeMenuKey)
+  const render = activeMenu?.render({
+    label: activeMenu?.label ?? '',
+    name: activeMenuKey,
+  })
 
   return (
     <>

@@ -11,7 +11,7 @@ export default function MenuItemList<T extends FieldValues>() {
 
   return (
     <List sx={{ flex: 1, maxHeight: 400, overflowY: 'auto' }}>
-      {data.map(({ label, key }) => (
+      {data.map(({ label, name: key }) => (
         <Stack
           key={String(key)}
           component={ListItemButton}
