@@ -1,7 +1,9 @@
 import type { FieldValues } from 'react-hook-form'
 
+import Button from '@mui/material/Button'
+
 import FiltersProvider from './provider/filters-provider'
-import FiltersContent from './components/filters-content'
+import FiltersContentPopover from './components/filters-content-popover'
 
 import type { FiltersProps } from './types'
 
@@ -12,7 +14,20 @@ export default function Filters<T extends FieldValues>({
 }: FiltersProps<T>) {
   return (
     <FiltersProvider<T> data={data} defaultValues={defaultValues} onApply={onApply}>
-      <FiltersContent />
+      {({ popover }) => (
+        <>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={popover.onOpen}
+            sx={{ width: 100 }}
+          >
+            Filtrar
+          </Button>
+
+          <FiltersContentPopover />
+        </>
+      )}
     </FiltersProvider>
   )
 }

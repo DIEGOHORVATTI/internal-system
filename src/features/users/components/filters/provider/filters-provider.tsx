@@ -8,7 +8,9 @@ import { FiltersContext } from '../context/filters-context'
 
 import type { FiltersProps, FiltersContextType } from '../types'
 
-type Props<T extends FieldValues> = React.PropsWithChildren<FiltersProps<T>>
+type Props<T extends FieldValues> = FiltersProps<T> & {
+  children: (props: FiltersContextType<T>) => React.ReactNode
+}
 
 export default function FiltersProvider<T extends FieldValues>({
   children,
@@ -37,22 +39,18 @@ export default function FiltersProvider<T extends FieldValues>({
     popover.onClose()
   }
 
+  const controls = {
+    popover,
+    activeMenuKey,
+    setActiveMenuKey,
+    methods,
+    data,
+    filters,
+    resetFilters,
+    handleChipDelete,
+    onSubmit,
+  }
+
   const Context = FiltersContext as React.Context<FiltersContextType<T>>
-  return (
-    <Context.Provider
-      value={{
-        popover,
-        activeMenuKey,
-        setActiveMenuKey,
-        methods,
-        data,
-        filters,
-        resetFilters,
-        handleChipDelete,
-        onSubmit,
-      }}
-    >
-      {children}
-    </Context.Provider>
-  )
+  return <Context.Provider value={controls}>{children(controls)}</Context.Provider>
 }
