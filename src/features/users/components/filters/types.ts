@@ -1,7 +1,7 @@
 import type { usePopover } from 'minimal-shared/hooks'
 import type { Path, FieldValues, UseFormReturn, DefaultValues } from 'react-hook-form'
 
-type FilterField<T extends FieldValues> = {
+export type FilterField<T extends FieldValues> = {
   label: string
   name: keyof T
   render: (props: Pick<FilterField<T>, 'label' | 'name'>) => React.ReactNode

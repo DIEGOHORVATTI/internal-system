@@ -4,32 +4,24 @@ import { Chip } from '@mui/material'
 
 import useFilters from '../hooks/use-filters'
 
-export type FilterOption<T> = {
-  label: string
-  key: keyof T
-}
+export function Chips<T extends FieldValues>() {
+  const { data, filters, handleChipDelete } = useFilters<T>()
 
-type Props<T extends FieldValues> = {
-  data: Array<FilterOption<T>>
-}
+  const chipLabel = (name: keyof T) => {
+    const item = data.find((item) => item.name === name)
 
-export function FilterChips<T extends FieldValues>({ data }: Props<T>) {
-  const { filters, handleChipDelete } = useFilters<T>()
-
-  const chipLabel = (key: keyof T) => {
-    const item = data.find((item) => item.key === key)
-    return item ? item.label : String(key)
+    return item ? item.label : String(name)
   }
 
   return (
     <>
       {Object.entries(filters)
         .filter(([, value]) => !!value)
-        .map(([key]) => (
+        .map(([name]) => (
           <Chip
-            key={key}
-            label={chipLabel(key as keyof T)}
-            onDelete={() => handleChipDelete(key as Path<T>)}
+            key={name}
+            label={chipLabel(name as keyof T)}
+            onDelete={() => handleChipDelete(name as Path<T>)}
             sx={{ mr: 1, mb: 1 }}
             color="secondary"
             variant="outlined"

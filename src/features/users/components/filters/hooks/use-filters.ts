@@ -2,7 +2,7 @@ import type { FieldValues } from 'react-hook-form'
 
 import { useContext } from 'react'
 
-import { FiltersContext } from '../context/filters-context'
+import FiltersContext from '../context/filters-context'
 
 import type { FiltersContextType } from '../types'
 

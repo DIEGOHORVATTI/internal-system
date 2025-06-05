@@ -4,6 +4,8 @@ import { createContext } from 'react'
 
 import type { FiltersContextType } from '../types'
 
-export const FiltersContext = createContext<FiltersContextType<FieldValues> | undefined>(
+const FiltersContext = createContext<FiltersContextType<FieldValues> | undefined>(
   undefined
 ) as unknown as React.Context<FiltersContextType<FieldValues>>
+
+export default FiltersContext

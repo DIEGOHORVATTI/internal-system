@@ -4,20 +4,17 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { usePopover } from 'minimal-shared/hooks'
 
-import { FiltersContext } from '../context/filters-context'
+import FiltersContext from '../context/filters-context'
+import FiltersContentPopover from '../components/filters-content-popover'
 
 import type { FiltersProps, FiltersContextType } from '../types'
 
-type Props<T extends FieldValues> = FiltersProps<T> & {
-  children: (props: FiltersContextType<T>) => React.ReactNode
-}
-
-export default function FiltersProvider<T extends FieldValues>({
+export function FiltersProvider<T extends FieldValues>({
   children,
   data,
   defaultValues,
   onApply,
-}: Props<T>) {
+}: React.PropsWithChildren<FiltersProps<T>>) {
   const popover = usePopover()
 
   const [activeMenuKey, setActiveMenuKey] = useState<keyof T>(data[0]?.name)
@@ -39,18 +36,24 @@ export default function FiltersProvider<T extends FieldValues>({
     popover.onClose()
   }
 
-  const controls = {
-    popover,
-    activeMenuKey,
-    setActiveMenuKey,
-    methods,
-    data,
-    filters,
-    resetFilters,
-    handleChipDelete,
-    onSubmit,
-  }
-
   const Context = FiltersContext as React.Context<FiltersContextType<T>>
-  return <Context.Provider value={controls}>{children(controls)}</Context.Provider>
+  return (
+    <Context.Provider
+      value={{
+        popover,
+        activeMenuKey,
+        setActiveMenuKey,
+        methods,
+        data,
+        filters,
+        resetFilters,
+        handleChipDelete,
+        onSubmit,
+      }}
+    >
+      {children}
+
+      <FiltersContentPopover />
+    </Context.Provider>
+  )
 }
