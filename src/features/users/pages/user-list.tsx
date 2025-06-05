@@ -32,15 +32,13 @@ const defaultValues: InteractionRecord = {
 }
 
 export default function UserList() {
-  const handleApply = (filters: InteractionRecord) => {
-    console.log('Filtros aplicados:', filters)
-  }
-
   return (
     <MainContent>
       <Filters<InteractionRecord>
         defaultValues={defaultValues}
-        onApply={handleApply}
+        onApply={(filters) => {
+          console.log('Filtros aplicados:', filters)
+        }}
         data={[
           {
             name: 'dataHorario',
