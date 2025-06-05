@@ -2,7 +2,7 @@ import type { Path, FieldValues } from 'react-hook-form'
 
 import { FiltersBlock } from '@/components/filters-result'
 
-import { Chip } from '@mui/material'
+import { Chip, Stack } from '@mui/material'
 
 import useFilters from '../hooks/use-filters'
 
@@ -19,7 +19,7 @@ export function Chips<T extends FieldValues>() {
     activeMenu?.fields?.includes(name) || activeMenuKey === name
 
   return (
-    <>
+    <Stack direction="row" spacing={1}>
       {Object.entries(filters)
         .filter(([name, value]) => isFieldActive(name as keyof T) && !!value)
         .map(([name, value]) => (
@@ -28,10 +28,10 @@ export function Chips<T extends FieldValues>() {
               label={value}
               onDelete={() => handleChipDelete(name as Path<T>)}
               color="secondary"
-              variant="outlined"
+              variant="filled"
             />
           </FiltersBlock>
         ))}
-    </>
+    </Stack>
   )
 }

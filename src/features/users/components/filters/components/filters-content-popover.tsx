@@ -1,10 +1,11 @@
 import type { FieldValues } from 'react-hook-form'
 
 import { useMemo } from 'react'
+import Iconify from '@/components/iconify'
 import CustomPopover from '@/components/custom-popover'
 import FormProvider from '@/components/hook-form/form-provider'
 
-import { Stack, Divider } from '@mui/material'
+import { Stack, Divider, Typography } from '@mui/material'
 
 import { Chips } from './chips'
 import MenuItemList from './menu-item-list'
@@ -42,11 +43,18 @@ export default function FiltersContentPopover<T extends FieldValues>() {
         </Stack>
 
         {isHasActiveFilter && (
-          <Stack direction="row" justifyContent="flex-end" p={1}>
-            <Chips<T> />
+          <Stack>
+            <Stack direction="row" p={1}>
+              <Iconify icon="mdi:filter" />
+
+              <Typography variant="subtitle2">Aplicados:</Typography>
+            </Stack>
+
+            <Stack direction="row" p={1}>
+              <Chips<T> />
+            </Stack>
           </Stack>
         )}
-
         <ControlsPanel<T> />
       </Stack>
     </CustomPopover>
