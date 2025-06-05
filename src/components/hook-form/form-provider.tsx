@@ -1,19 +1,26 @@
-import type { UseFormReturn } from 'react-hook-form'
+import type { BoxProps } from '@mui/material/Box'
+import type { FieldValues, UseFormReturn } from 'react-hook-form'
 
 import { FormProvider as Form } from 'react-hook-form'
 
-type Props = {
+import Box from '@mui/material/Box'
+
+type FormProviderProps<T extends FieldValues> = BoxProps & {
   children: React.ReactNode
-  methods: UseFormReturn<any>
+  methods: UseFormReturn<T, unknown, T>
   onSubmit?: VoidFunction
 }
 
-export default function FormProvider({ children, onSubmit, methods }: Props) {
+export default function FormProvider<T extends FieldValues>({
+  children,
+  methods,
+  ...props
+}: FormProviderProps<T>) {
   return (
     <Form {...methods}>
-      <form style={{ width: '100%' }} onSubmit={onSubmit}>
+      <Box component="form" encType="multipart/form-data" height={1} width={1} {...props}>
         {children}
-      </form>
+      </Box>
     </Form>
   )
 }

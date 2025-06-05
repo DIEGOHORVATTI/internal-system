@@ -4,7 +4,7 @@ import { PATHS } from './paths'
 
 const Login = lazy(() => import('@/features/auth/pages/login'))
 const Page404 = lazy(() => import('@/features/error/pages/404'))
-const Home = lazy(() => import('@/features/home/pages/home'))
+const UserList = lazy(() => import('@/features/users/pages/user-list'))
 const FileManagePage = lazy(() => import('@/features/_file-manager/pages/file-manager-view'))
 const PostListView = lazy(() => import('@/features/blog/pages/post-list-view'))
 
@@ -46,15 +46,15 @@ export const navConfig: Array<Navigation> = [
   },
   {
     kind: 'header',
-    title: 'Postagens',
+    title: 'Usuários',
     icon: 'solar:note-bold',
     children: [
       {
         kind: 'item',
         title: 'Listagem',
-        icon: 'solar:widget-home-bold',
-        path: PATHS.post.list,
-        component: PostListView,
+        icon: 'solar:user-bold',
+        path: PATHS.users.list,
+        component: UserList,
       },
     ],
   },
