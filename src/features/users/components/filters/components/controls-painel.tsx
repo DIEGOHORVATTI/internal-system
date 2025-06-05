@@ -5,7 +5,12 @@ import { Stack, Button } from '@mui/material'
 import useFilters from '../hooks/use-filters'
 
 export default function ControlsPanel<T extends FieldValues>() {
-  const { popover, resetFilters } = useFilters<T>()
+  const {
+    popover,
+    resetFilters,
+    onSubmit,
+    methods: { handleSubmit },
+  } = useFilters<T>()
 
   return (
     <Stack direction="row" justifyContent="space-between" alignItems="center" p={1}>
@@ -25,7 +30,7 @@ export default function ControlsPanel<T extends FieldValues>() {
           Fechar
         </Button>
 
-        <Button type="submit" variant="contained" color="secondary">
+        <Button variant="contained" color="secondary" onClick={onSubmit}>
           Aplicar
         </Button>
       </Stack>

@@ -1,12 +1,10 @@
-import type { Dayjs } from 'dayjs'
-
 import MainContent from '@/layouts/main-content'
 import RHFTextField from '@/components/hook-form/rhf-text-field'
 
 import Filters from '../components/filters'
 
 type InteractionRecord = {
-  dataHorario: Dayjs | null
+  dataHorario: string | null
   midiaChamada: string
   agentes: string
   servicos: string
@@ -20,7 +18,7 @@ type InteractionRecord = {
 }
 
 const defaultValues: InteractionRecord = {
-  dataHorario: null,
+  dataHorario: '',
   midiaChamada: '',
   agentes: '',
   servicos: '',

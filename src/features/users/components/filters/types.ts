@@ -16,7 +16,7 @@ export type FiltersContextType<T extends FieldValues> = {
   data: Array<FilterField<T>>
   resetFilters: () => void
   handleChipDelete: (key: Path<T>) => void
-  onSubmit: (data: T) => void
+  onSubmit: () => void
 }
 
 export type FiltersProps<T extends FieldValues> = Pick<FiltersContextType<T>, 'data'> & {

@@ -34,8 +34,8 @@ export default function FiltersProvider<T extends FieldValues>({
     onApply({ ...filters, [key]: defaultValues[key] })
   }
 
-  const onSubmit = (data: T) => {
-    onApply(data)
+  const onSubmit = () => {
+    onApply(filters)
     popover.onClose()
   }
 
