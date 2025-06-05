@@ -5,7 +5,7 @@ import { PATHS } from './paths'
 const Login = lazy(() => import('@/features/auth/pages/login'))
 const Page404 = lazy(() => import('@/features/error/pages/404'))
 const UserList = lazy(() => import('@/features/users/pages/user-list'))
-const FileManagePage = lazy(() => import('@/features/_file-manager/pages/file-manager-view'))
+const FileManagePage = lazy(() => import('@/features/file-manager/pages/file-manager-view'))
 const PostListView = lazy(() => import('@/features/blog/pages/post-list-view'))
 
 export type Navigation = {
