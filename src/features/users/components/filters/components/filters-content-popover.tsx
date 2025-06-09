@@ -51,7 +51,7 @@ export default function FiltersContentPopover<T extends FieldValues>() {
             </Stack>
 
             <Stack direction="row" p={1}>
-              <Chips<T> />
+              <Chips<T> onlyActive />
             </Stack>
           </Stack>
         )}
