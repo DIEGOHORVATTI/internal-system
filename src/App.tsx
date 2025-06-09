@@ -1,6 +1,6 @@
 import { lazy } from 'react'
 import ThemeProvider from '@/theme'
-import NavBar from '@/layouts/nav-bar'
+//import NavBar from '@/layouts/nav-bar'
 import { PATHS } from '@/routes/paths'
 import AuthGuard from '@/guards/auth-guard'
 import { navConfig } from '@/routes/nav-config'
@@ -38,13 +38,15 @@ export default function App() {
                       <Route
                         path="*"
                         element={
-                          <NavBar navConfig={navConfig}>
+                          <>
+                            {/* <NavBar navConfig={navConfig}> */}
                             <Routes>
                               {extractRoutes(navConfig).map(({ path, element }) => (
                                 <Route key={path} path={path} element={element} />
                               ))}
                             </Routes>
-                          </NavBar>
+                            {/* </NavBar> */}
+                          </>
                         }
                       />
                     </Routes>
