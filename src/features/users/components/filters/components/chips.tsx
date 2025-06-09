@@ -1,8 +1,6 @@
 import type { StackProps } from '@mui/material'
 import type { Path, FieldValues } from 'react-hook-form'
 
-import { FiltersBlock } from '@/components/filters-result'
-
 import { Chip, Stack } from '@mui/material'
 
 import useFilters from '../hooks/use-filters'
@@ -30,14 +28,17 @@ export function Chips<T extends FieldValues>({ onlyActive, ...props }: Props) {
           return !!value && (!onlyActive || isFieldActive(key))
         })
         .map(([name, value]) => (
-          <FiltersBlock key={name} label={chipLabel(name as keyof T)} isShow>
-            <Chip
-              label={value}
-              onDelete={() => handleChipDelete(name as Path<T>)}
-              color="secondary"
-              variant="filled"
-            />
-          </FiltersBlock>
+          <Chip
+            key={name}
+            label={
+              <>
+                <b>{chipLabel(name as keyof T)}:</b> {value}
+              </>
+            }
+            onDelete={() => handleChipDelete(name as Path<T>)}
+            color="secondary"
+            variant="filled"
+          />
         ))}
     </Stack>
   )
