@@ -11,20 +11,20 @@ export type FilterField<T extends FieldValues> = {
   label: string
 
   /** Usado como chave única. */
-  key: keyof T
+  key: string
 
   /**
    * Lista opcional de campos relacionados a este filtro.
    * Usado para identificar quais campos fazem parte do grupo e verificar se há filtros ativos.
    */
-  fields?: {
+  fields: {
     [K in keyof T]?: string
   }
   /**
    * Função que renderiza os campos do filtro no popover.
    * Recebe as propriedades `label`, `key` e `fields` como parâmetro.
    */
-  render: (props: Pick<FilterField<T>, 'label' | 'key' | 'fields'>) => React.ReactNode
+  render: (props: FilterField<T>) => React.ReactNode
 }
 
 /**
@@ -40,13 +40,13 @@ export type FiltersContextType<T extends FieldValues> = {
   activeMenu: FilterField<T> | undefined
 
   /** Chave (name) do filtro atualmente selecionado. */
-  key: keyof T
+  key: string
 
   /** Indica se há algum campo com valor válido no filtro atualmente selecionado. */
   isHasActiveFilter: boolean
 
   /** Define o filtro ativo a partir de sua chave (name). */
-  setActiveMenuKey: (key: keyof T) => void
+  setActiveMenuKey: (key: string) => void
 
   /** Métodos do React Hook Form para manipular os dados do formulário de filtros. */
   methods: UseFormReturn<T>

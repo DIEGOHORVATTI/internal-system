@@ -17,7 +17,7 @@ export function FiltersProvider<T extends FieldValues>({
 }: React.PropsWithChildren<FiltersProps<T>>) {
   const popover = usePopover()
 
-  const [key, setActiveMenuKey] = useState<keyof T>(data[0]?.key)
+  const [key, setActiveMenuKey] = useState(data[0]?.key)
 
   const methods = useForm<T>({ defaultValues })
   const { watch, setValue, reset } = methods

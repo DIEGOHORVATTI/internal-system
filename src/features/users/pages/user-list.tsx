@@ -59,103 +59,31 @@ export default function UserList() {
             name: 'Data e Nome',
             age: 'Idade',
           },
-          render: () => (
-            <Stack spacing={2}>
-              <RHFDateField<InteractionRecord> label="Data de Início" name="startDate" />
+          render: ({ fields }) => {
+            const teste = Object.fromEntries(
+              Object.entries(fields ?? {}).map(([key, label]) => [
+                key,
+                {
+                  name: key as keyof InteractionRecord,
+                  label,
+                },
+              ])
+            )
 
-              <RHFDateField<InteractionRecord> label="Data de Término" name="endDate" />
+            console.log(teste)
 
-              <RHFTextField<InteractionRecord> fullWidth label="Data e Nome" name="name" />
+            return (
+              <Stack spacing={2}>
+                <RHFDateField<InteractionRecord> {...teste.startDate} />
 
-              <RHFTextField<InteractionRecord> fullWidth label="Idade" name="age" />
-            </Stack>
-          ),
-        },
-        {
-          key: 'midiaChamada',
-          label: 'Mídia da Chamada',
-          render: () => (
-            <RHFTextField<InteractionRecord>
-              fullWidth
-              name="midiaChamada"
-              label="Mídia da Chamada"
-            />
-          ),
-        },
-        {
-          key: 'agentes',
-          label: 'Agentes',
-          render: () => (
-            <RHFTextField<InteractionRecord> fullWidth name="agentes" label="Agentes" />
-          ),
-        },
-        {
-          key: 'servicos',
-          label: 'Serviços',
-          render: () => (
-            <RHFTextField<InteractionRecord> fullWidth name="servicos" label="Serviços" />
-          ),
-        },
-        {
-          key: 'dadosAssociados',
-          label: 'Dados Associados',
-          render: () => (
-            <RHFTextField<InteractionRecord>
-              fullWidth
-              name="dadosAssociados"
-              label="Dados Associados"
-            />
-          ),
-        },
-        {
-          key: 'condicaoTermino',
-          label: 'Condição de Término',
-          render: () => (
-            <RHFTextField<InteractionRecord>
-              fullWidth
-              name="condicaoTermino"
-              label="Condição de Término"
-            />
-          ),
-        },
-        {
-          key: 'intervaloDuracao',
-          label: 'Intervalo de Duração',
-          render: () => (
-            <RHFTextField<InteractionRecord>
-              fullWidth
-              name="intervaloDuracao"
-              label="Intervalo de Duração"
-            />
-          ),
-        },
-        {
-          key: 'interlocutor',
-          label: 'Interlocutor',
-          render: () => (
-            <RHFTextField<InteractionRecord> fullWidth name="interlocutor" label="Interlocutor" />
-          ),
-        },
-        {
-          key: 'gravacao',
-          label: 'Gravação',
-          render: () => (
-            <RHFTextField<InteractionRecord> fullWidth name="gravacao" label="Gravação" />
-          ),
-        },
-        {
-          key: 'protocolo',
-          label: 'Protocolo',
-          render: () => (
-            <RHFTextField<InteractionRecord> fullWidth name="protocolo" label="Protocolo" />
-          ),
-        },
-        {
-          key: 'causaSIP',
-          label: 'Causa SIP',
-          render: () => (
-            <RHFTextField<InteractionRecord> fullWidth name="causaSIP" label="Causa SIP" />
-          ),
+                <RHFDateField<InteractionRecord> label="Data de Término" name="endDate" />
+
+                <RHFTextField<InteractionRecord> fullWidth label="Data e Nome" name="name" />
+
+                <RHFTextField<InteractionRecord> fullWidth label="Idade" name="age" />
+              </Stack>
+            )
+          },
         },
       ]}
     >

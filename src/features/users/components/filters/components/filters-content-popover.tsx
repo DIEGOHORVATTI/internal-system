@@ -15,14 +15,7 @@ import ControlsPanel from './controls-painel'
 export default function FiltersContentPopover<T extends FieldValues>() {
   const { activeMenu, isHasActiveFilter, popover, key, methods } = useFilters<T>()
 
-  const Render = useMemo(
-    () => () =>
-      activeMenu?.render({
-        label: activeMenu?.label ?? '',
-        key,
-      }),
-    [key, activeMenu]
-  )
+  const Render = useMemo(() => () => activeMenu?.render({ ...activeMenu, key }), [key, activeMenu])
 
   return (
     <CustomPopover
