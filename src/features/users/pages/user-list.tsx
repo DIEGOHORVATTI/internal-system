@@ -59,31 +59,17 @@ export default function UserList() {
             name: 'Data e Nome',
             age: 'Idade',
           },
-          render: ({ fields }) => {
-            const teste = Object.fromEntries(
-              Object.entries(fields ?? {}).map(([key, label]) => [
-                key,
-                {
-                  name: key as keyof InteractionRecord,
-                  label,
-                },
-              ])
-            )
+          render: () => (
+            <Stack spacing={2}>
+              <RHFDateField<InteractionRecord> label="Data de Início" name="startDate" />
 
-            console.log(teste)
+              <RHFDateField<InteractionRecord> label="Data de Término" name="endDate" />
 
-            return (
-              <Stack spacing={2}>
-                <RHFDateField<InteractionRecord> {...teste.startDate} />
+              <RHFTextField<InteractionRecord> fullWidth label="Data e Nome" name="name" />
 
-                <RHFDateField<InteractionRecord> label="Data de Término" name="endDate" />
-
-                <RHFTextField<InteractionRecord> fullWidth label="Data e Nome" name="name" />
-
-                <RHFTextField<InteractionRecord> fullWidth label="Idade" name="age" />
-              </Stack>
-            )
-          },
+              <RHFTextField<InteractionRecord> fullWidth label="Idade" name="age" />
+            </Stack>
+          ),
         },
       ]}
     >

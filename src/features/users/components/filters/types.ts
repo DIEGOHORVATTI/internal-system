@@ -20,6 +20,7 @@ export type FilterField<T extends FieldValues> = {
   fields: {
     [K in keyof T]?: string
   }
+
   /**
    * Função que renderiza os campos do filtro no popover.
    * Recebe as propriedades `label`, `key` e `fields` como parâmetro.

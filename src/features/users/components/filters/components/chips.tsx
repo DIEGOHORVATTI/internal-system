@@ -27,26 +27,19 @@ export function Chips<T extends FieldValues>({ onlyActive, ...props }: Props) {
   const { data, activeMenu, filters, handleChipDelete } = useFilters<T>()
 
   const chipLabel = (filterKey: keyof T) => {
-    const item = data.find((item) => item.key === filterKey)
+    const item = data.find((item) => item.fields[filterKey])
 
-    return item ? item.label : String(filterKey)
+    return item?.label || String(filterKey)
   }
-
-  const isFieldActive = (filterKey: keyof T) =>
-    Array.isArray(activeMenu?.fields) && activeMenu.fields.includes(filterKey)
 
   const activeFilters = Object.entries(filters).filter(([name, value]) => {
     const key = name as keyof T
 
-    return !!value && (!onlyActive || isFieldActive(key))
+    return !!value && (!onlyActive || activeMenu?.fields[key] || activeMenu?.key === name)
   })
-
-  console.log(typeof activeFilters, activeFilters)
 
   return (
     <Stack direction="row" spacing={1} {...props}>
-      <h4>{'Filtros Ativos: ' + activeFilters.length}</h4>
-
       {activeFilters.map(([name, value]) => (
         <Chip
           key={name}
