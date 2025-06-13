@@ -51,9 +51,14 @@ export default function UserList() {
       }}
       data={[
         {
-          name: 'startDate',
+          key: 'startDate',
           label: 'Data de Início',
-          fields: ['startDate', 'endDate', 'name', 'age'],
+          fields: {
+            startDate: 'Data de Início',
+            endDate: 'Data de Término',
+            name: 'Data e Nome',
+            age: 'Idade',
+          },
           render: () => (
             <Stack spacing={2}>
               <RHFDateField<InteractionRecord> label="Data de Início" name="startDate" />
@@ -67,7 +72,7 @@ export default function UserList() {
           ),
         },
         {
-          name: 'midiaChamada',
+          key: 'midiaChamada',
           label: 'Mídia da Chamada',
           render: () => (
             <RHFTextField<InteractionRecord>
@@ -78,21 +83,21 @@ export default function UserList() {
           ),
         },
         {
-          name: 'agentes',
+          key: 'agentes',
           label: 'Agentes',
           render: () => (
             <RHFTextField<InteractionRecord> fullWidth name="agentes" label="Agentes" />
           ),
         },
         {
-          name: 'servicos',
+          key: 'servicos',
           label: 'Serviços',
           render: () => (
             <RHFTextField<InteractionRecord> fullWidth name="servicos" label="Serviços" />
           ),
         },
         {
-          name: 'dadosAssociados',
+          key: 'dadosAssociados',
           label: 'Dados Associados',
           render: () => (
             <RHFTextField<InteractionRecord>
@@ -103,7 +108,7 @@ export default function UserList() {
           ),
         },
         {
-          name: 'condicaoTermino',
+          key: 'condicaoTermino',
           label: 'Condição de Término',
           render: () => (
             <RHFTextField<InteractionRecord>
@@ -114,7 +119,7 @@ export default function UserList() {
           ),
         },
         {
-          name: 'intervaloDuracao',
+          key: 'intervaloDuracao',
           label: 'Intervalo de Duração',
           render: () => (
             <RHFTextField<InteractionRecord>
@@ -125,28 +130,28 @@ export default function UserList() {
           ),
         },
         {
-          name: 'interlocutor',
+          key: 'interlocutor',
           label: 'Interlocutor',
           render: () => (
             <RHFTextField<InteractionRecord> fullWidth name="interlocutor" label="Interlocutor" />
           ),
         },
         {
-          name: 'gravacao',
+          key: 'gravacao',
           label: 'Gravação',
           render: () => (
             <RHFTextField<InteractionRecord> fullWidth name="gravacao" label="Gravação" />
           ),
         },
         {
-          name: 'protocolo',
+          key: 'protocolo',
           label: 'Protocolo',
           render: () => (
             <RHFTextField<InteractionRecord> fullWidth name="protocolo" label="Protocolo" />
           ),
         },
         {
-          name: 'causaSIP',
+          key: 'causaSIP',
           label: 'Causa SIP',
           render: () => (
             <RHFTextField<InteractionRecord> fullWidth name="causaSIP" label="Causa SIP" />
@@ -168,7 +173,7 @@ function List() {
         Filtrar
       </Button>
 
-      {/* <Filters.Chips<InteractionRecord> /> */}
+      <Filters.Chips<InteractionRecord> />
     </MainContent>
   )
 }

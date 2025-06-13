@@ -13,15 +13,15 @@ import useFilters from '../hooks/use-filters'
 import ControlsPanel from './controls-painel'
 
 export default function FiltersContentPopover<T extends FieldValues>() {
-  const { activeMenu, isHasActiveFilter, popover, activeMenuKey, methods } = useFilters<T>()
+  const { activeMenu, isHasActiveFilter, popover, key, methods } = useFilters<T>()
 
   const Render = useMemo(
     () => () =>
       activeMenu?.render({
         label: activeMenu?.label ?? '',
-        name: activeMenuKey,
+        key,
       }),
-    [activeMenuKey, activeMenu]
+    [key, activeMenu]
   )
 
   return (
@@ -38,7 +38,7 @@ export default function FiltersContentPopover<T extends FieldValues>() {
           <MenuItemList />
 
           <FormProvider<T> methods={methods} flex={1} p={1}>
-            <Render key={String(activeMenuKey)} />
+            <Render key={String(key)} />
           </FormProvider>
         </Stack>
 

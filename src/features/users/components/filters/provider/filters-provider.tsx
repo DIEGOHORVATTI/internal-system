@@ -17,21 +17,24 @@ export function FiltersProvider<T extends FieldValues>({
 }: React.PropsWithChildren<FiltersProps<T>>) {
   const popover = usePopover()
 
-  const [activeMenuKey, setActiveMenuKey] = useState<keyof T>(data[0]?.name)
+  const [key, setActiveMenuKey] = useState<keyof T>(data[0]?.key)
 
   const methods = useForm<T>({ defaultValues })
   const { watch, setValue, reset } = methods
 
   const filters = watch()
 
-  const activeMenu = data.find(({ name }) => name === activeMenuKey)
+  const activeMenu = data.find(({ key: name }) => name === key)
 
-  /** Verifica se o menu ativo possui filtros aplicados */
-  const isActiveFilterForMenuKey = !!filters[activeMenuKey]
-  /** Verifica se algum campo de um mesmo grupo do menu ativo possui filtro aplicado */
-  const isAnyFieldFiltered = activeMenu?.fields?.some((field) => !!filters[field])
-  /** Verifica se algum filtro está ativo */
-  const isHasActiveFilter = isAnyFieldFiltered || isActiveFilterForMenuKey
+  /**
+   * @title Verifica se algum filtro está ativo
+   * @description Verifica se algum campo de um mesmo grupo do menu ativo possui filtro aplicado
+   * */
+  const isHasActiveFilter = Object.entries(activeMenu?.fields || {}).some(([key]) => {
+    const fieldValue = filters[key]
+
+    return fieldValue && fieldValue !== defaultValues[key]
+  })
 
   const resetFilters = () => reset(defaultValues)
 
@@ -54,7 +57,7 @@ export function FiltersProvider<T extends FieldValues>({
 
         // Controle do menu ativo
         activeMenu,
-        activeMenuKey,
+        key,
         setActiveMenuKey,
 
         // Verificação de filtros ativos

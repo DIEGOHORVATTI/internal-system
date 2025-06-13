@@ -7,11 +7,11 @@ import { List, Stack, ListItemText, ListItemButton } from '@mui/material'
 import useFilters from '../hooks/use-filters'
 
 export default function MenuItemList<T extends FieldValues>() {
-  const { data, filters, activeMenuKey, setActiveMenuKey } = useFilters<T>()
+  const { data, filters, key: activeMenuKey, setActiveMenuKey } = useFilters<T>()
 
   return (
     <List sx={{ flex: 0.7, maxHeight: 400, overflowY: 'auto' }}>
-      {data.map(({ label, name: key }) => (
+      {data.map(({ label, key }) => (
         <Stack
           key={String(key)}
           component={ListItemButton}

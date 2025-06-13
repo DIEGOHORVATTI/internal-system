@@ -36,6 +36,9 @@ export default function RHFDateField<T extends FieldValues>({
           {...field}
           format="DD/MM/YYYY"
           slotProps={{
+            actionBar: {
+              actions: ['today', 'clear', 'accept'],
+            },
             textField: {
               error: !!error,
               helperText,
