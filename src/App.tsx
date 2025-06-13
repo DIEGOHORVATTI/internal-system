@@ -12,6 +12,8 @@ import SettingsProvider from '@/contexts/settings-provider'
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import MotionLazyProvider from '@/components/animate/motion-lazy-provider'
 
+import Navbar from './layouts/nav-bar'
+
 const PageAuthLogin = lazy(() => import('@/features/auth/pages/login'))
 
 export default function App() {
@@ -38,15 +40,13 @@ export default function App() {
                       <Route
                         path="*"
                         element={
-                          <>
-                            {/* <NavBar navConfig={navConfig}> */}
+                          <Navbar navConfig={navConfig}>
                             <Routes>
                               {extractRoutes(navConfig).map(({ path, element }) => (
                                 <Route key={path} path={path} element={element} />
                               ))}
                             </Routes>
-                            {/* </NavBar> */}
-                          </>
+                          </Navbar>
                         }
                       />
                     </Routes>

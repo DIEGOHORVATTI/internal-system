@@ -1,12 +1,26 @@
 import type { StackProps } from '@mui/material'
 import type { Path, FieldValues } from 'react-hook-form'
 
+import dayjs from 'dayjs'
+
 import { Chip, Stack } from '@mui/material'
 
 import useFilters from '../hooks/use-filters'
 
 type Props = StackProps & {
   onlyActive?: boolean
+}
+
+function formatChipValue(value: unknown): string {
+  if (value instanceof Date || dayjs.isDayjs(value)) {
+    return dayjs(value).format('DD/MM/YYYY')
+  }
+
+  if (Array.isArray(value)) {
+    return value.map(formatChipValue).join(', ')
+  }
+
+  return String(value)
 }
 
 export function Chips<T extends FieldValues>({ onlyActive, ...props }: Props) {
@@ -32,7 +46,7 @@ export function Chips<T extends FieldValues>({ onlyActive, ...props }: Props) {
             key={name}
             label={
               <>
-                <b>{chipLabel(name as keyof T)}:</b> {value}
+                <b>{chipLabel(name as keyof T)}:</b> {formatChipValue(value)}
               </>
             }
             onDelete={() => handleChipDelete(name as Path<T>)}

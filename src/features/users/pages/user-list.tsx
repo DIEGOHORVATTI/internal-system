@@ -1,5 +1,6 @@
 import MainContent from '@/layouts/main-content'
 import RHFTextField from '@/components/hook-form/rhf-text-field'
+import RHFDateField from '@/components/hook-form/rhf-date-field'
 
 import { Stack } from '@mui/material'
 import Button from '@mui/material/Button'
@@ -8,7 +9,8 @@ import * as Filters from '../components/filters'
 import useFilters from '../components/filters/hooks/use-filters'
 
 type InteractionRecord = {
-  dataHorario: string | null
+  startDate: Date | null
+  endDate: Date | null
   name: string
   age: number
   midiaChamada: string
@@ -26,7 +28,8 @@ type InteractionRecord = {
 const defaultValues: InteractionRecord = {
   name: '',
   age: 0,
-  dataHorario: '',
+  startDate: null,
+  endDate: null,
   midiaChamada: '',
   agentes: '',
   servicos: '',
@@ -48,12 +51,14 @@ export default function UserList() {
       }}
       data={[
         {
-          name: 'dataHorario',
-          label: 'Data e Horário',
-          fields: ['dataHorario', 'name', 'age'],
-          render: (props) => (
+          name: 'startDate',
+          label: 'Data de Início',
+          fields: ['startDate', 'endDate', 'name', 'age'],
+          render: () => (
             <Stack spacing={2}>
-              <RHFTextField<InteractionRecord> fullWidth {...props} />
+              <RHFDateField<InteractionRecord> label="Data de Início" name="startDate" />
+
+              <RHFDateField<InteractionRecord> label="Data de Término" name="endDate" />
 
               <RHFTextField<InteractionRecord> fullWidth label="Data e Nome" name="name" />
 
@@ -64,52 +69,88 @@ export default function UserList() {
         {
           name: 'midiaChamada',
           label: 'Mídia da Chamada',
-          render: (props) => <RHFTextField<InteractionRecord> fullWidth {...props} />,
+          render: () => (
+            <RHFTextField<InteractionRecord>
+              fullWidth
+              name="midiaChamada"
+              label="Mídia da Chamada"
+            />
+          ),
         },
         {
           name: 'agentes',
           label: 'Agentes',
-          render: (props) => <RHFTextField<InteractionRecord> fullWidth {...props} />,
+          render: () => (
+            <RHFTextField<InteractionRecord> fullWidth name="agentes" label="Agentes" />
+          ),
         },
         {
           name: 'servicos',
           label: 'Serviços',
-          render: (props) => <RHFTextField<InteractionRecord> fullWidth {...props} />,
+          render: () => (
+            <RHFTextField<InteractionRecord> fullWidth name="servicos" label="Serviços" />
+          ),
         },
         {
           name: 'dadosAssociados',
           label: 'Dados Associados',
-          render: (props) => <RHFTextField<InteractionRecord> fullWidth {...props} />,
+          render: () => (
+            <RHFTextField<InteractionRecord>
+              fullWidth
+              name="dadosAssociados"
+              label="Dados Associados"
+            />
+          ),
         },
         {
           name: 'condicaoTermino',
           label: 'Condição de Término',
-          render: (props) => <RHFTextField<InteractionRecord> fullWidth {...props} />,
+          render: () => (
+            <RHFTextField<InteractionRecord>
+              fullWidth
+              name="condicaoTermino"
+              label="Condição de Término"
+            />
+          ),
         },
         {
           name: 'intervaloDuracao',
           label: 'Intervalo de Duração',
-          render: (props) => <RHFTextField<InteractionRecord> fullWidth {...props} />,
+          render: () => (
+            <RHFTextField<InteractionRecord>
+              fullWidth
+              name="intervaloDuracao"
+              label="Intervalo de Duração"
+            />
+          ),
         },
         {
           name: 'interlocutor',
           label: 'Interlocutor',
-          render: (props) => <RHFTextField<InteractionRecord> fullWidth {...props} />,
+          render: () => (
+            <RHFTextField<InteractionRecord> fullWidth name="interlocutor" label="Interlocutor" />
+          ),
         },
         {
           name: 'gravacao',
           label: 'Gravação',
-          render: (props) => <RHFTextField<InteractionRecord> fullWidth {...props} />,
+          render: () => (
+            <RHFTextField<InteractionRecord> fullWidth name="gravacao" label="Gravação" />
+          ),
         },
         {
           name: 'protocolo',
           label: 'Protocolo',
-          render: (props) => <RHFTextField<InteractionRecord> fullWidth {...props} />,
+          render: () => (
+            <RHFTextField<InteractionRecord> fullWidth name="protocolo" label="Protocolo" />
+          ),
         },
         {
           name: 'causaSIP',
           label: 'Causa SIP',
-          render: (props) => <RHFTextField<InteractionRecord> fullWidth {...props} />,
+          render: () => (
+            <RHFTextField<InteractionRecord> fullWidth name="causaSIP" label="Causa SIP" />
+          ),
         },
       ]}
     >
@@ -127,7 +168,7 @@ function List() {
         Filtrar
       </Button>
 
-      <Filters.Chips<InteractionRecord> />
+      {/* <Filters.Chips<InteractionRecord> /> */}
     </MainContent>
   )
 }

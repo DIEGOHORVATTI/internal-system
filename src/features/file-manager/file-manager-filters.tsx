@@ -9,7 +9,6 @@ import { usePopover } from 'minimal-shared/hooks'
 import CustomPopover from '@/components/custom-popover'
 import FileThumbnail from '@/components/file-thumbnail'
 import { fDateRangeShortLabel } from '@/utils/format-time'
-import CustomDateRangePicker from '@/components/custom-date-range-picker'
 
 import Box from '@mui/material/Box'
 import { alpha } from '@mui/system'
@@ -212,7 +211,7 @@ export function FileManagerFilters({
           : 'Select date'}
       </Button>
 
-      <CustomDateRangePicker
+      {/* <CustomDateRangePicker
         variant="calendar"
         startDate={currentFilters.startDate}
         endDate={currentFilters.endDate}
@@ -222,7 +221,7 @@ export function FileManagerFilters({
         onClose={onCloseDateRange}
         selected={!!currentFilters.startDate && !!currentFilters.endDate}
         error={dateError}
-      />
+      /> */}
     </>
   )
 

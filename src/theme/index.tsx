@@ -50,17 +50,13 @@ export default function ThemeProvider({ children }: React.PropsWithChildren) {
 
   return (
     <NextAppDirEmotionCacheProvider options={{ key: 'css' }}>
-      <LocalizationProvider>
+      <MuiLocalizationProvider dateAdapter={AdapterDayjs}>
         <MuiThemeProvider theme={theme}>
           <CssBaseline />
 
           {children}
         </MuiThemeProvider>
-      </LocalizationProvider>
+      </MuiLocalizationProvider>
     </NextAppDirEmotionCacheProvider>
   )
 }
-
-const LocalizationProvider = ({ children }: React.PropsWithChildren) => (
-  <MuiLocalizationProvider dateAdapter={AdapterDayjs}>{children}</MuiLocalizationProvider>
-)
